@@ -1,3 +1,5 @@
+/* 사용하게될 폰트 이곳에서 관리*/
+
 @font-face {
   font-family: 'Pretendard';
   src: url('./fonts/Pretendard-Medium.otf') format('otf');
@@ -10,9 +12,4 @@
   src: url('./fonts/Pretendard-Bold.otf') format('otf');
   font-weight: 600;
   font-style: normal;
-}
-
-.button {
-  font-size: 16px;
-  font-weight: 200;
 }
