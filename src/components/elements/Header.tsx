@@ -9,6 +9,7 @@ export function Header() {
       <HeaderButton>멋사 소개</HeaderButton>
       <HeaderButton>지원하기</HeaderButton>
       <HeaderButton>커뮤니티</HeaderButton>
+      <HeaderButton>로그인</HeaderButton>
     </Wrapper>
   );
 }
