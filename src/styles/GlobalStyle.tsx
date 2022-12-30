@@ -1,7 +1,7 @@
 // 전역 css
 
-import { createGlobalStyle } from 'styled-components';
-import './font.css';
+import { createGlobalStyle } from "styled-components";
+import "./font.css";
 
 const GlobalStyle = createGlobalStyle`
   * {

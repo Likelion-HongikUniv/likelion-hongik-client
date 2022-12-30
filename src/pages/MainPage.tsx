@@ -1,3 +1,12 @@
+import { Header } from "../components/elements/Header";
+import { Logo } from "../components/icons/Logo";
+
 export function MainPage() {
-  return <div>mainPage</div>;
+  return (
+    <>
+      <Header />
+
+      <div>mainPage</div>
+    </>
+  );
 }
