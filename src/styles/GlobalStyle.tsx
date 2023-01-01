@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Pretendard;
     line-height: 1.5;
     margin: 0;
+    background-color: black;
   }
 
   button {
