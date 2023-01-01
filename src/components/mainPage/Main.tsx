@@ -1,4 +1,4 @@
-import main1 from "../images/main1.png";
+import main_main from "../images/main_main.png";
 import styled from "styled-components";
 
 export function Main() {
@@ -19,7 +19,7 @@ export function Main() {
   );
 }
 const MainContainer = styled.div`
-  background-image: url(${main1});
+  background-image: url(${main_main});
   background-size: cover;
   width: 100vw;
   height: 90vh;

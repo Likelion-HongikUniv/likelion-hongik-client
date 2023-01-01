@@ -31,8 +31,6 @@ const Curriculum = () => {
 
   return (
     <Container>
-      <h1 style={{ fontWeight: "800", fontSize: "40px" }}>Curriculum</h1>
-      <p style={{ fontSize: "20px" }}>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</p>
       <div>
         <PartBtn id="1" onClick={handleClickButton}>
           <PartName id="1">기획·디자인</PartName>
