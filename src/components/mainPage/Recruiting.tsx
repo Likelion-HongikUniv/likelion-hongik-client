@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import main_recruiting from "../images/main_recruiting.png";
 import { useNavigate } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
 
 const Recruiting = () => {
   const navigate = useNavigate();
@@ -8,18 +9,20 @@ const Recruiting = () => {
     navigate("/recruit");
   };
   return (
-    <RecruitingContainer>
-      <BoxContainer>
-        <Now>NOW</Now>
-        <h1 style={{ fontSize: "40px" }}>멋쟁이 사자처럼 11기</h1>
-        <Text>
-          지원 기간 : 2022.02.23 ~ 2022.03.13
-          <br />
-          모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명
-        </Text>
-      </BoxContainer>
-      <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>
-    </RecruitingContainer>
+    <Fade>
+      <RecruitingContainer>
+        <BoxContainer>
+          <Now>NOW</Now>
+          <h1 style={{ fontSize: "40px" }}>멋쟁이 사자처럼 11기</h1>
+          <Text>
+            지원 기간 : 2022.02.23 ~ 2022.03.13
+            <br />
+            모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명
+          </Text>
+        </BoxContainer>
+        <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>
+      </RecruitingContainer>
+    </Fade>
   );
 };
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import { Fade } from "react-awesome-reveal";
 
 const Project = () => {
   return (
-    <div>
-      
-    </div>
+    <Fade>
+      <div></div>
+    </Fade>
   );
 };
 
