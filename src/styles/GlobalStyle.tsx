@@ -2,6 +2,7 @@
 
 import { createGlobalStyle } from "styled-components";
 import "./font.css";
+import { BLACK_1 } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -12,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: SUIT;
     line-height: 1.5;
     margin: 0;
+    background-color: ${BLACK_1};
   }
 
   button {

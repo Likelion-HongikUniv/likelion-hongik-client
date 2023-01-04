@@ -1,14 +1,16 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 export function Logo() {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <svg
-        width="190"
-        height="22"
-        viewBox="0 0 190 22"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        // xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
+    <button
+      onClick={() => {
+        navigate("/");
+      }}
+    >
+      <svg width="190" height="22" viewBox="0 0 190 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="190" height="22" fill="url(#pattern0)" />
         <defs>
           <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -23,6 +25,6 @@ export function Logo() {
           />
         </defs>
       </svg>
-    </>
+    </button>
   );
 }
