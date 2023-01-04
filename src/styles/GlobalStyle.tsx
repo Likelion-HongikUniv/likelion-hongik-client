@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     margin: 0;
     background-color: ${BLACK_1};
+    color: white;
   }
 
   button {

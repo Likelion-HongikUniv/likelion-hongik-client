@@ -37,3 +37,8 @@ export const teamState = atom<number>({
   key: "teamState",
   default: 1,
 });
+
+export const isLoggedInState = atom<boolean>({
+  key: "isLoggedIn",
+  default: false,
+});

@@ -10,6 +10,8 @@ import GlobalStyle from "./styles/GlobalStyle";
 import { LoginDetailPage } from "./pages/LoginPage/LoginDetailPage";
 import { CompletePage } from "./pages/LoginPage/CompletePage";
 import { InfoEditPage } from "./pages/MyPage/InfoEditPage";
+import { WritingPage } from "./pages/WritingPage";
+import { PostPage } from "./pages/PostPage";
 
 const queryClient = new QueryClient();
 
@@ -23,13 +25,13 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
-
             <Route path="/community/:categoryName" element={<CommunityPage />} />
             <Route path="/logindetail" element={<LoginDetailPage />} />
             <Route path="/logincomplete" element={<CompletePage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/myPageEdit" element={<InfoEditPage />} />
+            <Route path="/write/:userid" element={<WritingPage />} />
           </Routes>
         </RecoilRoot>
       </QueryClientProvider>

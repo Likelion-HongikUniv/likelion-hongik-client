@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Logo } from "../icons/Logo";
+import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
 
 export function Header() {
@@ -14,7 +15,7 @@ export function Header() {
   return (
     <Wrapper>
       <Logo />
-      <Row gap="60px">
+      <Row gap="60px" alignItems="center">
         <HeaderButton onClick={onClickHeaderButton} name="introduction">
           멋사 소개
         </HeaderButton>
@@ -24,9 +25,7 @@ export function Header() {
         <HeaderButton onClick={onClickHeaderButton} name="community">
           커뮤니티
         </HeaderButton>
-        <HeaderButton onClick={onClickHeaderButton} name="login">
-          로그인
-        </HeaderButton>
+        <ProfileButton />
       </Row>
     </Wrapper>
   );
@@ -39,6 +38,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 340px;
+  position: fixed;
   z-index: 1;
 `;
 

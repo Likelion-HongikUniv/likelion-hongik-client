@@ -1,12 +1,12 @@
 import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
 
-export function MainPage() {
+export function WritingPage() {
   return (
     <>
       <Header />
       <Section>
-        <div>mainPage</div>
+        <div>writingPage</div>
       </Section>
     </>
   );
