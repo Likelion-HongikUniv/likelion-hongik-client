@@ -44,7 +44,7 @@ const MainPageContainer = styled.div`
 const Title = styled.span`
   font-weight: 800;
   font-size: 40px;
-  margin-top: 100px;
+  margin-top: 220px;
 `;
 
 const Desc = styled.span`

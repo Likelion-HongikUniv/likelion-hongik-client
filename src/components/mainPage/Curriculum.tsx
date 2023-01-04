@@ -101,7 +101,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 60px;
 `;
 
 const PartContainer = styled.div`
