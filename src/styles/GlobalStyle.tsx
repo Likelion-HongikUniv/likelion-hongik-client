@@ -20,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     line-height: 0;
+    font-family: Pretendard;
   }
 `;
+
 export default GlobalStyle;
