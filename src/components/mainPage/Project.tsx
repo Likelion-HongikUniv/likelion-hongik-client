@@ -24,7 +24,7 @@ const Project = () => {
       </Prev>
     );
   }
-
+  const projects = ["프로젝트1", "프로젝트2", "프로젝트3", "프로젝트4", "프로젝트5"];
   const [isHovering, setIsHovering] = useState(0);
   const settings = {
     centerMode: true,
@@ -45,86 +45,23 @@ const Project = () => {
     <Fade>
       <ProjectContainer>
         <StyledSlider {...settings}>
-          <Projects>
-            <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-              {isHovering ? (
-                <Hover>
-                  {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
-                  <HoverText>
-                    <Title>festivalarm</Title>
-                    <Desc>프로젝트 소개 프로젝트 소개 프로젝트 소개 프로젝트 소개</Desc>
-                  </HoverText>
-                  {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
-                </Hover>
-              ) : (
-                ""
-              )}
-            </ProjectBox>
-          </Projects>
-          <Projects>
-            <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-              {isHovering ? (
-                <Hover>
-                  {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
-                  <HoverText>
-                    <Title>festivalarm</Title>
-                    <Desc>프로젝트 소개 프로젝트 소개 프로젝트 소개 프로젝트 소개</Desc>
-                  </HoverText>
-                  {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
-                </Hover>
-              ) : (
-                ""
-              )}
-            </ProjectBox>
-          </Projects>
-          <Projects>
-            <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-              {isHovering ? (
-                <Hover>
-                  {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
-                  <HoverText>
-                    <Title>festivalarm</Title>
-                    <Desc>프로젝트 소개 프로젝트 소개 프로젝트 소개 프로젝트 소개</Desc>
-                  </HoverText>
-                  {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
-                </Hover>
-              ) : (
-                ""
-              )}
-            </ProjectBox>
-          </Projects>
-          <Projects>
-            <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-              {isHovering ? (
-                <Hover>
-                  {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
-                  <HoverText>
-                    <Title>festivalarm</Title>
-                    <Desc>프로젝트 소개 프로젝트 소개 프로젝트 소개 프로젝트 소개</Desc>
-                  </HoverText>
-                  {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
-                </Hover>
-              ) : (
-                ""
-              )}
-            </ProjectBox>
-          </Projects>
-          <Projects>
-            <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-              {isHovering ? (
-                <Hover>
-                  {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
-                  <HoverText>
-                    <Title>festivalarm</Title>
-                    <Desc>프로젝트 소개 프로젝트 소개 프로젝트 소개 프로젝트 소개</Desc>
-                  </HoverText>
-                  {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
-                </Hover>
-              ) : (
-                ""
-              )}
-            </ProjectBox>
-          </Projects>
+          {projects.map((project, index) => (
+            <div key={index}>
+              <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
+                {isHovering ? (
+                  <Hover>
+                    {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
+                    <HoverText>
+                      <Title>{project}</Title>
+                    </HoverText>
+                    {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
+                  </Hover>
+                ) : (
+                  ""
+                )}
+              </ProjectBox>
+            </div>
+          ))}
         </StyledSlider>
       </ProjectContainer>
     </Fade>
@@ -133,16 +70,12 @@ const Project = () => {
 
 const ProjectContainer = styled.div`
   margin-top: 50px;
+  width: 100vw;
   height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-const Projects = styled.div`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  position: relative;
 `;
 
 const ProjectBox = styled.div`
@@ -154,7 +87,6 @@ const ProjectBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   transition: all 0.2s linear;
   &:hover {
     width: 430px;
@@ -171,6 +103,7 @@ const Hover = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const HoverText = styled.div`
@@ -195,7 +128,7 @@ const Desc = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-  position: relative;
+  height: 400px;
 `;
 
 const Next = styled.div`
