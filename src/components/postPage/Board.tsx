@@ -1,57 +1,33 @@
 import styled from "styled-components";
-import { BLACK_1 } from "../../styles/theme";
+import { Row, Column } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
-import { WHITE_1 } from "../../styles/theme";
 import { HeartButton } from "./HeartButton";
-import { Replies } from "./Replies";
-import { Comments } from "./Comments";
 
 export function Board() {
   return (
-    <Wrapper>
+    <Column gap="24px">
       <Title>게시글 제목</Title>
-      <UserWrapper>
-        <UserId>AhhyunKim</UserId>
+      <Row gap="1rem" alignItems="center">
+        AhhyunKim
         <Date>2022.11.30</Date>
-      </UserWrapper>
+      </Row>
       <Hairline />
-      <TextContainer>
+      <Column lineHeight="1.25rem">
         안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다! 백준코딩만 하다가 대가리 깨질것같아서욧!!
         개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~ <br />
         참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요
-      </TextContainer>
+      </Column>
       <HeartButton />
-      <InputContainer>
-        <InputButton />
-      </InputContainer>
-      <Comments />
+      <Row gap="1rem" justifyContent="center" alignItems="center">
+        <InputContainer />
+        <InputButton>작성</InputButton>
+      </Row>
       <Hairline />
-      <Replies />
-    </Wrapper>
+    </Column>
   );
 }
 
-const Wrapper = styled.div`
-  width: 100%;
-  background-color: ${BLACK_1};
-  color: ${WHITE_1};
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  /* align-items: center; */
-  padding: 0px 22vw;
-  z-index: 1;
-`;
-
 const Title = styled.h1``;
-
-const UserWrapper = styled.div`
-  display: flex;
-  justify-content: start;
-  gap: 0.6rem;
-`;
-
-const UserId = styled.p``;
 
 const Date = styled.p`
   color: #d7d7d7;
@@ -62,14 +38,6 @@ const Hairline = styled.div`
   border: 1px solid rgb(255, 255, 255, 0.3);
 `;
 
-const TextContainer = styled.div`
-  margin-top: 40px;
-  margin-bottom: 60px;
-  justify-content: center;
-  font-size: 18px;
-  line-height: 32px;
-`;
-
 const InputContainer = styled.div`
   width: 100%;
   height: 52px;
@@ -78,4 +46,20 @@ const InputContainer = styled.div`
   margin: 20px 0 20px 0;
 `;
 
-const InputButton = styled.button``;
+const InputButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  width: 108px;
+  height: 52px;
+
+  background: #e9e9e9;
+  border-radius: 8px;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+`;

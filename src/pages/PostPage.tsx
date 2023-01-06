@@ -1,13 +1,15 @@
 import { Header } from "../components/elements/Header";
-import { Board } from "../components/postPage.tsx/Board";
-import { Comments } from "../components/postPage.tsx/Comments";
-import { Replies } from "../components/postPage.tsx/Replies";
+import { Section } from "../components/elements/Wrapper";
+import { Board } from "../components/postPage/Board";
+import { CommentsList } from "../components/postPage/CommentsList";
 
 export function PostPage() {
   return (
     <>
       <Header />
-      <Board />
+      <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
+        <Board />
+      </Section>
     </>
   );
 }
