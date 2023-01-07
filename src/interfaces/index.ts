@@ -3,3 +3,8 @@
 export interface Iexample {
   name: string;
 }
+
+
+export interface Iarrow {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}

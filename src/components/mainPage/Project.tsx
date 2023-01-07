@@ -6,20 +6,19 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Iarrow } from "../../interfaces";
 
 const Project = () => {
-  function SampleNextArrow(props: any) {
-    const { style, onClick } = props;
+  function NextArrow({ onClick }: Iarrow) {
     return (
-      <Next style={{ ...style }} onClick={onClick}>
+      <Next onClick={onClick}>
         <IoIosArrowForward />
       </Next>
     );
   }
-  function SamplePrevArrow(props: any) {
-    const { style, onClick } = props;
+  function PrevArrow({ onClick }: Iarrow) {
     return (
-      <Prev style={{ ...style }} onClick={onClick}>
+      <Prev onClick={onClick}>
         <IoIosArrowBack />
       </Prev>
     );
@@ -37,8 +36,8 @@ const Project = () => {
     // autoplay: true, //어지러워서 고민 ...
     autoplaySpeed: 2000,
     cssEase: "linear",
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
@@ -50,11 +49,9 @@ const Project = () => {
               <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
                 {isHovering ? (
                   <Hover>
-                    {/* <IoIosArrowBack style={{ fontSize: "30px" }} /> */}
                     <HoverText>
                       <Title>{project}</Title>
                     </HoverText>
-                    {/* <IoIosArrowForward style={{ fontSize: "30px" }} /> */}
                   </Hover>
                 ) : (
                   ""
@@ -118,14 +115,6 @@ const Title = styled.div`
   line-height: 34px;
 `;
 
-const Desc = styled.div`
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 30px;
-  width: 232px;
-  height: 60px;
-  margin-top: 24px;
-`;
 
 const StyledSlider = styled(Slider)`
   height: 400px;
