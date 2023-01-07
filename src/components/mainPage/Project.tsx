@@ -1,5 +1,5 @@
 import { Fade } from "react-awesome-reveal";
-import main_project1 from "../images/main_project1.png";
+import project1 from "../images/main_project1.png";
 import styled from "styled-components";
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Iarrow } from "../../interfaces";
+import projects from "../../data/projects.json";
+import { Iprojects } from "../../interfaces/index";
 
 const Project = () => {
   function NextArrow({ onClick }: Iarrow) {
@@ -23,18 +25,17 @@ const Project = () => {
       </Prev>
     );
   }
-  const projects = ["프로젝트1", "프로젝트2", "프로젝트3", "프로젝트4", "프로젝트5"];
   const [isHovering, setIsHovering] = useState(0);
   const settings = {
     centerMode: true,
     infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
+    centerPadding: "10px",
+    slidesToShow: 4,
     speed: 1000,
     dots: true,
     slidesToScroll: 1,
-    // autoplay: true, //어지러워서 고민 ...
-    autoplaySpeed: 2000,
+    autoplay: true, //어지러워서 고민 ...
+    autoplaySpeed: 3000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -44,13 +45,14 @@ const Project = () => {
     <Fade>
       <ProjectContainer>
         <StyledSlider {...settings}>
-          {projects.map((project, index) => (
-            <div key={index}>
-              <ProjectBox onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
+          {projects.map(({ title, desc, pid }: Iprojects) => (
+            <div key={pid}>
+              <ProjectBox img={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
                 {isHovering ? (
                   <Hover>
                     <HoverText>
-                      <Title>{project}</Title>
+                      <Title>{title}</Title>
+                      <Desc>{desc}</Desc>
                     </HoverText>
                   </Hover>
                 ) : (
@@ -69,14 +71,14 @@ const ProjectContainer = styled.div`
   margin-top: 50px;
   width: 100vw;
   height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
 `;
 
-const ProjectBox = styled.div`
-  background-image: url(${main_project1});
+const ProjectBox = styled.div<{ img: string }>`
+  background-image: url(${project1});
+  /* 이런식으로 title 이름을 props로 받아서 그 이름의 파일을 이미지로 등록하고 싶은데 모르겠... */
+  /* background-image: url(${(props) => props.img && "title"}); */
+
   background-size: cover;
   width: 315px;
   height: 201px;
@@ -84,10 +86,13 @@ const ProjectBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -160px;
+
   transition: all 0.2s linear;
   &:hover {
-    width: 430px;
-    height: 300px;
+    /* width: 430px;
+    height: 300px; */
+    transform: scale(1.2);
   }
 `;
 
@@ -115,6 +120,14 @@ const Title = styled.div`
   line-height: 34px;
 `;
 
+const Desc = styled.div`
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  width: 232px;
+  height: 60px;
+  margin-top: 24px;
+`;
 
 const StyledSlider = styled(Slider)`
   height: 400px;
