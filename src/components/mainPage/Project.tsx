@@ -6,9 +6,17 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Iarrow } from "../../interfaces";
 import projects from "../../data/projects.json";
-import { Iprojects } from "../../interfaces/index";
+
+interface Iarrow {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+
+interface Iprojects {
+  title: string;
+  desc: string;
+  pid: number;
+}
 
 const Project = () => {
   function NextArrow({ onClick }: Iarrow) {
