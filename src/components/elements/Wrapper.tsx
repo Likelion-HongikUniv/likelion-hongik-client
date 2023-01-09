@@ -10,6 +10,7 @@ export const Section = styled.section`
 
 export const Row = styled.div<IWrapper>`
   display: flex;
+  width: ${(props) => props.width};
   height: 100%;
   justify-content: ${(props) => props.justifyContent};
   align-items: ${(props) => props.alignItems};
@@ -21,6 +22,7 @@ export const Row = styled.div<IWrapper>`
 export const Column = styled.div<IWrapper>`
   display: flex;
   flex-direction: column;
+  width: 100%;
   justify-content: ${(props) => props.justifyContent};
   align-items: ${(props) => props.alignItems};
   margin-bottom: ${(props) => props.marginBottom};
