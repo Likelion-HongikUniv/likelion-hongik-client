@@ -1,5 +1,4 @@
 import { Fade } from "react-awesome-reveal";
-import project1 from "../images/main_project1.png";
 import styled from "styled-components";
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -7,6 +6,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import projects from "../../data/projects.json";
+import project1 from "../images/main_project1.png";
+import project2 from "../images/main_project2.png";
+import project3 from "../images/main_project3.png";
+import project4 from "../images/main_project4.png";
+import project5 from "../images/main_project5.png";
+
+
 
 interface Iarrow {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -42,7 +48,7 @@ const Project = () => {
     speed: 1000,
     dots: true,
     slidesToScroll: 1,
-    autoplay: true, //어지러워서 고민 ...
+    // autoplay: true, //어지러워서 고민 ...
     autoplaySpeed: 3000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
@@ -55,7 +61,7 @@ const Project = () => {
         <StyledSlider {...settings}>
           {projects.map(({ title, desc, pid }: Iprojects) => (
             <div key={pid}>
-              <ProjectBox img={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
+              <ProjectBox title={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
                 {isHovering ? (
                   <Hover>
                     <HoverText>
@@ -82,10 +88,14 @@ const ProjectContainer = styled.div`
   position: relative;
 `;
 
-const ProjectBox = styled.div<{ img: string }>`
+const ProjectBox = styled.div<{ title: string }>`
   background-image: url(${project1});
-  /* 이런식으로 title 이름을 props로 받아서 그 이름의 파일을 이미지로 등록하고 싶은데 모르겠... */
-  /* background-image: url(${(props) => props.img && "title"}); */
+  /* background-image: ${(props) => `url(${props.title})`}; */
+  /* background-image: url(${(props) => props.title}); */
+
+  /* 에러))) props가 string으로 들어가서 적용되지 않음 ㅜㅜ*/
+  /* 올바른 형식 인식: url(/static/media/main_project1.4b5d03d….png); */
+  /* props 전달시 인식 에러: url(project2); */
 
   background-size: cover;
   width: 315px;
