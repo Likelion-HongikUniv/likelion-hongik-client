@@ -7,6 +7,7 @@ import { MainPage } from './pages/MainPage';
 import { MyPage } from './pages/Mypage';
 import { RecruitPage } from './pages/RecruitPage';
 import GlobalStyle from './styles/GlobalStyle';
+import { MyPostPage } from "./pages/MyPostPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/myPage" element={<MyPage />} />
+            <Route path="/myPage/post" element={<MyPostPage />} />
           </Routes>
         </RecoilRoot>
       </QueryClientProvider>
