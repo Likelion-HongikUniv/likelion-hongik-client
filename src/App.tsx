@@ -10,6 +10,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import { LoginDetailPage } from "./pages/LoginPage/LoginDetailPage";
 import { CompletePage } from "./pages/LoginPage/CompletePage";
 import { InfoEditPage } from "./pages/MyPage/InfoEditPage";
+import { PostPage } from "./pages/PostPage";
 
 const queryClient = new QueryClient();
 
