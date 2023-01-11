@@ -6,17 +6,16 @@ export function Pagination() {
     background: "#ED7F30",
     border: "none",
   };
-
   return (
     <PageWrapper>
-      <button type="button" style={activeButton}>
+      <PageBtn type="button" style={activeButton}>
         1
-      </button>
-      <button type="button">2</button>
-      <button type="button">3</button>
-      <button type="button">4</button>
-      <button type="button">5</button>
-      <button type="button">...</button>
+      </PageBtn>
+      <PageBtn type="button">2</PageBtn>
+      <PageBtn type="button">3</PageBtn>
+      <PageBtn type="button">4</PageBtn>
+      <PageBtn type="button">5</PageBtn>
+      <PageBtn type="button">...</PageBtn>
     </PageWrapper>
   );
 }
@@ -25,11 +24,12 @@ const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
-  button {
-    width: 33px;
-    height: 33px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    color: #ffffff;
-  }
+`;
+
+const PageBtn = styled.button`
+  width: 33px;
+  height: 33px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  color: #ffffff;
 `;

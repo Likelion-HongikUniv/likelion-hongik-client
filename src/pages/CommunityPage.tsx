@@ -5,14 +5,18 @@ import { CategoryTab } from "../components/communityPage/CategoryTab";
 import { SearchBar } from "../components/communityPage/SearchBar";
 import { PostList } from "../components/communityPage/PostList";
 import { PageMove } from "../components/communityPage/PageMove";
+import { useParams } from "react-router-dom";
 
 export function CommunityPage() {
+  const { categoryName } = useParams() as { categoryName: string };
+
   return (
     <div style={{ backgroundColor: "#000", width: "100vw" }}>
+      <Header></Header>
       <Wrapper>
         <Container>
           <CommunityHeader>
-            <CategoryTab></CategoryTab>
+            <CategoryTab categoryName={categoryName}></CategoryTab>
             <SearchBar></SearchBar>
           </CommunityHeader>
           <CommunityBody>
