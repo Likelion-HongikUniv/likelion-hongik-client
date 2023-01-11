@@ -4,7 +4,6 @@ export function MainPage() {
   return (
     <>
       <Header />
-
       <div>mainPage</div>
     </>
   );

@@ -26,6 +26,7 @@ function App() {
             <Route path="/logindetail" element={<LoginDetailPage />} />
             <Route path="/logincomplete" element={<CompletePage />} />
             <Route path="/community" element={<CommunityPage />} />
+            <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/myPageEdit" element={<InfoEditPage />} />
           </Routes>
