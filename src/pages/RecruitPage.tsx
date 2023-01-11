@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BLACK_1 } from "./../styles/theme";
 import { WHITE_1 } from "./../styles/theme";
 import { RecruitBackImg } from "./../components/icons/RecruitBackImg";
-import { Footer } from "../components/elements/Footer";
+import Footer from "../components/elements/Footer";
 import { RecruitInfo } from "../components/recruitPage/RecruitInfo";
 import { Curriculum } from "../components/recruitPage/Curriculum";
 import { Part } from "../components/recruitPage/Part";

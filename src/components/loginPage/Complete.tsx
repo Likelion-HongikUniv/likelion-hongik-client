@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-import { CopyRight } from "../elements/Footer";
+import Footer from "../elements/Footer";
 import { LionIcon } from "./../icons/LionIcon";
 
 export function Complete() {
@@ -16,7 +16,7 @@ export function Complete() {
       <div>
         <OkBtn>로그인</OkBtn>
       </div>
-      <CopyRight style={{ marginTop: "215px" }}>© 2022 Mutsa. All rights reserved.</CopyRight>
+      <Footer />
     </div>
   );
 }

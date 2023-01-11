@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { CopyRight } from "../elements/Footer";
+import Footer from "../elements/Footer";
 import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
@@ -32,7 +32,7 @@ export function SocialLogin() {
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
       </SocialBtn>
-      <CopyRight style={{ marginTop: "334px" }}>© 2022 Mutsa. All rights reserved.</CopyRight>
+      <Footer style={{ marginTop: "334px" }} />
     </ForDiv>
   );
 }

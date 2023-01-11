@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-import { CopyRight } from "../elements/Footer";
+import Footer from "../elements/Footer";
 import useInput from "./../../hooks/useInput";
 
 export function LoginDetailInfo() {
@@ -29,7 +29,7 @@ export function LoginDetailInfo() {
       <div style={{ textAlign: "center" }}>
         <DoneBtn>완료</DoneBtn>
       </div>
-      <CopyRight style={{ marginTop: "182px" }}>© 2022 Mutsa. All rights reserved.</CopyRight>
+      <Footer />
     </div>
   );
 }

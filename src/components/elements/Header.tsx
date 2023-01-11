@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
 import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
@@ -40,6 +41,7 @@ const Wrapper = styled.div`
   padding: 0px 340px;
   position: fixed;
   z-index: 1;
+  background-color: ${BLACK_1};
 `;
 
 const HeaderButton = styled.button`
