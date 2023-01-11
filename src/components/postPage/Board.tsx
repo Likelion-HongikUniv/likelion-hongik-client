@@ -1,7 +1,26 @@
 import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
-import { BLACK_2 } from "../../styles/theme";
+
 import { HeartButton } from "./HeartButton";
+// interface 관리
+
+export interface IPost {
+  key?: string;
+  id?: number;
+  title?: string;
+  body?: string;
+  category?: string;
+  created?: number;
+}
+
+/** 포스트 좋아요 기능
+ * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
+ * 배열로 받아와 해당 배열의 원소 갯수를 세면 그게 좋아요 개수
+ */
+
+export interface PostLike extends IPost {
+  likes: number;
+}
 
 export function Board() {
   return (
@@ -18,10 +37,6 @@ export function Board() {
         참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요
       </Column>
       <HeartButton />
-      <Row gap="1rem" justifyContent="center" alignItems="center">
-        <InputContainer />
-        <InputButton>작성</InputButton>
-      </Row>
       <Hairline />
     </Column>
   );
@@ -36,30 +51,4 @@ const Date = styled.p`
 
 const Hairline = styled.div`
   border: 1px solid rgb(255, 255, 255, 0.3);
-`;
-
-const InputContainer = styled.div`
-  width: 100%;
-  height: 52px;
-  border-radius: 8px;
-  background-color: ${BLACK_2};
-  margin: 20px 0 20px 0;
-`;
-
-const InputButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  width: 108px;
-  height: 52px;
-
-  background: #e9e9e9;
-  border-radius: 8px;
-
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.32px;
 `;

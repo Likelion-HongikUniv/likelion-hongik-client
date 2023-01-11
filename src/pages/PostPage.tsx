@@ -1,3 +1,4 @@
+import { Row, Column } from "../components/elements/Wrapper";
 import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
@@ -8,7 +9,10 @@ export function PostPage() {
     <>
       <Header />
       <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
-        <Board />
+        <Column>
+          <Board />
+          <CommentsList commentList={[]}></CommentsList>
+        </Column>
       </Section>
     </>
   );

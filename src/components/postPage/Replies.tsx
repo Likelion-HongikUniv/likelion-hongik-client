@@ -1,23 +1,40 @@
 import styled from "styled-components";
+import { Row, Column } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
-import { WHITE_1 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
 import { HeartUnfilled } from "../icons/HeartUnfilled";
+// interface 관리
 
-export function Replies() {
+export interface IReply {
+  key?: number;
+  id?: number;
+  username?: string;
+  body?: string;
+  created?: number;
+}
+
+export interface ReplyLike extends Comment {
+  likeCount?: number[];
+}
+
+export function Replies({ key, id, body, username, created }: IReply, { likeCount }: ReplyLike) {
   return (
     <>
       <Wrapper>
         <Profile />
         <TextContainer>
           <>
-            <UserId>AhhyunKim</UserId>
-            <Date>2022.11.30</Date>
+            <UserId>{username || `AhhyunKim`}</UserId>
+            <Date>{created || `2022.11.30`}</Date>
           </>
           헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
           있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?
           <br />
-          <HeartUnfilled />
+          <LikeButton>
+            <HeartUnfilled />
+            좋아요
+            {likeCount || `1`}
+          </LikeButton>
         </TextContainer>
       </Wrapper>
     </>
@@ -25,7 +42,7 @@ export function Replies() {
 }
 
 const Wrapper = styled.div`
-  width: 90%;
+  width: 100%;
   background-color: ${BLACK_2};
   border-radius: 12px;
   display: flex;
@@ -62,7 +79,10 @@ const Date = styled.div`
   letter-spacing: -0.32px;
 `;
 
-const HeartButton = styled.button`
-  font-size: 20px;
+const LikeButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   color: white;
 `;

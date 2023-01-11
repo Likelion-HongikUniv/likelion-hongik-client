@@ -1,18 +1,16 @@
 // 상태 관리
 
-import { atom } from 'recoil';
-import { IComment } from '../interfaces/comment';
+import { atom, atomFamily } from 'recoil'; 
+import { IComment } from '../components/postPage/Comments';
+ 
 
-
-interface CommentsState {
-  [key: string]: IComment[];
-}
-
-export const CommentsListState = atom<CommentsState>({
+export const commentsListState = atom<IComment[]>({
   key: 'commentsState',
-  default: {
-    key: [],
-    id: [],
-    body: [],
-  },
+  default: [
+  ],
 });
+
+export const commentCompleteState = atomFamily<boolean, number>({
+  key: "commentCompleteState",
+  default: false,
+})
