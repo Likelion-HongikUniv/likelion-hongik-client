@@ -20,9 +20,9 @@ export function Curriculum() {
       </div>
       <div>
         <TimeText>지원서 제출기간</TimeText>
-        <TimeText style={{ marginLeft: "185px" }}>1차 합격 발표</TimeText>
+        <TimeText style={{ marginLeft: "180px" }}>1차 합격 발표</TimeText>
         <TimeText style={{ marginLeft: "199px" }}>면접</TimeText>
-        <TimeText style={{ marginLeft: "323px" }}>최종 합격 발표</TimeText>
+        <TimeText style={{ marginLeft: "320px" }}>최종 합격 발표</TimeText>
       </div>
     </ForDiv>
   );
@@ -30,8 +30,7 @@ export function Curriculum() {
 
 const ForDiv = styled.div`
   font-weight: 700;
-  margin-left: 340px;
-  display: inline-block;
+  margin-left: 150px;
 `;
 
 const TitleText = styled.div`

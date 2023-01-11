@@ -49,7 +49,7 @@ const RegBtn = styled.button`
 
 const ForDiv = styled.div`
   font-weight: 700;
-  margin-left: 340px;
+  margin-left: 150px;
 `;
 
 const TitleText = styled.div`

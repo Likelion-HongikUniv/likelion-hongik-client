@@ -17,13 +17,12 @@ export function RecruitInfo() {
 }
 
 const BasicInfo = styled.div`
-  width: 1150px;
+  width: 100%;
+  padding-left: 340px;
   height: 900px;
   top: 0px;
-  left: 113px;
   background-color: transparent;
   position: absolute;
-  padding-left: 227px;
   padding-top: 160px;
 `;
 

@@ -43,7 +43,7 @@ export function Part() {
 
 const ForDiv = styled.div`
   font-weight: 700;
-  margin-left: 340px;
+  margin-left: 150px;
 `;
 
 const TitleText = styled.div`
@@ -64,6 +64,7 @@ const BoxGrid = styled.div`
   display: grid;
   grid-template-columns: 400px 400px 400px;
   column-gap: 20px;
+  justify-content: center;
 `;
 
 const PartText = styled.div`

@@ -60,7 +60,6 @@ const InputBox = styled.input`
   font-size: 20px;
   line-height: 24px;
   color: #d7d7d7;
-  font-family: Pretendard;
 `;
 
 const SelectPart = styled.select`
@@ -76,7 +75,6 @@ const SelectPart = styled.select`
   font-size: 20px;
   line-height: 24px;
   color: #d7d7d7;
-  font-family: Pretendard;
   cursor: pointer;
 `;
 

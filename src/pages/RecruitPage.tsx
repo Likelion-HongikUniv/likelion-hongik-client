@@ -15,19 +15,19 @@ export function RecruitPage() {
   return (
     <>
       <Header />
-      <Wrapper>
-        <Wrapper style={{ height: "700px" }}>
-          <RecruitBackImg />
-        </Wrapper>
+      <Wrapper style={{ height: "700px" }}>
+        <RecruitBackImg />
+        <RecruitInfo />
       </Wrapper>
-      <RecruitInfo />
-      <Wrapper style={{ height: "4225px" }}>
-        <Curriculum />
-        <Part />
-        <Requirement />
-        <QnA />
-        <Tip />
-        <Footer />
+
+      <Wrapper style={{ height: "4235px" }}>
+        <div>
+          <Curriculum />
+          <Part />
+          <Requirement />
+          <QnA />
+          <Tip /> <Footer />
+        </div>
       </Wrapper>
     </>
   );
@@ -39,4 +39,7 @@ const Wrapper = styled.div`
   background-color: ${BLACK_1};
   z-index: 1;
   color: ${WHITE_1};
+  display: flex;
+  /* justify-content: center; */
+  /* position: absolute; */
 `;

@@ -28,6 +28,7 @@ export function Footer() {
 }
 
 const Wrapper = styled.div`
+  margin-left: 150px;
   margin-top: 165px;
   text-align: center;
   background-color: ${BLACK_1};

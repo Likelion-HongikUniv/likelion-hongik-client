@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: Pretendard;
+    font-family: SUIT;
     line-height: 1.5;
     margin: 0;
   }
@@ -20,7 +20,11 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     line-height: 0;
-    font-family: Pretendard;
+    font-family: SUIT;
+  }
+
+  input, select, option{
+    font-family: SUIT;
   }
 `;
 
