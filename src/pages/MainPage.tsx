@@ -1,10 +1,13 @@
 import { Header } from "../components/elements/Header";
+import { Section } from "../components/elements/Wrapper";
 
 export function MainPage() {
   return (
     <>
       <Header />
-      <div>mainPage</div>
+      <Section>
+        <div>mainPage</div>
+      </Section>
     </>
   );
 }
