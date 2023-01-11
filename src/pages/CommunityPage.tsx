@@ -6,52 +6,49 @@ import { SearchBar } from "../components/communityPage/SearchBar";
 import { PostList } from "../components/communityPage/PostList";
 import { PageMove } from "../components/communityPage/PageMove";
 import { useParams } from "react-router-dom";
+import { Section } from "../components/elements/Wrapper";
+import { SideBar } from "../components/communityPage/SideBar";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
 
   return (
-    <div style={{ backgroundColor: "#000", width: "100vw" }}>
-      <Header></Header>
-      <Wrapper>
-        <Container>
-          <CommunityHeader>
-            <CategoryTab categoryName={categoryName}></CategoryTab>
-            <SearchBar></SearchBar>
-          </CommunityHeader>
-          <CommunityBody>
-            <CommunityBodyTop>
-              <div>
-                <span style={{ color: "#ED7F30", fontSize: "4px" }}>•</span>
-                <span>최신순</span>
-              </div>
-              <button>
-                <img src="writeLogo.png" alt="write_logo" />
-                <span>글쓰기</span>
-              </button>
-            </CommunityBodyTop>
-            <PostList></PostList>
-          </CommunityBody>
-          <PageMove></PageMove>
-        </Container>
-      </Wrapper>
-    </div>
+    <>
+      <Header />
+      <Section>
+        <Wrapper>
+          <SideBar />
+          <Container>
+            <CommunityHeader>
+              <CategoryTab categoryName={categoryName}></CategoryTab>
+              <SearchBar></SearchBar>
+            </CommunityHeader>
+            <CommunityBody>
+              <CommunityBodyTop>
+                <div>
+                  <span style={{ color: "#ED7F30", fontSize: "4px" }}>•</span>
+                  <span>최신순</span>
+                </div>
+                <button>
+                  <img src="writeLogo.png" alt="write_logo" />
+                  <span>글쓰기</span>
+                </button>
+              </CommunityBodyTop>
+              <PostList></PostList>
+            </CommunityBody>
+            <PageMove></PageMove>
+          </Container>
+        </Wrapper>
+      </Section>
+    </>
   );
 }
 
 const Wrapper = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  padding-top: 140px;
-  padding-bottom: 344px;
-  width: 1240px;
-  margin: 0 auto;
-  background-color: #000;
-  overflow-y: hidden;
   display: flex;
   justify-content: center;
+  width: 100vw;
   gap: 125px;
-  color: #fff;
 `;
 
 const Container = styled.div`
