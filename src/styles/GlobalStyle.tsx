@@ -2,6 +2,7 @@
 
 import { createGlobalStyle } from "styled-components";
 import "./font.css";
+import { BLACK_1 } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -9,10 +10,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: Pretendard;
+    font-family: SUIT;
     line-height: 1.5;
     margin: 0;
-    background-color: black;
+    background-color: ${BLACK_1};
+    color: white;
   }
 
   button {
@@ -21,6 +23,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     line-height: 0;
+    font-family: SUIT;
+  }
+
+  input, select, option{
+    font-family: SUIT;
   }
 `;
+
 export default GlobalStyle;
