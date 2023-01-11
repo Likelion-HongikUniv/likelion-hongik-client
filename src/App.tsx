@@ -24,7 +24,6 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
-
             <Route path="/community/:categoryName" element={<CommunityPage />} />
             <Route path="/logindetail" element={<LoginDetailPage />} />
             <Route path="/logincomplete" element={<CompletePage />} />
