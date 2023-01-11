@@ -9,3 +9,4 @@ export interface IWrapper {
   gap?: string;
   lineHeight?: string;
 }
+

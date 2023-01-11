@@ -12,6 +12,7 @@ import { WritingPage } from "./pages/WritingPage";
 import GlobalStyle from "./styles/GlobalStyle";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { MyPage } from "./pages/MyPage/Mypage";
+import { MyPostPage } from "./pages/MyPostPage";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/logincomplete" element={<CompletePage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
+            <Route path="/myPage/post" element={<MyPostPage />} />
             <Route path="/myPageEdit" element={<InfoEditPage />} />
             <Route path="/write/:userid" element={<WritingPage />} />
           </Routes>
