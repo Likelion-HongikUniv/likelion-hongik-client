@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
-import { HeartUnfilled } from "../icons/HeartUnfilled";
+import { LikeButton } from "./LikeButton";
 // interface 관리
 
 export interface IReply {
@@ -11,13 +11,12 @@ export interface IReply {
   username?: string;
   body?: string;
   created?: number;
+  likedId?: string[];
 }
 
-export interface ReplyLike extends Comment {
-  likeCount?: number[];
-}
+export function Replies({ key, id, body, username, created, likedId }: IReply) {
+  // var likes = likedId.length();
 
-export function Replies({ key, id, body, username, created }: IReply, { likeCount }: ReplyLike) {
   return (
     <>
       <Wrapper>
@@ -30,11 +29,7 @@ export function Replies({ key, id, body, username, created }: IReply, { likeCoun
           헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
           있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?
           <br />
-          <LikeButton>
-            <HeartUnfilled />
-            좋아요
-            {likeCount || `1`}
-          </LikeButton>
+          <LikeButton />
         </TextContainer>
       </Wrapper>
     </>
@@ -77,12 +72,4 @@ const Date = styled.div`
   font-size: 14px;
   line-height: 17px;
   letter-spacing: -0.32px;
-`;
-
-const LikeButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  color: white;
 `;

@@ -9,7 +9,7 @@ import { isEditable } from "@testing-library/user-event/dist/utils";
 import { useQuery } from "@tanstack/react-query";
 
 interface CommentList {
-  commentList: IComment[];
+  commentList?: IComment[];
 }
 
 const commentState = atom<IComment[]>({

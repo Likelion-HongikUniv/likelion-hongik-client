@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { commentsListState, commentCompleteState } from "../../states/atoms";
 import { Row, Column } from "../elements/Wrapper";
 import { Profile } from "../icons/Profile";
-import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { BLACK_2 } from "../../styles/theme";
 import { Replies } from "./Replies";
+import { LikeButton } from "./LikeButton";
+import { useEffect, useState } from "react";
 
 // interface 관리
 /** 댓글 좋아요 기능
@@ -28,11 +27,10 @@ export interface CommentLike extends IComment {
 
 export function Comments(props: IComment) {
   const { key, id, username, body, created, replyId } = props;
-  const [isComplete, setIsComplete] = useRecoilState(commentCompleteState(props.id!));
-  const setComment = useSetRecoilState(commentsListState);
+  const [inputText, setInputText] = useState("");
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget.name);
+    console.log(e.currentTarget);
   };
   console.log(props);
   return (
@@ -46,14 +44,10 @@ export function Comments(props: IComment) {
             {body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
             <Row gap="24px">
-              <LikeButton>
-                <HeartUnfilled />
-                좋아요
-                {replyId || `1`}
-              </LikeButton>
+              <LikeButton />
               <ReplyButton onClick={onClickReplyButton}>댓글 달기</ReplyButton>
             </Row>
-            <Replies></Replies>
+            <Replies />
             <Row alignItems="center" gap="16px">
               <InputContainer type="text" placeholder={"@" + username + " 대댓글을 입력하세요."} />
               <InputButton>작성</InputButton>
@@ -65,14 +59,6 @@ export function Comments(props: IComment) {
     </>
   );
 }
-
-const LikeButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  color: white;
-`;
 
 const UserId = styled.div`
   font-weight: 600;
@@ -107,7 +93,6 @@ const InputContainer = styled.input`
   border: 0;
   border-radius: 8px;
   background-color: ${BLACK_2};
-  margin: 20px 0 20px 0;
   padding: 16px;
 `;
 
