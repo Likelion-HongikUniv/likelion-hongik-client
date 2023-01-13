@@ -99,6 +99,7 @@ const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
@@ -119,10 +120,10 @@ const ProjectBox = styled.div<{ title: string }>`
   align-items: center;
   transition: all 0.2s linear;
   margin-left: 50px;
-  /* &:hover {
-    width: 490px;
-    height: 314px;
-  } */
+  &:hover {
+    /* width: 490px;
+    height: 314px; */
+  }
 `;
 
 const Hover = styled.div`
@@ -164,6 +165,7 @@ const StyledSlider = styled(Slider)`
   /* margin-top: 80px; */
   width: 1200px;
   display: flex;
+  align-items: center;
 `;
 
 const Next = styled.div`
