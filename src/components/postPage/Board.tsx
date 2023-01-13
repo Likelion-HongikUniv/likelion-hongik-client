@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
 import { HeartButton } from "./HeartButton";
 import { isLoggedInState } from "../../states";
-
-// interface 관리
+import { ViewerUi } from "./ViewerUi";
 
 /** 포스트 좋아요 기능
  * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
  * 배열로 받아와 해당 배열의 원소 갯수를 세면 그게 좋아요 개수
  */
+
 export interface IPost {
   key?: number;
   id?: number;
@@ -17,10 +17,6 @@ export interface IPost {
   body?: string;
   category?: string;
   created?: number;
-}
-
-export interface PostLike extends IPost {
-  likes: number;
 }
 
 export function Board(props: IPost) {
@@ -37,10 +33,11 @@ export function Board(props: IPost) {
       </Row>
       <Hairline />
       <Column lineHeight="1.25rem">
-        {body ||
-          `안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다! 백준코딩만 하다가 대가리 깨질것같아서욧!!
-        개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~ <br />
-        참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요`}
+        <ViewerUi
+          body={` 안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다! 백준코딩만 하다가 대가리 깨질것같아서욧!!
+  개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~ </br>
+  참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요`}
+        ></ViewerUi>
       </Column>
       <HeartButton />
       <Hairline />
