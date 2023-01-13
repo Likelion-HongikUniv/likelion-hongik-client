@@ -25,7 +25,7 @@ export function LoginDetailInfo() {
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>
       <SelectPart onChange={selectboxHandler}>
-        <Options disabled selected>
+        <Options>
           파트 선택
         </Options>
         <Options value="기획/디자인">기획/디자인</Options>
