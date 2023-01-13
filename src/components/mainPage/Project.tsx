@@ -12,8 +12,6 @@ import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
 import project5 from "../images/main_project5.png";
 
-
-
 interface Iarrow {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
@@ -39,9 +37,8 @@ const Project = () => {
       </Prev>
     );
   }
-  const [isHovering, setIsHovering] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
   const settings = {
-    centerMode: true,
     infinite: true,
     centerPadding: "10px",
     slidesToShow: 3,
@@ -55,22 +52,35 @@ const Project = () => {
     prevArrow: <PrevArrow />,
   };
 
+  const handleMouseEnter = (e: any) => {
+    // e.target.style.display = "block";
+    setIsHovering(true);
+    // const hovering = document.getElementById("hover");
+    console.log(isHovering);
+    // hovering.style.display = 'block';
+  };
+
+  const handleMouseLeave = (e: any) => {
+    // e.target.style.display = "none";
+    setIsHovering(false);
+    // const hovering = document.getElementById("hover");
+    console.log(isHovering);
+  };
+
   return (
     <Fade>
       <ProjectContainer>
         <StyledSlider {...settings}>
           {projects.map(({ title, desc, pid }: Iprojects) => (
             <div key={pid}>
-              <ProjectBox title={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-                {isHovering ? (
-                  <Hover>
-                    <HoverText>
-                      <Title>{title}</Title>
-                      <Desc>{desc}</Desc>
-                    </HoverText>
-                  </Hover>
-                ) : (
-                  ""
+              <ProjectBox title={title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                {isHovering && (
+                <Hover id="hover">
+                  <HoverText>
+                    <Title>{title}</Title>
+                    <Desc>{desc}</Desc>
+                  </HoverText>
+                </Hover>
                 )}
               </ProjectBox>
             </div>
@@ -86,9 +96,9 @@ const ProjectContainer = styled.div`
   width: 100vw;
   height: 400px;
   position: relative;
-  background-color: pink;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
@@ -107,30 +117,31 @@ const ProjectBox = styled.div<{ title: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 80px;
   transition: all 0.2s linear;
-  &:hover {
+  margin-left: 50px;
+  /* &:hover {
     width: 490px;
     height: 314px;
-  }
+  } */
 `;
 
 const Hover = styled.div`
-  /* width: 490px;
-  height: 314px;
+  width: 315px;
+  height: 201px;
   border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4); */
+  background: rgba(0, 0, 0, 0.4);
+  /* display: none; */
 `;
 
 const HoverText = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  margin: 42px; */
+  margin: 42px;
 `;
 
 const Title = styled.div`
@@ -150,8 +161,9 @@ const Desc = styled.div`
 
 const StyledSlider = styled(Slider)`
   height: 300px;
-  margin-top: 80px;
-  background-color: yellow;
+  /* margin-top: 80px; */
+  width: 1200px;
+  display: flex;
 `;
 
 const Next = styled.div`
