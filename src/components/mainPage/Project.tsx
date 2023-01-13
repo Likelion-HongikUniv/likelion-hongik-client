@@ -60,7 +60,7 @@ const Project = () => {
       <ProjectContainer>
         <StyledSlider {...settings}>
           {projects.map(({ title, desc, pid }: Iprojects) => (
-            <div key={pid} style={{backgroundColor:'blue'}}>
+            <div key={pid}>
               <ProjectBox title={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
                 {isHovering ? (
                   <Hover>
@@ -107,15 +107,11 @@ const ProjectBox = styled.div<{ title: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -160px;
+  margin-left: 80px;
   transition: all 0.2s linear;
   &:hover {
-    /* transform: scale(1.5); */
     width: 490px;
     height: 314px;
-    background-image: url(${project1});
-    background: rgba(0, 0, 0, 0.4);
-    background-blend-mode: overlay;
   }
 `;
 
