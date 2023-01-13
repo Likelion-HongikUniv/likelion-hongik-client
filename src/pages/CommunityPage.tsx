@@ -40,7 +40,7 @@ export function CommunityPage() {
 }
 
 const Wrapper = styled.div`
-  font-family: "Inter";
+  /* font-family: "Inter"; */
   font-style: normal;
   padding-top: 140px;
   padding-bottom: 344px;

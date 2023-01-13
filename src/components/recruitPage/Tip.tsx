@@ -5,31 +5,33 @@ import { BLACK_1 } from "./../../styles/theme";
 export function Tip() {
   return (
     <ForDiv>
-      <TitleText>서류·면접 합격 꿀팁!</TitleText>
-      <DetailText>멋쟁이 사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
-      <TipGrid>
-        <Tips>
-          2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
-          <br />
-          지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
-        </Tips>
-        <Tips>
-          2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
-          <br />
-          지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
-        </Tips>
-        <Tips>
-          프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
-          <br />
-          연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
-        </Tips>
-        <Tips>
-          프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
-          <br />
-          연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
-        </Tips>
-      </TipGrid>
-      <RegBtn>지원 바로가기</RegBtn>
+      <div>
+        <TitleText>서류·면접 합격 꿀팁!</TitleText>
+        <DetailText>멋쟁이 사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
+        <TipGrid>
+          <Tips>
+            2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
+            <br />
+            지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
+          </Tips>
+          <Tips>
+            2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
+            <br />
+            지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
+          </Tips>
+          <Tips>
+            프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
+            <br />
+            연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
+          </Tips>
+          <Tips>
+            프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
+            <br />
+            연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
+          </Tips>
+        </TipGrid>
+        <RegBtn>지원 바로가기</RegBtn>
+      </div>
     </ForDiv>
   );
 }
@@ -49,7 +51,9 @@ const RegBtn = styled.button`
 
 const ForDiv = styled.div`
   font-weight: 700;
-  margin-left: 150px;
+  display: flex;
+  justify-content: center;
+  padding: 0 340px;
 `;
 
 const TitleText = styled.div`

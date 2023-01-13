@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { WHITE_1 } from "../../styles/theme";
-import { BLACK_1 } from "./../../styles/theme";
+import { WHITE_1, BLACK_1 } from "../../styles/theme";
 
 export function RecruitInfo() {
   return (
@@ -19,7 +18,6 @@ export function RecruitInfo() {
 const BasicInfo = styled.div`
   width: 100%;
   padding-left: 340px;
-  height: 900px;
   top: 0px;
   background-color: transparent;
   position: absolute;

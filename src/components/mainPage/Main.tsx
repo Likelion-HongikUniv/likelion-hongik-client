@@ -2,7 +2,6 @@ import main_main from "../images/main_main.png";
 import styled from "styled-components";
 import { Fade } from "react-awesome-reveal";
 
-
 export function Main() {
   return (
     <Fade duration={2000}>

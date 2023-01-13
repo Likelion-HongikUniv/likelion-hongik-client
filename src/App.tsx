@@ -27,12 +27,12 @@ function App() {
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/community/:categoryName" element={<CommunityPage />} />
-            <Route path="/logindetail" element={<LoginDetailPage />} />
-            <Route path="/logincomplete" element={<CompletePage />} />
+            <Route path="/login/detail" element={<LoginDetailPage />} />
+            <Route path="/login/complete" element={<CompletePage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/myPage/post" element={<MyPostPage />} />
-            <Route path="/myPageEdit" element={<InfoEditPage />} />
+            <Route path="/myPage/edit" element={<InfoEditPage />} />
             <Route path="/write/:userid" element={<WritingPage />} />
           </Routes>
         </RecoilRoot>
