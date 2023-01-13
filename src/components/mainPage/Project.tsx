@@ -44,7 +44,7 @@ const Project = () => {
     centerMode: true,
     infinite: true,
     centerPadding: "10px",
-    slidesToShow: 4,
+    slidesToShow: 3,
     speed: 1000,
     dots: true,
     slidesToScroll: 1,
@@ -60,7 +60,7 @@ const Project = () => {
       <ProjectContainer>
         <StyledSlider {...settings}>
           {projects.map(({ title, desc, pid }: Iprojects) => (
-            <div key={pid}>
+            <div key={pid} style={{backgroundColor:'blue'}}>
               <ProjectBox title={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
                 {isHovering ? (
                   <Hover>
@@ -86,6 +86,9 @@ const ProjectContainer = styled.div`
   width: 100vw;
   height: 400px;
   position: relative;
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
@@ -105,17 +108,19 @@ const ProjectBox = styled.div<{ title: string }>`
   justify-content: center;
   align-items: center;
   margin-left: -160px;
-
   transition: all 0.2s linear;
   &:hover {
-    /* width: 430px;
-    height: 300px; */
-    transform: scale(1.2);
+    /* transform: scale(1.5); */
+    width: 490px;
+    height: 314px;
+    background-image: url(${project1});
+    background: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
   }
 `;
 
 const Hover = styled.div`
-  width: 490px;
+  /* width: 490px;
   height: 314px;
   border-radius: 20px;
   display: flex;
@@ -123,13 +128,13 @@ const Hover = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); */
 `;
 
 const HoverText = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  margin: 42px;
+  margin: 42px; */
 `;
 
 const Title = styled.div`
@@ -148,7 +153,9 @@ const Desc = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-  height: 400px;
+  height: 300px;
+  margin-top: 80px;
+  background-color: yellow;
 `;
 
 const Next = styled.div`
@@ -156,6 +163,9 @@ const Next = styled.div`
   position: absolute;
   top: 260px;
   left: 780px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Prev = styled.div`
@@ -163,6 +173,9 @@ const Prev = styled.div`
   position: absolute;
   top: 260px;
   right: 780px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Project;

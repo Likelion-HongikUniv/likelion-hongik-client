@@ -69,4 +69,6 @@ const ApplyBtn = styled.button`
   font-size: 28px;
 `;
 
+
+
 export default Recruiting;

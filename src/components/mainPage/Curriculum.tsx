@@ -9,8 +9,8 @@ import { Fade } from "react-awesome-reveal";
 
 const Curriculum = () => {
   const [content, setContent] = useState("1");
-  const handleClickButton = (e: any) => {
-    const { id } = e.target;
+  const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { id } = e.currentTarget;
     setContent(id);
   };
   const selectComponent: any = {
@@ -66,8 +66,8 @@ const Curriculum = () => {
             </PartText>
           </PartBtn>
         </div>
-        <PartContainer>
-          <div className="animation">{content && <div>{selectComponent[content]}</div>}</div>
+        <PartContainer id='animation'>
+         {content && <TimeLine>{selectComponent[content]}</TimeLine>}
         </PartContainer>
       </Container>
     </Fade>
@@ -108,6 +108,10 @@ const PartContainer = styled.div`
   text-align: left;
   display: flex;
   justify-content: center;
+`;
+
+const TimeLine = styled.div`
+  width: 1240px;
 `;
 
 export default Curriculum;

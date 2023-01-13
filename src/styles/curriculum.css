@@ -9,7 +9,7 @@
   }
 }
 
-.animation {
+#animation {
   position: relative;
   animation: fadeInDown 2s;
 }
