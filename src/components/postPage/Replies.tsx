@@ -26,9 +26,9 @@ export function Replies({ key, id, body, username, created, likedId }: IReply) {
             <UserId>{username || `AhhyunKim`}</UserId>
             <Date>{created || `2022.11.30`}</Date>
           </>
-          헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
-          있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?
-          <br />
+          {body ||
+            `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
+          있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
           <LikeButton />
         </TextContainer>
       </Wrapper>

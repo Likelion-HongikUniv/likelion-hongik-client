@@ -1,12 +1,41 @@
-// import axios from "axios";
+import axios from "axios";
 import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
 import { IComment } from "./Comments";
 import { BLACK_2 } from "../../styles/theme";
 import { atom, useRecoilState } from "recoil";
-import { isEditable } from "@testing-library/user-event/dist/utils";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+
+// "id": 2,
+// 			"body": "안녕하세요!!",
+// 			"profile":
+// 				{
+// 					"profile_id" :"1",
+// 					"name" : "갓태휘",
+// 					"profile_photo : "https:// 어쩌구 "
+// 				}
+// 			"post_id":"1",
+// 			"commentLike": 0,
+// 			"createdTime": "2023-02-25",
+// 			"isDeleted": false,
+// 			"reply": [
+// 				{
+// 					"id": 4,
+// 					"body": "반갑습니다.~",
+// 					"profile":
+// 						{
+// 							"profile_id" :3,
+// 							"name" : "플락스타일동렬",
+// 							"profile_photo : "https:// 어쩌구 "
+// 						}
+// 					"post_id" : 1
+// 					"comment_id" : 2
+// 					"commentCount": 1,
+// 					"createdAt": "2021-02-26 10:42",
+// 					"isDeleted": false,
+// 					"reply": []
+// 				},
 
 interface CommentList {
   commentList?: IComment[];
@@ -21,7 +50,7 @@ const commentState = atom<IComment[]>({
       body: "comment test1",
       username: "감자",
       created: 20230111,
-      replyId: [],
+      replyId: [1, 2, 4],
     },
 
     {
@@ -52,9 +81,15 @@ const commentState = atom<IComment[]>({
 export function CommentsList({ commentList }: CommentList) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
   const [comments, setComments] = useRecoilState(commentState);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts/1/comments").then((response) => {
+      setComments(response.data);
+    });
+  }, []);
+
   const onClickComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     // setInputText();
-    console.log(e.currentTarget.name);
   };
 
   return (
@@ -65,8 +100,8 @@ export function CommentsList({ commentList }: CommentList) {
       </Row>
       <Column>
         <div>
-          {comments.map((comment: IComment) => (
-            <Comments key={comment.key} id={comment.id} username={comment.username} created={comment.created} />
+          {comments.map((comments: IComment) => (
+            <Comments key={comments.key} id={comments.id} username={comments.username} created={comments.created} />
           ))}
         </div>
       </Column>
