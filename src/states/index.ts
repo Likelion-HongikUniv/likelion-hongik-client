@@ -42,3 +42,8 @@ export const isLoggedInState = atom<boolean>({
   key: "isLoggedIn",
   default: false,
 });
+
+export const isCancelButtonClickedState = atom<boolean>({
+  key: " isCancelButtonClickedState",
+  default: false,
+});

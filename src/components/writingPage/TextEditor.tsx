@@ -4,23 +4,37 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import styled from "styled-components";
 import { Column, Row } from "../elements/Wrapper";
+import { useRecoilState } from "recoil";
+import { isCancelButtonClickedState } from "../../states/index";
+
+type HookCallback = (url: string, text?: string) => void;
 
 export function TextEditor() {
   const editorRef = useRef<Editor>(null);
+  const [isCancelButtonClicked, setIsancelButtonClicked] = useRecoilState(isCancelButtonClickedState);
+
+  const onUploadImage = async (blob: Blob | File, callback: HookCallback) => {
+    console.log(blob);
+    // const url = await uploadImage(blob)
+    // callback(url, '첨부 이미지');
+    // return false;
+  };
 
   const onClickRegisterButton = () => {
     console.log(editorRef.current?.getInstance().getHTML());
   };
 
-  const onClickCancelButton = () => {};
+  const onClickCancelButton = () => {
+    setIsancelButtonClicked(true);
+  };
 
-  useEffect(() => {
-    const test = localStorage.getItem("test");
-    console.dir(test);
-    // if (test) {
-    //   editorRef.current.getInstance().setMarkdown(test);
-    // }
-  }, []);
+  // useEffect(() => {
+  //   const test = localStorage.getItem("test");
+  //   console.dir(test);
+  // if (test) {
+  //   editorRef.current.getInstance().setMarkdown(test);
+  // }
+  // }, []);
 
   return (
     <Column justifyContent="center" alignItems="center">
@@ -42,6 +56,9 @@ export function TextEditor() {
           autofocus
           theme={"dark"}
           hideModeSwitch={true}
+          hooks={{
+            addImageBlobHook: onUploadImage,
+          }}
         />
       </EditorWrapper>
       <Row marginTop="24px" width="80%" justifyContent="flex-end" gap="12px">
