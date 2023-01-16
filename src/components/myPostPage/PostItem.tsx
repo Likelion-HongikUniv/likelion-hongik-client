@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-// import { HeartIcon } from "../icons/HeartIcon";
-// import { CommentIcon } from "../icons/CommentIcon";
+import { HeartIcon } from "../icons/HeartIcon";
+import { CommentIcon } from "../icons/CommentIcon";
 
-export function PostItem() {
+interface IPost {
+  title: string;
+  text: string;
+}
+
+export function PostItem({ title, text }: IPost) {
   return (
     <Item>
       <Left>
@@ -15,23 +20,16 @@ export function PostItem() {
           </div>
         </User>
         <Content>
-          <Title>
-            야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목
-            야옹맨의 게시글 제목 야옹맨의 게시글 제목
-          </Title>
-          <p>
-            안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다!
-            <br />
-            백준코딩만 하다가 대가리 깨질것같아서욧!! 개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~
-          </p>
+          <Title>{title}</Title>
+          <p>{text}</p>
         </Content>
         <Bottom>
           <Icon>
-            {/* <HeartIcon /> */}
+            <HeartIcon />
             <span>200</span>
           </Icon>
           <Icon>
-            {/* <CommentIcon /> */}
+            <CommentIcon />
             <span>200</span>
           </Icon>
         </Bottom>

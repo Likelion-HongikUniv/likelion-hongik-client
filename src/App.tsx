@@ -31,7 +31,7 @@ function App() {
             <Route path="/logincomplete" element={<CompletePage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
-            <Route path="/myPage/post" element={<MyPostPage />} />
+            <Route path="/myPagePost" element={<MyPostPage />} />
             <Route path="/myPageEdit" element={<InfoEditPage />} />
             <Route path="/write/:userid" element={<WritingPage />} />
           </Routes>

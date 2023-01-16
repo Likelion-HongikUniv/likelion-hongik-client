@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Header } from "../components/elements/Header";
 import { PostItem } from "../components/myPostPage/PostItem";
+import { Section } from "../components/elements/Wrapper";
+import { MyPageNav } from "../components/elements/MyPageNav";
+import { PageMove } from "../components/communityPage/PageMove";
 
 export function MyPostPage() {
   const posts = [
@@ -12,31 +15,37 @@ export function MyPostPage() {
     { title: "게시글5", text: "본문5" },
   ];
   return (
-    <MyPostPageContainer>
+    <>
       <Header />
-      {/* 사이드바 들어갈 자리 */}
-      <MyPostBoxContainer>
-        <Title>내가 쓴 글</Title>
-        <PostItemContainer>
-          {posts.map((post, index) => (
-            <PostItem key={index} />
-          ))}
-        </PostItemContainer>
-      </MyPostBoxContainer>
-    </MyPostPageContainer>
+      <Section>
+        <MyPostPageContainer>
+          <MyPageNav />
+          <MyPostBoxContainer>
+            <Title>내가 쓴 글</Title>
+            <PostItemContainer>
+              {posts.map((post: any) => (
+                <PostItem key={post.title} title={post.title} text={post.text} />
+              ))}
+            </PostItemContainer>
+            <PageMove />
+          </MyPostBoxContainer>
+        </MyPostPageContainer>
+      </Section>
+    </>
   );
 }
 
 const MyPostPageContainer = styled.div`
-  width: 100vw;
+  display: flex;
+  margin-bottom: 200px;
 `;
 
 const MyPostBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin-top: 140px;
+  margin-left: 160px;
 `;
 
 const Title = styled.div`
@@ -51,5 +60,5 @@ const Title = styled.div`
 
 const PostItemContainer = styled.div`
   width: 925px;
-  height: 257px;
+  height: 1330px;
 `;
