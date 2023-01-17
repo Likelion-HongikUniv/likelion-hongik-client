@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
 import { Profile } from "../icons/Profile";
-import { Replies } from "./Replies";
+import { IReply, Replies } from "./Replies";
 import { LikeButton } from "./LikeButton";
 import React, { useState } from "react";
 import { Input } from "./InputFrom";
@@ -16,11 +16,12 @@ export interface IProfile {
   profileId: number;
   name: string;
   profilePhoto: string;
+  isAuthor: boolean;
 }
 export interface IComment {
   id?: number;
   body?: string;
-  profile?: any; //IPost
+  profile?: any; //IProfile
   post_id?: number;
   comment_id?: number;
   commentCount?: number;
@@ -30,40 +31,48 @@ export interface IComment {
 }
 
 export function Comments(props: IComment) {
-  const { id, profile, body, post_id, comment_id, commentCount, date, isDeleted, reply } = props;
+  const { id, profile, body, comment_id, commentCount, date, isDeleted, reply } = props;
   const [isShowReplyInput, setShowReplyInput] = useState(false);
-
+  console.log(profile.name);
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowReplyInput(!isShowReplyInput);
   };
 
-  console.log(reply[0][0].profile);
-
   return (
     <>
-      <Column>
+      <Column gap="32px">
         <Row gap="16px">
           <Profile />
           <Column gap="16px">
-            <UserId>{profile[0].name || `AhhyunKim`}</UserId>
+            <UserId>{profile.name || `AhhyunKim`}</UserId>
             <Date>{date || `2022.11.30`}</Date>
             {body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
             <Row gap="24px">
-              <LikeButton />
+              <LikeButton likes={commentCount} />
               <ReplyButton className="replyOption" onClick={onClickReplyButton}>
                 댓글 달기
               </ReplyButton>
             </Row>
-            {props.reply
-              ? props.reply.map((key: number) => {
-                  return <Replies key={id} username={reply[0][0].profile.name} body={reply[0][0].body} />;
-                })
-              : null}
-            {isShowReplyInput && <Input username={profile[0].name}></Input>}
           </Column>
         </Row>
+        {reply
+          ? reply.map((reply: IReply) => {
+              var curReply = reply;
+              var curProfile = reply.profile;
+              return (
+                <Replies
+                  id={id}
+                  username={curProfile?.name}
+                  body={curReply.body}
+                  date={curReply.date}
+                  likeCount={curReply.likeCount}
+                />
+              );
+            })
+          : null}
+        {isShowReplyInput && <Input username={profile.name}></Input>}
         <Hairline />
       </Column>
     </>
@@ -93,7 +102,5 @@ const ReplyButton = styled.button`
 `;
 
 const Hairline = styled.div`
-  margin-top: 32px;
-  margin-bottom: 32px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 `;

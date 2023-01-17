@@ -5,13 +5,16 @@ import { HeartFilled } from "../icons/HeartFilled";
 import { useEffect, useState } from "react";
 // import { isLoggedInState } from "../../states";
 
-export function LikeButton() {
+interface LikeButtonProps {
+  likes?: number;
+}
+
+export function LikeButton({ likes }: LikeButtonProps) {
   const [isLike, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     // if (isLoggedInState);
     setLike(!isLike);
-    console.log(likeCount);
     if (!isLike) {
       var count = likeCount + 1;
       setLikeCount(count);

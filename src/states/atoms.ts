@@ -1,8 +1,8 @@
 // 상태 관리
 
-import { atom, atomFamily } from 'recoil'; 
+import { atom } from 'recoil';
 import { IComment } from '../components/postPage/Comments';
- 
+import { IReply } from '../components/postPage/Replies';
 
 export const commentsListState = atom<IComment[]>({
   key: 'commentsState',
@@ -10,7 +10,8 @@ export const commentsListState = atom<IComment[]>({
   ],
 });
 
-export const commentCompleteState = atomFamily<boolean, number>({
-  key: "commentCompleteState",
-  default: false,
-})
+export const replyState = atom<IReply[]>({
+  key: 'repliesState',
+  default: [
+  ],
+});

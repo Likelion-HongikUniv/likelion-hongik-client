@@ -6,7 +6,7 @@ export function Profile() {
         height="30"
         viewBox="0 0 30 30"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://lh3.googleusercontent.com/a/AEdFTp69-b0CJAMsVpp7Qy3awOPqG8gvK2xT6ysPZaKVXw=s96-c"
         // xmlns:xlink="http://www.w3.org/1999/xlink"
       >
         <circle cx="15" cy="15" r="15" fill="#FEFEFE" />

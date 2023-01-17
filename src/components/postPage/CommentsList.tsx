@@ -1,11 +1,9 @@
-import axios from "axios";
 import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
 import { IComment, IProfile } from "./Comments";
 import { BLACK_2 } from "../../styles/theme";
 import { atom, useRecoilState } from "recoil";
-import { useEffect } from "react";
 
 interface CommentList {
   commentList?: IComment[];
@@ -22,17 +20,59 @@ const commentState = atom<IComment[]>({
         name: "taehwiLee",
         profilePhoto: "",
       },
-      comment_id: 1,
       commentCount: 1,
       date: "2023-01-11",
       isDeleted: false,
       reply: [
         {
           id: 4,
-          body: "반갑습니다.~",
+          body: "대댓글 1 반갑습니다.~",
+          profile: {
+            profileId: 3,
+            name: "영국관광객",
+            profilePhoto: "https:// 어쩌구",
+          },
+          post_id: 1,
+          comment_id: 1,
+          commentCount: 1,
+          date: "2021-02-26 10:42",
+          isDeleted: false,
+        },
+        {
+          id: 4,
+          body: "대댓글2 반갑습니다.~",
           profile: {
             profileId: 3,
             name: "플락스타일동렬",
+            profilePhoto: "https:// 어쩌구",
+          },
+          post_id: 1,
+          comment_id: 1,
+          commentCount: 1,
+          date: "2021-02-26 10:42",
+          isDeleted: false,
+        },
+      ],
+    },
+    {
+      id: 2,
+      body: "2번째로 반갑습니다.~",
+      profile: {
+        profileId: 3,
+        name: "플락스타일동렬",
+        profilePhoto: "https:// 어쩌구",
+      },
+      post_id: 1,
+      commentCount: 1,
+      date: "2021-02-26 10:42",
+      isDeleted: false,
+      reply: [
+        {
+          id: 6,
+          body: "대댓글2-1 반갑습니다.~",
+          profile: {
+            profileId: 7,
+            name: "대댓글러",
             profilePhoto: "https:// 어쩌구",
           },
           post_id: 1,
@@ -40,49 +80,34 @@ const commentState = atom<IComment[]>({
           commentCount: 1,
           date: "2021-02-26 10:42",
           isDeleted: false,
-          reply: [],
         },
       ],
     },
-    // {
-    //   id: 2,
-    //   profile: {
-    //     profileId: 1,
-    //     name: "taehwiLee",
-    //     profilePhoto: "",
-    //   },
-    //   body: "comment test2",
-    //   created: 20230111,
-    //   replyId: [],
-    // },
-    // {
-    //   id: 3,
-    //   username: "건빵스",
-    //   body: "comment test3",
-    //   created: 20230111,
-    //   replyId: [],
-    // },
+    {
+      id: 3,
+      body: "3번째로 반갑습니다.~",
+      profile: {
+        profileId: 3,
+        name: "플락스타일동렬",
+        profilePhoto: "https:// 어쩌구",
+      },
+      post_id: 1,
+      commentCount: 1,
+      date: "2021-02-26 10:42",
+      isDeleted: false,
+    },
   ],
 });
-
-// const getComments = async () => {
-//   const { data } = await axios.get<IComment[]>("http://localhost:3000/post/${postId}");
-//   return data;
-// };
 
 export function CommentsList({ commentList }: CommentList) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
   const [comments, setComments] = useRecoilState(commentState);
   console.log(comments);
-  const replyContent = comments?.map((comments) => {
-    return comments.reply;
-  });
-  const profileContent = comments?.map((comments) => {
-    return comments.profile;
-  });
 
-  console.log(replyContent);
-  console.log(profileContent);
+  // const getComments = async () => {
+  //   const { data } = await axios.get<IComment[]>("http://localhost:3000/post/${postId}");
+  //   return data;
+  // };
 
   // useEffect(() => {
   //   axios.get("https://jsonplaceholder.typicode.com/posts/1/comments").then((response) => {
@@ -101,17 +126,24 @@ export function CommentsList({ commentList }: CommentList) {
         <InputButton onClick={onClickComment}>작성</InputButton>
       </Row>
       <Column>
-        <div>
-          {comments.map((comments: IComment) => (
-            <Comments
-              key={comments.id}
-              profile={profileContent}
-              body={comments.body}
-              date={comments.date}
-              reply={replyContent}
-            />
-          ))}
-        </div>
+        <Column gap="32px">
+          {comments.map((comments: IComment) => {
+            var curReply = comments.reply;
+            var curProfile = comments.profile;
+            return (
+              <Comments
+                key={comments.id}
+                profile={curProfile}
+                body={comments.body}
+                date={comments.date}
+                commentCount={comments.commentCount}
+                comment_id={comments.id}
+                isDeleted={comments.isDeleted}
+                reply={curReply}
+              />
+            );
+          })}
+        </Column>
       </Column>
     </>
   );

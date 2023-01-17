@@ -2,36 +2,41 @@ import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
+import { CommentArrow } from "../icons/CommentArrow";
 import { LikeButton } from "./LikeButton";
+import { IProfile } from "./Comments";
 // interface 관리
 
 export interface IReply {
   key?: number;
   id?: number;
   username?: string;
+  profile?: IProfile;
   body?: string;
-  created?: number;
+  date?: string;
+  likeCount?: number;
   reply?: IReply;
 }
 
-export function Replies({ key, id, body, username, created, reply }: IReply) {
-  // var likes = likedId.length();
-
+export function Replies({ id, body, username, date, likeCount, reply }: IReply) {
   return (
     <>
-      <Wrapper>
-        <Profile />
-        <TextContainer>
-          <>
-            <UserId>{username || `AhhyunKim`}</UserId>
-            <Date>{created || `2022.11.30`}</Date>
-          </>
-          {body ||
-            `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
+      <Row>
+        <CommentArrow />
+        <Wrapper>
+          <Profile />
+          <TextContainer>
+            <>
+              <UserId>{username || `AhhyunKim`}</UserId>
+              <Date>{date || `2022.11.30`}</Date>
+            </>
+            {body ||
+              `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
           있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
-          <LikeButton />
-        </TextContainer>
-      </Wrapper>
+            <LikeButton likes={likeCount} />
+          </TextContainer>
+        </Wrapper>
+      </Row>
     </>
   );
 }
