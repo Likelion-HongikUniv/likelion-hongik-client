@@ -6,6 +6,8 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
+import Google from "../../components/Login/Google";
+
 
 export function SocialLogin() {
   return (
@@ -31,6 +33,7 @@ export function SocialLogin() {
       <SocialBtn style={{ background: "#FFFFFF" }}>
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
+          <Google />
       </SocialBtn>
       <Footer style={{ marginTop: "334px" }} />
     </ForDiv>

@@ -5,12 +5,12 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import projects from "../../data/projects.json";
 import project1 from "../images/main_project1.png";
 import project2 from "../images/main_project2.png";
 import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
 import project5 from "../images/main_project5.png";
+// import { title } from "process";
 
 interface Iarrow {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -21,6 +21,34 @@ interface Iprojects {
   desc: string;
   pid: number;
 }
+
+const imageList = [
+  {
+    pid: 1,
+    title: project1,
+    desc: "project1 설명",
+  },
+  {
+    pid: 2,
+    title: project2,
+    desc: "project2 설명",
+  },
+  {
+    pid: 3,
+    title: project3,
+    desc: "project3 설명",
+  },
+  {
+    pid: 4,
+    title: project4,
+    desc: "project4 설명",
+  },
+  {
+    pid: 5,
+    title: project5,
+    desc: "project5 설명",
+  },
+];
 
 const Project = () => {
   function NextArrow({ onClick }: Iarrow) {
@@ -56,7 +84,7 @@ const Project = () => {
     // e.target.style.display = "block";
     setIsHovering(true);
     // const hovering = document.getElementById("hover");
-    console.log(isHovering);
+    // console.log(isHovering);
     // hovering.style.display = 'block';
   };
 
@@ -64,27 +92,29 @@ const Project = () => {
     // e.target.style.display = "none";
     setIsHovering(false);
     // const hovering = document.getElementById("hover");
-    console.log(isHovering);
+    // console.log(isHovering);
   };
 
   return (
     <Fade>
       <ProjectContainer>
         <StyledSlider {...settings}>
-          {projects.map(({ title, desc, pid }: Iprojects) => (
-            <div key={pid}>
-              <ProjectBox title={title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                {isHovering && (
-                <Hover id="hover">
-                  <HoverText>
-                    <Title>{title}</Title>
-                    <Desc>{desc}</Desc>
-                  </HoverText>
-                </Hover>
-                )}
-              </ProjectBox>
-            </div>
-          ))}
+          {imageList.map(({ title, desc, pid }: Iprojects) => {
+            return (
+              <div key={pid}>
+                <ProjectBox title={title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  {isHovering && (
+                    <Hover id="hover">
+                      <HoverText>
+                        <Title>{`project` + pid}</Title>
+                        <Desc>{desc}</Desc>
+                      </HoverText>
+                    </Hover>
+                  )}
+                </ProjectBox>
+              </div>
+            );
+          })}
         </StyledSlider>
       </ProjectContainer>
     </Fade>
@@ -103,9 +133,8 @@ const ProjectContainer = styled.div`
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
-  background-image: url(${project1});
-  /* background-image: ${(props) => `url(${props.title})`}; */
-  /* background-image: url(${(props) => props.title}); */
+  /* background-image: url(${project1}); */
+  background-image: url(${(props) => props.title});
 
   /* 에러))) props가 string으로 들어가서 적용되지 않음 ㅜㅜ*/
   /* 올바른 형식 인식: url(/static/media/main_project1.4b5d03d….png); */

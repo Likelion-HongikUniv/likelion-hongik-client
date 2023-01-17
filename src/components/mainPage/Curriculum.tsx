@@ -6,7 +6,6 @@ import Part3 from "./Curriculum/Part3";
 import "../../styles/curriculum.css";
 import { Fade } from "react-awesome-reveal";
 
-
 const Curriculum = () => {
   const [content, setContent] = useState("1");
   const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,9 +65,7 @@ const Curriculum = () => {
             </PartText>
           </PartBtn>
         </div>
-        <PartContainer id='animation'>
-         {content && <TimeLine>{selectComponent[content]}</TimeLine>}
-        </PartContainer>
+        <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
       </Container>
     </Fade>
   );
@@ -112,6 +109,9 @@ const PartContainer = styled.div`
 
 const TimeLine = styled.div`
   width: 1240px;
+  @media (max-width: 390px) {
+    width: 390px;
+  }
 `;
 
 export default Curriculum;
