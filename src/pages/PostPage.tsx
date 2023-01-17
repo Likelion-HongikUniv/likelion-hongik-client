@@ -10,7 +10,7 @@ export function PostPage() {
       <Header />
       <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
         <Column style={{ marginTop: "100px" }}>
-          <Board key={0} id={0} title={"게시글 제목 테스트"} username={"사용자 이름"} created={"2023-01-13"} />
+          <Board key={0} id={0} title={"게시글 제목 테스트"} username={"사용자 이름"} date={"2023-01-13"} />
           <CommentsList commentList={[]}></CommentsList>
         </Column>
       </Section>

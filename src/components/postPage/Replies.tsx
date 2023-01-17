@@ -11,10 +11,10 @@ export interface IReply {
   username?: string;
   body?: string;
   created?: number;
-  likedId?: string[];
+  reply?: IReply;
 }
 
-export function Replies({ key, id, body, username, created, likedId }: IReply) {
+export function Replies({ key, id, body, username, created, reply }: IReply) {
   // var likes = likedId.length();
 
   return (

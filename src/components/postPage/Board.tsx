@@ -16,11 +16,11 @@ export interface IPost {
   username?: string;
   body?: string;
   category?: string;
-  created?: number;
+  date?: string;
 }
 
 export function Board(props: IPost) {
-  const { title, username, body, category, created } = props;
+  const { title, username, body, category, date } = props;
   console.log(props);
   return (
     <Column gap="24px">
@@ -28,7 +28,7 @@ export function Board(props: IPost) {
       <Title>{title || "게시글 제목"}</Title>
       <Row gap="1rem" alignItems="center">
         {username || "AhhyunKim"}
-        <Date>{created || "2022.11.30"}</Date>
+        <Date>{date || "2022.11.30"}</Date>
         {isLoggedInState ? "로그아웃 상태" : "수정하기"}
       </Row>
       <Hairline />

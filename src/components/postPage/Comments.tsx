@@ -19,20 +19,18 @@ export interface IProfile {
 }
 export interface IComment {
   id?: number;
-  profile?: IProfile;
+  body?: string;
+  profile?: any; //IPost
   post_id?: number;
-  commentLike?: number;
-  created?: number;
-  date?: Date;
-}
-
-export interface CommentLike extends IComment {
-  key?: number;
-  id?: number;
+  comment_id?: number;
+  commentCount?: number;
+  date?: string;
+  isDeleted?: boolean;
+  reply?: any; //IComment[]
 }
 
 export function Comments(props: IComment) {
-  const { key, id, username, body, created, replyId } = props;
+  const { id, profile, body, post_id, comment_id, commentCount, date, isDeleted, reply } = props;
   const [isShowReplyInput, setShowReplyInput] = useState(false);
 
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,7 +38,7 @@ export function Comments(props: IComment) {
     setShowReplyInput(!isShowReplyInput);
   };
 
-  console.log(replyId);
+  console.log(reply[0][0].profile);
 
   return (
     <>
@@ -48,8 +46,8 @@ export function Comments(props: IComment) {
         <Row gap="16px">
           <Profile />
           <Column gap="16px">
-            <UserId>{username || `AhhyunKim`}</UserId>
-            <Date>{created || `2022.11.30`}</Date>
+            <UserId>{profile[0].name || `AhhyunKim`}</UserId>
+            <Date>{date || `2022.11.30`}</Date>
             {body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
             <Row gap="24px">
@@ -58,13 +56,12 @@ export function Comments(props: IComment) {
                 댓글 달기
               </ReplyButton>
             </Row>
-            {/* {props.replyId
-              ? (props.replyId).map((key: number, id: number) => {
-                  return <Replies key={key} id={id} />;
+            {props.reply
+              ? props.reply.map((key: number) => {
+                  return <Replies key={id} username={reply[0][0].profile.name} body={reply[0][0].body} />;
                 })
-              : null} */}
-            {props.replyId && <Replies key={key} id={id} />}
-            {isShowReplyInput && <Input username={username}></Input>}
+              : null}
+            {isShowReplyInput && <Input username={profile[0].name}></Input>}
           </Column>
         </Row>
         <Hairline />

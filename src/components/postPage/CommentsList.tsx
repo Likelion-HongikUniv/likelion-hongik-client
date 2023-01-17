@@ -2,40 +2,10 @@ import axios from "axios";
 import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
-import { IComment } from "./Comments";
+import { IComment, IProfile } from "./Comments";
 import { BLACK_2 } from "../../styles/theme";
 import { atom, useRecoilState } from "recoil";
 import { useEffect } from "react";
-
-// "id": 2,
-// 			"body": "안녕하세요!!",
-// 			"profile":
-// 				{
-// 					"profile_id" :"1",
-// 					"name" : "갓태휘",
-// 					"profile_photo : "https:// 어쩌구 "
-// 				}
-// 			"post_id":"1",
-// 			"commentLike": 0,
-// 			"createdTime": "2023-02-25",
-// 			"isDeleted": false,
-// 			"reply": [
-// 				{
-// 					"id": 4,
-// 					"body": "반갑습니다.~",
-// 					"profile":
-// 						{
-// 							"profile_id" :3,
-// 							"name" : "플락스타일동렬",
-// 							"profile_photo : "https:// 어쩌구 "
-// 						}
-// 					"post_id" : 1
-// 					"comment_id" : 2
-// 					"commentCount": 1,
-// 					"createdAt": "2021-02-26 10:42",
-// 					"isDeleted": false,
-// 					"reply": []
-// 				},
 
 interface CommentList {
   commentList?: IComment[];
@@ -45,31 +15,53 @@ const commentState = atom<IComment[]>({
   key: "comment",
   default: [
     {
-      key: 0,
       id: 1,
-      body: "comment test1",
-      username: "감자",
-      created: 20230111,
-      replyId: [1, 2, 4],
+      body: "string test 바디 테스트 테스트",
+      profile: {
+        profileId: 1,
+        name: "taehwiLee",
+        profilePhoto: "",
+      },
+      comment_id: 1,
+      commentCount: 1,
+      date: "2023-01-11",
+      isDeleted: false,
+      reply: [
+        {
+          id: 4,
+          body: "반갑습니다.~",
+          profile: {
+            profileId: 3,
+            name: "플락스타일동렬",
+            profilePhoto: "https:// 어쩌구",
+          },
+          post_id: 1,
+          comment_id: 2,
+          commentCount: 1,
+          date: "2021-02-26 10:42",
+          isDeleted: false,
+          reply: [],
+        },
+      ],
     },
-
-    {
-      key: 2,
-      id: 2,
-      username: "빼로로",
-      body: "comment test2",
-      created: 20230111,
-      replyId: [],
-    },
-
-    {
-      key: 3,
-      id: 3,
-      username: "건빵스",
-      body: "comment test3",
-      created: 20230111,
-      replyId: [],
-    },
+    // {
+    //   id: 2,
+    //   profile: {
+    //     profileId: 1,
+    //     name: "taehwiLee",
+    //     profilePhoto: "",
+    //   },
+    //   body: "comment test2",
+    //   created: 20230111,
+    //   replyId: [],
+    // },
+    // {
+    //   id: 3,
+    //   username: "건빵스",
+    //   body: "comment test3",
+    //   created: 20230111,
+    //   replyId: [],
+    // },
   ],
 });
 
@@ -81,12 +73,22 @@ const commentState = atom<IComment[]>({
 export function CommentsList({ commentList }: CommentList) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
   const [comments, setComments] = useRecoilState(commentState);
+  console.log(comments);
+  const replyContent = comments?.map((comments) => {
+    return comments.reply;
+  });
+  const profileContent = comments?.map((comments) => {
+    return comments.profile;
+  });
 
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts/1/comments").then((response) => {
-      setComments(response.data);
-    });
-  }, []);
+  console.log(replyContent);
+  console.log(profileContent);
+
+  // useEffect(() => {
+  //   axios.get("https://jsonplaceholder.typicode.com/posts/1/comments").then((response) => {
+  //     setComments(response.data);
+  //   });
+  // }, []);
 
   const onClickComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     // setInputText();
@@ -101,7 +103,13 @@ export function CommentsList({ commentList }: CommentList) {
       <Column>
         <div>
           {comments.map((comments: IComment) => (
-            <Comments key={comments.key} id={comments.id} username={comments.username} created={comments.created} />
+            <Comments
+              key={comments.id}
+              profile={profileContent}
+              body={comments.body}
+              date={comments.date}
+              reply={replyContent}
+            />
           ))}
         </div>
       </Column>
