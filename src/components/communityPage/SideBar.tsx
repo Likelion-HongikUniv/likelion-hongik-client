@@ -1,43 +1,49 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { nowTagState, tagListState } from "../../states/atoms";
+import { useNavigate } from "react-router-dom";
+import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 
-export function SideBar() {
+export function SideBar(categoryName: ICommunityParam) {
+  const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
+  const tagList = useRecoilValue<ICategory[]>(tagListState);
+  const navigate = useNavigate();
+  const activeStyle = {
+    fontWeight: "700",
+    color: "#ED7F30",
+  };
+  const onTagClickHandler = (category: string, tag: string) => {
+    setNowTag(tag);
+    navigate(`/community/${category}`);
+  };
   return (
     <SideBarWrapper>
       <ProfileBoard>
         <ProfileImg>
-          <img alt="profile-img" src="https://placekitten.com/200/200" />
+          <img alt="profile-img" />
         </ProfileImg>
         <ProfileDesc>
           <span>김아현</span>
           <div>컴퓨터공학과</div>
         </ProfileDesc>
       </ProfileBoard>
-      <TagWrapper>
-        <span>게시판</span>
-        <div>
-          <span>공지사항</span>
-          <span>Q&A</span>
-          <span>자유게시판</span>
-        </div>
-      </TagWrapper>
-      <TagWrapper>
-        <span>과제관리</span>
-        <div>
-          <span>프론트</span>
-          <span>백엔드</span>
-          <span>기획·디자인</span>
-        </div>
-      </TagWrapper>
-      <TagWrapper>
-        <span>프로젝트</span>
-        <div>
-          <span>프론트</span>
-          <span>백엔드</span>
-          <span>기획·디자인</span>
-          <span>프로젝트 회의</span>
-        </div>
-      </TagWrapper>
+      {tagList.map((category: ICategory) => (
+        <TagWrapper key={category.key}>
+          <span>{category.text}</span>
+          <div>
+            {category.tags?.map((tag: ITag) => (
+              <span
+                key={tag.key}
+                onClick={() => onTagClickHandler(category.key, tag.key)}
+                style={category.key === categoryName.categoryName && tag.key === nowTag ? activeStyle : {}}
+              >
+                {tag.text}
+              </span>
+            ))}
+          </div>
+        </TagWrapper>
+      ))}
     </SideBarWrapper>
   );
 }
@@ -107,6 +113,10 @@ const TagWrapper = styled.div`
       line-height: 19px;
       letter-spacing: -0.32px;
       color: #ffffff;
+      cursor: pointer;
+      &:hover {
+        color: #ed7f30;
+      }
     }
   }
 
