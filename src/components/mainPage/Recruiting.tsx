@@ -6,7 +6,7 @@ import { Fade } from "react-awesome-reveal";
 const Recruiting = () => {
   const navigate = useNavigate();
   const onClickBtn = () => {
-    navigate("/recruit");
+    window.location.replace("/recruit");
   };
   return (
     <Fade>
@@ -40,7 +40,7 @@ const BoxContainer = styled.div`
   @media (max-width: 390px) {
     width: 350px;
     height: 297px;
-    padding: 30px 20px ;
+    padding: 30px 20px;
   }
 `;
 
@@ -96,7 +96,5 @@ const Title = styled.div`
     font-size: 28px;
   }
 `;
-
-
 
 export default Recruiting;
