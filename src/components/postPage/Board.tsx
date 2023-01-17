@@ -4,7 +4,6 @@ import { HeartButton } from "./HeartButton";
 import { isLoggedInState } from "../../states";
 import { ViewerUi } from "./ViewerUi";
 import { IProfile } from "./Comments";
-import PostDetail from "../../data/postDetail.json";
 
 /** 포스트 좋아요 기능
  * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
@@ -12,39 +11,36 @@ import PostDetail from "../../data/postDetail.json";
  */
 
 export interface IPost {
-  id?: number;
-  author?: IProfile[];
+  postId?: number;
   title?: string;
+  author?: IProfile[];
   body?: string;
-  date?: string;
-  likeCount: number;
+  likeCount?: number;
+  commentCount?: number;
+  createdTime?: string;
 }
 
-export function Board(props: IPost) {
-  const { author, title, body, date, likeCount } = props;
+export function Board({ title, author, body, likeCount, createdTime }: IPost) {
+  // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
+  console.log(title);
+  var auth = false;
 
   return (
     <Column gap="24px">
-      {/* <Title>{title || "게시글 제목"}</Title> */}
       <Title>{title || "게시글 제목"}</Title>
       <Row gap="1rem" alignItems="center">
         {author
           ? author.map((author: IProfile) => {
+              auth = author.isAuthor;
               return author.name;
             })
           : null}
-        <Date>{date || "2022.11.30"}</Date>
-        {isLoggedInState ? "로그아웃 상태" : "수정하기"}
+        <Date>{createdTime || "2022.11.30"}</Date>
+        {auth ? "로그아웃 상태" : "수정하기"}
       </Row>
       <Hairline />
       <Column lineHeight="1.25rem">
-        <ViewerUi
-          body={` 안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다! 백준코딩만 하다가 대가리 깨질것같아서욧!!
-  개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~ </br>
-  참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요
-  <h1>Hello!</h1>
-  <code data-backticks="1">const a = d;</code>`}
-        ></ViewerUi>
+        <ViewerUi body={body || "2123"}></ViewerUi>
       </Column>
       <HeartButton likes={likeCount} />
       <Hairline />
