@@ -110,7 +110,7 @@ const PartContainer = styled.div`
 const TimeLine = styled.div`
   width: 1240px;
   @media (max-width: 390px) {
-    width: 390px;
+    display: none;
   }
 `;
 

@@ -79,7 +79,7 @@ const Project = () => {
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.currentTarget.style.opacity = "1";
-    e.currentTarget.style.transition = "all ease 0.3s 0s";
+    e.currentTarget.style.transition = 'all ease 0.3s 0s'
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -95,12 +95,12 @@ const Project = () => {
             return (
               <div key={pid}>
                 <ProjectBox title={title}>
-                  <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <HoverText>
-                      <Title>{`project` + pid}</Title>
-                      <Desc>{desc}</Desc>
-                    </HoverText>
-                  </Hover>
+                    <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                      <HoverText>
+                        <Title>{`project` + pid}</Title>
+                        <Desc>{desc}</Desc>
+                      </HoverText>
+                    </Hover>
                 </ProjectBox>
               </div>
             );
@@ -120,6 +120,11 @@ const ProjectContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @media (max-width: 390px) {
+    width: 390px;
+    height: 225px;
+    overflow: hidden;
+  }
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
@@ -180,7 +185,7 @@ const Next = styled.div`
   font-size: 25px;
   position: absolute;
   top: 260px;
-  left: 780px;
+  /* left: 780px; */
   &:hover {
     cursor: pointer;
   }
@@ -190,7 +195,7 @@ const Prev = styled.div`
   font-size: 25px;
   position: absolute;
   top: 260px;
-  right: 780px;
+  /* right: 780px; */
   &:hover {
     cursor: pointer;
   }
