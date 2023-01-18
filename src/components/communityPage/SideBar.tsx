@@ -49,12 +49,13 @@ export function SideBar(categoryName: ICommunityParam) {
 }
 
 const SideBarWrapper = styled.div`
-  position: fix;
+  position: fixed;
   display: flex;
   width: 190px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  left: 17.7083vw;
 `;
 
 const ProfileBoard = styled.div`
