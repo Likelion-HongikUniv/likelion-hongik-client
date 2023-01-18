@@ -1,24 +1,26 @@
 import styled from "styled-components";
-import { Row, Column } from "../elements/Wrapper";
+import { Row } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
 import { CommentArrow } from "../icons/CommentArrow";
 import { LikeButton } from "./LikeButton";
-import { IProfile } from "./Comments";
+import { IProfile } from "./Board";
+import moment from "moment";
 // interface 관리
 
 export interface IReply {
-  key?: number;
   id?: number;
-  username?: string;
-  profile?: IProfile;
+  author?: IProfile;
   body?: string;
-  date?: string;
-  likeCount?: number;
-  reply?: IReply;
+  createdTime?: string;
+  likeCount: number;
+  deledted?: boolean;
 }
 
-export function Replies({ id, body, username, date, likeCount, reply }: IReply) {
+export function Replies(reply: IReply) {
+  const curDate = reply.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+
   return (
     <>
       <Row>
@@ -27,13 +29,13 @@ export function Replies({ id, body, username, date, likeCount, reply }: IReply) 
           <Profile />
           <TextContainer>
             <>
-              <UserId>{username || `AhhyunKim`}</UserId>
+              <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
               <Date>{date || `2022.11.30`}</Date>
             </>
-            {body ||
+            {reply?.body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
           있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
-            <LikeButton likes={likeCount} />
+            <LikeButton likes={reply?.likeCount} />
           </TextContainer>
         </Wrapper>
       </Row>

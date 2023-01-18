@@ -5,6 +5,8 @@ import { IReply, Replies } from "./Replies";
 import { LikeButton } from "./LikeButton";
 import React, { useState } from "react";
 import { Input } from "./InputFrom";
+import { IComment } from "./CommentsList";
+import moment from "moment";
 
 // interface 관리
 /** 댓글 좋아요 기능
@@ -12,32 +14,15 @@ import { Input } from "./InputFrom";
  * 배열로 받아와 해당 배열의 원소 갯수를 세면 그게 좋아요 개수
  */
 
-export interface IProfile {
-  profileId: number;
-  name: string;
-  profilePhoto: string;
-  isAuthor: boolean;
-}
-export interface IComment {
-  id?: number;
-  body?: string;
-  profile?: any; //IProfile
-  post_id?: number;
-  comment_id?: number;
-  commentCount?: number;
-  date?: string;
-  isDeleted?: boolean;
-  reply?: any; //IComment[]
-}
-
 export function Comments(props: IComment) {
-  const { id, profile, body, comment_id, commentCount, date, isDeleted, reply } = props;
   const [isShowReplyInput, setShowReplyInput] = useState(false);
-  console.log(profile.name);
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowReplyInput(!isShowReplyInput);
   };
+  console.log(props.likeCount);
+  const curDate = props.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
 
   return (
     <>
@@ -45,34 +30,25 @@ export function Comments(props: IComment) {
         <Row gap="16px">
           <Profile />
           <Column gap="16px">
-            <UserId>{profile.name || `AhhyunKim`}</UserId>
+            <UserId>{props.author?.nickname || `AhhyunKim`}</UserId>
             <Date>{date || `2022.11.30`}</Date>
-            {body ||
+            {props?.body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
             <Row gap="24px">
-              <LikeButton likes={commentCount} />
+              <LikeButton likes={props.likeCount} />
               <ReplyButton className="replyOption" onClick={onClickReplyButton}>
                 댓글 달기
               </ReplyButton>
             </Row>
           </Column>
         </Row>
-        {reply
-          ? reply.map((reply: IReply) => {
-              var curReply = reply;
-              var curProfile = reply.profile;
-              return (
-                <Replies
-                  id={id}
-                  username={curProfile?.name}
-                  body={curReply.body}
-                  date={curReply.date}
-                  likeCount={curReply.likeCount}
-                />
-              );
+        {props.replies
+          ? props.replies.map((reply: IReply) => {
+              console.log(reply);
+              return <Replies {...reply} />;
             })
           : null}
-        {isShowReplyInput && <Input username={profile.name}></Input>}
+        {isShowReplyInput && <Input username={props.author?.nickname}></Input>}
         <Hairline />
       </Column>
     </>

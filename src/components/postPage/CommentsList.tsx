@@ -1,18 +1,27 @@
 import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
-import { IComment, IProfile } from "./Comments";
 import { BLACK_2 } from "../../styles/theme";
+import { IProfile } from "./Board";
+import { IReply } from "./Replies";
 
-interface CommentList {
-  commentList?: IComment[];
+export interface IComment {
+  id?: number;
+  author?: IProfile;
+  body?: string;
+  isDeleted?: boolean;
+  createdTime?: string;
+  likeCount: number;
+  comment_id?: number;
+  replies?: IReply[];
 }
 
-export function CommentsList({ commentList }: CommentList) {
+export function CommentsList(commentList: IComment[]) {
+  const comments = Object.values(commentList).map((comments: IComment) => comments);
   const onClickComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     // setInputText();
+    // setCommentLists({...commentList, newComments });
   };
-  console.log(commentList);
   return (
     <>
       <Row gap="1rem" justifyContent="center" alignItems="center">
@@ -21,21 +30,8 @@ export function CommentsList({ commentList }: CommentList) {
       </Row>
       <Column>
         <Column gap="32px">
-          {comments.map((comments: IComment) => {
-            var curReply = comments.reply;
-            var curProfile = comments.profile;
-            return (
-              <Comments
-                key={comments.id}
-                profile={curProfile}
-                body={comments.body}
-                date={comments.date}
-                commentCount={comments.commentCount}
-                comment_id={comments.id}
-                isDeleted={comments.isDeleted}
-                reply={curReply}
-              />
-            );
+          {comments.map((value, id) => {
+            return <Comments key={id} {...value} />;
           })}
         </Column>
       </Column>

@@ -29,13 +29,14 @@ export function HeartButton({ likes }: HeartButtonProps) {
   return (
     <ButtonWrapper onClick={onClickLike}>
       {isLike ? <HeartFilled /> : <HeartUnfilled />}
-      {likeCount || 312}
+      {likeCount}
     </ButtonWrapper>
   );
 }
 
 const ButtonWrapper = styled.button`
   box-sizing: border-box;
+  min-width: 80px;
   font-size: 20px;
   display: flex;
   flex-direction: row;

@@ -6,14 +6,13 @@ import { useEffect, useState } from "react";
 // import { isLoggedInState } from "../../states";
 
 interface LikeButtonProps {
-  likes?: number;
+  likes: number;
 }
 
 export function LikeButton({ likes }: LikeButtonProps) {
   const [isLike, setLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(likes);
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // if (isLoggedInState);
     setLike(!isLike);
     if (!isLike) {
       var count = likeCount + 1;
@@ -40,6 +39,7 @@ const ButtonWrapper = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
+  min-width: 80px;
   gap: 8px;
   color: white;
 `;

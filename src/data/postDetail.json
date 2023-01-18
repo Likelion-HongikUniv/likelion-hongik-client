@@ -61,10 +61,10 @@
         "profileImage": null,
         "isAuthor": true
       },
-      "body": "대댓글 1번쨰",
+      "body": "댓글 3번쨰",
       "isDeleted": true,
       "createdTime": "2023-01-17T17:41:23.343214",
-      "likeCount": 0,
+      "likeCount": 3,
       "replies": []
     }
   ],

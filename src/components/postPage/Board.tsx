@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Row, Column } from "../elements/Wrapper";
 import { HeartButton } from "./HeartButton";
-import { isLoggedInState } from "../../states";
 import { ViewerUi } from "./ViewerUi";
-import { IProfile } from "./Comments";
+import moment from "moment";
 
 /** 포스트 좋아요 기능
  * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
@@ -11,38 +10,41 @@ import { IProfile } from "./Comments";
  */
 
 export interface IPost {
-  postId?: number;
-  title?: string;
-  author?: IProfile[];
-  body?: string;
-  likeCount?: number;
-  commentCount?: number;
-  createdTime?: string;
+  postId: number;
+  title: string;
+  author: IProfile;
+  body: string;
+  likeCount: number;
+  commentCount: number;
+  createdTime: string;
 }
 
-export function Board({ title, author, body, likeCount, createdTime }: IPost) {
+export interface IProfile {
+  profileId?: number;
+  nickname?: string;
+  profilePhoto?: string;
+  isAuthor?: boolean;
+}
+
+export function Board(boardData: IPost) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
-  console.log(title);
-  var auth = false;
+  const curDate = boardData.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+  console.log(date);
 
   return (
     <Column gap="24px">
-      <Title>{title || "게시글 제목"}</Title>
+      <Title>{boardData.title || "게시글 제목"}</Title>
       <Row gap="1rem" alignItems="center">
-        {author
-          ? author.map((author: IProfile) => {
-              auth = author.isAuthor;
-              return author.name;
-            })
-          : null}
-        <Date>{createdTime || "2022.11.30"}</Date>
-        {auth ? "로그아웃 상태" : "수정하기"}
+        {boardData.author.nickname}
+        <Date>{date || "2022.11.30"}</Date>
+        {boardData.author.isAuthor ? "수정하기" : "로그아웃 상태"}
       </Row>
       <Hairline />
       <Column lineHeight="1.25rem">
-        <ViewerUi body={body || "2123"}></ViewerUi>
+        <ViewerUi body={boardData?.body || "2123"}></ViewerUi>
       </Column>
-      <HeartButton likes={likeCount} />
+      <HeartButton likes={boardData.likeCount} />
       <Hairline />
     </Column>
   );
