@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
@@ -7,10 +6,9 @@ import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
 
 export function Header() {
-  const navigate = useNavigate();
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
-    navigate(`/${page}`);
+    window.location.replace(`${page}`); //새로고침 되는게 낫지않나?
   };
 
   return (

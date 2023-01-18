@@ -40,13 +40,13 @@ const RegBtn = styled.button`
   margin-top: 80px;
   margin-left: 420px;
   width: 400px;
-  height: 80px;
+  height: 64px;
   background-color: #ed7f30;
-  border-radius: 20px;
-  font-size: 28px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 33.6px;
-  padding: 23px 50px;
+  text-align: center;
 `;
 
 const ForDiv = styled.div`

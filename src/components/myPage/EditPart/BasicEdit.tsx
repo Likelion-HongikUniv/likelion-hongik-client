@@ -1,23 +1,10 @@
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { FileUploader } from "../FileUploader";
-import { nickState, majorState } from "../../../states/index";
-import { NickEdit } from "./NickEdit";
-import { MajorEdit } from "./MajorEdit";
+import { editState } from "./../../../states/index";
 
 export function BasicEdit() {
-  const [nickname, setNickname] = useRecoilState(nickState);
-  const [major, setMajor] = useRecoilState(majorState);
-
-  const onSubmitNickname = (form: { nickname: string }) => {
-    console.log(form);
-    setNickname(form.nickname);
-  };
-
-  const onSubmitMajor = (form: { major: string }) => {
-    console.log(form);
-    setMajor(form.major);
-  };
+  const info = useRecoilValue(editState);
 
   return (
     <>
@@ -25,12 +12,10 @@ export function BasicEdit() {
       <div style={{ display: "flex" }}>
         <FileUploader />
         <BasicInfo>
-          <Major>{major}</Major>
-          <Names>{nickname}</Names>
+          <Major>{info.major}</Major>
+          <Names>{info.nickname}</Names>
         </BasicInfo>
       </div>
-      <NickEdit onSubmit={onSubmitNickname} />
-      <MajorEdit onSubmit={onSubmitMajor} />
     </>
   );
 }

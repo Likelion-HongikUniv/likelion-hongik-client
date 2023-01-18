@@ -25,9 +25,7 @@ export function QnA() {
 const ForDiv = styled.div`
   font-weight: 700;
   display: flex;
-  /* justify-content: center; */
   padding: 0 340px;
-  /* margin-left: 150px; */
 `;
 
 const TitleText = styled.div`

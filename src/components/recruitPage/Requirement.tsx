@@ -20,7 +20,6 @@ export function Requirement() {
 
 const ForDiv = styled.div`
   font-weight: 700;
-  /* justify-content: center; */
   padding: 0 340px;
   display: flex;
 `;

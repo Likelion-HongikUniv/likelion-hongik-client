@@ -2,7 +2,7 @@ import { Header } from "./../components/elements/Header";
 import styled from "styled-components";
 import { BLACK_1 } from "./../styles/theme";
 import { WHITE_1 } from "./../styles/theme";
-import { RecruitBackImg } from "./../components/icons/RecruitBackImg";
+import recruitBackImg from "./../components/images/recruitBackImg.svg";
 import Footer from "../components/elements/Footer";
 import { RecruitInfo } from "../components/recruitPage/RecruitInfo";
 import { Curriculum } from "../components/recruitPage/Curriculum";
@@ -10,7 +10,7 @@ import { Part } from "../components/recruitPage/Part";
 import { Requirement } from "../components/recruitPage/Requirement";
 import { QnA } from "../components/recruitPage/QnA";
 import { Tip } from "../components/recruitPage/Tip";
-import { Section } from "../components/elements/Wrapper";
+import { Column, Section } from "../components/elements/Wrapper";
 import Channel from "../components/elements/Channel";
 
 export function RecruitPage() {
@@ -18,10 +18,13 @@ export function RecruitPage() {
     <>
       <Header />
       <Section>
-        <Wrapper style={{ height: "700px" }}>
-          <RecruitBackImg />
-          <RecruitInfo />
-        </Wrapper>
+        <Column justifyContent="center" alignItems="center">
+          <Section style={{ paddingTop: "0" }}>
+            <Wrapper style={{ backgroundImage: `url(${recruitBackImg})` }}>
+              <RecruitInfo />
+            </Wrapper>
+          </Section>
+        </Column>
         <Wrapper>
           <div style={{ marginTop: "360px" }}>
             <Curriculum />
@@ -41,6 +44,8 @@ export function RecruitPage() {
 }
 
 const Wrapper = styled.div`
+  background-repeat: no-repeat;
+  background-position: center;
   width: 100vw;
   height: 100%;
   background-color: ${BLACK_1};
@@ -48,5 +53,4 @@ const Wrapper = styled.div`
   color: ${WHITE_1};
   display: flex;
   justify-content: center;
-  /* position: relative; */
 `;

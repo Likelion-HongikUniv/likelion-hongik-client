@@ -16,12 +16,9 @@ export function RecruitInfo() {
 }
 
 const BasicInfo = styled.div`
-  width: 100%;
-  padding-left: 340px;
-  top: 0px;
+  width: 1150px;
   background-color: transparent;
-  position: absolute;
-  padding-top: 160px;
+  margin-top: 60px;
 `;
 
 const Now = styled.div`
@@ -64,11 +61,11 @@ const BasicText = styled.div`
 const RegBtn = styled.button`
   margin-top: 60px;
   width: 400px;
-  height: 80px;
+  height: 64px;
   background-color: #ed7f30;
-  border-radius: 20px;
-  font-size: 28px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 33.6px;
-  padding: 23px 50px;
+  line-height: 24.96px;
+  text-align: center;
 `;
