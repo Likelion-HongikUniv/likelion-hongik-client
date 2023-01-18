@@ -10,7 +10,7 @@ export const userState = atom<string>({
 
 export const btnActiveState = atom<number>({
   key: "btnActiveState",
-  default: 4,
+  default: 1,
 });
 
 export const nickState = atom<string>({

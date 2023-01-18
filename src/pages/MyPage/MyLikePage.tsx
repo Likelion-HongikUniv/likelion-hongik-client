@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { Header } from "../components/elements/Header";
-import { PostItem } from "../components/myPostPage/PostItem";
-import { Section } from "../components/elements/Wrapper";
-import { MyPageNav } from "../components/elements/MyPageNav";
-import { PageMove } from "../components/communityPage/PageMove";
+import { Header } from "../../components/elements/Header";
+import { PostItem } from "../../components/myPostPage/PostItem";
+import { Section } from "../../components/elements/Wrapper";
+import { MyPageNav } from "../../components/elements/MyPageNav";
+import { PageMove } from "../../components/communityPage/PageMove";
 
-export function MyPostPage() {
+interface IPost {
+  title: string;
+  text: string;
+}
+
+export function MyLikePage() {
   const posts = [
     { title: "게시글1", text: "본문1" },
     { title: "게시글2", text: "본문2" },
@@ -21,10 +26,10 @@ export function MyPostPage() {
         <MyPostPageContainer>
           <MyPageNav />
           <MyPostBoxContainer>
-            <Title>내가 쓴 글</Title>
+            <Title>좋아요 누른 글</Title>
             <PostItemContainer>
-              {posts.map((post: any) => (
-                <PostItem key={post.title} title={post.title} text={post.text} />
+              {posts.map((post: IPost, index: number) => (
+                <PostItem key={index} title={post.title} text={post.text} />
               ))}
             </PostItemContainer>
             <PageMove />

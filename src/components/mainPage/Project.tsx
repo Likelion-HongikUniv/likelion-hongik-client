@@ -185,7 +185,7 @@ const Next = styled.div`
   font-size: 25px;
   position: absolute;
   top: 260px;
-  /* left: 780px; */
+  left: 780px;
   &:hover {
     cursor: pointer;
   }
@@ -195,7 +195,7 @@ const Prev = styled.div`
   font-size: 25px;
   position: absolute;
   top: 260px;
-  /* right: 780px; */
+  right: 780px;
   &:hover {
     cursor: pointer;
   }
