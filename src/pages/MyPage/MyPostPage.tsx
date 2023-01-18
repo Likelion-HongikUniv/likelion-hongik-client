@@ -7,17 +7,62 @@ import { MyPageNav } from "../../components/elements/MyPageNav";
 import { PageMove } from "../../components/communityPage/PageMove";
 
 interface IPost {
+  postid: number;
+  author: string;
   title: string;
-  text: string;
+  body: string;
+  createdTime: string;
+  like: number;
+  reply: number;
 }
 
 export function MyPostPage() {
   const posts = [
-    { title: "게시글1", text: "본문1" },
-    { title: "게시글2", text: "본문2" },
-    { title: "게시글3", text: "본문3" },
-    { title: "게시글4", text: "본문4" },
-    { title: "게시글5", text: "본문5" },
+    {
+      postid: 1,
+      author: "나",
+      title: "게시글1",
+      body: "본문1",
+      like: 1,
+      reply: 5,
+      createdTime: "Sun Jan 15 23:24:46 KST 2023",
+    },
+    {
+      postid: 2,
+      author: "나",
+      title: "게시글2",
+      body: "본문2",
+      like: 2,
+      reply: 4,
+      createdTime: "Sun Jan 15 23:24:46 KST 2023",
+    },
+    {
+      postid: 3,
+      author: "나",
+      title: "게시글3",
+      body: "본문3",
+      like: 3,
+      reply: 3,
+      createdTime: "Sun Jan 15 23:24:46 KST 2023",
+    },
+    {
+      postid: 4,
+      author: "나",
+      title: "게시글4",
+      body: "본문4",
+      like: 4,
+      reply: 2,
+      createdTime: "Sun Jan 15 23:24:46 KST 2023",
+    },
+    {
+      postid: 5,
+      author: "나",
+      title: "게시글5",
+      body: "본문5",
+      like: 5,
+      reply: 1,
+      createdTime: "Sun Jan 15 23:24:46 KST 2023",
+    },
   ];
   return (
     <>
@@ -28,8 +73,17 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             <Title>내가 쓴 글</Title>
             <PostItemContainer>
-              {posts.map((post: IPost, index: number) => (
-                <PostItem key={index} title={post.title} text={post.text} />
+              {posts.map((post: IPost) => (
+                <PostItem
+                  key={post.postid}
+                  postid={post.postid}
+                  author={post.author}
+                  title={post.title}
+                  body={post.body}
+                  like={post.like}
+                  reply={post.reply}
+                  createdTime={post.createdTime}
+                />
               ))}
             </PostItemContainer>
             <PageMove />

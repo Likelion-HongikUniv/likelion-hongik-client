@@ -4,33 +4,38 @@ import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
 
 interface IPost {
+  postid: number;
+  author: string;
   title: string;
-  text: string;
+  body: string;
+  createdTime: string;
+  like: number;
+  reply: number;
 }
 
-export function PostItem({ title, text }: IPost) {
+export function PostItem({ postid, author, title, body,like,reply,createdTime }: IPost) {
   return (
     <Item>
       <Left>
         <User>
           <img src="logo192.png" />
           <div>
-            <UserName>Ahyun Kim</UserName>
-            <UploadDate>2022.11.30</UploadDate>
+            <UserName>{author}</UserName>
+            <UploadDate>{createdTime}</UploadDate>
           </div>
         </User>
         <Content>
           <Title>{title}</Title>
-          <p>{text}</p>
+          <p>{body}</p>
         </Content>
         <Bottom>
           <Icon>
             <HeartIcon />
-            <span>200</span>
+            <span>{like}</span>
           </Icon>
           <Icon>
             <CommentIcon />
-            <span>200</span>
+            <span>{reply}</span>
           </Icon>
         </Bottom>
       </Left>

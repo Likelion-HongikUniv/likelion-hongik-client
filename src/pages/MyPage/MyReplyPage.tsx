@@ -12,13 +12,7 @@ interface IPost {
 }
 
 export function MyReplyPage() {
-  const posts = [
-    { title: "게시글1", text: "본문1" },
-    { title: "게시글2", text: "본문2" },
-    { title: "게시글3", text: "본문3" },
-    { title: "게시글4", text: "본문4" },
-    { title: "게시글5", text: "본문5" },
-  ];
+  
   return (
     <>
       <Header />
@@ -28,9 +22,7 @@ export function MyReplyPage() {
           <MyPostBoxContainer>
             <Title>내가 쓴 댓글</Title>
             <PostItemContainer>
-              {posts.map((post: IPost, index: number) => (
-                <PostItem key={index} title={post.title} text={post.text} />
-              ))}
+              
             </PostItemContainer>
             <PageMove />
           </MyPostBoxContainer>

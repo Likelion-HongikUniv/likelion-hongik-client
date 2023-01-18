@@ -6,19 +6,10 @@ import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import { PageMove } from "../../components/communityPage/PageMove";
 
-interface IPost {
-  title: string;
-  text: string;
-}
+
 
 export function MyLikePage() {
-  const posts = [
-    { title: "게시글1", text: "본문1" },
-    { title: "게시글2", text: "본문2" },
-    { title: "게시글3", text: "본문3" },
-    { title: "게시글4", text: "본문4" },
-    { title: "게시글5", text: "본문5" },
-  ];
+ 
   return (
     <>
       <Header />
@@ -28,9 +19,6 @@ export function MyLikePage() {
           <MyPostBoxContainer>
             <Title>좋아요 누른 글</Title>
             <PostItemContainer>
-              {posts.map((post: IPost, index: number) => (
-                <PostItem key={index} title={post.title} text={post.text} />
-              ))}
             </PostItemContainer>
             <PageMove />
           </MyPostBoxContainer>
