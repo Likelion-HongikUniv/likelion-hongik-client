@@ -5,6 +5,7 @@ import Part2 from "./Curriculum/Part2";
 import Part3 from "./Curriculum/Part3";
 import "../../styles/curriculum.css";
 import { Fade } from "react-awesome-reveal";
+import MobileTimeline from "./mobile/MobileTimeline";
 
 const Curriculum = () => {
   const [content, setContent] = useState("1");
@@ -33,7 +34,7 @@ const Curriculum = () => {
   return (
     <Fade>
       <Container>
-        <div>
+        <BoxContainer>
           <PartBtn id="1" onClick={handleClickButton}>
             <PartName id="1">기획·디자인</PartName>
             <PartText id="1">
@@ -64,7 +65,7 @@ const Curriculum = () => {
               전반적인 Life Cycle을 경험합니다.
             </PartText>
           </PartBtn>
-        </div>
+        </BoxContainer>
         <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
       </Container>
     </Fade>
@@ -77,6 +78,11 @@ const PartBtn = styled.button`
   border-radius: 20px;
   text-align: left;
   margin: 20px;
+  @media (max-width: 390px) {
+    width: 247px;
+    height: 141px;
+    overflow: hidden;
+  }
 `;
 
 const PartName = styled.p`
@@ -84,6 +90,12 @@ const PartName = styled.p`
   font-size: 32px;
   line-height: 39px;
   margin-left: 40px;
+  @media (max-width: 390px) {
+    font-size: 20px;
+    line-height: 24px;
+    margin-left: 20px;
+    margin-bottom: 8px;
+  }
 `;
 
 const PartText = styled.p`
@@ -91,6 +103,12 @@ const PartText = styled.p`
   font-size: 20px;
   line-height: 34px;
   margin-left: 40px;
+  @media (max-width: 390px) {
+    font-size: 14px;
+    line-height: 23px;
+    margin-left: 20px;
+    margin-top: 0px
+  }
 `;
 
 const Container = styled.div`
@@ -99,6 +117,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 60px;
+  overflow: hidden;
 `;
 
 const PartContainer = styled.div`
@@ -111,6 +130,16 @@ const TimeLine = styled.div`
   width: 1240px;
   @media (max-width: 390px) {
     display: none;
+  }
+`;
+
+const BoxContainer = styled.div`
+  @media (max-width: 390px) {
+    height: 180px;
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+    background-color: pink;
   }
 `;
 

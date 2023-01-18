@@ -50,10 +50,18 @@ const Title = styled.span`
   font-weight: 800;
   font-size: 40px;
   margin-top: 220px;
+  @media (max-width: 390px) {
+    font-size: 28px;
+    line-height: 34px;
+  }
 `;
 
 const Desc = styled.span`
   font-size: 20px;
   line-height: 24px;
   margin-top: 10px;
+  @media (max-width: 390px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
