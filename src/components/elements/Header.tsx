@@ -6,15 +6,17 @@ import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
 import { useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
+  const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
     if (page === "community/post") {
       setNowTag("notice");
     }
-    window.location.replace(`${page}`); //새로고침 되는게 낫지않나?
+    navigate(`/${page}`);
   };
 
   return (
