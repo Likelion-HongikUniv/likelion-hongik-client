@@ -3,7 +3,7 @@ import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import post from "../data/post.json";
 import postDetail from "../data/postDetail.json";
 import { useQuery } from "@tanstack/react-query";
@@ -14,21 +14,24 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect } from "react";
 
 export function PostPage() {
-  const { postId } = useParams();
-  // const [boardData, setBoardData] = useState<IPost>();
-  // setBoardData(post.data[2]);
-  // setCommentData(postDetail.comments);
-
+  const [idParams, setIdParams] = useSearchParams();
+  const postId = idParams.get("id");
   const boardData = post.data[0];
   const commentData = postDetail.comments;
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
-  setCommentsData(commentData);
+
   useEffect(() => {
-    console.log("comments 스테이트 변경됨 : ", comments);
-  }, [comments]);
+    /** post id를 가져와서
+     *
+     *
+     */
+    // getBoardData();
+    setCommentsData(commentData);
+  }, []);
 
   // const getBoardData = async () => {
   //   const { data } = await axios.get<IPost>(`http://43.200.18.111:8080/post/${postId}`);
+  //   const jwt = localStorage.getItem("token");
   //   return data;
   // };
 
@@ -59,7 +62,7 @@ export function PostPage() {
         {postId}
         <Column style={{ marginTop: "100px" }}>
           <Board {...boardData} />
-          <CommentsList {...commentData} />
+          <CommentsList {...comments} />
         </Column>
       </Section>
     </>

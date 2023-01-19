@@ -3,20 +3,23 @@ import { Row } from "../elements/Wrapper";
 import { BLACK_2, WHITE_1 } from "../../styles/theme";
 // import { isLoggedInState } from "../../states";
 import useInput from "../../hooks/useInput";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { commentsListState } from "../../states/atoms";
-import PostDetail from "../../data/postDetail.json";
+import moment from "moment";
 
 export function Input({ pid, username }: any) {
-  const commentInput = useInput("");
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
-  // const commentsList = useRecoilValue(commentsListState);
+  const commentInput = useInput("");
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     const parentComment: any = commentsList.filter((comment) => comment.id === pid);
     let parentReplies: any = parentComment[0].replies;
+    let curTime = new Date().toString();
+    let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
+
     const tempObj = {
+      id: 27,
       author: {
         authorId: 2,
         nickname: "dsadsad",
@@ -24,33 +27,23 @@ export function Input({ pid, username }: any) {
         isAuthor: false,
       },
       body: commentInput.value,
-      createdTime: "2023-01-17T17:41:04.001386",
-      id: 27,
+      createdTime: formatTime,
       likeCount: 0,
     };
     parentReplies = [...parentReplies, tempObj];
-    console.log("이번거", commentsList);
-    // setCommentsList(() => {
-    //   return [...commentsList, parentComment[0]: parentReplies ];
-    // });
-    console.log("야", commentsList);
 
-    // console.log("누른 후", { [parentComment[0].replies]: parentReplies });
+    let curTarget = parentComment[0];
+    let targetIdx = commentsList.indexOf(curTarget);
+    let newComment = { ...curTarget, replies: parentReplies };
+    let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
 
-    // console.log("코메늩 : ", parentComment);
+    // setCommentsList([...commentsList, { ...curTarget, replies: parentReplies }]);
+    console.log(newList);
+    setCommentsList(() => {
+      return newList;
+    });
 
-    // console.log("대댓글 : ", parentReplies);
-
-    // setCommentsList([...commentsList, `${parentRelpies}`: parentRelpies ])
-    // console.log("now", parentRelpies);
-
-    // console.log(parentComment[0].replies);
-    // console.log(parentComment.replies);
-    // parentComment.replies.push()
-
-    console.log(pid, commentInput.value);
-    // POST API
-    // 댓글 리스트에 업로드
+    commentInput.value = "";
   };
 
   return (

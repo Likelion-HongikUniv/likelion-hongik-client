@@ -46,7 +46,6 @@ export function Comments(props: IComment) {
         </Row>
         {props.replies
           ? props.replies.map((reply: IReply, idx: number) => {
-              console.log(reply);
               return <Replies key={idx} {...reply} />;
             })
           : null}
