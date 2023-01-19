@@ -1,0 +1,80 @@
+{
+  "count": 5,
+  "data": [
+    {
+      "postId": 12,
+      "title": "게시문 3번쨰",
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "게시물3번쨰",
+      "thumbNailUrl": "asdfasgw",
+      "likeCount": 0,
+      "commentCount": 0,
+      "createdTime": "2023-01-17T04:13:14.102324"
+    },
+    {
+      "postId": 14,
+      "title": "게시문 4번쨰",
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "게시물5번쨰",
+      "thumbNailUrl": "asdfasgw",
+      "likeCount": 0,
+      "commentCount": 0,
+      "createdTime": "2023-01-17T04:13:59.308277"
+    },
+    {
+      "postId": 17,
+      "title": "게시문 5번쨰",
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "게시물 5번쨰",
+      "thumbNailUrl": null,
+      "likeCount": 0,
+      "commentCount": 0,
+      "createdTime": "2023-01-17T04:14:10.997966"
+    },
+    {
+      "postId": 18,
+      "title": "게시문 6번쨰",
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "게시물 6번쨰",
+      "thumbNailUrl": "hello",
+      "likeCount": 0,
+      "commentCount": 0,
+      "createdTime": "2023-01-17T14:15:29.179849"
+    },
+    {
+      "postId": 21,
+      "title": "게시문 7번쨰",
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "게시물 7번쨰",
+      "thumbNailUrl": "image",
+      "likeCount": 0,
+      "commentCount": 0,
+      "createdTime": "2023-01-17T14:45:01.723884"
+    }
+  ]
+}

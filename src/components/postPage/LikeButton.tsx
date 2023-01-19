@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import { Row } from "../elements/Wrapper";
 import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { HeartFilled } from "../icons/HeartFilled";
 import { useEffect, useState } from "react";
+// import { isLoggedInState } from "../../states";
 
-interface HeartButtonProps {
+interface LikeButtonProps {
   likes: number;
 }
 
-export function HeartButton({ likes }: HeartButtonProps) {
+export function LikeButton({ likes }: LikeButtonProps) {
   const [isLike, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // if (isLoggedInState);
     setLike(!isLike);
     if (!isLike) {
       var count = likeCount + 1;
@@ -21,7 +22,6 @@ export function HeartButton({ likes }: HeartButtonProps) {
       setLikeCount(count);
     }
   };
-
   useEffect(() => {
     console.log("like 눌림");
   }, [likeCount]);
@@ -29,25 +29,17 @@ export function HeartButton({ likes }: HeartButtonProps) {
   return (
     <ButtonWrapper onClick={onClickLike}>
       {isLike ? <HeartFilled /> : <HeartUnfilled />}
+      <div>좋아요</div>
       {likeCount}
     </ButtonWrapper>
   );
 }
 
 const ButtonWrapper = styled.button`
-  box-sizing: border-box;
-  min-width: 80px;
-  font-size: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 12px 20px;
-  gap: 4px;
-
-  width: max-content;
-  height: 48px;
-
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 50px;
+  min-width: 80px;
+  gap: 8px;
+  color: white;
 `;

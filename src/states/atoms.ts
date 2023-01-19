@@ -1,7 +1,7 @@
 // 상태 관리
 
 import { atom, atomFamily, selectorFamily } from "recoil";
-import { IComment } from "../components/postPage/Comments";
+import { IComment } from "../components/postPage/CommentsList";
 import { ICategory } from "../interfaces/category";
 
 export const commentsListState = atom<IComment[]>({
@@ -87,7 +87,7 @@ export const tagListSelector = selectorFamily({
   key: "tagListSelector",
   get:
     (param: string) =>
-    ({ get }) => {
-      return get(tagListState).filter((tagList) => tagList.key === param);
-    },
+      ({ get }) => {
+        return get(tagListState).filter((tagList) => tagList.key === param);
+      },
 });
