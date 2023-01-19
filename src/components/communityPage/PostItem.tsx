@@ -2,41 +2,35 @@ import React from "react";
 import styled from "styled-components";
 import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
+import { IPost } from "../../interfaces/post";
 
-export function PostItem() {
+export function PostItem(post: IPost) {
   return (
     <Item>
       <Left>
         <User>
-          <img src="logo192.png" />
+          <img src={post.author.profileImage} alt="user-profile" />
           <div>
-            <UserName>Ahyun Kim</UserName>
-            <UploadDate>2022.11.30</UploadDate>
+            <UserName>{post.author.nickname}</UserName>
+            <UploadDate>{post.createdTime}</UploadDate>
           </div>
         </User>
         <Content>
-          <Title>
-            야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목야옹맨의 게시글 제목
-            야옹맨의 게시글 제목 야옹맨의 게시글 제목
-          </Title>
-          <p>
-            안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다!
-            <br />
-            백준코딩만 하다가 대가리 깨질것같아서욧!! 개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~
-          </p>
+          <Title>{post.title}</Title>
+          <p>{post.body}</p>
         </Content>
         <Bottom>
           <Icon>
             <HeartIcon />
-            <span>200</span>
+            <span>{post.likeCount}</span>
           </Icon>
           <Icon>
             <CommentIcon />
-            <span>200</span>
+            <span>{post.commentCount}</span>
           </Icon>
         </Bottom>
       </Left>
-      <img src="logo192.png" />
+      <img src={post.thumbNailUrl} alt="post-thumbnail" />
     </Item>
   );
 }
@@ -94,7 +88,7 @@ const UploadDate = styled.span`
 
 const Content = styled.div`
   padding-left: 42px;
-  width: 691px;
+  width: 35.9896vw;
   margin-bottom: 20px;
   p {
     display: inline-block;

@@ -5,11 +5,17 @@ import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
 import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
+import { useSetRecoilState } from "recoil";
+import { nowTagState } from "../../states/atoms";
 
 export function Header() {
   const navigate = useNavigate();
+  const setNowTag = useSetRecoilState<string>(nowTagState);
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
+    if (page === "community/post") {
+      setNowTag("notice");
+    }
     navigate(`/${page}`);
   };
 
@@ -23,7 +29,7 @@ export function Header() {
         <HeaderButton onClick={onClickHeaderButton} name="recruit">
           지원하기
         </HeaderButton>
-        <HeaderButton onClick={onClickHeaderButton} name="community">
+        <HeaderButton onClick={onClickHeaderButton} name="community/post">
           커뮤니티
         </HeaderButton>
         <ProfileButton />
