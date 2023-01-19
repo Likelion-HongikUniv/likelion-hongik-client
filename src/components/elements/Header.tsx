@@ -1,29 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
 import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
+import { useSetRecoilState } from "recoil";
+import { nowTagState } from "../../states/atoms";
 
 export function Header() {
-  const navigate = useNavigate();
+  const setNowTag = useSetRecoilState<string>(nowTagState);
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
-    navigate(`/${page}`);
+    if (page === "community/post") {
+      setNowTag("notice");
+    }
+    window.location.replace(`${page}`); //새로고침 되는게 낫지않나?
   };
 
   return (
     <Wrapper>
       <Logo />
       <Row gap="60px" alignItems="center">
-        <HeaderButton onClick={onClickHeaderButton} name="introduction">
-          멋사 소개
-        </HeaderButton>
         <HeaderButton onClick={onClickHeaderButton} name="recruit">
           지원하기
         </HeaderButton>
-        <HeaderButton onClick={onClickHeaderButton} name="community">
+        <HeaderButton onClick={onClickHeaderButton} name="community/post">
           커뮤니티
         </HeaderButton>
         <ProfileButton />

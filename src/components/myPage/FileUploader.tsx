@@ -21,14 +21,31 @@ export function FileUploader() {
     const fileList = e.target.files;
     if (fileList && fileList[0]) {
       const url = URL.createObjectURL(fileList[0]);
+      console.log(fileList[0]);
 
       setProfileImg({
         file: fileList[0],
         thumbnail: url,
         type: fileList[0].type.slice(0, 5),
       });
+
+      // console.log(url);
+      // const file = fileList[0];
+      // setProfileUrl(file);
+      // console.log(profileUrl);
+
+      // setProfileUrl(url);
+      // const blob = new Blob([url], { type: "image/*" });
+      // // console.log(blob);
+
+      // const formData = new FormData();
+      // formData.append("profile", URL.createObjectURL(fileList[0]));
+      // console.log(URL.createObjectURL(fileList[0]));
+      // console.log(formData);
     }
   };
+
+  // console.log(profileUrl);
 
   // const showImage = useMemo(() => {
   //   if (!profileImg && profileImg == null) {
@@ -64,4 +81,5 @@ const ProfileThumbnail = styled.img`
   background-color: #d9d9d9;
   border: none;
   cursor: pointer;
+  object-fit: cover;
 `;

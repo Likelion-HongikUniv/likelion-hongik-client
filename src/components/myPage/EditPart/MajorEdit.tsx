@@ -1,39 +1,14 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { WHITE_1 } from "../../../styles/theme";
+import { useRecoilValue } from "recoil";
+import { editState } from "../../../states";
 
-interface MyFormProps {
-  onSubmit: (form: { major: string }) => void;
-}
-
-export function MajorEdit({ onSubmit }: MyFormProps) {
-  const [form, setForm] = useState({
-    major: "컴퓨터공학과",
-  });
-
-  const { major } = form;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(form);
-  };
-
+export function MajorEdit(props: any) {
+  const info = useRecoilValue(editState);
   return (
     <MajorPart>
       <MajorTitle>학과 변경</MajorTitle>
-      <form onSubmit={handleSubmit}>
-        <MajorInput name="major" value={major} onChange={onChange} />
-        <MajorSaveBtn type="submit">저장</MajorSaveBtn>
-        {/* 학과추가뭐지..? */}
-      </form>
+      <MajorInput name="major" placeholder={info.major} {...props} autoComplete="off" spellCheck="false" />
     </MajorPart>
   );
 }
@@ -47,34 +22,22 @@ const MajorPart = styled.div`
 const MajorTitle = styled.div`
   font-weight: 500;
   font-size: 20px;
-  line-height: 24.2px;
+  line-height: 24.96px;
 `;
 
 const MajorInput = styled.input`
-  height: 60px;
+  height: 52px;
   width: 315px;
   background-color: #33333399;
   border: none;
   border-radius: 8px;
-  margin-left: 39px;
+  margin-left: 43px;
   margin-right: 20px;
   color: ${WHITE_1};
   font-size: 18px;
   font-weight: 500;
   line-height: 21.78px;
   letter-spacing: -0.32px;
-  padding: 19px 16px;
+  padding: 15px 16px;
   opacity: 0.9;
-`;
-
-const MajorSaveBtn = styled.button`
-  background-color: ${WHITE_1};
-  width: 73px;
-  height: 60px;
-  border-radius: 8px;
-  padding: 19px 20px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 21.78px;
-  letter-spacing: -0.32px;
 `;

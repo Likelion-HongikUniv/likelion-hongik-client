@@ -2,6 +2,7 @@ import { Header } from "../../components/elements/Header";
 import { BLACK_1, WHITE_1 } from "../../styles/theme";
 import styled from "styled-components";
 import { SocialLogin } from "../../components/loginPage/SocialLogin";
+import Footer from "./../../components/elements/Footer";
 
 export function LoginPage() {
   return (
@@ -10,6 +11,7 @@ export function LoginPage() {
       <Container>
         <SocialLogin />
       </Container>
+      <Footer style={{ marginTop: "333px" }} />
     </>
   );
 }

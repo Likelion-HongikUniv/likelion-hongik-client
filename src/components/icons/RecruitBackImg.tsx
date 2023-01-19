@@ -4,8 +4,8 @@ export function RecruitBackImg() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         // xlink="http://www.w3.org/1999/xlink"
-        width="100%" //1920
-        height="100%" //900
+        width="1920"
+        height="900" //900
         fill="none"
       >
         <mask id="a" width="100%" height="100%" x="0" y="0" maskUnits="userSpaceOnUse">

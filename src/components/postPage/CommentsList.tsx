@@ -1,62 +1,27 @@
-// import axios from "axios";
 import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
-import { IComment } from "./Comments";
 import { BLACK_2 } from "../../styles/theme";
-import { atom, useRecoilState } from "recoil";
-import { isEditable } from "@testing-library/user-event/dist/utils";
-import { useQuery } from "@tanstack/react-query";
+import { IProfile } from "./Board";
+import { IReply } from "./Replies";
 
-interface CommentList {
-  commentList: IComment[];
+export interface IComment {
+  id?: number;
+  author?: IProfile;
+  body?: string;
+  isDeleted?: boolean;
+  createdTime?: string;
+  likeCount: number;
+  comment_id?: number;
+  replies?: IReply[];
 }
 
-const commentState = atom<IComment[]>({
-  key: "comment",
-  default: [
-    {
-      key: 0,
-      id: 1,
-      body: "comment test1",
-      username: "감자",
-      created: 20230111,
-      replyId: [],
-    },
-
-    {
-      key: 2,
-      id: 2,
-      username: "빼로로",
-      body: "comment test2",
-      created: 20230111,
-      replyId: [],
-    },
-
-    {
-      key: 3,
-      id: 3,
-      username: "건빵스",
-      body: "comment test3",
-      created: 20230111,
-      replyId: [],
-    },
-  ],
-});
-
-// const getComments = async () => {
-//   const { data } = await axios.get<IComment[]>("http://localhost:3000/post/${postId}");
-//   return data;
-// };
-
-export function CommentsList({ commentList }: CommentList) {
-  // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
-  const [comments, setComments] = useRecoilState(commentState);
+export function CommentsList(commentList: IComment[]) {
+  const comments = Object.values(commentList).map((comments: IComment) => comments);
   const onClickComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     // setInputText();
-    console.log(e.currentTarget.name);
+    // setCommentLists({...commentList, newComments });
   };
-
   return (
     <>
       <Row gap="1rem" justifyContent="center" alignItems="center">
@@ -64,11 +29,11 @@ export function CommentsList({ commentList }: CommentList) {
         <InputButton onClick={onClickComment}>작성</InputButton>
       </Row>
       <Column>
-        <div>
-          {comments.map((comment: IComment) => (
-            <Comments key={comment.key} id={comment.id} username={comment.username} created={comment.created} />
-          ))}
-        </div>
+        <Column gap="32px">
+          {comments.map((value, id) => {
+            return <Comments key={id} {...value} />;
+          })}
+        </Column>
       </Column>
     </>
   );

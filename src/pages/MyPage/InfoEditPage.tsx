@@ -1,6 +1,6 @@
 import { Header } from "../../components/elements/Header";
 import styled from "styled-components";
-import { BLACK_1, WHITE_1 } from "./../../styles/theme";
+import { BLACK_1 } from "./../../styles/theme";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import { EditPart } from "../../components/myPage/EditPart";
 

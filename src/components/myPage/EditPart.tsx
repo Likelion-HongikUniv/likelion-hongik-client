@@ -3,16 +3,44 @@ import { BLACK_1, WHITE_1 } from "../../styles/theme";
 import { BasicEdit } from "./EditPart/BasicEdit";
 import { PartEdit } from "./EditPart/PartEdit";
 import { TeamEdit } from "./EditPart/TeamEdit";
+import { useRecoilState } from "recoil";
+import { editState } from "./../../states/index";
+import useInput from "../../hooks/useInput";
+import { NickEdit } from "./EditPart/NickEdit";
+import { MajorEdit } from "./EditPart/MajorEdit";
+import useSelect from "./../../hooks/useSelect";
 
 export function EditPart() {
+  const [info, setInfo] = useRecoilState(editState);
+
+  const changeNickname = useInput(info.nickname);
+  const changeMajor = useInput(info.major);
+  const changePart = useSelect(info.part);
+  const changeTeam = useSelect(info.team);
+
+  const onClickSave = () => {
+    //저장 버튼 클릭 시 정보 넘겨주기
+    const infoHandler = {
+      ...info,
+      major: changeMajor.value,
+      nickname: changeNickname.value,
+      part: changePart.value,
+      team: changeTeam.value,
+    };
+    setInfo(infoHandler);
+    console.log(info);
+  };
+
   return (
     <EditPartDiv>
       <BasicEdit />
+      <NickEdit {...changeNickname} />
+      <MajorEdit {...changeMajor} />
       <Bar />
       <EditTitle>멋사 정보 변경</EditTitle>
-      <PartEdit />
-      <TeamEdit />
-      <SaveBtn>저장</SaveBtn>
+      <PartEdit {...changePart} />
+      <TeamEdit {...changeTeam} />
+      <SaveBtn onClick={onClickSave}>저장</SaveBtn>
     </EditPartDiv>
   );
 }
@@ -20,7 +48,6 @@ export function EditPart() {
 const EditPartDiv = styled.div`
   width: 100%;
   height: 100%;
-  /* margin-left: 488px; */
   background-color: ${BLACK_1};
   color: ${WHITE_1};
   padding-left: 163px;

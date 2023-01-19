@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { btnActiveState } from "./../../states/index";
+import { useNavigate } from "react-router-dom";
 
 export function NavSelectPart() {
   const [isBtnActive, SetIsBtnActive] = useRecoilState(btnActiveState);
+  const navigate = useNavigate();
   return (
     <MyPagePart>
       <SelectPart
@@ -11,6 +13,7 @@ export function NavSelectPart() {
         className={isBtnActive === 1 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(1);
+          navigate("/myPagePost");
         }}
       >
         내가 쓴 글
@@ -20,6 +23,7 @@ export function NavSelectPart() {
         className={isBtnActive === 2 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(2);
+          navigate("/myPageReply");
         }}
       >
         내가 쓴 댓글
@@ -29,6 +33,7 @@ export function NavSelectPart() {
         className={isBtnActive === 3 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(3);
+          navigate("/myPageLike");
         }}
       >
         좋아요 누른 글
@@ -39,6 +44,7 @@ export function NavSelectPart() {
         className={isBtnActive === 4 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(4);
+          navigate("/myPageEdit");
         }}
       >
         정보 변경

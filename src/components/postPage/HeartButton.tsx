@@ -1,18 +1,42 @@
 import styled from "styled-components";
+import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { HeartFilled } from "../icons/HeartFilled";
-import { WHITE_1 } from "../../styles/theme";
+import { useEffect, useState } from "react";
 
-export function HeartButton() {
+interface HeartButtonProps {
+  likes: number;
+}
+
+export function HeartButton({ likes }: HeartButtonProps) {
+  const [isLike, setLike] = useState(false);
+  const [likeCount, setLikeCount] = useState(likes);
+  const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // if (isLoggedInState);
+    setLike(!isLike);
+    if (!isLike) {
+      var count = likeCount + 1;
+      setLikeCount(count);
+    } else {
+      var count = likeCount - 1;
+      setLikeCount(count);
+    }
+  };
+
+  useEffect(() => {
+    console.log("like 눌림");
+  }, [likeCount]);
+
   return (
-    <ButtonWrapper>
-      <HeartFilled />
-      312
+    <ButtonWrapper onClick={onClickLike}>
+      {isLike ? <HeartFilled /> : <HeartUnfilled />}
+      {likeCount}
     </ButtonWrapper>
   );
 }
 
 const ButtonWrapper = styled.button`
   box-sizing: border-box;
+  min-width: 80px;
   font-size: 20px;
   display: flex;
   flex-direction: row;

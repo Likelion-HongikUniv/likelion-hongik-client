@@ -1,24 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { ICategory } from "../../interfaces/category";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { tagListState, nowTagState, tagListSelector } from "../../states/atoms";
+import { ICategory, ITag, ICommunityParam } from "../../interfaces/category";
 
-export function CategoryTab({ categoryName = "notice" }: ICategory) {
+export function CategoryTab(categoryName: ICommunityParam) {
+  const tagList = useRecoilValue<ICategory[]>(tagListSelector(categoryName.categoryName));
+  const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
+  const navigate = useNavigate();
   const activeStyle = {
     borderBottom: "2px solid #FFFFFF",
   };
 
+  const onClickTagHandler = (tag: ITag) => {
+    setNowTag(tag.key);
+    navigate(`/community/${categoryName.categoryName}`);
+  };
+
   return (
     <CategoryList>
-      <Link to="/community/notice">
-        <CategoryItem style={categoryName === "notice" ? activeStyle : {}}>공지사항</CategoryItem>
-      </Link>
-      <Link to="/community/qna">
-        <CategoryItem style={categoryName === "qna" ? activeStyle : {}}>Q&A</CategoryItem>
-      </Link>
-      <Link to="/community/free">
-        <CategoryItem style={categoryName === "free" ? activeStyle : {}}>자유게시판</CategoryItem>
-      </Link>
+      {tagList[0]?.tags?.map((tag: ITag) => (
+        <CategoryItem
+          key={tag.key}
+          style={tag.key === nowTag ? activeStyle : {}}
+          onClick={() => onClickTagHandler(tag)}
+        >
+          {tag.text}
+        </CategoryItem>
+      ))}
     </CategoryList>
   );
 }
@@ -44,4 +54,5 @@ const CategoryItem = styled.div`
   font-size: 18px;
   line-height: 22px;
   padding: 20px;
+  cursor: pointer;
 `;

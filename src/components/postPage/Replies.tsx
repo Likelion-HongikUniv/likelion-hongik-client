@@ -1,42 +1,44 @@
 import styled from "styled-components";
-import { Row, Column } from "../elements/Wrapper";
+import { Row } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
-import { HeartUnfilled } from "../icons/HeartUnfilled";
+import { CommentArrow } from "../icons/CommentArrow";
+import { LikeButton } from "./LikeButton";
+import { IProfile } from "./Board";
+import moment from "moment";
 // interface 관리
 
 export interface IReply {
-  key?: number;
   id?: number;
-  username?: string;
+  author?: IProfile;
   body?: string;
-  created?: number;
+  createdTime?: string;
+  likeCount: number;
+  deledted?: boolean;
 }
 
-export interface ReplyLike extends Comment {
-  likeCount?: number[];
-}
+export function Replies(reply: IReply) {
+  const curDate = reply.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
 
-export function Replies({ key, id, body, username, created }: IReply, { likeCount }: ReplyLike) {
   return (
     <>
-      <Wrapper>
-        <Profile />
-        <TextContainer>
-          <>
-            <UserId>{username || `AhhyunKim`}</UserId>
-            <Date>{created || `2022.11.30`}</Date>
-          </>
-          헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
-          있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?
-          <br />
-          <LikeButton>
-            <HeartUnfilled />
-            좋아요
-            {likeCount || `1`}
-          </LikeButton>
-        </TextContainer>
-      </Wrapper>
+      <Row>
+        <CommentArrow />
+        <Wrapper>
+          <Profile />
+          <TextContainer>
+            <>
+              <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
+              <Date>{date || `2022.11.30`}</Date>
+            </>
+            {reply?.body ||
+              `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
+          있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
+            <LikeButton likes={reply?.likeCount} />
+          </TextContainer>
+        </Wrapper>
+      </Row>
     </>
   );
 }
@@ -77,12 +79,4 @@ const Date = styled.div`
   font-size: 14px;
   line-height: 17px;
   letter-spacing: -0.32px;
-`;
-
-const LikeButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  color: white;
 `;

@@ -1,0 +1,72 @@
+{
+  "postId": 17,
+  "author": {
+    "authorId": 1,
+    "nickname": "김스르으응ㄹ기",
+    "profileImage": null,
+    "isAuthor": true
+  },
+  "title": "게시문 5번쨰",
+  "body": "게시물 5번쨰",
+  "createdTime": null,
+  "likeCount": 0,
+  "comments": [
+    {
+      "id": 23,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "댓글 1번쨰",
+      "isDeleted": false,
+      "createdTime": "2023-01-17T17:32:54.597232",
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "id": 24,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "댓글 2번쨰",
+      "isDeleted": false,
+      "createdTime": "2023-01-17T17:40:41.041311",
+      "likeCount": 0,
+      "replies": [
+        {
+          "id": 25,
+          "author": {
+            "authorId": 1,
+            "nickname": "김스르으응ㄹ기",
+            "profileImage": null,
+            "isAuthor": true
+          },
+          "body": "대댓글 1번쨰",
+          "createdTime": "2023-01-17T17:41:04.001386",
+          "likeCount": 0,
+          "deleted": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "댓글 3번쨰",
+      "isDeleted": true,
+      "createdTime": "2023-01-17T17:41:23.343214",
+      "likeCount": 3,
+      "replies": []
+    }
+  ],
+  "imageUrls": []
+}
