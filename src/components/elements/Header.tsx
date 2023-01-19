@@ -4,10 +4,16 @@ import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
 import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
+import { useSetRecoilState } from "recoil";
+import { nowTagState } from "../../states/atoms";
 
 export function Header() {
+  const setNowTag = useSetRecoilState<string>(nowTagState);
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
+    if (page === "community/post") {
+      setNowTag("notice");
+    }
     window.location.replace(`${page}`); //새로고침 되는게 낫지않나?
   };
 
@@ -15,13 +21,10 @@ export function Header() {
     <Wrapper>
       <Logo />
       <Row gap="60px" alignItems="center">
-        <HeaderButton onClick={onClickHeaderButton} name="introduction">
-          멋사 소개
-        </HeaderButton>
         <HeaderButton onClick={onClickHeaderButton} name="recruit">
           지원하기
         </HeaderButton>
-        <HeaderButton onClick={onClickHeaderButton} name="community">
+        <HeaderButton onClick={onClickHeaderButton} name="community/post">
           커뮤니티
         </HeaderButton>
         <ProfileButton />

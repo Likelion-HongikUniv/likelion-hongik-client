@@ -5,35 +5,37 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
+import Google from "../../components/Login/Google";
+import Footer from "../elements/Footer";
 
 export function SocialLogin() {
   return (
-    <>
-      <ForDiv>
-        <WelcomeText>
-          멋쟁이 사자처럼에
-          <br />
-          오신 걸 환영합니다
-        </WelcomeText>
-        <SmallText>로그인 후 이용할 수 있어요.</SmallText>
-        <SocialBtn style={{ marginTop: "60px" }}>
-          <FontAwesomeIcon icon={faGithub} />
-          <Social>Github으로 계속하기</Social>
-        </SocialBtn>
-        <SocialBtn style={{ background: "#1FC83A" }}>
-          <NaverIcon />
-          <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
-        </SocialBtn>
-        <SocialBtn style={{ background: "#EFDB30" }}>
-          <KakaoIcon />
-          <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
-        </SocialBtn>
-        <SocialBtn style={{ background: "#FFFFFF" }}>
-          <GoogleIcon />
-          <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
-        </SocialBtn>
-      </ForDiv>
-    </>
+    <ForDiv>
+      <WelcomeText>
+        멋쟁이 사자처럼에
+        <br />
+        오신 걸 환영합니다
+      </WelcomeText>
+      <SmallText>로그인 후 이용할 수 있어요.</SmallText>
+      <SocialBtn style={{ marginTop: "60px" }}>
+        <FontAwesomeIcon icon={faGithub} />
+        <Social>Github으로 계속하기</Social>
+      </SocialBtn>
+      <SocialBtn style={{ background: "#1FC83A" }}>
+        <NaverIcon />
+        <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
+      </SocialBtn>
+      <SocialBtn style={{ background: "#EFDB30" }}>
+        <KakaoIcon />
+        <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
+      </SocialBtn>
+      <SocialBtn style={{ background: "#FFFFFF" }}>
+        <GoogleIcon />
+        <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
+        <Google />
+      </SocialBtn>
+      <Footer style={{ marginTop: "334px" }} />
+    </ForDiv>
   );
 }
 

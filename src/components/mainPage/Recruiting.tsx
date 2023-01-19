@@ -11,7 +11,7 @@ const Recruiting = () => {
       <RecruitingContainer>
         <BoxContainer>
           <Now>NOW</Now>
-          <h1 style={{ fontSize: "40px" }}>멋쟁이 사자처럼 11기</h1>
+          <Title>멋쟁이 사자처럼 11기</Title>
           <Text>
             지원 기간 : 2022.02.23 ~ 2022.03.13
             <br />
@@ -26,13 +26,20 @@ const Recruiting = () => {
 
 const BoxContainer = styled.div`
   background-image: url(${main_recruiting});
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: overlay;
   width: 1040px;
   height: 337px;
   border-radius: 20px;
   border: 0.5px solid white;
   text-align: left;
-  padding: 50px;
+  padding: 40px;
   margin: 50px;
+  @media (max-width: 390px) {
+    width: 350px;
+    height: 297px;
+    padding: 30px 20px;
+  }
 `;
 
 const RecruitingContainer = styled.div`
@@ -54,8 +61,14 @@ const Now = styled.span`
 const Text = styled.div`
   font-weight: 500;
   font-size: 22px;
-  margin-top: 60px;
+  margin-top: 80px;
   line-height: 40px;
+  @media (max-width: 390px) {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 600;
+    width: 295px;
+  }
 `;
 
 const ApplyBtn = styled.button`
@@ -65,6 +78,21 @@ const ApplyBtn = styled.button`
   border-radius: 20px;
   font-weight: 500;
   font-size: 28px;
+  @media (max-width: 390px) {
+    font-size: 16px;
+    width: 350px;
+    height: 52px;
+    border-radius: 12px;
+  }
+`;
+
+const Title = styled.div`
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 20px;
+  @media (max-width: 390px) {
+    font-size: 28px;
+  }
 `;
 
 export default Recruiting;
