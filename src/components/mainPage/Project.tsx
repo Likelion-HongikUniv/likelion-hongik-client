@@ -1,18 +1,14 @@
 import { Fade } from "react-awesome-reveal";
 import styled from "styled-components";
-import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import projects from "../../data/projects.json";
 import project1 from "../images/main_project1.png";
 import project2 from "../images/main_project2.png";
 import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
 import project5 from "../images/main_project5.png";
-
-
 
 interface Iarrow {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -23,6 +19,34 @@ interface Iprojects {
   desc: string;
   pid: number;
 }
+
+const imageList = [
+  {
+    pid: 1,
+    title: project1,
+    desc: "project1 설명",
+  },
+  {
+    pid: 2,
+    title: project2,
+    desc: "project2 설명",
+  },
+  {
+    pid: 3,
+    title: project3,
+    desc: "project3 설명",
+  },
+  {
+    pid: 4,
+    title: project4,
+    desc: "project4 설명",
+  },
+  {
+    pid: 5,
+    title: project5,
+    desc: "project5 설명",
+  },
+];
 
 const Project = () => {
   function NextArrow({ onClick }: Iarrow) {
@@ -39,42 +63,48 @@ const Project = () => {
       </Prev>
     );
   }
-  const [isHovering, setIsHovering] = useState(0);
   const settings = {
-    centerMode: true,
     infinite: true,
     centerPadding: "10px",
-    slidesToShow: 4,
+    slidesToShow: 3,
     speed: 1000,
     dots: true,
     slidesToScroll: 1,
-    // autoplay: true, //어지러워서 고민 ...
-    autoplaySpeed: 3000,
+    autoplay: true, //어지러워서 고민 ...
+    autoplaySpeed: 2000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.currentTarget.style.opacity = "1";
+    e.currentTarget.style.transition = 'all ease 0.3s 0s'
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.currentTarget.style.opacity = "0";
+    e.currentTarget.style.transition = "all ease 0.3s 0s";
   };
 
   return (
     <Fade>
       <ProjectContainer>
         <StyledSlider {...settings}>
-          {projects.map(({ title, desc, pid }: Iprojects) => (
-            <div key={pid}>
-              <ProjectBox title={title} onMouseOver={() => setIsHovering(1)} onMouseOut={() => setIsHovering(0)}>
-                {isHovering ? (
-                  <Hover>
-                    <HoverText>
-                      <Title>{title}</Title>
-                      <Desc>{desc}</Desc>
-                    </HoverText>
-                  </Hover>
-                ) : (
-                  ""
-                )}
-              </ProjectBox>
-            </div>
-          ))}
+          {imageList.map(({ title, desc, pid }: Iprojects) => {
+            return (
+              <div key={pid}>
+                <ProjectBox title={title}>
+                    <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                      <HoverText>
+                        <Title>{`project` + pid}</Title>
+                        <Desc>{desc}</Desc>
+                      </HoverText>
+                    </Hover>
+                </ProjectBox>
+              </div>
+            );
+          })}
         </StyledSlider>
       </ProjectContainer>
     </Fade>
@@ -86,17 +116,19 @@ const ProjectContainer = styled.div`
   width: 100vw;
   height: 400px;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 390px) {
+    width: 390px;
+    height: 225px;
+    overflow: hidden;
+  }
 `;
 
 const ProjectBox = styled.div<{ title: string }>`
-  background-image: url(${project1});
-  /* background-image: ${(props) => `url(${props.title})`}; */
-  /* background-image: url(${(props) => props.title}); */
-
-  /* 에러))) props가 string으로 들어가서 적용되지 않음 ㅜㅜ*/
-  /* 올바른 형식 인식: url(/static/media/main_project1.4b5d03d….png); */
-  /* props 전달시 인식 에러: url(project2); */
-
+  background-image: url(${(props) => props.title});
   background-size: cover;
   width: 315px;
   height: 201px;
@@ -104,19 +136,13 @@ const ProjectBox = styled.div<{ title: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -160px;
-
   transition: all 0.2s linear;
-  &:hover {
-    /* width: 430px;
-    height: 300px; */
-    transform: scale(1.2);
-  }
+  margin-left: 50px;
 `;
 
 const Hover = styled.div`
-  width: 490px;
-  height: 314px;
+  width: 315px;
+  height: 201px;
   border-radius: 20px;
   display: flex;
   flex-direction: row;
@@ -124,6 +150,7 @@ const Hover = styled.div`
   align-items: center;
   text-align: center;
   background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
 `;
 
 const HoverText = styled.div`
@@ -148,7 +175,10 @@ const Desc = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-  height: 400px;
+  height: 300px;
+  width: 1200px;
+  display: flex;
+  align-items: center;
 `;
 
 const Next = styled.div`
@@ -156,6 +186,9 @@ const Next = styled.div`
   position: absolute;
   top: 260px;
   left: 780px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Prev = styled.div`
@@ -163,6 +196,9 @@ const Prev = styled.div`
   position: absolute;
   top: 260px;
   right: 780px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Project;

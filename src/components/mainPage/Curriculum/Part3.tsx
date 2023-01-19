@@ -44,7 +44,7 @@ const PartName = styled.h2`
 `;
 
 const BarContainer = styled.div`
-  width: 1210px;
+  width: 1240px;
   height: 20px;
   background: rgba(51, 51, 51, 0.8);
   border-radius: 30px;
