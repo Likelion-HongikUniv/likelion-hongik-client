@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import { useRecoilValue } from "recoil";
-import { profileState } from "./../../states/index";
+import { editState, profileState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavSelectPart";
 
 export function MyPageNav() {
   const profileImg = useRecoilValue(profileState);
+  const info = useRecoilValue(editState);
 
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
         <ProfileCopy src={profileImg?.thumbnail} />
         <div style={{ width: "88px" }}>
-          <Name>김아현</Name>
-          <Team>건빵이최고 팀</Team>
+          <Name>{info.nickname}</Name>
+          <Team>{info.team} 팀</Team>
         </div>
       </div>
       <NavSelectPart />
@@ -26,8 +27,8 @@ const LeftNav = styled.nav`
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
-  position: relative; //스크롤 내려도 따라오는 nav라면 fixed
-  margin-left: 340px; //하고 left로 바꾸기, editpart style도 손봐야됨
+  position: relative;
+  margin-left: 340px;
   padding-top: 140px;
   letter-spacing: -0.32px;
 `;
@@ -38,6 +39,7 @@ const ProfileCopy = styled.img`
   border-radius: 50%;
   background-color: #d9d9d9;
   border: none;
+  object-fit: cover;
 `;
 
 const Name = styled.div`

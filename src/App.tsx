@@ -29,8 +29,8 @@ function App() {
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/community/:categoryName" element={<CommunityPage />} />
-            <Route path="/logindetail" element={<LoginDetailPage />} />
-            <Route path="/logincomplete" element={<CompletePage />} />
+            <Route path="/login/detail" element={<LoginDetailPage />} />
+            <Route path="/login/complete" element={<CompletePage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/myPagePost" element={<MyPostPage />} />

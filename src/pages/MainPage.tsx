@@ -3,7 +3,7 @@ import { Main } from "../components/mainPage/Main";
 import Curriculum from "../components/mainPage/Curriculum";
 import Project from "../components/mainPage/Project";
 import Recruiting from "../components/mainPage/Recruiting";
-import Channel from "../components/mainPage/Channel";
+import Channel from "../components/elements/Channel";
 import Footer from "../components/elements/Footer";
 import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";

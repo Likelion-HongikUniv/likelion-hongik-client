@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import main_recruiting from "../images/main_recruiting.png";
-import { useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
 const Recruiting = () => {
-  const navigate = useNavigate();
   const onClickBtn = () => {
     window.location.replace("/recruit");
   };

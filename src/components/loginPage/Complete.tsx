@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-import Footer from "../elements/Footer";
+
 import { LionIcon } from "./../icons/LionIcon";
 
 export function Complete() {
@@ -16,7 +16,6 @@ export function Complete() {
       <div>
         <OkBtn>로그인</OkBtn>
       </div>
-      <Footer />
     </div>
   );
 }
@@ -25,7 +24,7 @@ const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
   line-height: 48px;
-  padding-top: 190px;
+  padding-top: 90px;
 `;
 
 const SmallText = styled.div`

@@ -51,7 +51,7 @@ const ChannelImg = styled.a`
 const ChannelContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 60px;
 `;
 
 const Container = styled.div`

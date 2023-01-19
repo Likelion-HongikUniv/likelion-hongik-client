@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-import Footer from "../elements/Footer";
 import useInput from "./../../hooks/useInput";
 import { useState } from "react";
 
@@ -41,14 +40,13 @@ export function LoginDetailInfo() {
           완료
         </DoneBtn>
       </div>
-      <Footer />
     </div>
   );
 }
 
 const Title = styled.div`
   font-weight: 800;
-  padding-top: 130px;
+  padding-top: 30px;
   font-size: 40px;
   line-height: 48px;
   text-align: center;
