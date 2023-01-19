@@ -1,8 +1,7 @@
-import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { tagListState, nowTagState, tagListSelector } from "../../states/atoms";
+import { nowTagState, tagListSelector } from "../../states/atoms";
 import { ICategory, ITag, ICommunityParam } from "../../interfaces/category";
 
 export function CategoryTab(categoryName: ICommunityParam) {

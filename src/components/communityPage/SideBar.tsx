@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListState } from "../../states/atoms";
