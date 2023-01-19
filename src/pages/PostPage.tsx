@@ -9,16 +9,23 @@ import postDetail from "../data/postDetail.json";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { IComment } from "../components/postPage/CommentsList";
+import { commentsListState } from "../states/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect } from "react";
 
 export function PostPage() {
   const { postId } = useParams();
   // const [boardData, setBoardData] = useState<IPost>();
-  // const [commentData, setCommentData] = useState<IComment>();
   // setBoardData(post.data[2]);
   // setCommentData(postDetail.comments);
 
   const boardData = post.data[0];
   const commentData = postDetail.comments;
+  const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
+  setCommentsData(commentData);
+  useEffect(() => {
+    console.log("comments 스테이트 변경됨 : ", comments);
+  }, [comments]);
 
   // const getBoardData = async () => {
   //   const { data } = await axios.get<IPost>(`http://43.200.18.111:8080/post/${postId}`);

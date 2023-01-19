@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { Input } from "./InputFrom";
 import { IComment } from "./CommentsList";
 import moment from "moment";
+import { WHITE_1, WHITE_2 } from "../../styles/theme";
 
 // interface 관리
 /** 댓글 좋아요 기능
@@ -17,24 +18,25 @@ import moment from "moment";
 export function Comments(props: IComment) {
   const [isShowReplyInput, setShowReplyInput] = useState(false);
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     setShowReplyInput(!isShowReplyInput);
+    e.preventDefault();
   };
-  console.log(props.likeCount);
   const curDate = props.createdTime;
-  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm");
 
   return (
     <>
       <Column gap="32px">
         <Row gap="16px">
           <Profile />
-          <Column gap="16px">
-            <UserId>{props.author?.nickname || `AhhyunKim`}</UserId>
-            <Date>{date || `2022.11.30`}</Date>
+          <Column gap="32px">
+            <Column gap="4px">
+              <UserId>{props.author?.nickname || `AhhyunKim`}</UserId>
+              <Date>{date || `2022.11.30`}</Date>
+            </Column>
             {props?.body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
-            <Row gap="24px">
+            <Row gap="12px">
               <LikeButton likes={props.likeCount} />
               <ReplyButton className="replyOption" onClick={onClickReplyButton}>
                 댓글 달기
@@ -43,12 +45,12 @@ export function Comments(props: IComment) {
           </Column>
         </Row>
         {props.replies
-          ? props.replies.map((reply: IReply) => {
+          ? props.replies.map((reply: IReply, idx: number) => {
               console.log(reply);
-              return <Replies {...reply} />;
+              return <Replies key={idx} {...reply} />;
             })
           : null}
-        {isShowReplyInput && <Input username={props.author?.nickname}></Input>}
+        {isShowReplyInput && <Input pid={props.id} username={props.author?.nickname}></Input>}
         <Hairline />
       </Column>
     </>
@@ -63,6 +65,7 @@ const UserId = styled.div`
 `;
 
 const Date = styled.div`
+  color: ${WHITE_2};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -74,7 +77,7 @@ const ReplyButton = styled.button`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: white;
+  color: ${WHITE_1};
 `;
 
 const Hairline = styled.div`

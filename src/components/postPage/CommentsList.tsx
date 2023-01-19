@@ -11,7 +11,8 @@ export interface IComment {
   body?: string;
   isDeleted?: boolean;
   createdTime?: string;
-  likeCount: number;
+  // likeCount: number;
+  likeCount?: any;
   comment_id?: number;
   replies?: IReply[];
 }

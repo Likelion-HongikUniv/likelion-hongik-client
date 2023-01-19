@@ -3,13 +3,54 @@ import { Row } from "../elements/Wrapper";
 import { BLACK_2, WHITE_1 } from "../../styles/theme";
 // import { isLoggedInState } from "../../states";
 import useInput from "../../hooks/useInput";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { commentsListState } from "../../states/atoms";
+import PostDetail from "../../data/postDetail.json";
 
-export function Input({ username }: any) {
+export function Input({ pid, username }: any) {
   const commentInput = useInput("");
+  const [commentsList, setCommentsList] = useRecoilState(commentsListState);
+  // const commentsList = useRecoilValue(commentsListState);
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(commentInput.value);
+    const parentComment: any = commentsList.filter((comment) => comment.id === pid);
+    let parentReplies: any = parentComment[0].replies;
+    const tempObj = {
+      author: {
+        authorId: 2,
+        nickname: "dsadsad",
+        profileImage: "dadsa",
+        isAuthor: false,
+      },
+      body: commentInput.value,
+      createdTime: "2023-01-17T17:41:04.001386",
+      id: 27,
+      likeCount: 0,
+    };
+    parentReplies = [...parentReplies, tempObj];
+    console.log("이번거", commentsList);
+    // setCommentsList(() => {
+    //   return [...commentsList, parentComment[0]: parentReplies ];
+    // });
+    console.log("야", commentsList);
+
+    // console.log("누른 후", { [parentComment[0].replies]: parentReplies });
+
+    // console.log("코메늩 : ", parentComment);
+
+    // console.log("대댓글 : ", parentReplies);
+
+    // setCommentsList([...commentsList, `${parentRelpies}`: parentRelpies ])
+    // console.log("now", parentRelpies);
+
+    // console.log(parentComment[0].replies);
+    // console.log(parentComment.replies);
+    // parentComment.replies.push()
+
+    console.log(pid, commentInput.value);
+    // POST API
+    // 댓글 리스트에 업로드
   };
 
   return (

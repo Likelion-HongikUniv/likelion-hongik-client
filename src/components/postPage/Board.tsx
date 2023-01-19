@@ -3,6 +3,8 @@ import { Row, Column } from "../elements/Wrapper";
 import { HeartButton } from "./HeartButton";
 import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
+import { useRecoilValue } from "recoil";
+import { commentsListState } from "../../states/atoms";
 
 /** 포스트 좋아요 기능
  * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
@@ -30,7 +32,6 @@ export function Board(boardData: IPost) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
-  console.log(date);
 
   return (
     <Column gap="24px">
