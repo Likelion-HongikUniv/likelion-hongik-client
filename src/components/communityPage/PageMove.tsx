@@ -16,6 +16,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 60px;
+  margin-bottom: 340px;
 `;
 
 const MoveBtn = styled.button`

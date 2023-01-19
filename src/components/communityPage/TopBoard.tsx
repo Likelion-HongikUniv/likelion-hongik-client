@@ -31,7 +31,6 @@ export function TopBoard(categoryName: ICommunityParam) {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
 `;
 
 const Table = styled.div`
@@ -40,6 +39,7 @@ const Table = styled.div`
   align-items: flex-end;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  margin-top: 40px;
   div {
     display: flex;
     gap: 6px;

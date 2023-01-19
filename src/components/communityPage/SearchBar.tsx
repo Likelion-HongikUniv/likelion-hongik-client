@@ -11,6 +11,7 @@ export function SearchBar() {
 }
 
 const SearchContainer = styled.form`
+  margin-top: 20px;
   display: flex;
   gap: 16px;
   width: 100%;

@@ -10,6 +10,7 @@ import { SideBar } from "../components/communityPage/SideBar";
 import { TopBoard } from "../components/communityPage/TopBoard";
 import { ProjectInfo } from "../components/communityPage/ProjectInfo";
 import post from "../data/post.json";
+import Footer from "../components/elements/Footer";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
@@ -30,6 +31,7 @@ export function CommunityPage() {
           </Container>
         </Wrapper>
       </Section>
+      <Footer />
     </>
   );
 }
