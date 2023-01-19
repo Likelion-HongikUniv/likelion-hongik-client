@@ -37,13 +37,13 @@ export function TextEditor() {
   // }, []);
 
   return (
-    <Column justifyContent="center" alignItems="center">
+    <Column width="100%" justifyContent="center" alignItems="center">
       <EditorWrapper>
         <Editor
           ref={editorRef}
           placeholder="내용을 입력해주세요."
           previewStyle="vertical" // 미리보기 스타일 지정
-          height="520px" // 에디터 창 높이
+          height="500px" // 에디터 창 높이
           // initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
           toolbarItems={[
             ["heading", "bold", "italic", "strike"],
@@ -56,9 +56,11 @@ export function TextEditor() {
           autofocus
           theme={"dark"}
           hideModeSwitch={true}
-          hooks={{
-            addImageBlobHook: onUploadImage,
-          }}
+          hooks={
+            {
+              // addImageBlobHook: onUploadImage,
+            }
+          }
         />
       </EditorWrapper>
       <Row marginTop="24px" width="80%" justifyContent="flex-end" gap="12px">
@@ -70,8 +72,8 @@ export function TextEditor() {
 }
 
 const EditorWrapper = styled.div`
-  width: 80%;
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 40px;
   background-color: aliceblue;
   border-radius: 4px;
 
