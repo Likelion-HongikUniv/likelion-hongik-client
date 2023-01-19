@@ -7,7 +7,7 @@ import { WHITE_1 } from "../../styles/theme";
 
 export const Section = styled.section`
   width: 100%;
-  padding-top: 100px;
+  padding-top: 90px;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
 `;
