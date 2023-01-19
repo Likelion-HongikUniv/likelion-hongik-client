@@ -6,10 +6,30 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import Google from "../../components/Login/Google";
-
+import { ReactHTMLElement } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function SocialLogin() {
+  const navigate = useNavigate();
+  let token;
+  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("구글 로그인 클릭");
+    // axios.get(`/**`).then(function (response) {
+    //   console.log("google login succees? data : ", response.headers);
+    //   navigate(`/`);
+    // });
+    window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+    axios.get(`/v1/token`).then(function (response) {
+      console.log("google login succees? data : ", response.headers);
+      token = response.headers;
+      console.log(token);
+      navigate(`/`);
+    });
+    // navigate(`//localhost:8080/oauth2/authorization/google `);
+    // axios.get('/v1/token').t
+  };
+
   return (
     <ForDiv>
       <WelcomeText>
@@ -30,10 +50,9 @@ export function SocialLogin() {
         <KakaoIcon />
         <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
       </SocialBtn>
-      <SocialBtn style={{ background: "#FFFFFF" }}>
+      <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
-          <Google />
       </SocialBtn>
       <Footer style={{ marginTop: "334px" }} />
     </ForDiv>
