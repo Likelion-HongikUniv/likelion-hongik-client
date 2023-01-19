@@ -1,82 +1,97 @@
 import styled from "styled-components";
-import { WHITE_1 } from "../../styles/theme";
 
 export function Curriculum() {
   return (
-    <ForDiv>
-      <TitleText>모집요강</TitleText>
-      <DetailText>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</DetailText>
-      <TimeBar>
-        <TimePoint />
-        <TimePoint style={{ marginLeft: "342px" }} />
-        <TimePoint style={{ marginLeft: "327px" }} />
-        <TimePoint style={{ marginLeft: "352px" }} />
-      </TimeBar>
-      <div>
-        <Schedule>2022.02.23 ~ 03.13</Schedule>
-        <Schedule style={{ marginLeft: "195px" }}>2022.03.15</Schedule>
-        <Schedule style={{ marginLeft: "251px" }}>2022.03.16 ~ 03.18</Schedule>
-        <Schedule style={{ marginLeft: "209px" }}>2022.03.20</Schedule>
-      </div>
-      <div>
-        <TimeText>지원서 제출기간</TimeText>
-        <TimeText style={{ marginLeft: "180px" }}>1차 합격 발표</TimeText>
-        <TimeText style={{ marginLeft: "199px" }}>면접</TimeText>
-        <TimeText style={{ marginLeft: "320px" }}>최종 합격 발표</TimeText>
-      </div>
-    </ForDiv>
+    <Box>
+      <PartName>모집 요강</PartName>
+      <PartText>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</PartText>
+      <BarContainer>
+        <div>
+          <Dot1>
+            <Date>2022.02.23 ~ 03.13</Date>
+            <Text>지원서 제출기간</Text>
+          </Dot1>
+          <Dot2>
+            <Date>2022.03.15</Date>
+            <Text>1차 합격 발표</Text>
+          </Dot2>
+          <Dot3>
+            <Date>2022.03.16 ~ 03.18</Date>
+            <Text>면접</Text>
+          </Dot3>
+          <Dot4>
+            <Date>2022.03.20</Date>
+            <Text>최종 합격 발표</Text>
+          </Dot4>
+        </div>
+      </BarContainer>
+    </Box>
   );
 }
-
-const ForDiv = styled.div`
-  font-weight: 700;
-  margin-left: 150px;
+const Box = styled.div`
+  height: 330px;
+  margin-top: 50px;
+  margin-left: 340px;
 `;
 
-const TitleText = styled.div`
+const PartName = styled.div`
+  color: white;
   font-size: 40px;
-  line-height: 48px;
-  padding-top: 240px;
+  margin-bottom: 30px;
+  font-weight: 700;
 `;
 
-const DetailText = styled.div`
+const PartText = styled.div`
+  color: #dfdfdf;
   font-size: 28px;
   line-height: 33.6px;
-  color: #dfdfdf;
-  margin-top: 30px;
   font-weight: 700;
+  margin-bottom: 120px;
 `;
 
-const TimeBar = styled.div`
-  margin-top: 120px;
+const BarContainer = styled.div`
   width: 1240px;
   height: 20px;
+  background: rgba(51, 51, 51, 0.8);
   border-radius: 30px;
-  background: #33333399;
+  position: absolute;
 `;
 
-const TimePoint = styled.div`
+const Dot1 = styled.div`
+  position: absolute;
   width: 20px;
   height: 20px;
+  left: 0px;
+  border-radius: 50px;
   background: #ed7f30;
-  border-radius: 50%;
-  display: inline-block;
 `;
 
-const Schedule = styled.div`
-  display: inline-block;
+const Dot2 = styled(Dot1)`
+  position: absolute;
+  left: 320px;
+`;
+
+const Dot3 = styled(Dot2)`
+  left: 640px;
+`;
+
+const Dot4 = styled(Dot3)`
+  left: 960px;
+`;
+
+const Date = styled.div`
   margin-top: 40px;
-  color: ${WHITE_1};
+  width: 167px;
   font-weight: 700;
   font-size: 18px;
   line-height: 21.6px;
 `;
 
-const TimeText = styled.div`
-  color: ${WHITE_1};
+const Text = styled.div`
+  width: 180px;
+  height: 34px;
   font-weight: 600;
   font-size: 28px;
   line-height: 33.6px;
   margin-top: 13px;
-  display: inline-block;
 `;

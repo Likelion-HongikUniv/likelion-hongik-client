@@ -34,11 +34,11 @@ const SearchContainer = styled.form`
     background: #e9e9e9;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 18px;
     line-height: 22px;
     text-align: center;
     letter-spacing: -0.32px;
     color: #000000;
     border: none;
+    font-size: 20px;
   }
 `;

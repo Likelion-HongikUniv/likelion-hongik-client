@@ -3,7 +3,7 @@ import { Main } from "../components/mainPage/Main";
 import Curriculum from "../components/mainPage/Curriculum";
 import Project from "../components/mainPage/Project";
 import Recruiting from "../components/mainPage/Recruiting";
-import Channel from "../components/mainPage/Channel";
+import Channel from "../components/elements/Channel";
 import Footer from "../components/elements/Footer";
 import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
@@ -50,10 +50,18 @@ const Title = styled.span`
   font-weight: 800;
   font-size: 40px;
   margin-top: 220px;
+  @media (max-width: 390px) {
+    font-size: 28px;
+    line-height: 34px;
+  }
 `;
 
 const Desc = styled.span`
   font-size: 20px;
   line-height: 24px;
   margin-top: 10px;
+  @media (max-width: 390px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;

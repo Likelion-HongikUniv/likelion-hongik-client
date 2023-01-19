@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-import Footer from "../elements/Footer";
 import useInput from "./../../hooks/useInput";
+import { useState } from "react";
 
 export function LoginDetailInfo() {
   const nickname = useInput("");
   const studentNum = useInput("");
   const major = useInput("");
+  const [part, setPart] = useState("");
+
+  const selectboxHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPart(event.target.value);
+  };
 
   return (
     <div>
@@ -18,25 +23,30 @@ export function LoginDetailInfo() {
       <DetailInfo>학과</DetailInfo>
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>
-      <SelectPart>
-        <Options value="" disabled selected>
+      <SelectPart onChange={selectboxHandler}>
+        <Options>
           파트 선택
         </Options>
-        <Options>기획/디자인</Options>
-        <Options>프론트엔드</Options>
-        <Options>백엔드</Options>
+        <Options value="기획/디자인">기획/디자인</Options>
+        <Options value="프론트엔드">프론트엔드</Options>
+        <Options value="백엔드">백엔드</Options>
       </SelectPart>
       <div style={{ textAlign: "center" }}>
-        <DoneBtn>완료</DoneBtn>
+        <DoneBtn
+          disabled={
+            nickname.value.length !== 0 && studentNum.value.length !== 0 && major.value.length !== 0 ? false : true
+          }
+        >
+          완료
+        </DoneBtn>
       </div>
-      <Footer />
     </div>
   );
 }
 
 const Title = styled.div`
   font-weight: 800;
-  padding-top: 130px;
+  padding-top: 30px;
   font-size: 40px;
   line-height: 48px;
   text-align: center;
@@ -88,7 +98,8 @@ const DoneBtn = styled.button`
   width: 400px;
   height: 80px;
   margin: 60px 0 182px 0;
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #ed7f30;
   text-align: center;
   border-radius: 20px;
   color: ${WHITE_1};
@@ -98,5 +109,9 @@ const DoneBtn = styled.button`
 
   :hover {
     background-color: #ed7f30;
+  }
+
+  &:disabled {
+    background-color: #333333;
   }
 `;

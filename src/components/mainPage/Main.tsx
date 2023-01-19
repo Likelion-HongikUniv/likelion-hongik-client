@@ -2,12 +2,11 @@ import main_main from "../images/main_main.png";
 import styled from "styled-components";
 import { Fade } from "react-awesome-reveal";
 
-
 export function Main() {
   return (
     <Fade duration={2000}>
       <MainContainer>
-        <Fade cascade damping={0.1}>
+        <Fade damping={0.1}>
           <Title>
             <span>ABOUT&nbsp;</span>
             <span style={{ color: "#ED7F30" }}> 'MUTSA'</span>
@@ -27,6 +26,8 @@ export function Main() {
 }
 const MainContainer = styled.div`
   background-image: url(${main_main});
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: overlay;
   background-size: cover;
   width: 100vw;
   height: 90vh;
@@ -39,11 +40,23 @@ const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
   line-height: 70px;
+  @media (max-width: 390px) {
+    font-size: 28px;
+    line-height: 34px;
+  }
 `;
 
 const TextContainer = styled.div`
+  margin-top: 40px;
   height: 132px;
+  display: flex;
   justify-content: center;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 600;
   line-height: 44px;
+  @media (max-width: 390px) {
+    font-size: 15px;
+    line-height: 24px;
+    margin: 21px;
+  }
 `;
