@@ -24,9 +24,7 @@ export function LoginDetailInfo() {
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>
       <SelectPart onChange={selectboxHandler}>
-        <Options>
-          파트 선택
-        </Options>
+        <Options>파트 선택</Options>
         <Options value="기획/디자인">기획/디자인</Options>
         <Options value="프론트엔드">프론트엔드</Options>
         <Options value="백엔드">백엔드</Options>
@@ -34,7 +32,7 @@ export function LoginDetailInfo() {
       <div style={{ textAlign: "center" }}>
         <DoneBtn
           disabled={
-            nickname.value.length !== 0 && studentNum.value.length !== 0 && major.value.length !== 0 ? false : true
+            nickname.value?.length !== 0 && studentNum.value?.length !== 0 && major.value?.length !== 0 ? false : true
           }
         >
           완료
