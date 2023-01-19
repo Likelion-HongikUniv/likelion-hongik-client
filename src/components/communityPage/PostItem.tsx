@@ -1,18 +1,20 @@
-import React from "react";
 import styled from "styled-components";
 import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
 import { IPost } from "../../interfaces/post";
+import moment from "moment";
 
 export function PostItem(post: IPost) {
+  const curDate = post.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
   return (
     <Item>
       <Left>
         <User>
-          <img src={post.author.profileImage} alt="user-profile" />
+          <img src={post.author.profileImage ? post.author.profileImage : ""} alt="user-profile" />
           <div>
             <UserName>{post.author.nickname}</UserName>
-            <UploadDate>{post.createdTime}</UploadDate>
+            <UploadDate>{date}</UploadDate>
           </div>
         </User>
         <Content>
@@ -30,7 +32,7 @@ export function PostItem(post: IPost) {
           </Icon>
         </Bottom>
       </Left>
-      <img src={post.thumbNailUrl} alt="post-thumbnail" />
+      {post.thumbNailUrl ? <img src={post.thumbNailUrl ? post.thumbNailUrl : ""} alt="post-thumbnail" /> : ""}
     </Item>
   );
 }
@@ -111,7 +113,7 @@ const Title = styled.span`
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 691px;
+  width: 691px;
   height: 24px;
   font-weight: 700;
   font-size: 20px;

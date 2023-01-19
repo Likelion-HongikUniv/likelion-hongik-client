@@ -1,21 +1,17 @@
 export interface IPost {
-  postId: string;
+  postId: number;
   title: string;
   author: IAuthor;
   body: string;
-  thumbNailUrl: string;
-  likeCount: number;
-  commentCount: number;
-  createdTime: string;
+  thumbNailUrl?: string | null | undefined;
+  likeCount?: number;
+  commentCount?: number;
+  createdTime?: string;
 }
 
 export interface IAuthor {
   authorId: number;
   nickname: string;
-  profileImage?: string;
+  profileImage?: string | null | undefined;
   isAuthor: boolean;
-}
-
-export interface IPostList {
-  postsData: IPost;
 }
