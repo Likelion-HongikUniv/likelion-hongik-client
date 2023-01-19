@@ -15,6 +15,10 @@ export function SideBar(categoryName: ICommunityParam) {
   };
   const onTagClickHandler = (category: string, tag: string) => {
     setNowTag(tag);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     navigate(`/community/${category}`);
   };
   return (
