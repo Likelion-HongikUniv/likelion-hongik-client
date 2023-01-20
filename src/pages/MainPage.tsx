@@ -11,18 +11,17 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 export function MainPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const token = searchParams.get('token')
+  const token = searchParams.get("token");
 
-  useEffect(() => {
-    if (token) {
-      navigate('/');
-      localStorage.setItem('token', token)
-    }
-  })
-  
-  
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate('/');
+  //     localStorage.setItem('token', token)
+  //   }
+  // })
+
   return (
     <>
       <Header />

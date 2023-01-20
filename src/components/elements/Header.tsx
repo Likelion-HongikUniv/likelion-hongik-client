@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BLACK_1 } from "../../styles/theme";
 import { Logo } from "../icons/Logo";
 import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
+import { userInfoState } from "../../states/user";
+import useAutoLogin from "../../hooks/useAutoLogin";
+import { isLoggedInState } from "../../states";
 
 export function Header() {
+  useAutoLogin();
+
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
     if (page === "community/post") {
@@ -18,6 +26,17 @@ export function Header() {
     }
     navigate(`/${page}`);
   };
+
+  useEffect(() => {
+    const token = userInfo.accessToken;
+    if (token) {
+      navigate("/");
+      localStorage.setItem("likelion-hongik-accessToken", token);
+      setIsLoggedIn(true);
+      // TODO 받은 token으로 유저 정보 GET API
+      setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
+    }
+  });
 
   return (
     <Wrapper>
