@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { Row } from "../elements/Wrapper";
 import { BLACK_2, WHITE_1 } from "../../styles/theme";
-// import { isLoggedInState } from "../../states";
 import useInput from "../../hooks/useInput";
 import { useRecoilState } from "recoil";
 import { commentsListState } from "../../states/atoms";
@@ -13,7 +11,7 @@ export function Input({ pid, username }: any) {
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const parentComment: any = commentsList.filter((comment) => comment.id === pid);
+    const parentComment: any = commentsList.filter((comment) => comment.commentId === pid);
     let parentReplies: any = parentComment[0].replies;
     let curTime = new Date().toString();
     let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");

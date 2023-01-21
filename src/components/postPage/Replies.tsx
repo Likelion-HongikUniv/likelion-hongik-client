@@ -1,21 +1,12 @@
 import styled from "styled-components";
-import { Row } from "../elements/Wrapper";
-import { BLACK_2 } from "../../styles/theme";
+import { Column, Row } from "../elements/Wrapper";
+import { BLACK_2, WHITE_2 } from "../../styles/theme";
 import { Profile } from "../icons/Profile";
 import { CommentArrow } from "../icons/CommentArrow";
 import { LikeButton } from "./LikeButton";
-import { IProfile } from "./Board";
+import { IReply } from "../../interfaces/comments";
 import moment from "moment";
 // interface 관리
-
-export interface IReply {
-  id?: number;
-  author?: IProfile;
-  body?: string;
-  createdTime?: string;
-  likeCount: number;
-  deledted?: boolean;
-}
 
 export function Replies(reply: IReply) {
   const curDate = reply.createdTime;
@@ -28,10 +19,10 @@ export function Replies(reply: IReply) {
         <Wrapper>
           <Profile />
           <TextContainer>
-            <>
+            <Column gap="4px">
               <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
               <Date>{date || `2022.11.30`}</Date>
-            </>
+            </Column>
             {reply?.body ||
               `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
           있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
@@ -75,6 +66,7 @@ const UserId = styled.div`
 `;
 
 const Date = styled.div`
+  color: ${WHITE_2};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

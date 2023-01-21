@@ -1,19 +1,13 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
+import { IComment, IReply } from "../../interfaces/comments";
+import { Input } from "./InputForm";
 import { Row, Column } from "../elements/Wrapper";
 import { Profile } from "../icons/Profile";
-import { IReply, Replies } from "./Replies";
+import { Replies } from "./Replies";
 import { LikeButton } from "./LikeButton";
-import React, { useState } from "react";
-import { Input } from "./InputFrom";
-import { IComment } from "./CommentsList";
-import moment from "moment";
 import { WHITE_1, WHITE_2 } from "../../styles/theme";
-
-// interface 관리
-/** 댓글 좋아요 기능
- * Like 테이블 안에, Comment에 좋아요를 누른 user_id가 추가된다.
- * 배열로 받아와 해당 배열의 원소 갯수를 세면 그게 좋아요 개수
- */
 
 export function Comments(props: IComment) {
   const [isShowReplyInput, setShowReplyInput] = useState(false);
@@ -49,7 +43,7 @@ export function Comments(props: IComment) {
               return <Replies key={idx} {...reply} />;
             })
           : null}
-        {isShowReplyInput && <Input pid={props.id} username={props.author?.nickname}></Input>}
+        {isShowReplyInput && <Input pid={props.commentId} username={props.author?.nickname}></Input>}
         <Hairline />
       </Column>
     </>

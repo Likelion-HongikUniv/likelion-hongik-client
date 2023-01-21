@@ -1,7 +1,7 @@
 // 상태 관리
 
 import { atom, atomFamily, selectorFamily } from "recoil";
-import { IComment } from "../components/postPage/CommentsList";
+import { IComment } from "../interfaces/comments";
 import { ICategory } from "../interfaces/category";
 
 export const commentsListState = atom<IComment[]>({

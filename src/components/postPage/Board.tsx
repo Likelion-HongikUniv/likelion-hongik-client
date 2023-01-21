@@ -3,32 +3,9 @@ import { Row, Column } from "../elements/Wrapper";
 import { HeartButton } from "./HeartButton";
 import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
-import { useRecoilValue } from "recoil";
-import { commentsListState } from "../../states/atoms";
+import { IBoard } from "../../interfaces/comments";
 
-/** 포스트 좋아요 기능
- * Like 테이블 안에, Post에 좋아요를 누른 user_id가 추가된다.
- * 배열로 받아와 해당 배열의 원소 갯수를 세면 그게 좋아요 개수
- */
-
-export interface IPost {
-  postId: number;
-  title: string;
-  author: IProfile;
-  body: string;
-  likeCount: number;
-  commentCount: number;
-  createdTime: string;
-}
-
-export interface IProfile {
-  profileId?: number;
-  nickname?: string;
-  profilePhoto?: string;
-  isAuthor?: boolean;
-}
-
-export function Board(boardData: IPost) {
+export function Board(boardData: any) {
   // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");

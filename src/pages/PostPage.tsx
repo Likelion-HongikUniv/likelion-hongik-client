@@ -7,8 +7,8 @@ import { useSearchParams } from "react-router-dom";
 import post from "../data/post.json";
 import postDetail from "../data/postDetail.json";
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { IComment } from "../components/postPage/CommentsList";
+import axios from "axios";
+import { IComment, IBoard } from "../interfaces/comments";
 import { commentsListState } from "../states/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect } from "react";
@@ -23,17 +23,20 @@ export function PostPage() {
   useEffect(() => {
     /** post id를 가져와서
      *
-     *
      */
     // getBoardData();
     setCommentsData(commentData);
+    getBoardData();
   }, []);
 
-  // const getBoardData = async () => {
-  //   const { data } = await axios.get<IPost>(`http://43.200.18.111:8080/post/${postId}`);
-  //   const jwt = localStorage.getItem("token");
-  //   return data;
-  // };
+  const getBoardData = async () => {
+    await axios
+      .get<IBoard>(`http://13.124.126.164:8080/community/post/${postId}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {});
+  };
 
   // const [postDetails, setPostDetails] = useQuery();
   // if (postId) {

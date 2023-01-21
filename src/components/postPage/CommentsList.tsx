@@ -2,20 +2,7 @@ import styled from "styled-components";
 import { Comments } from "./Comments";
 import { Row, Column } from "../elements/Wrapper";
 import { BLACK_2 } from "../../styles/theme";
-import { IProfile } from "./Board";
-import { IReply } from "./Replies";
-
-export interface IComment {
-  id?: number;
-  author?: IProfile;
-  body?: string;
-  isDeleted?: boolean;
-  createdTime?: string;
-  // likeCount: number;
-  likeCount?: any;
-  comment_id?: number;
-  replies?: IReply[];
-}
+import { IComment } from "../../interfaces/comments";
 
 export function CommentsList(commentList: IComment[]) {
   const comments = Object.values(commentList).map((comments: IComment) => comments);
