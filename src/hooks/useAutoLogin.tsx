@@ -4,11 +4,15 @@ import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "../states";
 
 export default function useAutoLogin() {
+  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const pathname = window.location.href;
 
-  // const token = searchParams.get("token");
+  const token = searchParams.get("token");
+  if (token)  localStorage.setItem('token', token);
+
+
   const accessToken = localStorage.getItem("likelion-hongik-client");
   const privatePage =
     pathname.includes("myPage") ||

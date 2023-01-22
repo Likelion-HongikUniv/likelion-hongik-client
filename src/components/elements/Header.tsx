@@ -6,14 +6,14 @@ import { ProfileButton } from "./ProfileButton";
 import { Row } from "./Wrapper";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { userInfoState } from "../../states/user";
 import useAutoLogin from "../../hooks/useAutoLogin";
 import { isLoggedInState } from "../../states";
 
 export function Header() {
   useAutoLogin();
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
@@ -24,14 +24,14 @@ export function Header() {
     if (page === "community/post") {
       setNowTag("notice");
     }
-    navigate(`/${page}`);
+    navigate(`/${page}`); 
   };
 
   useEffect(() => {
     const token = userInfo.accessToken;
     if (token) {
-      navigate("/");
       localStorage.setItem("likelion-hongik-accessToken", token);
+      // navigate("/");
       setIsLoggedIn(true);
       // TODO 받은 token으로 유저 정보 GET API
       setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
