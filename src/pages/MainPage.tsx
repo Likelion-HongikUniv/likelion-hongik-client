@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
 
 export function MainPage() {
   const navigate = useNavigate();
@@ -21,6 +22,22 @@ export function MainPage() {
   //     localStorage.setItem('token', token)
   //   }
   // })
+  const accessToken =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDIxOTksImV4cCI6MTY3NDQwNTc5OSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.2LT0R4u1V_VB89GU7je-zOVbgUo-205Dw_tWNbWUMis";
+  axios.post(
+    "http://13.124.126.164:8080/accounts/detailinfo/",
+    { withCredentials: true },
+    {
+      headers: { JWT: `${accessToken}` },
+      data: {
+        nickname: "나는야 멋쟁이 사자",
+        major: "컴퓨터공학과",
+        studentId: "C311111",
+        part: "Backend",
+        phoneNum: "01012345678",
+      },
+    },
+  );
 
   return (
     <>

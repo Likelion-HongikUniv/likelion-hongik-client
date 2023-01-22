@@ -22,7 +22,7 @@ export function SocialLogin() {
     // window.open("http://localhost:8080/oauth2/authorization/google");
     // window.open("http://localhost:8080/oauth2/authorization/google?redirect_url=http://localhost:8080:/login/google", "_self");
     // navigate(`/`);
-  // window.open("http://localhost:8080/login/google", "_self");
+    // window.open("http://localhost:8080/login/google", "_self");
     // setTimeout(()=> axios.get(`/v1/token`).then(function (response) {
     //   console.log("google login succees? data : ", response.headers);
     //   token = response.headers;
@@ -35,19 +35,20 @@ export function SocialLogin() {
     //   // console.log(token);
     // }
     // );
-    
+
     // console.log(test);
-  // navigate(`//localhost:8080/oauth2/authorization/google `);
-  // navigate(`//localhost:8080/oauth2/authorization/google `);
+    // navigate(`//localhost:8080/oauth2/authorization/google `);
+    // navigate(`//localhost:8080/oauth2/authorization/google `);
     // axios.get('/v1/token').t
   };
   const getToken = () => {
-    fetch(`http://localhost:8080/oauth2/authorization/google`, {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-              });
+    // fetch(`http://13.124.126.164:8080/oauth2/authorization/google`, {
+    //   method: "GET",
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {});
+    // axios.get("http://13.124.126.164:8080/oauth2/authorization/google").then((res) => console.log(res));
+    window.open("http://13.124.126.164:8080/oauth2/authorization/google");
   };
 
   return (
