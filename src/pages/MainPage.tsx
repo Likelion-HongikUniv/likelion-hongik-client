@@ -15,7 +15,7 @@ export function MainPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
-
+  axios.defaults.withCredentials = true;
   // useEffect(() => {
   //   if (token) {
   //     navigate('/');
@@ -23,22 +23,41 @@ export function MainPage() {
   //   }
   // })
   const accessToken =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDIxOTksImV4cCI6MTY3NDQwNTc5OSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.2LT0R4u1V_VB89GU7je-zOVbgUo-205Dw_tWNbWUMis";
-  axios.post(
-    "http://13.124.126.164:8080/accounts/detailinfo/",
-    { withCredentials: true },
-    {
-      headers: { JWT: `${accessToken}` },
-      data: {
-        nickname: "나는야 멋쟁이 사자",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
+  let data = {
+    nickname: "나는야 멋쟁이 사자",
         major: "컴퓨터공학과",
         studentId: "C311111",
         part: "Backend",
         phoneNum: "01012345678",
-      },
+  }
+    axios.post(
+    "http://localhost:8080/accounts/detail_info/",
+    JSON.stringify(data),
+    // { withCredentials: true },
+    {
+      headers: { 
+        "Content-Type": `application/json`,
+        JWT: `${accessToken}` },
     },
   );
 
+//   const getBoardData = async () => {
+//     await axios
+//       .get(`http://localhost:8080/profile`,
+//       {
+//         // withCredentials: true,
+//         headers: {
+//           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s",
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response);
+//       })
+//       .catch((err) => {console.log(err);
+//       });
+//   };
+// getBoardData();
   return (
     <>
       <Header />

@@ -19,7 +19,7 @@ export function SocialLogin() {
     //   console.log("google login succees? data : ", response.headers);
     // });
     // window.open("http://13.124.126.164:8080/oauth2/authorization/google", "_self");
-    // window.open("http://localhost:8080/oauth2/authorization/google");
+    window.open("http://localhost:8080/oauth2/authorization/google");
     // window.open("http://localhost:8080/oauth2/authorization/google?redirect_url=http://localhost:8080:/login/google", "_self");
     // navigate(`/`);
     // window.open("http://localhost:8080/login/google", "_self");
@@ -41,15 +41,15 @@ export function SocialLogin() {
     // navigate(`//localhost:8080/oauth2/authorization/google `);
     // axios.get('/v1/token').t
   };
-  const getToken = () => {
-    // fetch(`http://13.124.126.164:8080/oauth2/authorization/google`, {
-    //   method: "GET",
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {});
-    // axios.get("http://13.124.126.164:8080/oauth2/authorization/google").then((res) => console.log(res));
-    window.open("http://13.124.126.164:8080/oauth2/authorization/google");
-  };
+  // const getToken = () => {
+  //   // fetch(`http://13.124.126.164:8080/oauth2/authorization/google`, {
+  //   //   method: "GET",
+  //   // })
+  //   //   .then((res) => res.json())
+  //   //   .then((data) => {});
+  //   // axios.get("http://13.124.126.164:8080/oauth2/authorization/google").then((res) => console.log(res));
+  //   window.open("http://13.124.126.164:8080/oauth2/authorization/google");
+  // };
 
   return (
     <ForDiv>
@@ -71,7 +71,7 @@ export function SocialLogin() {
         <KakaoIcon />
         <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
       </SocialBtn>
-      <SocialBtn onClick={getToken} style={{ background: "#FFFFFF" }}>
+      <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
       </SocialBtn>
