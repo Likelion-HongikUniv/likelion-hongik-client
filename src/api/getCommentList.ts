@@ -1,6 +1,5 @@
-import { IComment } from '../components/postPage/CommentsList';
 import axios from 'axios';
-
+import { IBoard, IComment, IReply } from '../interfaces/comments';
 const baseURL = '우리 api 주소';
 
 const getCommentList = async () => {

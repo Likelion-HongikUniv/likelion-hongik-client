@@ -7,8 +7,8 @@ export function PostList(postsData: IPost[] | any[]) {
   const posts = Object.values(postsData).map((posts: IPost) => posts);
   return (
     <List>
-      {posts.map((post: IPost) => {
-        return <PostItem {...post} />;
+      {posts.map((post: IPost, index) => {
+        return <PostItem {...post} key={index} />;
       })}
     </List>
   );
