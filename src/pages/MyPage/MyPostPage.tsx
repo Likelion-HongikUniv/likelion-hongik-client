@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Header } from "../../components/elements/Header";
 import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import { PageMove } from "../../components/communityPage/PageMove";
+import axios from "axios";
 
 interface IPost {
   postid: number;
@@ -17,6 +18,24 @@ interface IPost {
 }
 
 export function MyPostPage() {
+  const accessToken =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
+  const getMyPostAPI = () => {
+    axios.get("http://13.124.126.164:8080/mypage/posts/", {
+      headers: {
+        "Content-Type": `application/json`,
+        JWT: `${accessToken}`,
+      },
+      params: {
+        size: 15,
+        page: 10,
+      },
+    });
+  };
+  useEffect(() => {
+    getMyPostAPI();
+  }, []);
+
   const posts = [
     {
       postid: 1,

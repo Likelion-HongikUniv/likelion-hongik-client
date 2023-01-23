@@ -9,18 +9,31 @@ import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import axios from 'axios';
 
 export function MainPage() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token')
+  axios.defaults.withCredentials = true;
 
-  useEffect(() => {
-    if (token) {
-      navigate('/');
-      localStorage.setItem('token', token)
-    }
-  })
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate('/');
+  //     localStorage.setItem('token', token)
+  //   }
+  // })
+  const accessToken =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s"
+  axios.get(
+    "http://13.124.126.164:8080/profile",
+    {
+      headers: {
+        "Content-Type": `application/json`,
+        JWT: `${accessToken}`,
+      },
+    },
+  );
   
   
   return (
