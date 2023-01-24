@@ -15,6 +15,7 @@ export function MainPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
+  // console.log(token);
   axios.defaults.withCredentials = true;
   // useEffect(() => {
   //   if (token) {
@@ -22,8 +23,8 @@ export function MainPage() {
   //     localStorage.setItem('token', token)
   //   }
   // })
-  const accessToken =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
+  // const accessToken =
+  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
   let data = {
     nickname: "나는야 멋쟁이 사자",
         major: "컴퓨터공학과",
@@ -31,24 +32,25 @@ export function MainPage() {
         part: "Backend",
         phoneNum: "01012345678",
   }
-    axios.post(
-    "http://localhost:8080/accounts/detail_info/",
-    JSON.stringify(data),
-    // { withCredentials: true },
-    {
-      headers: { 
-        "Content-Type": `application/json`,
-        JWT: `${accessToken}` },
-    },
-  );
+  //   axios.post(
+  //   "http://localhost:8080/accounts/detail_info/",
+  //   JSON.stringify(data),
+  //   // { withCredentials: true },
+  //   {
+  //     headers: { 
+  //       "Content-Type": `application/json`,
+  //       JWT: `${accessToken}` },
+  //   },
+  // );
 
 //   const getBoardData = async () => {
 //     await axios
-//       .get(`http://localhost:8080/profile`,
+//       .get(`http://localhost:8080/community/post/12`,
 //       {
 //         // withCredentials: true,
 //         headers: {
-//           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s",
+//           "Content-Type": `application/json`,
+//           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
 //         },
 //       })
 //       .then((response) => {

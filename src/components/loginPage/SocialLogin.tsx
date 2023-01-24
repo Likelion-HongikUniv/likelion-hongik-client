@@ -1,3 +1,5 @@
+//SocialLogin.tsx
+
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -6,7 +8,7 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { ReactHTMLElement } from "react";
+import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -15,41 +17,10 @@ export function SocialLogin() {
   let token;
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("구글 로그인 클릭");
-    // axios.get(`/**`).then(function (response) {
-    //   console.log("google login succees? data : ", response.headers);
-    // });
     // window.open("http://13.124.126.164:8080/oauth2/authorization/google", "_self");
-    window.open("http://localhost:8080/oauth2/authorization/google");
-    // window.open("http://localhost:8080/oauth2/authorization/google?redirect_url=http://localhost:8080:/login/google", "_self");
-    // navigate(`/`);
-    // window.open("http://localhost:8080/login/google", "_self");
-    // setTimeout(()=> axios.get(`/v1/token`).then(function (response) {
-    //   console.log("google login succees? data : ", response.headers);
-    //   token = response.headers;
-    //   console.log(token);
-    // }
-    // ), 3000);
-    // axios.get(`http://localhost:8080/oauth2/authorization/google`).then(function (response) {
-    //   // console.log("google login succees? data : ", response.headers);
-    //   // token = response.headers;
-    //   // console.log(token);
-    // }
-    // );
-
-    // console.log(test);
-    // navigate(`//localhost:8080/oauth2/authorization/google `);
-    // navigate(`//localhost:8080/oauth2/authorization/google `);
-    // axios.get('/v1/token').t
+    window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+    // navigate('/ing');
   };
-  // const getToken = () => {
-  //   // fetch(`http://13.124.126.164:8080/oauth2/authorization/google`, {
-  //   //   method: "GET",
-  //   // })
-  //   //   .then((res) => res.json())
-  //   //   .then((data) => {});
-  //   // axios.get("http://13.124.126.164:8080/oauth2/authorization/google").then((res) => console.log(res));
-  //   window.open("http://13.124.126.164:8080/oauth2/authorization/google");
-  // };
 
   return (
     <ForDiv>
