@@ -19,7 +19,7 @@ export function SocialLogin() {
     //   console.log("google login succees? data : ", response.headers);
     //   navigate(`/`);
     // });
-    window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+    window.open("http://13.124.126.164:8080/oauth2/authorization/google", "_self");
     axios.get(`/v1/token`).then(function (response) {
       console.log("google login succees? data : ", response.headers);
       token = response.headers;

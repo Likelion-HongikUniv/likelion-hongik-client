@@ -5,8 +5,9 @@ import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
 
-export function Board(boardData: any) {
-  // const { data: comments, isLoading, isError, error } = useQuery<IComment[], Error>("comments", getComments);
+export function Board(boardData: IBoard) {  
+
+
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
 
@@ -14,13 +15,13 @@ export function Board(boardData: any) {
     <Column gap="24px">
       <Title>{boardData.title || "게시글 제목"}</Title>
       <Row gap="1rem" alignItems="center">
-        {boardData.author.nickname}
+        {boardData.author?.nickname}
         <Date>{date || "2022.11.30"}</Date>
-        {boardData.author.isAuthor ? "수정하기" : "로그아웃 상태"}
+        {boardData.author?.isAuthor ? "수정하기" : "로그아웃 상태"}
       </Row>
       <Hairline />
       <Column lineHeight="1.25rem">
-        <ViewerUi body={boardData?.body || "2123"}></ViewerUi>
+        <ViewerUi body={boardData.body}/>
       </Column>
       <HeartButton likes={boardData.likeCount} />
       <Hairline />
