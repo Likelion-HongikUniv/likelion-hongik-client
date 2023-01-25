@@ -17,8 +17,18 @@ export function SocialLogin() {
   let token;
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("구글 로그인 클릭");
-    // window.open("http://13.124.126.164:8080/oauth2/authorization/google", "_self");
-    window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
+    // navigate('/ing');
+  };
+  const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("네이버 로그인 클릭");
+    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver", "_self");
+    // navigate('/ing');
+  };
+
+  const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("카카오 로그인 클릭");
+    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao", "_self");
     // navigate('/ing');
   };
 
@@ -34,11 +44,11 @@ export function SocialLogin() {
         <FontAwesomeIcon icon={faGithub} />
         <Social>Github으로 계속하기</Social>
       </SocialBtn>
-      <SocialBtn style={{ background: "#1FC83A" }}>
+      <SocialBtn onClick={naverLogin} style={{ background: "#1FC83A" }}>
         <NaverIcon />
         <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
       </SocialBtn>
-      <SocialBtn style={{ background: "#EFDB30" }}>
+      <SocialBtn onClick={kakaoLogin} style={{ background: "#EFDB30" }}>
         <KakaoIcon />
         <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
       </SocialBtn>
