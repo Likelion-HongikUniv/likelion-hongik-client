@@ -6,27 +6,29 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { ReactHTMLElement } from "react";
+import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function SocialLogin() {
   const navigate = useNavigate();
-  let token;
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("구글 로그인 클릭");
-    // axios.get(`/**`).then(function (response) {
-    //   console.log("google login succees? data : ", response.headers);
-    //   navigate(`/`);
-    // });
-    window.open("http://13.124.126.164:8080/oauth2/authorization/google");
-    // axios.get(`/v1/token`).then(function (response) {
-    //   console.log("google login succees? data : ", response.headers);
-    //   token = response.headers;
-    //   console.log(token);
-    // });
-    // navigate(`//localhost:8080/oauth2/authorization/google `);
-    // axios.get('/v1/token').t
+    window.open(
+      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
+      "_self",
+    );
+  };
+  const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("네이버 로그인 클릭");
+    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver", "_self");
+    // navigate('/ing');
+  };
+
+  const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("카카오 로그인 클릭");
+    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao", "_self");
+    // navigate('/ing');
   };
 
   return (
@@ -41,11 +43,11 @@ export function SocialLogin() {
         <FontAwesomeIcon icon={faGithub} />
         <Social>Github으로 계속하기</Social>
       </SocialBtn>
-      <SocialBtn style={{ background: "#1FC83A" }}>
+      <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
         <NaverIcon />
         <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
       </SocialBtn>
-      <SocialBtn style={{ background: "#EFDB30" }}>
+      <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
         <KakaoIcon />
         <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
       </SocialBtn>

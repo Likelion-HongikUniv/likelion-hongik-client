@@ -8,81 +8,42 @@ import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
 
 interface IPost {
-  postid: number;
-  author: string;
   title: string;
+  author: string;
+  profileImage?: string;
   body: string;
-  createdTime: string;
-  like: number;
+  time: string;
+  likes: number;
   reply: number;
 }
 
 export function MyPostPage() {
-  const accessToken =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
-  const getMyPostAPI = () => {
-    axios.get("http://13.124.126.164:8080/mypage/posts/", {
-      headers: {
-        "Content-Type": `application/json`,
-        JWT: `${accessToken}`,
-      },
-      params: {
-        size: 15,
-        page: 10,
-      },
-    });
+  const [postList, setPostList] = useState([]);
+  const token = localStorage.getItem("token");
+  const getMyPostAPI = async () => {
+    await axios
+      .get(`http://13.124.126.164:8080/mypage/post/`, {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: token,
+        },
+        params: {
+          size: 5,
+          page: 1,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setPostList(response.data.content);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   useEffect(() => {
     getMyPostAPI();
-  }, []);
+  }, [postList]);
 
-  const posts = [
-    {
-      postid: 1,
-      author: "나",
-      title: "게시글1",
-      body: "본문1",
-      like: 1,
-      reply: 5,
-      createdTime: "Sun Jan 15 23:24:46 KST 2023",
-    },
-    {
-      postid: 2,
-      author: "나",
-      title: "게시글2",
-      body: "본문2",
-      like: 2,
-      reply: 4,
-      createdTime: "Sun Jan 15 23:24:46 KST 2023",
-    },
-    {
-      postid: 3,
-      author: "나",
-      title: "게시글3",
-      body: "본문3",
-      like: 3,
-      reply: 3,
-      createdTime: "Sun Jan 15 23:24:46 KST 2023",
-    },
-    {
-      postid: 4,
-      author: "나",
-      title: "게시글4",
-      body: "본문4",
-      like: 4,
-      reply: 2,
-      createdTime: "Sun Jan 15 23:24:46 KST 2023",
-    },
-    {
-      postid: 5,
-      author: "나",
-      title: "게시글5",
-      body: "본문5",
-      like: 5,
-      reply: 1,
-      createdTime: "Sun Jan 15 23:24:46 KST 2023",
-    },
-  ];
   return (
     <>
       <Header />
@@ -92,16 +53,16 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             <Title>내가 쓴 글</Title>
             <PostItemContainer>
-              {posts.map((post: IPost) => (
+              {postList.map((post: IPost, index: number) => (
                 <PostItem
-                  key={post.postid}
-                  postid={post.postid}
+                  key={index}
                   author={post.author}
                   title={post.title}
                   body={post.body}
-                  like={post.like}
+                  likes={post.likes}
                   reply={post.reply}
-                  createdTime={post.createdTime}
+                  time={post.time}
+                  profileImage={post.profileImage}
                 />
               ))}
             </PostItemContainer>
