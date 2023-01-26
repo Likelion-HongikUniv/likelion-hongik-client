@@ -5,7 +5,6 @@ import Part2 from "./Curriculum/Part2";
 import Part3 from "./Curriculum/Part3";
 import "../../styles/curriculum.css";
 import { Fade } from "react-awesome-reveal";
-import MobileTimeline from "./mobile/MobileTimeline";
 
 const Curriculum = () => {
   const [content, setContent] = useState("1");
@@ -73,15 +72,16 @@ const Curriculum = () => {
 };
 
 const PartBtn = styled.button`
-  width: 380px;
+  width: 400px;
   height: 240px;
   border-radius: 20px;
   text-align: left;
-  margin: 20px;
+  margin: 0px 20px;
   @media (max-width: 390px) {
+    /* width: 62.22vw; */
     width: 247px;
     height: 141px;
-    overflow: hidden;
+    flex-shrink: 0;
   }
 `;
 
@@ -117,7 +117,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 60px;
-  overflow: hidden;
 `;
 
 const PartContainer = styled.div`
@@ -129,7 +128,7 @@ const PartContainer = styled.div`
 const TimeLine = styled.div`
   width: 1240px;
   @media (max-width: 390px) {
-    display: none;
+    /* display: none; */
   }
 `;
 
@@ -139,7 +138,6 @@ const BoxContainer = styled.div`
     display: flex;
     flex-direction: row;
     overflow-y: scroll;
-    background-color: pink;
   }
 `;
 
