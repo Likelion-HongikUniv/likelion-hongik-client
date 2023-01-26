@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
 
-export function PageMove() {
+export function PageMove(pagination: IPagination) {
   return (
     <Container>
       <MoveBtn>이전 페이지</MoveBtn>

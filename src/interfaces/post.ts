@@ -1,3 +1,14 @@
+export interface IPostList extends IPagination {
+  totalPage: number;
+  totalElements: number;
+  pagingSize: number;
+  currentPage: number;
+  isFirst: boolean;
+  isLast: boolean;
+  isEmpty: boolean;
+  data: IPost[];
+}
+
 export interface IPost {
   postId: number;
   title: string;
@@ -14,4 +25,14 @@ export interface IAuthor {
   nickname: string;
   profileImage?: string | null | undefined;
   isAuthor: boolean;
+}
+
+export interface IPagination {
+  totalPage: number;
+  totalElements: number;
+  pagingSize: number;
+  currentPage: number;
+  isFirst: boolean;
+  isLast: boolean;
+  isEmpty: boolean;
 }

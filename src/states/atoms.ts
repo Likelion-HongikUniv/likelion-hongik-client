@@ -3,6 +3,8 @@
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { IComment } from "../components/postPage/CommentsList";
 import { ICategory } from "../interfaces/category";
+import { IPost } from "../interfaces/post";
+import { IPagination } from "../interfaces/post";
 
 export const commentsListState = atom<IComment[]>({
   key: "commentsState",
@@ -87,7 +89,21 @@ export const tagListSelector = selectorFamily({
   key: "tagListSelector",
   get:
     (param: string) =>
-      ({ get }) => {
-        return get(tagListState).filter((tagList) => tagList.key === param);
-      },
+    ({ get }) => {
+      return get(tagListState).filter((tagList) => tagList.key === param);
+    },
+});
+
+export const postsListState = atom<IPost[]>({
+  key: "postsState",
+  default: [],
+});
+
+export const paginationState = atom<IPagination>({
+  key: "paginationState",
+});
+
+export const pageState = atom<number>({
+  key: "",
+  default: 1,
 });

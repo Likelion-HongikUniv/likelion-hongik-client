@@ -1,11 +1,37 @@
 import axios from "axios";
-import { IPost } from "../interfaces/post";
+import { IPost, IPagination, IPostList } from "../interfaces/post";
+import { useRecoilState } from "recoil";
+import { postsListState, paginationState } from "../states/atoms";
 
-const baseURL = "우리 api 주소";
+const baseURL = "http://13.124.126.164:8080/";
 
-const getPostList = async (category: string, tag: string, page: string) => {
-  const { data } = await axios.get<IPost>(`http://43.200.18.111:8080/community/posts/${category}/${tag}/${page}`);
-  return data;
+interface postsProps {
+  category?: string;
+  tag?: string;
+  page?: number;
+}
+
+const GetPostList = async ({ category, tag, page }: postsProps) => {
+  const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
+  const [pagination, setPagenation] = useRecoilState<IPagination>(paginationState);
+  await axios
+    .get<IPostList>(`${baseURL}/community/${category}/${tag}/${page}`)
+    .then((response) => {
+      setPagenation({
+        totalPage: response.data.totalPage,
+        totalElements: response.data.totalElements,
+        pagingSize: response.data.pagingSize,
+        currentPage: response.data.currentPage,
+        isFirst: response.data.isFirst,
+        isLast: response.data.isLast,
+        isEmpty: response.data.isEmpty,
+      });
+      setPostsData(response.data.data);
+      return response.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
 };
 
-export default getPostList;
+export default GetPostList;
