@@ -22,7 +22,7 @@ export interface IPost {
 
 export interface IAuthor {
   authorId: number;
-  nickname: string;
+  nickname?: string | null | undefined;
   profileImage?: string | null | undefined;
   isAuthor: boolean;
 }

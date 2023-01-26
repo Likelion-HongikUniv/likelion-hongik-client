@@ -1,13 +1,27 @@
 import styled from "styled-components";
 import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { paginationState, pageState } from "../../states/atoms";
 
-export function PageMove(pagination: IPagination) {
+export function PageMove() {
+  const pagination = useRecoilValue<IPagination>(paginationState);
+
+  const setPage = useSetRecoilState<number>(pageState);
+
   return (
     <Container>
-      <MoveBtn>이전 페이지</MoveBtn>
+      {!pagination.isFirst && !pagination.isEmpty ? (
+        <MoveBtn onClick={() => setPage(pagination.currentPage - 1)}>이전 페이지</MoveBtn>
+      ) : (
+        <NoneBtn />
+      )}
       <Pagination />
-      <MoveBtn>다음 페이지</MoveBtn>
+      {!pagination.isLast && !pagination.isEmpty ? (
+        <MoveBtn onClick={() => setPage(pagination.currentPage + 1)}>다음 페이지</MoveBtn>
+      ) : (
+        <NoneBtn />
+      )}
     </Container>
   );
 }
@@ -26,4 +40,10 @@ const MoveBtn = styled.button`
   border: 1px solid #ffffff;
   border-radius: 4px;
   color: #ffffff;
+`;
+
+const NoneBtn = styled.div`
+  width: 92px;
+  height: 33px;
+  border-radius: 4px;
 `;

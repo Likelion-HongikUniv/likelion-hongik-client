@@ -10,21 +10,20 @@ import { SideBar } from "../components/communityPage/SideBar";
 import { TopBoard } from "../components/communityPage/TopBoard";
 import { ProjectInfo } from "../components/communityPage/ProjectInfo";
 import Footer from "../components/elements/Footer";
-import { useRecoilState } from "recoil";
-import { nowTagState, postsListState, paginationState, pageState } from "../states/atoms";
-import { IPost, IPagination } from "../interfaces/post";
+import { useRecoilValue } from "recoil";
+import { nowTagState, postsListState, pageState } from "../states/atoms";
+import { IPost } from "../interfaces/post";
 import getPostList from "../api/getPostList";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
-  const [tag, setTag] = useRecoilState<string>(nowTagState);
-  const [posts, setPostsData] = useRecoilState<IPost[]>(postsListState);
-  const [pagination, setPagenation] = useRecoilState<IPagination>(paginationState);
-  const [page, setPage] = useRecoilState<number>(pageState);
+  const tag = useRecoilValue<string>(nowTagState);
+  const postsData = useRecoilValue<IPost[]>(postsListState);
+  const page = useRecoilValue<number>(pageState);
 
   useEffect(() => {
     getPostList({ category: categoryName, tag, page });
-  });
+  }, [categoryName, tag, page]);
 
   return (
     <>
@@ -36,8 +35,8 @@ export function CommunityPage() {
             {categoryName === "project" ? <ProjectInfo /> : ""}
             <CategoryTab categoryName={categoryName} />
             <TopBoard categoryName={categoryName} />
-            <PostList {...posts} />
-            <PageMove {...pagination} />
+            <PostList {...postsData} />
+            <PageMove />
           </Container>
         </Wrapper>
       </Section>

@@ -104,6 +104,6 @@ export const paginationState = atom<IPagination>({
 });
 
 export const pageState = atom<number>({
-  key: "",
+  key: "pageState",
   default: 1,
 });
