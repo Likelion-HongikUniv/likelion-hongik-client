@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 
 export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileState);
-  const [nickname, setNickname] = useState("");
-  const [major, setMajor] = useState("");
+  const [nickname, setNickname] = useState("닉네임");
+  const [major, setMajor] = useState("학과");
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPageEdit");
