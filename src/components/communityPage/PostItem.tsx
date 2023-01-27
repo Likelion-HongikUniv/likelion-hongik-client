@@ -3,12 +3,18 @@ import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
 import { IPost } from "../../interfaces/post";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 export function PostItem(post: IPost) {
+  const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+
+  const onClickHandler = () => {
+    navigate(`/post/${post.postId}`);
+  };
   return (
-    <Item>
+    <Item onClick={onClickHandler}>
       <Left>
         <User>
           <img src={post.author.profileImage ? post.author.profileImage : ""} alt="user-profile" />
@@ -42,6 +48,7 @@ const Item = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   img {
     width: 140px;
     height: 140px;
