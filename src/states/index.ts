@@ -8,6 +8,7 @@ const { persistAtom } = recoilPersist()
 export const userState = atom<string>({
   key: "userState",
   default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({
@@ -36,6 +37,7 @@ export const majorState = atom<string>({
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const partState = atom<string>({

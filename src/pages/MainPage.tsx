@@ -9,55 +9,23 @@ import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { editState } from "../states";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+
 
 export function MainPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [info, setInfo] = useRecoilState(editState);
+  
   const token = localStorage.getItem("token");
   axios.defaults.withCredentials = true;
 
   
-  // const accessToken =
-  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
-  let data = {
-    nickname: "나는야 멋쟁이 사자",
-        major: "컴퓨터공학과",
-        studentId: "C311111",
-        part: "Backend",
-        phoneNum: "01012345678",
-  }
-  //   axios.post(
-  //   "http://localhost:8080/accounts/detail_info/",
-  //   JSON.stringify(data),
-  //   // { withCredentials: true },
-  //   {
-  //     headers: { 
-  //       "Content-Type": `application/json`,
-  //       JWT: `${accessToken}` },
-  //   },
-  // );
-
-//   const getProfile = async () => {
-//     await axios
-//       .get(`http://13.124.126.164:8080/profile`,
-//       headers: {
-          //   "Content-Type": `application/json`,
-          //   JWT: token,
-          // },
-//       })
-//       .then((response) => {
-//         console.log(response);
-//       })
-//       .catch((err) => {console.log(err);
-//       });
-//   };
-// getBoardData();
+  
 
 useEffect(() => {
-    if (token) {
-      
-    }
   })
   return (
     <>

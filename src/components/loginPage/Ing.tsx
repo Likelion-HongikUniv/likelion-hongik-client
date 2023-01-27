@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userState } from "../../states/index";
+import { profileState } from "../../states";
 import { userInfoState } from "../../states/user";
 
 
@@ -14,12 +15,13 @@ const Ing = () => {
   const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [profileImage, setProfileImage] = useRecoilState(profileState);
   const token = searchParams.get("token");
 
   const getProfile = async () => {
     await axios
-    //   .get(`http://localhost:8080/profile`, {
-      .get(`http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
+      .get(`http://localhost:8080/profile`, {
+    //   .get(`http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
         // withCredentials: true,
         headers: {
           "Content-Type": `application/json`,
@@ -29,7 +31,7 @@ const Ing = () => {
       .then((response) => {
         console.log(response);
         setUsername(response.data.name);
-        localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
+        setProfileImage(response.data.profileImage);
         if(token){
             setUserInfo({ userId: response.data.id, profileImageSrc: response.data.profileImage, username: response.data.name, accessToken: token });
             console.log("setUserInfo 완료!");
