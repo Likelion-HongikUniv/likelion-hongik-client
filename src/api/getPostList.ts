@@ -3,7 +3,7 @@ import { IPost, IPagination, IPostList } from "../interfaces/post";
 import { useSetRecoilState } from "recoil";
 import { postsListState, paginationState } from "../states/atoms";
 
-const baseURL = "http://13.124.126.164:8080/";
+const baseURL = "";
 
 interface postsProps {
   category?: string;
@@ -15,7 +15,7 @@ const GetPostList = async ({ category, tag, page }: postsProps) => {
   const setPostsData = useSetRecoilState<IPost[]>(postsListState);
   const setPagenation = useSetRecoilState<IPagination>(paginationState);
   await axios
-    .get<IPostList>(`${baseURL}/community/${category}/${tag}/${page}`)
+    .get<IPostList>(`${baseURL}community/${category}/${tag}/${page}`)
     .then((response) => {
       setPagenation({
         totalPage: response.data.totalPage,
