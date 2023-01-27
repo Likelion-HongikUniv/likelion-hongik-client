@@ -29,10 +29,11 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/ing" element={<Ing />} />
             <Route path="/community/:categoryName" element={<CommunityPage />} />
             <Route path="/login/detail" element={<LoginDetailPage />} />
             <Route path="/login/complete" element={<CompletePage />} />
-            <Route path="/post/:id" element={<PostPage />} />
+            <Route path="/community/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/myPagePost" element={<MyPostPage />} />
             <Route path="/myPageReply" element={<MyReplyPage />} />

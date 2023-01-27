@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 export function SocialLogin() {
   const navigate = useNavigate();
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("구글 로그인 클릭");
     window.open(
       "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
@@ -21,14 +20,18 @@ export function SocialLogin() {
   };
   const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("네이버 로그인 클릭");
-    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver", "_self");
-    // navigate('/ing');
+    window.open(
+      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
+      "_self",
+    );
   };
 
   const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("카카오 로그인 클릭");
-    window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao", "_self");
-    // navigate('/ing');
+    window.open(
+      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
+      "_self",
+    );
   };
 
   return (
