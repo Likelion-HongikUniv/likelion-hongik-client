@@ -6,16 +6,19 @@ import { CommentArrow } from "../icons/CommentArrow";
 import { LikeButton } from "./LikeButton";
 import { IReply } from "../../interfaces/comments";
 import moment from "moment";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { CommentArrowSmall } from "../icons/CommentArrowSmall";
 // interface 관리
 
 export function Replies(reply: IReply) {
   const curDate = reply.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+  const isPC = useMediaQuery("(min-width: 992px)");
 
   return (
     <>
       <Row>
-        <CommentArrow />
+        {isPC ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
           <Profile />
           <TextContainer>

@@ -4,8 +4,8 @@ import Part1 from "./Curriculum/Part1";
 import Part2 from "./Curriculum/Part2";
 import Part3 from "./Curriculum/Part3";
 import "../../styles/curriculum.css";
-import { Fade } from "react-awesome-reveal";
-import MobileTimeline from "./mobile/MobileTimeline";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Curriculum = () => {
   const [content, setContent] = useState("1");
@@ -31,57 +31,62 @@ const Curriculum = () => {
     });
   }, [content]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
+
   return (
-    <Fade>
-      <Container>
-        <BoxContainer>
-          <PartBtn id="1" onClick={handleClickButton}>
-            <PartName id="1">기획·디자인</PartName>
-            <PartText id="1">
-              고객 중심 사고를 바탕으로
-              <br />
-              서비스 기획·디자인 일련의 과정을 배워
-              <br />
-              실제 서비스를 기획합니다.
-            </PartText>
-          </PartBtn>
-          <PartBtn id="2" onClick={handleClickButton}>
-            <PartName id="2">프론트엔드</PartName>
-            <PartText id="2">
-              모바일 앱과 웹 서비스 개발을 위한
-              <br />
-              이론을 배우고 실습합니다.
-              <br />
-              안드로이드/iOS/웹 파트로 나뉩니다.
-            </PartText>
-          </PartBtn>
-          <PartBtn id="3" onClick={handleClickButton}>
-            <PartName id="3">백엔드</PartName>
-            <PartText id="3">
-              시스템 설계부터 배포까지,
-              <br />
-              서비스 및 데이터의 흐름을 관리하며
-              <br />
-              전반적인 Life Cycle을 경험합니다.
-            </PartText>
-          </PartBtn>
-        </BoxContainer>
-        <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
-      </Container>
-    </Fade>
+    <Container data-aos="fade-up">
+      <BoxContainer>
+        <PartBtn id="1" onClick={handleClickButton}>
+          <PartName id="1">기획·디자인</PartName>
+          <PartText id="1">
+            고객 중심 사고를 바탕으로
+            <br />
+            서비스 기획·디자인 일련의 과정을 배워
+            <br />
+            실제 서비스를 기획합니다.
+          </PartText>
+        </PartBtn>
+        <PartBtn id="2" onClick={handleClickButton}>
+          <PartName id="2">프론트엔드</PartName>
+          <PartText id="2">
+            모바일 앱과 웹 서비스 개발을 위한
+            <br />
+            이론을 배우고 실습합니다.
+            <br />
+            안드로이드/iOS/웹 파트로 나뉩니다.
+          </PartText>
+        </PartBtn>
+        <PartBtn id="3" onClick={handleClickButton}>
+          <PartName id="3">백엔드</PartName>
+          <PartText id="3">
+            시스템 설계부터 배포까지,
+            <br />
+            서비스 및 데이터의 흐름을 관리하며
+            <br />
+            전반적인 Life Cycle을 경험합니다.
+          </PartText>
+        </PartBtn>
+      </BoxContainer>
+      <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
+    </Container>
   );
 };
 
 const PartBtn = styled.button`
-  width: 380px;
+  width: 400px;
   height: 240px;
   border-radius: 20px;
   text-align: left;
-  margin: 20px;
+  margin: 0px 20px;
   @media (max-width: 390px) {
+    /* width: 62.22vw; */
     width: 247px;
     height: 141px;
-    overflow: hidden;
+    flex-shrink: 0;
   }
 `;
 
@@ -107,7 +112,7 @@ const PartText = styled.p`
     font-size: 14px;
     line-height: 23px;
     margin-left: 20px;
-    margin-top: 0px
+    margin-top: 0px;
   }
 `;
 
@@ -117,7 +122,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 60px;
-  overflow: hidden;
 `;
 
 const PartContainer = styled.div`
@@ -129,7 +133,7 @@ const PartContainer = styled.div`
 const TimeLine = styled.div`
   width: 1240px;
   @media (max-width: 390px) {
-    display: none;
+    /* display: none; */
   }
 `;
 
@@ -139,7 +143,6 @@ const BoxContainer = styled.div`
     display: flex;
     flex-direction: row;
     overflow-y: scroll;
-    background-color: pink;
   }
 `;
 

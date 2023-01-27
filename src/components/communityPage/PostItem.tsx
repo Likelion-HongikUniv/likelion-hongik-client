@@ -1,20 +1,33 @@
-import React from "react";
 import styled from "styled-components";
 import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
 import { IPost } from "../../interfaces/post";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export function PostItem(post: IPost) {
+  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const navigate = useNavigate();
+  const curDate = post.createdTime;
+  const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+
+  const onClickHandler = () => {
+    navigate(`/post/${post.postId}`);
+  };
   return (
-    <Item>
+    <Item onClick={onClickHandler}>
       <Left>
         <User>
-          <img src={post.author.profileImage} alt="user-profile" />
+          <img src={post.author.profileImage ? post.author.profileImage : ""} alt="user-profile" />
           <div>
             <UserName>{post.author.nickname}</UserName>
-            <UploadDate>{post.createdTime}</UploadDate>
+            <UploadDate>{date}</UploadDate>
           </div>
         </User>
+        {post.thumbNailImage && isMobile && (
+          <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+        )}
         <Content>
           <Title>{post.title}</Title>
           <p>{post.body}</p>
@@ -30,7 +43,9 @@ export function PostItem(post: IPost) {
           </Icon>
         </Bottom>
       </Left>
-      <img src={post.thumbNailUrl} alt="post-thumbnail" />
+      {post.thumbNailImage && !isMobile && (
+        <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+      )}
     </Item>
   );
 }
@@ -40,10 +55,23 @@ const Item = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   img {
     width: 140px;
     height: 140px;
     object-fit: contain;
+    border-radius: 12px;
+  }
+  @media (max-width: 390px) {
+    display: block;
+    img {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 20px;
+    }
+  }
+  &:last-child {
+    border: none;
   }
 `;
 
@@ -75,6 +103,11 @@ const UserName = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
+  @media (max-width: 390px) {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 const UploadDate = styled.span`
@@ -84,6 +117,11 @@ const UploadDate = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
+  @media (max-width: 390px) {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
 
 const Content = styled.div`
@@ -105,13 +143,23 @@ const Content = styled.div`
     opacity: 0.98;
     margin: 0;
   }
+  @media (max-width: 390px) {
+    width: 100%;
+    padding-left: 0;
+    p {
+      width: 100%;
+      font-size: 12px;
+      line-height: 20px;
+      height: auto;
+    }
+  }
 `;
 
 const Title = styled.span`
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 691px;
+  width: 691px;
   height: 24px;
   font-weight: 700;
   font-size: 20px;
@@ -119,6 +167,11 @@ const Title = styled.span`
   color: #ffffff;
   opacity: 0.98;
   margin-bottom: 12px;
+  @media (max-width: 390px) {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 const Bottom = styled.div`
@@ -126,6 +179,9 @@ const Bottom = styled.div`
   display: flex;
   gap: 15px;
   flex-direction: row;
+  @media (max-width: 390px) {
+    padding-left: 1.67px;
+  }
 `;
 
 const Icon = styled.div`
@@ -138,5 +194,11 @@ const Icon = styled.div`
   img {
     width: 18px;
     height: 18px;
+  }
+  @media (max-width: 390px) {
+    img {
+      width: 14px;
+      height: 14px;
+    }
   }
 `;

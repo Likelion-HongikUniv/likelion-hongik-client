@@ -29,7 +29,8 @@ const LeftNav = styled.nav`
   background-color: ${BLACK_1};
   color: ${WHITE_1};
   position: relative;
-  margin-left: 340px;
+  /* margin-left: 340px; */
+  /* 각 컨테이너에 margin-left: 8.33vw; 주고 justify-content 하면 가운데 정렬! */
   padding-top: 140px;
   letter-spacing: -0.32px;
 

@@ -55,6 +55,7 @@ const TextContainer = styled.div`
   font-weight: 600;
   line-height: 44px;
   @media (max-width: 390px) {
+    width: 88vw;
     font-size: 15px;
     line-height: 24px;
     margin: 21px;

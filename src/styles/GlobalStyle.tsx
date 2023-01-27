@@ -4,8 +4,9 @@ import { createGlobalStyle } from "styled-components";
 import "./font.css";
 import { BLACK_1 } from "./theme";
 
-const GlobalStyle = createGlobalStyle`
-  * {
+const GlobalStyle = createGlobalStyle` 
+
+* {
     box-sizing: border-box;
   }
 
