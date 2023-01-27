@@ -35,7 +35,7 @@ export function TabBar({ clickedCategory, setClickedCategory, style }: TabBarPro
 }
 
 const Wrapper = styled.div`
-  width: 715px;
+  width: 80vw;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;

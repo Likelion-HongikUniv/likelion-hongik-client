@@ -22,9 +22,9 @@ export function WritingPage() {
           alignItems: "center",
         }}
       >
-        <div style={{ width: "80%", justifyContent: "center", alignContent: "center" }}>
+        <div style={{ width: "80vw", justifyContent: "center", alignContent: "center" }}>
           <TabBar
-            style={{ marginTop: "40px" }}
+            style={{ marginTop: "20px" }}
             clickedCategory={clickedCategory}
             setClickedCategory={setClickedCategory}
           />
