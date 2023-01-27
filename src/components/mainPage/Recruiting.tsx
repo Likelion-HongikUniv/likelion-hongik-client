@@ -1,26 +1,31 @@
 import styled from "styled-components";
 import main_recruiting from "../images/main_recruiting.png";
-import { Fade } from "react-awesome-reveal";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Recruiting = () => {
   const onClickBtn = () => {
     window.location.replace("/recruit");
   };
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
   return (
-    <Fade>
-      <RecruitingContainer>
-        <BoxContainer>
-          <Now>NOW</Now>
-          <Title>멋쟁이 사자처럼 11기</Title>
-          <Text>
-            지원 기간 : 2022.02.23 ~ 2022.03.13
-            <br />
-            모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명
-          </Text>
-        </BoxContainer>
-        <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>
-      </RecruitingContainer>
-    </Fade>
+    <RecruitingContainer data-aos="zoom-in">
+      <BoxContainer>
+        <Now>NOW</Now>
+        <Title>멋쟁이 사자처럼 11기</Title>
+        <Text>
+          지원 기간 : 2022.02.23 ~ 2022.03.13
+          <br />
+          모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명
+        </Text>
+      </BoxContainer>
+      <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>
+    </RecruitingContainer>
   );
 };
 

@@ -15,7 +15,7 @@ import { MyPage } from "./pages/MyPage/Mypage";
 import { MyPostPage } from "./pages/MyPage/MyPostPage";
 import { MyReplyPage } from "./pages/MyPage/MyReplyPage";
 import { MyLikePage } from "./pages/MyPage/MyLikePage";
-import Ing from "./pages/LoginPage/Ing";
+import  Ing  from './components/loginPage/Ing';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +40,7 @@ function App() {
             <Route path="/myPageLike" element={<MyLikePage />} />
             <Route path="/myPageEdit" element={<InfoEditPage />} />
             <Route path="/write/:userid" element={<WritingPage />} />
+            <Route path="/ing" element={<Ing />} />
           </Routes>
         </RecoilRoot>
       </QueryClientProvider>
