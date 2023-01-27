@@ -3,6 +3,8 @@
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { IComment } from "../interfaces/comments";
 import { ICategory } from "../interfaces/category";
+import { IPost } from "../interfaces/post";
+import { IPagination } from "../interfaces/post";
 
 export const commentsListState = atom<IComment[]>({
   key: "commentsState",
@@ -69,17 +71,13 @@ export const tagListState = atom<ICategory[]>({
           key: "pm",
           text: "기획·디자인",
         },
-        {
-          key: "conf",
-          text: "프로젝트 회의",
-        },
       ],
     },
   ],
 });
 
 export const nowTagState = atom<string>({
-  key: "",
+  key: "nowTagState",
   default: "notice",
 });
 
@@ -87,7 +85,30 @@ export const tagListSelector = selectorFamily({
   key: "tagListSelector",
   get:
     (param: string) =>
-      ({ get }) => {
-        return get(tagListState).filter((tagList) => tagList.key === param);
-      },
+    ({ get }) => {
+      return get(tagListState).filter((tagList) => tagList.key === param);
+    },
+});
+
+export const postsListState = atom<IPost[]>({
+  key: "postsState",
+  default: [],
+});
+
+export const paginationState = atom<IPagination>({
+  key: "paginationState",
+  default: {
+    totalPage: 3,
+    totalElements: 14,
+    pagingSize: 5,
+    currentPage: 1,
+    isFirst: false,
+    isLast: false,
+    isEmpty: false,
+  },
+});
+
+export const pageState = atom<number>({
+  key: "pageState",
+  default: 1,
 });

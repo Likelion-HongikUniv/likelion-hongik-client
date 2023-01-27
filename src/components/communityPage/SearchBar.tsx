@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 export function SearchBar() {
@@ -11,6 +10,7 @@ export function SearchBar() {
 }
 
 const SearchContainer = styled.form`
+  margin-top: 20px;
   display: flex;
   gap: 16px;
   width: 100%;
@@ -40,5 +40,23 @@ const SearchContainer = styled.form`
     color: #000000;
     border: none;
     font-size: 20px;
+  }
+  @media (max-width: 390px) {
+    width: 100%;
+    flex-direction: column;
+    input {
+      width: 100%;
+      height: 48px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    button {
+      width: 100%;
+      height: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+    }
   }
 `;
