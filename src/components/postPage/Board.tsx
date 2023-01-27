@@ -5,6 +5,7 @@ import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { MoreButton } from "../icons/MoreButton";
 
 export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 992px)");
@@ -16,11 +17,13 @@ export function Board(boardData: IBoard) {
       {isPC ? (
         <Column gap="24px">
           <Title>{boardData.title || "게시글 제목"}</Title>
-          <Row gap="1rem" alignItems="center">
-            {boardData.author?.nickname}
-            <Date>{date || "2022.11.30"}</Date>
-            {boardData.author?.isAuthor ? "수정하기" : "로그아웃 상태"}
-          </Row>
+          <SubTextDiv>
+            <Row gap="1rem" alignItems="center">
+              {boardData.author?.nickname}
+              <Date>{date || "2022.11.30"}</Date>
+            </Row>
+            <MoreButton />
+          </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">
             <ViewerUi body={boardData.body} />
@@ -31,11 +34,13 @@ export function Board(boardData: IBoard) {
       ) : (
         <Column gap="12px">
           <Title>{boardData.title || "게시글 제목"}</Title>
-          <Row gap="1rem" alignItems="center">
-            {boardData.author?.nickname}
-            <Date>{date || "2022.11.30"}</Date>
-            {boardData.author?.isAuthor ? "수정하기" : "로그아웃 상태"}
-          </Row>
+          <SubTextDiv>
+            <AuthorDiv>
+              <div className="author">{boardData.author?.nickname}</div>
+              <Date>{date || "2022.11.30"}</Date>
+            </AuthorDiv>
+            <MoreButton />
+          </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">
             <ViewerUi body={boardData.body} />
@@ -57,6 +62,24 @@ const Title = styled.h1`
   /* or 142% */
 
   letter-spacing: -0.32px;
+`;
+
+const AuthorDiv = styled.div`
+  color: #d7d7d7;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  gap: 0.5em;
+  & > .author {
+    font-weight: 600;
+  }
+`;
+
+const SubTextDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Date = styled.p`
