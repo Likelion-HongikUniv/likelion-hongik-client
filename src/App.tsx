@@ -35,11 +35,11 @@ function App() {
             <Route path="/login/complete" element={<CompletePage />} />
             <Route path="/community/post/:id" element={<PostPage />} />
             <Route path="/myPage" element={<MyPage />} />
-            <Route path="/myPagePost" element={<MyPostPage />} />
-            <Route path="/myPageReply" element={<MyReplyPage />} />
-            <Route path="/myPageLike" element={<MyLikePage />} />
-            <Route path="/myPageEdit" element={<InfoEditPage />} />
-            <Route path="/write" element={<WritingPage />} />
+            <Route path="/myPage/post" element={<MyPostPage />} />
+            <Route path="/myPage/reply" element={<MyReplyPage />} />
+            <Route path="/myPage/like" element={<MyLikePage />} />
+            <Route path="/myPage/edit" element={<InfoEditPage />} />
+            <Route path="/write/" element={<WritingPage />} />
             <Route path="/ing" element={<Ing />} />
           </Routes>
         </RecoilRoot>

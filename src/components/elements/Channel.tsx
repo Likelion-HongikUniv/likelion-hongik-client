@@ -6,7 +6,7 @@ const Channel = () => {
     <Container>
       <Logo />
       <ChannelContainer>
-        <ChannelImg onClick={() => window.open("https://www.instagram.com/likelion.hongik/", "_blank")}>
+        <ChannelImg onClick={() => window.open("https://www.instagram.com/likelion_hongik/?hl=fi", "_blank")}>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
             <path
               fill="white"
@@ -46,6 +46,7 @@ const ChannelImg = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const ChannelContainer = styled.div`

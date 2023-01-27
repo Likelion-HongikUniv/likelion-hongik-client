@@ -18,6 +18,23 @@ export function MainPage() {
     });
   });
 
+  //   const getBoardData = async () => {
+  //     await axios
+  //       .get(`http://localhost:8080/community/post/12`,
+  //       {
+  //         // withCredentials: true,
+  //         headers: {
+  //           "Content-Type": `application/json`,
+  //           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((err) => {console.log(err);
+  //       });
+  //   };
+  // getBoardData();
   return (
     <>
       <Header />

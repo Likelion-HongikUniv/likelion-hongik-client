@@ -12,6 +12,10 @@ import GetPostDetail from "../api/getPostDetail";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 export function PostPage() {
+  const [idParams, setIdParams] = useSearchParams();
+  const postId = idParams.get("id");
+  const boardData = post.data[0];
+  const commentData = postDetail.comments as IComment[]; //오류나서 내가 맘대로 수정해둠
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
   const isPC = useMediaQuery("(min-width : 992px)");

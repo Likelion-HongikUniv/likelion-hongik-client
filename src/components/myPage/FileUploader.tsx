@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { profileState } from "./../../states/index";
+import { profileImgState } from "./../../states/index";
+import axios from "axios";
 
 export interface UploadImage {
   file: File;
@@ -11,7 +12,9 @@ export interface UploadImage {
 
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
-  const [profileImg, setProfileImg] = useRecoilState(profileState);
+  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
+
+  console.log(profileImg);
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();
@@ -29,19 +32,16 @@ export function FileUploader() {
         type: fileList[0].type.slice(0, 5),
       });
 
-      // console.log(url);
-      // const file = fileList[0];
-      // setProfileUrl(file);
-      // console.log(profileUrl);
+      const formData = new FormData();
+      formData.append("files", fileList[0]);
 
-      // setProfileUrl(url);
-      // const blob = new Blob([url], { type: "image/*" });
-      // // console.log(blob);
-
-      // const formData = new FormData();
-      // formData.append("profile", URL.createObjectURL(fileList[0]));
-      // console.log(URL.createObjectURL(fileList[0]));
-      // console.log(formData);
+      axios.post("///", {
+        //이미지파일 전송?
+        data: formData,
+        headers: {
+          "Content-Type": `multipart/form-data;`,
+        },
+      });
     }
   };
 
@@ -68,6 +68,19 @@ const FileUploadContainer = styled.div`
   width: 105px;
   height: 105px;
   display: flex;
+  @media (max-width: 768px) {
+    //모바일
+    width: 60px;
+    height: 60px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const FileInput = styled.input`
@@ -82,4 +95,18 @@ const ProfileThumbnail = styled.img`
   border: none;
   cursor: pointer;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    //모바일
+    width: 60px;
+    height: 60px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
