@@ -1,21 +1,38 @@
+export interface IPostList extends IPagination {
+  totalPage: number;
+  totalElements: number;
+  pagingSize: number;
+  currentPage: number;
+  isFirst: boolean;
+  isLast: boolean;
+  isEmpty: boolean;
+  data: IPost[];
+}
+
 export interface IPost {
-  postId: string;
+  postId: number;
   title: string;
   author: IAuthor;
   body: string;
-  thumbNailUrl: string;
-  likeCount: number;
-  commentCount: number;
-  createdTime: string;
+  thumbNailImage?: string | null | undefined;
+  likeCount?: number;
+  commentCount?: number;
+  createdTime?: string;
 }
 
 export interface IAuthor {
   authorId: number;
-  nickname: string;
-  profileImage?: string;
+  nickname?: string | null | undefined;
+  profileImage?: string | null | undefined;
   isAuthor: boolean;
 }
 
-export interface IPostList {
-  postsData: IPost;
+export interface IPagination {
+  totalPage: number;
+  totalElements: number;
+  pagingSize: number;
+  currentPage: number;
+  isFirst: boolean;
+  isLast: boolean;
+  isEmpty: boolean;
 }
