@@ -26,12 +26,56 @@ const ForDiv = styled.div`
   font-weight: 700;
   display: flex;
   padding: 0 340px;
+
+  @media (max-width: 391px) {
+    padding: 0 0;
+    justify-content: center;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding: 0 0;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding: 0 0;
+    /* justify-content: center; */
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const TitleText = styled.div`
   font-size: 40px;
   line-height: 48px;
   padding-top: 260px;
+
+  @media (max-width: 391px) {
+    font-size: 28px;
+    line-height: 33.89px;
+    padding-top: 80px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    font-size: 32px;
+    line-height: 38px;
+    padding-top: 140px;
+    padding-left: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    font-size: 36px;
+    line-height: 42px;
+    padding-top: 240px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const SmallText = styled.div`
@@ -40,6 +84,38 @@ const SmallText = styled.div`
   line-height: 28.8px;
   color: #dfdfdf;
   margin-top: 30px;
+
+  @media (max-width: 391px) {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 23px;
+    width: 347px;
+    height: 46px;
+    margin-bottom: 16px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    margin-top: 18px;
+    font-size: 20px;
+    line-height: 26px;
+    width: 392px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    margin-top: 22px;
+    font-size: 22px;
+    line-height: 28px;
+    width: max-content;
+    margin-bottom: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const Question = styled.div`
@@ -52,6 +128,33 @@ const Question = styled.div`
   ::first-letter {
     color: #ed7f30;
   }
+
+  @media (max-width: 391px) {
+    margin-top: 24px;
+    font-size: 24px;
+    line-height: 28.8px;
+    width: 318px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    margin-top: 28px;
+    font-size: 28px;
+    line-height: 30.2px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    margin-top: 26px;
+    font-size: 30px;
+    line-height: 34px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const Answer = styled.div`
@@ -60,4 +163,31 @@ const Answer = styled.div`
   line-height: 28.8px;
   margin-top: 20px;
   color: #dfdfdf;
+
+  @media (max-width: 391px) {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 23px;
+    width: 339px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    margin-top: 14px;
+    font-size: 20px;
+    line-height: 26px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    margin-top: 18px;
+    font-size: 22px;
+    line-height: 28px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;

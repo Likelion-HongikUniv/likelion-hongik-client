@@ -7,26 +7,34 @@ import Channel from "../components/elements/Channel";
 import Footer from "../components/elements/Footer";
 import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { editState } from "../states";
-import axios from "axios";
-import { useRecoilState } from "recoil";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export function MainPage() {
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [info, setInfo] = useRecoilState(editState);
-  
-  const token = localStorage.getItem("token");
-  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
 
-  
-  
-
-useEffect(() => {
-  })
+  //   const getBoardData = async () => {
+  //     await axios
+  //       .get(`http://localhost:8080/community/post/12`,
+  //       {
+  //         // withCredentials: true,
+  //         headers: {
+  //           "Content-Type": `application/json`,
+  //           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((err) => {console.log(err);
+  //       });
+  //   };
+  // getBoardData();
   return (
     <>
       <Header />
@@ -34,18 +42,18 @@ useEffect(() => {
         <MainPageContainer>
           <Main />
           <>
-            <Title>Curriculum</Title>
-            <Desc>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</Desc>
+            <Title data-aos="fade-up">Curriculum</Title>
+            <Desc data-aos="fade-up">멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</Desc>
             <Curriculum />
           </>
           <>
-            <Title>Our Projects</Title>
-            <Desc>역대 기수에서 진행한 프로젝트를 소개합니다.</Desc>
+            <Title data-aos="fade-up">Our Projects</Title>
+            <Desc data-aos="fade-up">역대 기수에서 진행한 프로젝트를 소개합니다.</Desc>
             <Project />
           </>
           <>
-            <Title>Recruiting</Title>
-            <Desc>멋쟁이 사자처럼에 지원하기</Desc>
+            <Title data-aos="zoom-in">Recruiting</Title>
+            <Desc data-aos="zoom-in">멋쟁이 사자처럼에 지원하기</Desc>
             <Recruiting />
           </>
           <Channel />

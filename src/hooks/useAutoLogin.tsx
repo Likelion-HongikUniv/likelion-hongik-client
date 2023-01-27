@@ -9,17 +9,13 @@ export default function useAutoLogin() {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const pathname = window.location.href;
 
-  const token = searchParams.get("token");
-  if (token)  localStorage.setItem('token', token);
-
-
-  // const accessToken = localStorage.getItem("likelion-hongik-client");
+  // const token = searchParams.get("token");
   const accessToken = localStorage.getItem("token");
-  const privatePage =
-    pathname.includes("myPage") ||
-    pathname.includes("post") ||
-    pathname.includes("community") ||
-    pathname.includes("post"); // 로그인 해야만 접근 가능한 페이지명
+  const privatePage = "";
+  // pathname.includes("myPage") ||
+  // pathname.includes("post") ||
+  // pathname.includes("community") ||
+  // pathname.includes("post"); // 로그인 해야만 접근 가능한 페이지명
 
   useEffect(() => {
     if (accessToken) {

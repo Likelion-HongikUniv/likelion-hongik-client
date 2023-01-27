@@ -6,13 +6,11 @@ import { useRecoilState } from "recoil";
 import { editState } from "../../states";
 import useSelect from "./../../hooks/useSelect";
 import axios from "axios";
-import { useSearchParams, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export function LoginDetailInfo() {
   const navigate = useNavigate();
   const [info, setInfo] = useRecoilState(editState);
-
   const nickname = useInput("");
   const major = useInput("");
   const part = useSelect("");
@@ -61,18 +59,6 @@ export function LoginDetailInfo() {
       });
 
   }
-
-  
-  // let data = {
-  //   nickname: nickname.value,
-  //   major: major.value,
-  //   studentId: studentNum.value,
-  //   part: part
-  // }
-
-  // const selectboxHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setPart(event.target.value);
-  // };
 
   useEffect(() => {
     console.log(jwt);

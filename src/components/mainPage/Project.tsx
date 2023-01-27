@@ -1,4 +1,3 @@
-import { Fade } from "react-awesome-reveal";
 import styled from "styled-components";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
@@ -9,6 +8,9 @@ import project2 from "../images/main_project2.png";
 import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
 import project5 from "../images/main_project5.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 interface Iarrow {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -79,7 +81,7 @@ const Project = () => {
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.currentTarget.style.opacity = "1";
-    e.currentTarget.style.transition = 'all ease 0.3s 0s'
+    e.currentTarget.style.transition = "all ease 0.3s 0s";
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -87,27 +89,31 @@ const Project = () => {
     e.currentTarget.style.transition = "all ease 0.3s 0s";
   };
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
+
   return (
-    <Fade>
-      <ProjectContainer>
-        <StyledSlider {...settings}>
-          {imageList.map(({ title, desc, pid }: Iprojects) => {
-            return (
-              <div key={pid}>
-                <ProjectBox title={title}>
-                    <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                      <HoverText>
-                        <Title>{`project` + pid}</Title>
-                        <Desc>{desc}</Desc>
-                      </HoverText>
-                    </Hover>
-                </ProjectBox>
-              </div>
-            );
-          })}
-        </StyledSlider>
-      </ProjectContainer>
-    </Fade>
+    <ProjectContainer data-aos="fade-up">
+      <StyledSlider {...settings}>
+        {imageList.map(({ title, desc, pid }: Iprojects) => {
+          return (
+            <div key={pid}>
+              <ProjectBox title={title}>
+                <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  <HoverText>
+                    <Title>{`project` + pid}</Title>
+                    <Desc>{desc}</Desc>
+                  </HoverText>
+                </Hover>
+              </ProjectBox>
+            </div>
+          );
+        })}
+      </StyledSlider>
+    </ProjectContainer>
   );
 };
 

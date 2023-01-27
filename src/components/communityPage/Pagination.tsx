@@ -1,21 +1,29 @@
-import React from "react";
 import styled from "styled-components";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { IPagination } from "../../interfaces/post";
+import { paginationState, pageState } from "../../states/atoms";
 
 export function Pagination() {
+  const pagination = useRecoilValue<IPagination>(paginationState);
+  const pageArr = Array.from({ length: pagination.totalPage }, (v, i) => i + 1);
+  const setPage = useSetRecoilState<number>(pageState);
   const activeButton = {
     background: "#ED7F30",
     border: "none",
   };
+
   return (
     <PageWrapper>
-      <PageBtn type="button" style={activeButton}>
-        1
-      </PageBtn>
-      <PageBtn type="button">2</PageBtn>
-      <PageBtn type="button">3</PageBtn>
-      <PageBtn type="button">4</PageBtn>
-      <PageBtn type="button">5</PageBtn>
-      <PageBtn type="button">...</PageBtn>
+      {pageArr.map((pageNum: number) => (
+        <PageBtn
+          key={pageNum}
+          type="button"
+          style={pageNum === pagination.currentPage ? activeButton : {}}
+          onClick={() => setPage(pageNum)}
+        >
+          {pageNum}
+        </PageBtn>
+      ))}
     </PageWrapper>
   );
 }
@@ -32,4 +40,8 @@ const PageBtn = styled.button`
   border: 1px solid #ffffff;
   border-radius: 4px;
   color: #ffffff;
+  @media (max-width: 390px) {
+    width: 28px;
+    height: 28px;
+  }
 `;

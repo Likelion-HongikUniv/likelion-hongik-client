@@ -3,78 +3,63 @@ import { useRecoilState } from "recoil";
 import { btnActiveState } from "./../../states/index";
 import { useNavigate } from "react-router-dom";
 
-export function NavSelectPart() {
+export function NavSelectPartMobile() {
   const [isBtnActive, SetIsBtnActive] = useRecoilState(btnActiveState);
   const navigate = useNavigate();
   return (
     <MyPagePart>
       <SelectPart
-        style={{ width: "66px" }}
+        style={{ width: "70px" }}
         className={isBtnActive === 1 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(1);
-          navigate("/myPage/post");
+          navigate("/myPagePost");
         }}
       >
         내가 쓴 글
       </SelectPart>
       <SelectPart
-        style={{ width: "81px" }}
+        style={{ width: "80px" }}
         className={isBtnActive === 2 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(2);
-          navigate("/myPage/reply");
+          navigate("/myPageReply");
         }}
       >
         내가 쓴 댓글
       </SelectPart>
       <SelectPart
-        style={{ width: "95px" }}
+        style={{ width: "90px" }}
         className={isBtnActive === 3 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(3);
-          navigate("/myPage/like");
+          navigate("/myPageLike");
         }}
       >
         좋아요 누른 글
-      </SelectPart>
-      <Setting>설정</Setting>
-      <SelectPart
-        style={{ marginTop: "20px", width: "62px" }}
-        className={isBtnActive === 4 ? "active" : ""}
-        onClick={() => {
-          SetIsBtnActive(4);
-          navigate("/myPage/edit");
-        }}
-      >
-        정보 변경
       </SelectPart>
     </MyPagePart>
   );
 }
 
 const MyPagePart = styled.div`
+  display: flex;
   padding-top: 32px;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 12px;
   line-height: 19.36px;
 `;
 
 const SelectPart = styled.div`
   margin-top: 16px;
   margin-left: 11px;
-  height: 19px;
+  height: 40px;
   cursor: pointer;
-
+  padding: 12px;
+  display: flex;
+  justify-content: center;
   &.active {
     color: #ed7f30;
+    border-bottom: 2px solid white;
   }
-`;
-
-const Setting = styled.div`
-  margin-top: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14.52px;
-  color: #979797;
 `;
