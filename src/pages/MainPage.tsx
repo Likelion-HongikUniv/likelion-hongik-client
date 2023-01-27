@@ -14,15 +14,10 @@ import axios from "axios";
 export function MainPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const token = searchParams.get("token");
-  // console.log(token);
+  const token = localStorage.getItem("token");
   axios.defaults.withCredentials = true;
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate('/');
-  //     localStorage.setItem('token', token)
-  //   }
-  // })
+
+  
   // const accessToken =
   //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
   let data = {
@@ -43,15 +38,13 @@ export function MainPage() {
   //   },
   // );
 
-//   const getBoardData = async () => {
+//   const getProfile = async () => {
 //     await axios
-//       .get(`http://localhost:8080/community/post/12`,
-//       {
-//         // withCredentials: true,
-//         headers: {
-//           "Content-Type": `application/json`,
-//           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
-//         },
+//       .get(`http://13.124.126.164:8080/profile`,
+//       headers: {
+          //   "Content-Type": `application/json`,
+          //   JWT: token,
+          // },
 //       })
 //       .then((response) => {
 //         console.log(response);
@@ -60,6 +53,12 @@ export function MainPage() {
 //       });
 //   };
 // getBoardData();
+
+useEffect(() => {
+    if (token) {
+      
+    }
+  })
   return (
     <>
       <Header />

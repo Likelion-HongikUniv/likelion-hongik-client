@@ -17,6 +17,7 @@ export function SocialLogin() {
   let token;
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("구글 로그인 클릭");
+    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
     window.open("http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
     // navigate('/ing');
   };

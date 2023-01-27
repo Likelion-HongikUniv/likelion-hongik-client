@@ -1,29 +1,93 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
 import useInput from "./../../hooks/useInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { editState } from "../../states";
+import useSelect from "./../../hooks/useSelect";
+import axios from "axios";
+import { useSearchParams, useNavigate } from "react-router-dom";
+
 
 export function LoginDetailInfo() {
+  const navigate = useNavigate();
+  const [info, setInfo] = useRecoilState(editState);
+
   const nickname = useInput("");
-  const studentNum = useInput("");
   const major = useInput("");
-  const [part, setPart] = useState("");
+  const part = useSelect("");
+  const studentId = useInput("");
+  const jwt = localStorage.getItem("token");
 
-  const selectboxHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setPart(event.target.value);
-  };
+  const onClickSave = () => {
+    //저장 버튼 클릭 시 정보 넘겨주기
+    console.log(studentId.value);
+    if(studentId.value){
+      console.log("if 속!")
+      const infoHandler = {
+        ...info,
+        major: major.value,
+        nickname: nickname.value,
+        part: part.value,
+        studentId: studentId.value,
+      };
+      setInfo(infoHandler);
+      console.log(info);
+    }
+    const data = {
+      nickname: nickname.value,
+      major: major.value,
+      studentId: studentId.value,
+      part: part.value
+    };
 
+    axios.post(
+        "http://13.124.126.164:8080/accounts/detail_info/",
+        // "http://localhost:8080/accounts/detail_info/",
+        JSON.stringify(data),
+        // { withCredentials: true },
+        {
+          headers: { 
+            "Content-Type": `application/json`,
+            JWT: `${jwt}` },
+        },
+      )
+      .then((response) => {
+        console.log(response);
+        navigate("/login/complete");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
+  
+  // let data = {
+  //   nickname: nickname.value,
+  //   major: major.value,
+  //   studentId: studentNum.value,
+  //   part: part
+  // }
+
+  // const selectboxHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setPart(event.target.value);
+  // };
+
+  useEffect(() => {
+    console.log(jwt);
+  }, []);
   return (
     <div>
       <Title>추가 정보 입력하기</Title>
       <DetailInfo style={{ marginTop: "60px" }}>닉네임</DetailInfo>
       <InputBox placeholder="닉네임 입력" {...nickname} />
       <DetailInfo>학번</DetailInfo>
-      <InputBox placeholder="학번 입력" {...studentNum} />
+      <InputBox placeholder="학번 입력" {...studentId} />
       <DetailInfo>학과</DetailInfo>
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>
-      <SelectPart onChange={selectboxHandler}>
+      <SelectPart {...part}>
         <Options>파트 선택</Options>
         <Options value="기획/디자인">기획/디자인</Options>
         <Options value="프론트엔드">프론트엔드</Options>
@@ -32,8 +96,9 @@ export function LoginDetailInfo() {
       <div style={{ textAlign: "center" }}>
         <DoneBtn
           disabled={
-            nickname.value?.length !== 0 && studentNum.value?.length !== 0 && major.value?.length !== 0 ? false : true
+            nickname.value?.length !== 0 && studentId.value?.length !== 0 && major.value?.length !== 0 ? false : true
           }
+          onClick={onClickSave}
         >
           완료
         </DoneBtn>

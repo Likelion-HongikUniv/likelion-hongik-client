@@ -13,7 +13,8 @@ export default function useAutoLogin() {
   if (token)  localStorage.setItem('token', token);
 
 
-  const accessToken = localStorage.getItem("likelion-hongik-client");
+  // const accessToken = localStorage.getItem("likelion-hongik-client");
+  const accessToken = localStorage.getItem("token");
   const privatePage =
     pathname.includes("myPage") ||
     pathname.includes("post") ||

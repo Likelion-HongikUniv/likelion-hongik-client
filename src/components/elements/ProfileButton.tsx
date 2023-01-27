@@ -14,6 +14,10 @@ export function ProfileButton() {
     if (loggedInState === "로그인") {
       navigate("/login");
     }
+    else{ // logout
+      localStorage.setItem('token', "");
+      window.open("/", "_self");
+    }
   };
 
   return (

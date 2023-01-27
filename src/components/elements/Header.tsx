@@ -28,14 +28,14 @@ export function Header() {
   };
 
   useEffect(() => {
-    const token = userInfo.accessToken;
-    if (token) {
-      localStorage.setItem("likelion-hongik-accessToken", token);
-      // navigate("/");
-      setIsLoggedIn(true);
-      // TODO 받은 token으로 유저 정보 GET API
-      setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
-    }
+    // const token = localStorage.get
+    // if (token) {
+    //   // localStorage.setItem("likelion-hongik-accessToken", token);
+    //   // navigate("/");
+    //   setIsLoggedIn(true);
+    //   // TODO 받은 token으로 유저 정보 GET API
+    //   setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
+    // }
   });
 
   return (

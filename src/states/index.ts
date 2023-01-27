@@ -1,7 +1,9 @@
 // 상태 관리
 
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
 import { UploadImage } from "../components/myPage/FileUploader";
+const { persistAtom } = recoilPersist()
 
 export const userState = atom<string>({
   key: "userState",
@@ -20,7 +22,7 @@ export const nickState = atom<string>({
 
 export const majorState = atom<string>({
   key: "majorState",
-  default: "컴퓨터공학과",
+  default: "기계공학과",
 });
 
 // export const majorState = selector({
@@ -47,6 +49,7 @@ interface IEdit {
   profile?: string;
   part?: string;
   team?: string;
+  studentId : string;
   nickname?: string;
 }
 
@@ -54,10 +57,11 @@ export const editState = atom<IEdit>({
   key: "edit",
   default: {
     major: "컴퓨터공학과",
-    part: "기획/디자인",
-    team: "건빵이최고",
-    nickname: "건뺑이",
+    part: "최고최고",
+    nickname: "건빵이",
+    studentId: "C111111",
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const teamState = atom<string>({

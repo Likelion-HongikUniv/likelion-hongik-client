@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
+import { useRecoilState } from "recoil";
+import { editState } from "../../states";
 
 import { LionIcon } from "./../icons/LionIcon";
 
 export function Complete() {
+  const [info, setInfo] = useRecoilState(editState);
+  console.log(info);
   return (
     <div>
       <Title>회원가입 완료!</Title>
