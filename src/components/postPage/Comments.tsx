@@ -12,8 +12,8 @@ import { WHITE_1, WHITE_2 } from "../../styles/theme";
 export function Comments(props: IComment) {
   const [isShowReplyInput, setShowReplyInput] = useState(false);
   const onClickReplyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setShowReplyInput(!isShowReplyInput);
     e.preventDefault();
+    setShowReplyInput(!isShowReplyInput);
   };
   const curDate = props.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm");

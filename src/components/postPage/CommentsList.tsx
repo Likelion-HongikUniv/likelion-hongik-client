@@ -11,13 +11,13 @@ import useInput from "../../hooks/useInput";
 export function CommentsList(commentList: IComment[]) {
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
   const comments = Object.values(commentList).map((comments: IComment) => comments);
-  const commentInput = useInput(""); 
-  
+  let curUsername = localStorage.getItem("username");
+  const commentInput = useInput("");
+
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     let curTime = new Date().toString();
     let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
-
     const tempObj = {
       commentId: 27,
       author: {
@@ -30,7 +30,7 @@ export function CommentsList(commentList: IComment[]) {
       createdTime: formatTime,
       likeCount: 0,
     };
-    
+
     let newList = [...comments, tempObj];
     setCommentsList(newList);
     commentInput.value = "";
@@ -39,7 +39,7 @@ export function CommentsList(commentList: IComment[]) {
   return (
     <>
       <InputForm onSubmit={onClickSubmit}>
-        <InputContainer type="commentInput" placeholder="답변을 남겨보세요!" {...commentInput}/>
+        <InputContainer type="commentInput" placeholder="답변을 남겨보세요!" {...commentInput} />
         <InputButton type="submit">작성</InputButton>
       </InputForm>
       <Column>
