@@ -2,11 +2,16 @@ import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import { useRecoilValue } from "recoil";
 import { editState, profileState } from "./../../states/index";
-import { NavSelectPart } from "../myPage/NavSelectPart";
+import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
+import { useNavigate } from "react-router-dom";
 
-export function MyPageNav() {
+export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileState);
   const info = useRecoilValue(editState);
+  const navigate = useNavigate();
+  const onNavigate = () => {
+    navigate("/myPageEdit");
+  };
 
   return (
     <LeftNav>
@@ -17,21 +22,20 @@ export function MyPageNav() {
           <Team>{info.team} 팀</Team>
         </div>
       </div>
-      <NavSelectPart />
+      <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
+      <NavSelectPartMobile />
     </LeftNav>
   );
 }
 
 const LeftNav = styled.nav`
-  width: 148px;
-  height: 100%;
+  width: 100vw;
+  height: 223px;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
-  position: relative;
-  /* margin-left: 340px; */
-  /* 각 컨테이너에 margin-left: 8.33vw; 주고 justify-content 하면 가운데 정렬! */
-  padding-top: 140px;
   letter-spacing: -0.32px;
+  padding: 0 20px;
+  margin-top: 20px;
 `;
 
 const ProfileCopy = styled.img`
@@ -58,4 +62,17 @@ const Team = styled.div`
   font-size: 14px;
   line-height: 16.94px;
   color: #b9b9b9;
+`;
+
+const EditBtn = styled.button`
+  width: 350px;
+  height: 52px;
+  background: #333333;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 24px;
 `;

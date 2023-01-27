@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
+import { useNavigate } from "react-router-dom";
 
 interface IPost {
   title: string;
@@ -11,14 +12,19 @@ interface IPost {
   time: string;
   likes: number;
   reply: number;
+  pid: number;
 }
 
-export function PostItem({ author, title, body, likes, reply, time, profileImage }: IPost) {
+export function PostItem({ pid, author, title, body, likes, reply, time, profileImage }: IPost) {
+  const navigate = useNavigate();
+  const onClickHandler = () => {
+    navigate(`/post/${pid}`);
+  };
   return (
-    <Item>
+    <Item onClick={onClickHandler}>
       <Left>
         <User>
-          <img src={profileImage} />
+          <img src={profileImage} alt="profile" />
           <div>
             <UserName>{author}</UserName>
             <UploadDate>{time}</UploadDate>
@@ -39,7 +45,6 @@ export function PostItem({ author, title, body, likes, reply, time, profileImage
           </Icon>
         </Bottom>
       </Left>
-      <img src="logo192.png" />
     </Item>
   );
 }
@@ -54,6 +59,12 @@ const Item = styled.div`
     height: 140px;
     object-fit: contain;
   }
+  @media (max-width: 390px) {
+    width: 100vw;
+    height: 270px;
+    border-bottom: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
 `;
 
 const Left = styled.div`
@@ -65,6 +76,9 @@ const User = styled.div`
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
+  @media (max-width: 390px) {
+    padding: 0px 20px;
+  }
   div {
     display: flex;
     flex-direction: column;
@@ -99,6 +113,11 @@ const Content = styled.div`
   padding-left: 42px;
   width: 691px;
   margin-bottom: 20px;
+  @media (max-width: 390px) {
+    height: 60px;
+    padding: 0 20px;
+    margin-bottom: 0px;
+  }
   p {
     display: inline-block;
     white-space: nowrap;
@@ -113,6 +132,10 @@ const Content = styled.div`
     color: #ffffff;
     opacity: 0.98;
     margin: 0;
+    @media (max-width: 390px) {
+      width: 85.89vw;
+      height: 60px;
+    }
   }
 `;
 
@@ -128,6 +151,10 @@ const Title = styled.span`
   color: #ffffff;
   opacity: 0.98;
   margin-bottom: 12px;
+  @media (max-width: 390px) {
+    width: 85.89vw;
+    font-size: 4.1vw;
+  }
 `;
 
 const Bottom = styled.div`
@@ -135,6 +162,11 @@ const Bottom = styled.div`
   display: flex;
   gap: 15px;
   flex-direction: row;
+  @media (max-width: 390px) {
+    width: 100px;
+    height: 17px;
+    padding: 65px 20px;
+  }
 `;
 
 const Icon = styled.div`
