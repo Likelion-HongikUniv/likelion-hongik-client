@@ -35,13 +35,11 @@ export function Input({ pid, username }: any) {
     let newComment = { ...curTarget, replies: parentReplies };
     let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
 
-    // setCommentsList([...commentsList, { ...curTarget, replies: parentReplies }]);
-    console.log(newList);
+    commentInput.value = "";
+
     setCommentsList(() => {
       return newList;
     });
-
-    commentInput.value = "";
   };
 
   return (

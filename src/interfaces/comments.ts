@@ -12,7 +12,7 @@ export interface IBoard {
   imageUrls?: string[];
 }
 export interface IComment {
-  commentId?: number;
+  commentId: number;
   author?: IAuthor;
   body?: string;
   isDeleted?: boolean;
@@ -29,5 +29,5 @@ export interface IReply {
   createdTime?: string;
   isLiked?: boolean;
   likeCount: number;
-  deledted?: boolean;
+  deleted?: boolean;
 }

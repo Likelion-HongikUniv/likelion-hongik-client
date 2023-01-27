@@ -15,6 +15,7 @@ import { MyPage } from "./pages/MyPage/Mypage";
 import { MyPostPage } from "./pages/MyPage/MyPostPage";
 import { MyReplyPage } from "./pages/MyPage/MyReplyPage";
 import { MyLikePage } from "./pages/MyPage/MyLikePage";
+import Ing from "./pages/LoginPage/Ing";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/recruit" element={<RecruitPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/ing" element={<Ing />} />
             <Route path="/community/:categoryName" element={<CommunityPage />} />
             <Route path="/login/detail" element={<LoginDetailPage />} />
             <Route path="/login/complete" element={<CompletePage />} />

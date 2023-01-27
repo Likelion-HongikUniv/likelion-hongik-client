@@ -20,7 +20,7 @@ export default function useAutoLogin() {
     if (accessToken) {
       setIsLoggedIn(true);
     } else if (!accessToken && privatePage) {
-      navigate("/");
+      // navigate("/");
     }
   }, [accessToken]);
 }
