@@ -4,22 +4,46 @@ import { useRecoilValue } from "recoil";
 import { editState, profileState } from "./../../states/index";
 import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileState);
-  const info = useRecoilValue(editState);
+  const [nickname, setNickname] = useState("");
+  const [major, setMajor] = useState("");
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPageEdit");
   };
+  const getUserInfoAPI = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .get(`http://13.124.126.164:8080/mypage`, {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setNickname(response.data.nickname);
+        setMajor(response.data.major);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getUserInfoAPI();
+  }, []);
 
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
         <ProfileCopy src={profileImg?.thumbnail} />
         <div style={{ width: "88px" }}>
-          <Name>{info.nickname}</Name>
-          <Team>{info.team} 팀</Team>
+          <Name>{nickname}</Name>
+          <Team>{major}</Team>
         </div>
       </div>
       <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
