@@ -71,17 +71,13 @@ export const tagListState = atom<ICategory[]>({
           key: "pm",
           text: "기획·디자인",
         },
-        {
-          key: "conf",
-          text: "프로젝트 회의",
-        },
       ],
     },
   ],
 });
 
 export const nowTagState = atom<string>({
-  key: "",
+  key: "nowTagState",
   default: "notice",
 });
 
@@ -101,6 +97,15 @@ export const postsListState = atom<IPost[]>({
 
 export const paginationState = atom<IPagination>({
   key: "paginationState",
+  default: {
+    totalPage: 3,
+    totalElements: 14,
+    pagingSize: 5,
+    currentPage: 1,
+    isFirst: false,
+    isLast: false,
+    isEmpty: false,
+  },
 });
 
 export const pageState = atom<number>({

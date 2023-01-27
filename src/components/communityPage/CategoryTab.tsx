@@ -54,4 +54,11 @@ const CategoryItem = styled.div`
   line-height: 22px;
   padding: 20px;
   cursor: pointer;
+
+  @media (max-width: 390px) {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 12px;
+  }
 `;

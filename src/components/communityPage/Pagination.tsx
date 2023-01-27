@@ -40,4 +40,8 @@ const PageBtn = styled.button`
   border: 1px solid #ffffff;
   border-radius: 4px;
   color: #ffffff;
+  @media (max-width: 390px) {
+    width: 28px;
+    height: 28px;
+  }
 `;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Header } from "../components/elements/Header";
 import { CategoryTab } from "../components/communityPage/CategoryTab";
@@ -14,25 +14,30 @@ import { useRecoilValue } from "recoil";
 import { nowTagState, postsListState, pageState } from "../states/atoms";
 import { IPost } from "../interfaces/post";
 import getPostList from "../api/getPostList";
+import post from "../data/post.json";
+import { useMediaQuery } from "react-responsive";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
+  const isMobile = useMediaQuery({ maxWidth: 390 });
   const tag = useRecoilValue<string>(nowTagState);
-  const postsData = useRecoilValue<IPost[]>(postsListState);
+  // const postsData = useRecoilValue<IPost[]>(postsListState);
+  const postsData = post.data;
   const page = useRecoilValue<number>(pageState);
 
   useEffect(() => {
-    getPostList({ category: categoryName, tag, page });
-  }, [categoryName, tag, page]);
+    // getPostList({ category: categoryName, tag, page });
+  }, []);
 
   return (
     <>
       <Header />
       <Section>
         <Wrapper>
+          {categoryName === "project" && isMobile && <ProjectInfo />}
           <SideBar categoryName={categoryName} />
           <Container>
-            {categoryName === "project" ? <ProjectInfo /> : ""}
+            {categoryName === "project" && !isMobile && <ProjectInfo />}
             <CategoryTab categoryName={categoryName} />
             <TopBoard categoryName={categoryName} />
             <PostList {...postsData} />
@@ -50,9 +55,19 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 100vw;
   gap: 125px;
+  @media (max-width: 390px) {
+    flex-direction: column;
+    width: 100vw;
+    padding: 0 20px;
+    gap: 24px;
+  }
 `;
 
 const Container = styled.div`
   width: 48.1771vw;
   margin-left: 34.1146vw;
+  @media (max-width: 390px) {
+    margin-left: 0;
+    width: 100%;
+  }
 `;

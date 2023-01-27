@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { SearchBar } from "./SearchBar";
 import { ICommunityParam } from "../../interfaces/category";
 import { WriteIcon } from "../icons/WriteIcon";
+import { useMediaQuery } from "react-responsive";
 
 export function TopBoard(categoryName: ICommunityParam) {
+  const isMobile = useMediaQuery({ maxWidth: 390 });
   return (
     <Wrapper>
       {categoryName.categoryName === "post" && <SearchBar />}
@@ -15,7 +17,7 @@ export function TopBoard(categoryName: ICommunityParam) {
         {categoryName.categoryName === "post" ? (
           <button>
             <WriteIcon />
-            <span>글쓰기</span>
+            {!isMobile && <span>글쓰기</span>}
           </button>
         ) : (
           <button>
@@ -43,13 +45,15 @@ const Table = styled.div`
     display: flex;
     gap: 6px;
     align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
   }
   button {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 119px;
-    height: 52px;
+    padding: 12.5px;
     background: #ed7f30;
     border-radius: 8px;
     img {
@@ -63,6 +67,17 @@ const Table = styled.div`
       text-align: center;
       letter-spacing: -0.32px;
       color: #000000;
+    }
+    @media (max-width: 390px) {
+      img {
+        width: 15px;
+        height: 15px;
+      }
+      span {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+      }
     }
   }
 `;

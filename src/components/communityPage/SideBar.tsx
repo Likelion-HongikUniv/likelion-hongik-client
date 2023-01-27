@@ -3,8 +3,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
+import { useMediaQuery } from "react-responsive";
 
 export function SideBar(categoryName: ICommunityParam) {
+  const isMobile = useMediaQuery({ maxWidth: 390 });
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();
@@ -20,33 +22,51 @@ export function SideBar(categoryName: ICommunityParam) {
     });
     navigate(`/community/${category}`);
   };
+
+  const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    navigate(`/community/${event.target.value}`);
+  };
   return (
     <SideBarWrapper>
-      <ProfileBoard>
-        <ProfileImg>
-          <img alt="profile-img" />
-        </ProfileImg>
-        <ProfileDesc>
-          <span>김아현</span>
-          <div>컴퓨터공학과</div>
-        </ProfileDesc>
-      </ProfileBoard>
-      {tagList.map((category: ICategory) => (
-        <TagWrapper key={category.key}>
-          <span>{category.text}</span>
-          <div>
-            {category.tags?.map((tag: ITag) => (
-              <span
-                key={tag.key}
-                onClick={() => onTagClickHandler(category.key, tag.key)}
-                style={category.key === categoryName.categoryName && tag.key === nowTag ? activeStyle : {}}
-              >
-                {tag.text}
-              </span>
+      <div>
+        {isMobile && categoryName.categoryName === "project" ? (
+          ""
+        ) : (
+          <ProfileBoard>
+            <ProfileImg>
+              <img alt="profile-img" />
+            </ProfileImg>
+            <ProfileDesc>
+              <span>김아현</span>
+              <div>컴퓨터공학과</div>
+            </ProfileDesc>
+          </ProfileBoard>
+        )}
+        {isMobile ? (
+          <SelectBox onChange={onChangeHandler}>
+            {tagList.map((category: ICategory) => (
+              <Option value={category.key}>{category.text}</Option>
             ))}
-          </div>
-        </TagWrapper>
-      ))}
+          </SelectBox>
+        ) : (
+          tagList.map((category: ICategory) => (
+            <TagWrapper key={category.key}>
+              <span>{category.text}</span>
+              <div>
+                {category.tags?.map((tag: ITag) => (
+                  <span
+                    key={tag.key}
+                    onClick={() => onTagClickHandler(category.key, tag.key)}
+                    style={category.key === categoryName.categoryName && tag.key === nowTag ? activeStyle : {}}
+                  >
+                    {tag.text}
+                  </span>
+                ))}
+              </div>
+            </TagWrapper>
+          ))
+        )}
+      </div>
     </SideBarWrapper>
   );
 }
@@ -59,6 +79,11 @@ const SideBarWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   left: 17.7083vw;
+  @media (max-width: 390px) {
+    display: flex;
+    position: static;
+    flex-direction: row;
+  }
 `;
 
 const ProfileBoard = styled.div`
@@ -67,6 +92,9 @@ const ProfileBoard = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
+  @media (max-width: 390px) {
+    margin-bottom: 40px;
+  }
 `;
 
 const ProfileImg = styled.div`
@@ -126,5 +154,24 @@ const TagWrapper = styled.div`
 
   &:nth-child(4) {
     border: none;
+  }
+`;
+
+const SelectBox = styled.select`
+  padding: 12px;
+  border: none;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #d7d7d7;
+  height: 41px;
+  cursor: pointer;
+`;
+
+const Option = styled.option`
+  background-color: transparent;
+  :disabled {
+    display: none;
   }
 `;
