@@ -44,17 +44,59 @@ export function Part() {
 }
 
 const ForDiv = styled.div`
-  font-weight: 700;
+  font-weight: 800;
   display: flex;
   justify-content: center;
   padding: 0 340px;
   /* margin-left: 150px; */
+
+  @media (max-width: 391px) {
+    padding: 0 0;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding: 0 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding: 0 0;
+    /* display: inline; */
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const TitleText = styled.div`
   font-size: 40px;
   line-height: 48px;
   padding-top: 260px;
+
+  @media (max-width: 391px) {
+    padding-top: 220px;
+    font-size: 28px;
+    line-height: 33.89px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding-top: 360px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding-top: 240px;
+    font-size: 36px;
+    line-height: 32px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const PartBox = styled.div`
@@ -63,13 +105,56 @@ const PartBox = styled.div`
   border-radius: 20px;
   background: #333333cc;
   margin-top: 60px;
+
+  @media (max-width: 391px) {
+    margin-top: 20px;
+    width: 350px;
+    height: 192px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    margin-top: 32px;
+    width: 370px;
+    height: 220px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    margin-top: 20px;
+    width: 360px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const BoxGrid = styled.div`
   display: grid;
-  grid-template-columns: 400px 400px 400px;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;
   justify-content: center;
+
+  @media (max-width: 391px) {
+    display: inline;
+    /* padding-right: 20px; */
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    display: inline;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    justify-content: center;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const PartText = styled.div`
@@ -78,6 +163,28 @@ const PartText = styled.div`
   font-weight: 800;
   font-size: 32px;
   line-height: 38.73px;
+
+  @media (max-width: 391px) {
+    padding: 24px 0 20px 24px;
+    font-size: 28px;
+    line-height: 33.89px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding: 26px 0 20px 26px;
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    line-height: 38.73px;
+    padding: 28px 0 28px 28px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const PartSmallText = styled.div`
@@ -87,4 +194,26 @@ const PartSmallText = styled.div`
   line-height: 34px;
   letter-spacing: 0em;
   text-align: left;
+
+  @media (max-width: 391px) {
+    padding: 0 0 0 24px;
+    font-size: 16px;
+    line-height: 30px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding: 0 0 0 26px;
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding: 0 0 0 28px;
+    line-height: 34px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;

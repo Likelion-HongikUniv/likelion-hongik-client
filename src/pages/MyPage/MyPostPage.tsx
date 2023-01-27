@@ -99,25 +99,25 @@ export function MyPostPage() {
     <>
       <Header />
       <Section>
-      <MyPostPageContainer>
-        {isMobile ? <MyPageMobileNav /> : <MyPageNav />}
-        <MyPostBoxContainer>
-          {isMobile ? "" : <Title>내가 쓴 글</Title>}
-          <PostItemContainer>
-            {posts.map((post: any, index: number) => (
-              <PostItem
-                key={index}
-                pid={post.postId}
-                author={post.author}
-                title={post.title}
-                body={post.body}
-                likes={post.likes}
-                reply={post.reply}
-                time={post.time}
-                profileImage={post.profileImage}
-              />
-            ))}
-            {/* {postList.map((post: IPost, index: number) => (
+        <MyPostPageContainer>
+          {isMobile ? <MyPageMobileNav /> : <MyPageNav />}
+          <MyPostBoxContainer>
+            {isMobile ? "" : <Title>내가 쓴 글</Title>}
+            <PostItemContainer>
+              {posts.map((post: any, index: number) => (
+                <PostItem
+                  key={index}
+                  pid={post.postId}
+                  author={post.author}
+                  title={post.title}
+                  body={post.body}
+                  likes={post.likes}
+                  reply={post.reply}
+                  time={post.time}
+                  profileImage={post.profileImage}
+                />
+              ))}
+              {/* {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
                   pid={post.postId}
@@ -130,10 +130,10 @@ export function MyPostPage() {
                   profileImage={post.profileImage}
                 />
               ))} */}
-          </PostItemContainer>
-          <PageMove />
-        </MyPostBoxContainer>
-      </MyPostPageContainer>
+            </PostItemContainer>
+            <PageMove />
+          </MyPostBoxContainer>
+        </MyPostPageContainer>
       </Section>
     </>
   );

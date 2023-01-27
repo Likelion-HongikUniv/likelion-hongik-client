@@ -13,7 +13,7 @@ export function NavSelectPart() {
         className={isBtnActive === 1 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(1);
-          navigate("/myPagePost");
+          navigate("/myPage/post");
         }}
       >
         내가 쓴 글
@@ -23,7 +23,7 @@ export function NavSelectPart() {
         className={isBtnActive === 2 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(2);
-          navigate("/myPageReply");
+          navigate("/myPage/reply");
         }}
       >
         내가 쓴 댓글
@@ -33,7 +33,7 @@ export function NavSelectPart() {
         className={isBtnActive === 3 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(3);
-          navigate("/myPageLike");
+          navigate("/myPage/like");
         }}
       >
         좋아요 누른 글
@@ -44,7 +44,7 @@ export function NavSelectPart() {
         className={isBtnActive === 4 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(4);
-          navigate("/myPageEdit");
+          navigate("/myPage/edit");
         }}
       >
         정보 변경

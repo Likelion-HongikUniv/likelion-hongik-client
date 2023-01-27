@@ -38,7 +38,6 @@ const TeamSelect = styled.select`
   line-height: 21.78px;
   letter-spacing: -0.32px;
   margin-bottom: 24px;
-  /* background-image: url("../../images/Polygon 6.png") no-repeat; */
   -webkit-appearance: none; /* for chrome */
   -moz-appearance: none; /*for firefox*/
   appearance: none;

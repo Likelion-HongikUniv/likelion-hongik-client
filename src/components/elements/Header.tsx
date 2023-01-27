@@ -109,6 +109,11 @@ const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};
+  @media (max-width: 391px) {
+    width: 390px;
+    justify-content: left;
+    align-items: baseline;
+  }
 `;
 
 const HeaderButton = styled.button`
