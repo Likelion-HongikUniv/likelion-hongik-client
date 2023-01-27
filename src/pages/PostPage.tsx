@@ -14,7 +14,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
-  const matches = useMediaQuery("(min-width : 992px)");
+  const isPC = useMediaQuery("(min-width : 992px)");
 
   let postId: any = 17;
   const [idParams, setIdParams] = useSearchParams();
@@ -27,7 +27,7 @@ export function PostPage() {
   return (
     <>
       <Header />
-      {matches ? (
+      {isPC ? (
         <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
@@ -36,7 +36,7 @@ export function PostPage() {
         </Section>
       ) : (
         <Section style={{ padding: "0 20px", display: "flex", justifyContent: "center" }}>
-          <Column style={{ marginTop: "100px" }}>
+          <Column style={{ marginTop: "100px" }} gap={"108px"}>
             <Board {...board} />
             <CommentsList {...comments} />
           </Column>
