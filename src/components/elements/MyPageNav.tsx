@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import { useRecoilValue } from "recoil";
-import { profileState, teamState, editState } from "./../../states/index";
+import { profileImgState, teamState, editState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavSelectPart";
 
 export function MyPageNav() {
-  const profileImg = useRecoilValue(profileState);
+  const profileImg = useRecoilValue(profileImgState);
   const info = useRecoilValue(editState);
   const team = useRecoilValue(teamState);
 

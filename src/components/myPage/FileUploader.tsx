@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { profileState } from "./../../states/index";
+import { profileImgState } from "./../../states/index";
 import axios from "axios";
 
 export interface UploadImage {
@@ -12,7 +12,9 @@ export interface UploadImage {
 
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
-  const [profileImg, setProfileImg] = useRecoilState(profileState);
+  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
+
+  console.log(profileImg);
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();

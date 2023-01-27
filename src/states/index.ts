@@ -39,6 +39,11 @@ export const profileState = atom<UploadImage | null>({
   default: null,
 });
 
+export const profileImgState = atom<UploadImage | null>({
+  key: "profileImgState",
+  default: null,
+});
+
 // export const partState = atom<string>({
 //   key: "partState",
 //   default: "",

@@ -5,12 +5,14 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
+import { profileImgState } from "./../../states/index";
 
 const Ing = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
 
   const getProfile = async () => {
     await axios
@@ -24,12 +26,14 @@ const Ing = () => {
       .then((response) => {
         console.log(response);
         setUsername(response.data.name);
+        setProfileImg(response.data.profileImage);
+        console.log(response.data.profileImage);
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
-        if (response.data.isJoined == false && response.data.role == "GUEST") {
+        if (response.data.isJoined === false && response.data.role === "GUEST") {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람
           console.log("멋사 회원이 아니에요!");
           navigate("/");
-        } else if (response.data.isJoined == false && response.data.role == "USER") {
+        } else if (response.data.isJoined === false && response.data.role === "USER") {
           console.log("멋사 회원 + 회원가입");
           navigate("/login/detail");
         } else {
