@@ -17,7 +17,7 @@ export function PostPage() {
   const [idParams, setIdParams] = useSearchParams();
   const postId = idParams.get("id");
   const boardData = post.data[0];
-  const commentData = postDetail.comments;
+  const commentData = postDetail.comments as IComment[]; //오류나서 내가 맘대로 수정해둠
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
 
   useEffect(() => {

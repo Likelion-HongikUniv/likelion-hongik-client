@@ -22,12 +22,53 @@ const ForDiv = styled.div`
   font-weight: 700;
   padding: 0 340px;
   display: flex;
+  @media (max-width: 391px) {
+    padding: 0 0;
+    justify-content: center;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    justify-content: center;
+    padding: 0 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding: 0 0;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const TitleText = styled.div`
   font-size: 40px;
   line-height: 48px;
   padding-top: 260px;
+  @media (max-width: 391px) {
+    padding-top: 80px;
+    font-size: 28px;
+    line-height: 33.89px;
+    /* padding-left: 20px; */
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    padding-top: 140px;
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    padding-top: 240px;
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;
 
 const ForLi = styled.div`
@@ -36,4 +77,32 @@ const ForLi = styled.div`
   font-size: 26px;
   line-height: 48px;
   color: #dfdfdf;
+
+  @media (max-width: 391px) {
+    font-size: 16px;
+    line-height: 28px;
+    width: 348px;
+    text-indent: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    //모바일
+    font-size: 24px;
+    line-height: 38px;
+    width: 372px;
+    /* padding-right: 20px; */
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    width: max-content;
+    font-size: 26px;
+    line-height: 46px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;

@@ -2,6 +2,9 @@
 
 import { atom, selector } from "recoil";
 import { UploadImage } from "../components/myPage/FileUploader";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const userState = atom<string>({
   key: "userState",
@@ -13,15 +16,15 @@ export const btnActiveState = atom<number>({
   default: 1,
 });
 
-export const nickState = atom<string>({
-  key: "nickname",
-  default: "건뺑이",
-});
+// export const nickState = atom<string>({
+//   key: "nickname",
+//   default: "건뺑이",
+// });
 
-export const majorState = atom<string>({
-  key: "majorState",
-  default: "컴퓨터공학과",
-});
+// export const majorState = atom<string>({
+//   key: "majorState",
+//   default: "컴퓨터공학과",
+// });
 
 // export const majorState = selector({
 //   key: "majorState",
@@ -36,18 +39,19 @@ export const profileState = atom<UploadImage | null>({
   default: null,
 });
 
-export const partState = atom<string>({
-  key: "partState",
-  default: "",
-});
+// export const partState = atom<string>({
+//   key: "partState",
+//   default: "",
+// });
 
 interface IEdit {
   key?: string;
   major?: string;
-  profile?: string;
+  profile?: UploadImage | null;
   part?: string;
-  team?: string;
+  // team?: string;
   nickname?: string;
+  studentId?: string;
 }
 
 export const editState = atom<IEdit>({
@@ -55,14 +59,15 @@ export const editState = atom<IEdit>({
   default: {
     major: "컴퓨터공학과",
     part: "기획/디자인",
-    team: "건빵이최고",
     nickname: "건뺑이",
+    studentId: "C111111",
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const teamState = atom<string>({
   key: "teamState",
-  default: "",
+  default: "건빵이최고",
 });
 
 export const isLoggedInState = atom<boolean>({

@@ -25,15 +25,15 @@ export function RecruitPage() {
             </Wrapper>
           </Section>
         </Column>
-        <Wrapper>
-          <div style={{ marginTop: "360px" }}>
+        <Wrappers>
+          <ForDiv>
             <Curriculum />
             <Part />
             <Requirement />
             <QnA />
             <Tip />
-          </div>
-        </Wrapper>
+          </ForDiv>
+        </Wrappers>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
           <Footer style={{ marginTop: "70px" }} />
@@ -49,9 +49,39 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100%;
   background-color: ${BLACK_1};
-  background-position: center left;
   z-index: 1;
   color: ${WHITE_1};
   display: flex;
   justify-content: center;
+`;
+
+const Wrappers = styled.div`
+  width: 100vw;
+  height: 100%;
+  background-color: ${BLACK_1};
+  z-index: 1;
+  color: ${WHITE_1};
+  display: flex;
+  justify-content: center;
+`;
+
+const ForDiv = styled.div`
+  margin-top: 360px;
+  @media (max-width: 391px) {
+    margin-top: 111.79px;
+  }
+
+  @media (min-width: 391px) and (max-width: 768px) {
+    margin-top: 150px;
+    width: 100vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    // 테블릿 세로
+    margin-top: 240px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px) {
+    // 테블릿 가로
+  }
 `;

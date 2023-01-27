@@ -9,19 +9,57 @@ import styled from "styled-components";
 import { Section } from "../components/elements/Wrapper";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
 
 export function MainPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
-
+  // console.log(token);
+  axios.defaults.withCredentials = true;
   // useEffect(() => {
   //   if (token) {
   //     navigate('/');
   //     localStorage.setItem('token', token)
   //   }
   // })
+  // const accessToken =
+  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MDc0NzAsImV4cCI6MTY3NDQxMTA3MCwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ._FXTDLDsCCe5mK0v1YzFfbVMufgGvWg3bOzmRzwuH_s";
+  let data = {
+    nickname: "나는야 멋쟁이 사자",
+    major: "컴퓨터공학과",
+    studentId: "C311111",
+    part: "Backend",
+    phoneNum: "01012345678",
+  };
+  //   axios.post(
+  //   "http://localhost:8080/accounts/detail_info/",
+  //   JSON.stringify(data),
+  //   // { withCredentials: true },
+  //   {
+  //     headers: {
+  //       "Content-Type": `application/json`,
+  //       JWT: `${accessToken}` },
+  //   },
+  // );
 
+  //   const getBoardData = async () => {
+  //     await axios
+  //       .get(`http://localhost:8080/community/post/12`,
+  //       {
+  //         // withCredentials: true,
+  //         headers: {
+  //           "Content-Type": `application/json`,
+  //           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((err) => {console.log(err);
+  //       });
+  //   };
+  // getBoardData();
   return (
     <>
       <Header />
