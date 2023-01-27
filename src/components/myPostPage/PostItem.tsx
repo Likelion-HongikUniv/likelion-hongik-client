@@ -12,13 +12,13 @@ interface IPost {
   time: string;
   likes: number;
   reply: number;
-  pid: number;
+  postId: number;
 }
 
-export function PostItem({ pid, author, title, body, likes, reply, time, profileImage }: IPost) {
+export function PostItem({ postId, author, title, body, likes, reply, time, profileImage }: IPost) {
   const navigate = useNavigate();
   const onClickHandler = () => {
-    navigate(`/post/${pid}`);
+    navigate(`/community/post/${postId}`);
   };
   return (
     <Item onClick={onClickHandler}>

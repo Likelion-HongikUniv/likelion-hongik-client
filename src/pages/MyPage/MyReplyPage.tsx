@@ -37,8 +37,8 @@ export function MyReplyPage() {
         },
       })
       .then((response) => {
-        console.log(response);
-        setPostList(response.data.content);
+        console.log(response.data);
+        setPostList(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,7 +46,7 @@ export function MyReplyPage() {
   };
   useEffect(() => {
     getMyReplyAPI();
-  }, [postList]);
+  }, []);
 
   return (
     <>
@@ -60,7 +60,7 @@ export function MyReplyPage() {
               {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
-                  pid={post.postId}
+                  postId={post.postId}
                   author={post.author}
                   title={post.title}
                   body={post.body}

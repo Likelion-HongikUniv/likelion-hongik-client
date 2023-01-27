@@ -84,7 +84,7 @@ export function MyPostPage() {
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data.content);
         setPostList(response.data.content);
       })
       .catch(function (error) {
@@ -93,7 +93,7 @@ export function MyPostPage() {
   };
   useEffect(() => {
     getMyPostAPI();
-  }, [postList]);
+  }, []);
 
   return (
     <>
@@ -104,23 +104,10 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             {isMobile ? "" : <Title>내가 쓴 글</Title>}
             <PostItemContainer>
-              {posts.map((post: any, index: number) => (
+              {/* {posts.map((post: any, index: number) => (
                 <PostItem
                   key={index}
-                  pid={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImage={post.profileImage}
-                />
-              ))}
-              {/* {postList.map((post: IPost, index: number) => (
-                <PostItem
-                  key={index}
-                  pid={post.postId}
+                  postId={post.postId}
                   author={post.author}
                   title={post.title}
                   body={post.body}
@@ -130,6 +117,19 @@ export function MyPostPage() {
                   profileImage={post.profileImage}
                 />
               ))} */}
+              {postList.map((post: IPost, index: number) => (
+                <PostItem
+                  key={index}
+                  postId={post.postId}
+                  author={post.author}
+                  title={post.title}
+                  body={post.body}
+                  likes={post.likes}
+                  reply={post.reply}
+                  time={post.time}
+                  profileImage={post.profileImage}
+                />
+              ))}
             </PostItemContainer>
             <PageMove />
           </MyPostBoxContainer>

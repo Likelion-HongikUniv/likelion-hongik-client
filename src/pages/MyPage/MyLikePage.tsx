@@ -37,7 +37,7 @@ export function MyLikePage() {
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data.content);
         setPostList(response.data.content);
       })
       .catch(function (error) {
@@ -46,7 +46,7 @@ export function MyLikePage() {
   };
   useEffect(() => {
     getMyLikeAPI();
-  }, [postList]);
+  }, []);
 
   return (
     <>
@@ -60,7 +60,7 @@ export function MyLikePage() {
               {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
-                  pid={post.postId}
+                  postId={post.postId}
                   author={post.author}
                   title={post.title}
                   body={post.body}
