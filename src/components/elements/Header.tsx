@@ -37,17 +37,6 @@ export function Header() {
     navigate(`/${page}`);
   };
 
-  useEffect(() => {
-    const token = userInfo.accessToken;
-    if (token) {
-      navigate("/");
-      localStorage.setItem("likelion-hongik-accessToken", token);
-      setIsLoggedIn(true);
-      // TODO 받은 token으로 유저 정보 GET API
-      setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
-    }
-  });
-
   const NavPC = () => {
     return (
       <Wrapper>
