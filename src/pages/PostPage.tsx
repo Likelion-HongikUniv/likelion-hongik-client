@@ -3,27 +3,40 @@ import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import post from "../data/post.json";
 import postDetail from "../data/postDetail.json";
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { IComment } from "../components/postPage/CommentsList";
+import axios from "axios";
+import { IComment, IBoard } from "../interfaces/comments";
+import { commentsListState } from "../states/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect } from "react";
 
 export function PostPage() {
-  const { postId } = useParams();
-  // const [boardData, setBoardData] = useState<IPost>();
-  // const [commentData, setCommentData] = useState<IComment>();
-  // setBoardData(post.data[2]);
-  // setCommentData(postDetail.comments);
-
+  const [idParams, setIdParams] = useSearchParams();
+  const postId = idParams.get("id");
   const boardData = post.data[0];
   const commentData = postDetail.comments;
+  const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
 
-  // const getBoardData = async () => {
-  //   const { data } = await axios.get<IPost>(`http://43.200.18.111:8080/post/${postId}`);
-  //   return data;
-  // };
+  useEffect(() => {
+    /** post id를 가져와서
+     *
+     */
+    // getBoardData();
+    setCommentsData(commentData);
+    getBoardData();
+  }, []);
+
+  const getBoardData = async () => {
+    await axios
+      .get<IBoard>(`http://13.124.126.164:8080/community/post/${postId}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {});
+  };
 
   // const [postDetails, setPostDetails] = useQuery();
   // if (postId) {
@@ -52,7 +65,7 @@ export function PostPage() {
         {postId}
         <Column style={{ marginTop: "100px" }}>
           <Board {...boardData} />
-          <CommentsList {...commentData} />
+          <CommentsList {...comments} />
         </Column>
       </Section>
     </>

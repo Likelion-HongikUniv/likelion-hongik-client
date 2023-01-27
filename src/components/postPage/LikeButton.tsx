@@ -22,9 +22,6 @@ export function LikeButton({ likes }: LikeButtonProps) {
       setLikeCount(count);
     }
   };
-  useEffect(() => {
-    console.log("like 눌림");
-  }, [likeCount]);
 
   return (
     <ButtonWrapper onClick={onClickLike}>
