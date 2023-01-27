@@ -19,6 +19,7 @@ export function ProfileButton() {
     if (isLoggedIn) {
       setIsLoggedIn(false);
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
     } else {
       navigate("/login");
     }
