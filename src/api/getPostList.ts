@@ -15,7 +15,7 @@ const GetPostList = async ({ category, tag, page }: postsProps) => {
   const setPostsData = useSetRecoilState<IPost[]>(postsListState);
   const setPagenation = useSetRecoilState<IPagination>(paginationState);
   await axios
-    .get<IPostList>(`${baseURL}community/${category}/${tag}/${page}`)
+    .get<IPostList>(`${baseURL}community/${category}/${tag}/?page=${page}`)
     .then((response) => {
       setPagenation({
         totalPage: response.data.totalPage,
