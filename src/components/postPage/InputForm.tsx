@@ -4,8 +4,11 @@ import useInput from "../../hooks/useInput";
 import { useRecoilState } from "recoil";
 import { commentsListState } from "../../states/atoms";
 import moment from "moment";
+import axios from "axios";
+import { useEffect } from "react";
 
 export function Input({ pid, username }: any) {
+  const accessToken = localStorage.getItem("token");
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
   const commentInput = useInput("");
 

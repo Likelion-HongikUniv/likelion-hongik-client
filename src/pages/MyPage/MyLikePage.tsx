@@ -46,7 +46,7 @@ export function MyLikePage() {
   };
   useEffect(() => {
     getMyLikeAPI();
-  }, [postList]);
+  }, []);
 
   return (
     <>

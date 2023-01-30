@@ -11,6 +11,7 @@ export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 992px)");
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+  console.log(boardData);
 
   return (
     <>

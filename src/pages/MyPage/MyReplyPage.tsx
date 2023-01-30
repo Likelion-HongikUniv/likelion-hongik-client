@@ -46,7 +46,7 @@ export function MyReplyPage() {
   };
   useEffect(() => {
     getMyReplyAPI();
-  }, [postList]);
+  }, []);
 
   return (
     <>

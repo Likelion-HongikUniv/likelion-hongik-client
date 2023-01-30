@@ -8,10 +8,10 @@ const baseURL = "http://13.124.126.164:8080";
 const baseURL2 = "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080";
 
 interface postIdProps {
-  postId?: any;
+  postId: number;
 }
 
-function GetPostDetail(postId: postIdProps) {
+function GetPostDetail(postId: number) {
   const token = localStorage.getItem("token");
 
   console.log("GetPostDetail");
@@ -23,6 +23,8 @@ function GetPostDetail(postId: postIdProps) {
       },
     })
     .then((response) => {
+      console.log(response.data);
+
       return response.data;
     })
     .catch((err) => {

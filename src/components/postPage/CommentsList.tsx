@@ -4,6 +4,7 @@ import { Column } from "../elements/Wrapper";
 import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { IComment } from "../../interfaces/comments";
 import { useRecoilState } from "recoil";
+import { userInfoState } from "../../states/user";
 import { commentsListState } from "../../states/atoms";
 import moment from "moment";
 import useInput from "../../hooks/useInput";
@@ -11,6 +12,9 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function CommentsList(commentList: IComment[]) {
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  console.log(userInfo);
+
   const comments = Object.values(commentList).map((comments: IComment) => comments);
   let curUsername = localStorage.getItem("username");
   const commentInput = useInput("");
@@ -23,9 +27,9 @@ export function CommentsList(commentList: IComment[]) {
     const tempObj = {
       commentId: 27,
       author: {
-        authorId: 2,
-        nickname: "dsadsad",
-        profileImage: "dadsa",
+        authorId: userInfo.userId,
+        nickname: userInfo.username,
+        profileImage: userInfo.profileImageSrc,
         isAuthor: false,
       },
       body: commentInput.value,
