@@ -24,12 +24,20 @@ export function SideBar(categoryName: ICommunityParam) {
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    navigate(`/community/${event.target.value}`);
+    const category = event.target.value;
+    if (category === "BOARD") {
+      setNowTag("NOTICE");
+    } else if (category === "HOMEWORK") {
+      setNowTag("FRONTEND");
+    } else {
+      setNowTag("FRONTEND");
+    }
+    navigate(`/community/${category}`);
   };
   return (
     <SideBarWrapper>
       <div>
-        {isMobile && categoryName.categoryName === "project" ? (
+        {isMobile && categoryName.categoryName === "PROJECT" ? (
           ""
         ) : (
           <ProfileBoard>
@@ -164,14 +172,15 @@ const SelectBox = styled.select`
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #d7d7d7;
+  color: #fff;
   height: 41px;
   cursor: pointer;
 `;
 
 const Option = styled.option`
-  background-color: transparent;
-  :disabled {
-    display: none;
-  }
+  color: #fff;
+  background: #333333;
+  width: 75px;
+  height: 41px;
+  padding: 12px;
 `;

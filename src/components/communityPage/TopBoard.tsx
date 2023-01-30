@@ -8,13 +8,13 @@ export function TopBoard(categoryName: ICommunityParam) {
   const isMobile = useMediaQuery({ maxWidth: 390 });
   return (
     <Wrapper>
-      {categoryName.categoryName === "post" && <SearchBar />}
+      {categoryName.categoryName === "BOARD" && <SearchBar />}
       <Table>
         <div>
           <span style={{ color: "#ED7F30", fontSize: "4px" }}>•</span>
           <span>최신순</span>
         </div>
-        {categoryName.categoryName === "post" ? (
+        {categoryName.categoryName === "BOARD" ? (
           <button>
             <WriteIcon />
             {!isMobile && <span>글쓰기</span>}

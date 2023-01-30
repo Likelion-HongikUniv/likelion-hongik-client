@@ -34,10 +34,10 @@ export function CommunityPage() {
       <Header />
       <Section>
         <Wrapper>
-          {categoryName === "project" && isMobile && <ProjectInfo />}
+          {categoryName === "PROJECT" && isMobile && <ProjectInfo />}
           <SideBar categoryName={categoryName} />
           <Container>
-            {categoryName === "project" && !isMobile && <ProjectInfo />}
+            {categoryName === "PROJECT" && !isMobile && <ProjectInfo />}
             <CategoryTab categoryName={categoryName} />
             <TopBoard categoryName={categoryName} />
             <PostList {...postsData} />
