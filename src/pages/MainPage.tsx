@@ -18,23 +18,6 @@ export function MainPage() {
     });
   });
 
-  //   const getBoardData = async () => {
-  //     await axios
-  //       .get(`http://localhost:8080/community/post/12`,
-  //       {
-  //         // withCredentials: true,
-  //         headers: {
-  //           "Content-Type": `application/json`,
-  //           "JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NzQ0MTI3MTUsImV4cCI6MTY3NDQxNjMxNSwiZW1haWwiOiJkbHdsYWxzMTI4OUBnbWFpbC5jb20iLCJyb2xlIjoiR1VFU1QifQ.RylyRHL_DPX4GNCzkxz62Pt3hZRZemRk4E-x545svPk",
-  //         },
-  //       })
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((err) => {console.log(err);
-  //       });
-  //   };
-  // getBoardData();
   return (
     <>
       <Header />
@@ -76,7 +59,7 @@ const Title = styled.span`
   font-weight: 800;
   font-size: 40px;
   margin-top: 220px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 28px;
     line-height: 34px;
   }
@@ -86,7 +69,7 @@ const Desc = styled.span`
   font-size: 20px;
   line-height: 24px;
   margin-top: 10px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 16px;
     line-height: 19px;
   }

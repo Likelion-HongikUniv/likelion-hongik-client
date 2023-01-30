@@ -126,8 +126,7 @@ const ProjectContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  @media (max-width: 390px) {
-    width: 390px;
+  @media (max-width: 768px) {
     height: 225px;
     overflow: hidden;
   }

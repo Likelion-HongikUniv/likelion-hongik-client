@@ -82,7 +82,7 @@ const PartBtn = styled.button`
   border-radius: 20px;
   text-align: left;
   margin: 0px 20px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     /* width: 62.22vw; */
     width: 247px;
     height: 141px;
@@ -95,7 +95,7 @@ const PartName = styled.p`
   font-size: 32px;
   line-height: 39px;
   margin-left: 40px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 20px;
     line-height: 24px;
     margin-left: 20px;
@@ -108,7 +108,7 @@ const PartText = styled.p`
   font-size: 20px;
   line-height: 34px;
   margin-left: 40px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 14px;
     line-height: 23px;
     margin-left: 20px;
@@ -132,13 +132,13 @@ const PartContainer = styled.div`
 
 const TimeLine = styled.div`
   width: 1240px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     /* display: none; */
   }
 `;
 
 const BoxContainer = styled.div`
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     height: 180px;
     display: flex;
     flex-direction: row;

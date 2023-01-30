@@ -40,7 +40,7 @@ const BoxContainer = styled.div`
   text-align: left;
   padding: 40px;
   margin: 50px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 350px;
     height: 297px;
     padding: 30px 20px;
@@ -68,7 +68,7 @@ const Text = styled.div`
   font-size: 22px;
   margin-top: 80px;
   line-height: 40px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 16px;
     line-height: 25px;
     font-weight: 600;
@@ -83,7 +83,7 @@ const ApplyBtn = styled.button`
   border-radius: 20px;
   font-weight: 500;
   font-size: 28px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 16px;
     width: 350px;
     height: 52px;
@@ -95,7 +95,7 @@ const Title = styled.div`
   font-weight: 700;
   font-size: 40px;
   margin-top: 20px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 28px;
   }
 `;
