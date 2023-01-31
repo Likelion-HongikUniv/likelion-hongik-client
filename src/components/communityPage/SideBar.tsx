@@ -53,7 +53,9 @@ export function SideBar(categoryName: ICommunityParam) {
         {isMobile ? (
           <SelectBox onChange={onChangeHandler}>
             {tagList.map((category: ICategory) => (
-              <Option value={category.key}>{category.text}</Option>
+              <Option value={category.key} key={category.key}>
+                {category.text}
+              </Option>
             ))}
           </SelectBox>
         ) : (
