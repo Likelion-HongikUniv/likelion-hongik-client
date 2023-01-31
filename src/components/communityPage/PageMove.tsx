@@ -3,11 +3,11 @@ import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { paginationState, pageState } from "../../states/atoms";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 390px )");
 
   const setPage = useSetRecoilState<number>(pageState);
 

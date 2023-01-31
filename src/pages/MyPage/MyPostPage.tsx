@@ -6,7 +6,7 @@ import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
 
 interface IPost {
@@ -21,7 +21,7 @@ interface IPost {
 }
 
 export function MyPostPage() {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 390px )");
   const posts = [
     {
       title: "게시글1",
