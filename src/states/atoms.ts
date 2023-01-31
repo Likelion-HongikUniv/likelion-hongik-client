@@ -273,7 +273,7 @@ export const postsListState = atom<IPost[]>({
 export const paginationState = atom<IPagination>({
   key: "paginationState",
   default: {
-    totalPage: 3,
+    totalPage: 23,
     totalElements: 14,
     pagingSize: 5,
     currentPage: 1,
@@ -286,4 +286,9 @@ export const paginationState = atom<IPagination>({
 export const pageState = atom<number>({
   key: "pageState",
   default: 1,
+});
+
+export const curPageIndexState = atom<number>({
+  key: "curPageIndexState",
+  default: 0,
 });
