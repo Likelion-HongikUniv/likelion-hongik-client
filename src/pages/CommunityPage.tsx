@@ -19,7 +19,7 @@ import { useMediaQuery } from "react-responsive";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const tag = useRecoilValue<string>(nowTagState);
   // const postsData = useRecoilValue<IPost[]>(postsListState);
   const postsData = post.data;
@@ -55,18 +55,18 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 100vw;
   gap: 125px;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     flex-direction: column;
     width: 100vw;
-    padding: 0 20px;
-    gap: 24px;
+    padding: 0 5.1282vw;
+    gap: 6.1538vw;
   }
 `;
 
 const Container = styled.div`
   width: 48.1771vw;
   margin-left: 34.1146vw;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     margin-left: 0;
     width: 100%;
   }

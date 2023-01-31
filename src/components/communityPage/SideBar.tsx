@@ -6,7 +6,7 @@ import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import { useMediaQuery } from "react-responsive";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const SideBarWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   left: 17.7083vw;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     display: flex;
     position: static;
     flex-direction: row;
@@ -100,8 +100,8 @@ const ProfileBoard = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
-  @media (max-width: 390px) {
-    margin-bottom: 40px;
+  @media all and (max-width: 768px) {
+    margin-bottom: 10.2564vw;
   }
 `;
 
@@ -166,21 +166,21 @@ const TagWrapper = styled.div`
 `;
 
 const SelectBox = styled.select`
-  padding: 12px;
+  padding: 3.0769vw;
   border: none;
   background-color: transparent;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 3.5897vw;
+  line-height: 4.359vw;
   color: #fff;
-  height: 41px;
+  height: 10.5128vw;
   cursor: pointer;
 `;
 
 const Option = styled.option`
   color: #fff;
   background: #333333;
-  width: 75px;
-  height: 41px;
-  padding: 12px;
+  width: 19.2308vw;
+  height: 10.5128vw;
+  padding: 3.0769vw;
 `;
