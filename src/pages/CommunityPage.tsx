@@ -10,25 +10,36 @@ import { SideBar } from "../components/communityPage/SideBar";
 import { TopBoard } from "../components/communityPage/TopBoard";
 import { ProjectInfo } from "../components/communityPage/ProjectInfo";
 import Footer from "../components/elements/Footer";
-import { useRecoilValue } from "recoil";
-import { nowTagState, postsListState, pageState } from "../states/atoms";
-import { IPost } from "../interfaces/post";
-import getPostList from "../api/getPostList";
-import post from "../data/post.json";
+import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
+import { nowTagState, postsListState, pageState, paginationState } from "../states/atoms";
+import { IPost, IPagination, IPostList } from "../interfaces/post";
+import GetPostList from "../api/getPostList";
 import { useMediaQuery } from "react-responsive";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const tag = useRecoilValue<string>(nowTagState);
-  // const postsData = useRecoilValue<IPost[]>(postsListState);
-  const postsData = post.data;
+  const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const page = useRecoilValue<number>(pageState);
+  const setPagination = useSetRecoilState<IPagination>(paginationState);
 
   useEffect(() => {
-    // getPostList({ category: categoryName, tag, page });
-  }, []);
-
+    GetPostList({ category: categoryName, tag, page }).then(function (response) {
+      if (response) {
+        setPagination({
+          totalPage: response.totalPage,
+          totalElements: response.totalElements,
+          pagingSize: response.pagingSize,
+          currentPage: response.currentPage,
+          isEmpty: response.isEmpty,
+          isFirst: response.isFirst,
+          isLast: response.isLast,
+        });
+        setPostsData(response.data);
+      }
+    });
+  }, [categoryName, tag, page]);
   return (
     <>
       <Header />

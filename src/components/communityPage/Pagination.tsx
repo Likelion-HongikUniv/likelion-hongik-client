@@ -11,7 +11,7 @@ export function Pagination() {
     background: "#ED7F30",
     border: "none",
   };
-  const pageArr = Array.from({ length: pagination.totalPage }, (v, i) => i + 1);
+  const pageArr = Array.from({ length: pagination?.totalPage }, (v, i) => i + 1);
 
   const division = (data: number[], size: number) => {
     const arr = [];
@@ -35,17 +35,17 @@ export function Pagination() {
           ...
         </PageBtn>
       )}
-      {pageDividedArr[curPageIndex].map((pageNum: number) => (
+      {pageDividedArr[curPageIndex]?.map((pageNum: number) => (
         <PageBtn
           key={pageNum}
           type="button"
-          style={pageNum === pagination.currentPage ? activeButton : {}}
+          style={pageNum === pagination?.currentPage ? activeButton : {}}
           onClick={() => setPage(pageNum)}
         >
           {pageNum}
         </PageBtn>
       ))}
-      {curPageIndex !== pageDividedArr.length - 1 && (
+      {curPageIndex !== pageDividedArr?.length - 1 && (
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);

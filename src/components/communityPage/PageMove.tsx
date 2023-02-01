@@ -4,6 +4,7 @@ import { Pagination } from "./Pagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
 import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
 
 export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
@@ -13,14 +14,16 @@ export function PageMove() {
 
   const onClickPrev = () => {
     setPage(pagination.currentPage - 1);
-    if (page % 6 === 1) {
+    if (page % 6 === 0) {
+      console.log("설마2");
       setCurPageIndex(curPageIndex - 1);
     }
   };
 
   const onClickNext = () => {
     setPage(pagination.currentPage + 1);
-    if (page % 6 === 0) {
+    if (page % 6 === 5) {
+      console.log(page, "설마1");
       setCurPageIndex(curPageIndex + 1);
     }
   };

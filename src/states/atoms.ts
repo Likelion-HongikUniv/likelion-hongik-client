@@ -213,7 +213,7 @@ export const tagListState = atom<ICategory[]>({
       text: "과제관리",
       tags: [
         {
-          key: "FRONTEND",
+          key: "FRONT",
           text: "프론트",
         },
         {
@@ -231,7 +231,7 @@ export const tagListState = atom<ICategory[]>({
       text: "프로젝트",
       tags: [
         {
-          key: "FRONTEND",
+          key: "FRONT",
           text: "프론트",
         },
         {
@@ -253,7 +253,7 @@ export const tagListState = atom<ICategory[]>({
 
 export const nowTagState = atom<string>({
   key: "nowTagState",
-  default: "notice",
+  default: "NOTICE",
 });
 
 export const tagListSelector = selectorFamily({

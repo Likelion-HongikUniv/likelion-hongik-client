@@ -13,7 +13,7 @@ export function PostItem(post: IPost) {
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
 
   const onClickHandler = () => {
-    navigate(`/post/${post.postId}`);
+    navigate(`/community/post/${post.postId}`);
   };
   return (
     <Item onClick={onClickHandler}>
