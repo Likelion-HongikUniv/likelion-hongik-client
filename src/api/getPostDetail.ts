@@ -1,20 +1,9 @@
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { IBoard, IComment, IReply } from "../interfaces/comments";
-import { commentsListState, boardState } from "../states/atoms";
 
 const baseURL = "http://13.124.126.164:8080";
-const baseURL2 = "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080";
-
-interface postIdProps {
-  postId: number;
-}
 
 function GetPostDetail(postId: number) {
   const token = localStorage.getItem("token");
-
-  console.log("GetPostDetail");
   axios
     .get(`${baseURL}/community/post/${postId}`, {
       headers: {
@@ -23,8 +12,6 @@ function GetPostDetail(postId: number) {
       },
     })
     .then((response) => {
-      console.log(response.data);
-
       return response.data;
     })
     .catch((err) => {

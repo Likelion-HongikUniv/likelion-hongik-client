@@ -8,7 +8,6 @@ export default function useAutoLogin() {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const pathname = window.location.href;
 
-  // const token = searchParams.get("token");
   const accessToken = localStorage.getItem("token");
   const privatePage = "";
   // pathname.includes("myPage") ||

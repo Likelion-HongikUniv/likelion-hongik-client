@@ -22,9 +22,7 @@ export function HeartButton({ likes }: HeartButtonProps) {
     }
   };
 
-  useEffect(() => {
-    console.log("like 눌림");
-  }, [likeCount]);
+  useEffect(() => {}, [likeCount]);
 
   return (
     <ButtonWrapper onClick={onClickLike}>

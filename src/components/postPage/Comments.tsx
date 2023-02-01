@@ -28,11 +28,10 @@ export function Comments(props: IComment) {
             <Profile />
             <Column gap="32px">
               <Column gap="4px">
-                <UserId fontSize={16}>{props.author?.nickname || `AhhyunKim`}</UserId>
-                <Date fontSize={14}>{date || `2022.11.30`}</Date>
+                <UserId fontSize={16}>{props.author?.nickname}</UserId>
+                <Date fontSize={14}>{date}</Date>
               </Column>
-              {props?.body ||
-                `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
+              {props.isDeleted ? "삭제된 댓글입니다." : props?.body}
               <Row gap="12px">
                 <LikeButton likes={props.likeCount} />
                 <ReplyButton className="replyOption" onClick={onClickReplyButton}>
@@ -54,13 +53,12 @@ export function Comments(props: IComment) {
           <Row gap="12px">
             <Profile />
             <Column>
-              <UserId fontSize={14}>{props.author?.nickname || `AhhyunKim`}</UserId>
-              <Date fontSize={12}>{date || `2022.11.30`}</Date>
+              <UserId fontSize={14}>{props.author?.nickname}</UserId>
+              <Date fontSize={12}>{date}</Date>
             </Column>
           </Row>
           <Column gap="20px">
-            {props?.body ||
-              `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
+            {props?.body}
             <Row gap="12px">
               <LikeButton likes={props.likeCount} />
               <ReplyButton className="replyOption" onClick={onClickReplyButton}>
@@ -73,7 +71,7 @@ export function Comments(props: IComment) {
                 return <Replies key={idx} {...reply} />;
               })
             : null}
-          {isShowReplyInput && <Input pid={props.commentId} username={props.author?.nickname}></Input>}
+          {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>
       )}

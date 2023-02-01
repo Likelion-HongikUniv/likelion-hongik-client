@@ -3,56 +3,45 @@ import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { IComment, IBoard } from "../interfaces/comments";
 import { commentsListState, boardState } from "../states/atoms";
-import GetPostDetail from "../api/getPostDetail";
-import useMediaQuery from "../hooks/useMediaQuery";
+import styled from "styled-components";
 import axios from "axios";
+import useMediaQuery from "../hooks/useMediaQuery";
+
+const baseURL = "http://13.124.126.164:8080";
 
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
   const isPC = useMediaQuery("(min-width : 992px)");
-  const accessToken = localStorage.getItem("token");
-  // const [idParams, setIdParams] = useSearchParams();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const postId = searchParams.get("id");
+  const { id } = useParams<{ id?: string }>();
 
-  GetPostDetail(12);
-  useEffect(() => {
-    console.log(postId);
-
-    const postIdToNumber = Number(postId);
-    postIdToNumber && console.log(postIdToNumber);
-
-    // postIdToNumber && GetPostDetail(postIdToNumber);
-  }, [postId]);
-
-  let body = {
-    post_id: "1",
-    authorId: "3",
-    body: "코딩은 너무 어려워요 ",
-  };
-
-  useEffect(() => {
+  function GetPostDetail(postId: number) {
+    const token = localStorage.getItem("token");
     axios
-      .post(
-        "http://13.124.126.164:8080/community/post/12",
-        JSON.stringify(body),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${accessToken}`,
-          },
+      .get(`${baseURL}/community/post/${postId}`, {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: token,
         },
-      )
+      })
       .then((response) => {
-        console.log(response);
+        setBoardData(response.data);
+        setCommentsData(response.data.comments);
+        return response.data;
+      })
+      .catch((err) => {
+        throw err;
       });
+  }
+
+  useEffect(() => {
+    const postIdToNumber = Number(id);
+    postIdToNumber && GetPostDetail(postIdToNumber);
   }, []);
 
   return (
@@ -67,8 +56,9 @@ export function PostPage() {
         </Section>
       ) : (
         <Section style={{ padding: "0 20px", display: "flex", justifyContent: "center" }}>
-          <Column style={{ marginTop: "100px" }} gap={"108px"}>
-            <Board {...board} />
+          <Column style={{ marginTop: "100px" }}>
+            <Board {...board} postId={Number(id)} />
+            <Hairline />
             <CommentsList {...comments} />
           </Column>
         </Section>
@@ -76,3 +66,9 @@ export function PostPage() {
     </>
   );
 }
+
+const Hairline = styled.div`
+  margin-top: 108px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(255, 255, 255, 0.3);
+`;

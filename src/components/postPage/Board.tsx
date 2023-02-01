@@ -6,39 +6,42 @@ import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MoreButton } from "../icons/MoreButton";
+import { useEffect } from "react";
 
-export function Board(boardData: IBoard) {
+export function Board(boardData: IBoard, postId: number) {
   const isPC = useMediaQuery("(min-width: 992px)");
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
-  console.log(boardData);
+  const body = boardData.body;
+
+  useEffect(() => {}, []);
 
   return (
     <>
       {isPC ? (
         <Column gap="24px">
-          <Title>{boardData.title || "게시글 제목"}</Title>
+          <Title>{boardData.title}</Title>
           <SubTextDiv>
             <Row gap="1rem" alignItems="center">
               {boardData.author?.nickname}
-              <Date>{date || "2022.11.30"}</Date>
+              <Date>{date}</Date>
             </Row>
             <MoreButton />
           </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">
-            <ViewerUi body={boardData.body} />
+            <ViewerUi body={body} />
           </Column>
           <HeartButton likes={boardData.likeCount} />
           <Hairline />
         </Column>
       ) : (
         <Column gap="12px">
-          <Title>{boardData.title || "게시글 제목"}</Title>
+          <Title>{boardData.title}</Title>
           <SubTextDiv>
             <AuthorDiv>
               <div className="author">{boardData.author?.nickname}</div>
-              <Date>{date || "2022.11.30"}</Date>
+              <Date>{date}</Date>
             </AuthorDiv>
             <MoreButton />
           </SubTextDiv>
@@ -47,7 +50,6 @@ export function Board(boardData: IBoard) {
             <ViewerUi body={boardData.body} />
           </Column>
           <HeartButton likes={boardData.likeCount} />
-          <Hairline />
         </Column>
       )}
     </>
