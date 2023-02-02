@@ -17,11 +17,14 @@ const baseURL = "http://13.124.126.164:8080";
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
-  const isPC = useMediaQuery("(min-width : 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const { id } = useParams<{ id?: string }>();
+  console.log(id);
 
   function GetPostDetail(postId: number) {
     const token = localStorage.getItem("token");
+
     axios
       .get(`${baseURL}/community/post/${postId}`, {
         headers: {
@@ -55,9 +58,9 @@ export function PostPage() {
           </Column>
         </Section>
       ) : (
-        <Section style={{ padding: "0 20px", display: "flex", justifyContent: "center" }}>
+        <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
-            <Board {...board} postId={Number(id)} />
+            <Board {...board} />
             <Hairline />
             <CommentsList {...comments} />
           </Column>

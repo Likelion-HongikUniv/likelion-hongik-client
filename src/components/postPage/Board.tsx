@@ -4,17 +4,16 @@ import { HeartButton } from "./HeartButton";
 import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
+import { useRecoilState } from "recoil";
+import { boardState } from "../../states/atoms";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MoreButton } from "../icons/MoreButton";
 import { useEffect } from "react";
 
-export function Board(boardData: IBoard, postId: number) {
+export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 992px)");
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
-  const body = boardData.body;
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -26,12 +25,10 @@ export function Board(boardData: IBoard, postId: number) {
               {boardData.author?.nickname}
               <Date>{date}</Date>
             </Row>
-            <MoreButton />
+            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">
-            <ViewerUi body={body} />
-          </Column>
+          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
           <HeartButton likes={boardData.likeCount} />
           <Hairline />
         </Column>
@@ -43,12 +40,10 @@ export function Board(boardData: IBoard, postId: number) {
               <div className="author">{boardData.author?.nickname}</div>
               <Date>{date}</Date>
             </AuthorDiv>
-            <MoreButton />
+            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">
-            <ViewerUi body={boardData.body} />
-          </Column>
+          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
           <HeartButton likes={boardData.likeCount} />
         </Column>
       )}

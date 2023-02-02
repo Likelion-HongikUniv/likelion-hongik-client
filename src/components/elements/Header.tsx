@@ -94,7 +94,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 340px;
-
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};
