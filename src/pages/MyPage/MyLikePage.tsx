@@ -8,6 +8,9 @@ import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import MyPagination from "../MyPage/MyPagination";
+import { useRecoilState } from "recoil";
+import { currPageState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -24,9 +27,16 @@ export function MyLikePage() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+
+  const [currPage] = useRecoilState(currPageState);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
+
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/likes/`, {
+      .get(`http://13.124.126.164:8080/mypage/like/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -37,7 +47,7 @@ export function MyLikePage() {
         },
       })
       .then((response) => {
-        console.log(response.data.content);
+        console.log(response);
         setPostList(response.data.content);
       })
       .catch(function (error) {
@@ -71,7 +81,7 @@ export function MyLikePage() {
                 />
               ))}
             </PostItemContainer>
-            <PageMove />
+            <MyPagination />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

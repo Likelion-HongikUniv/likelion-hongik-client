@@ -1,49 +1,39 @@
 import styled from "styled-components";
 import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { paginationState, pageState } from "../../states/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
 import { useMediaQuery } from "react-responsive";
 
-export function PageMove() {
+export function  PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [page, setPage] = useRecoilState<number>(pageState);
+  const [curPageIndex, setCurPageIndex] = useRecoilState<number>(curPageIndexState);
 
-  const setPage = useSetRecoilState<number>(pageState);
+  const onClickPrev = () => {
+    setPage(pagination.currentPage - 1);
+    if (page % 6 === 0) {
+      console.log(page);
+      setCurPageIndex(curPageIndex - 1);
+    }
+  };
+
+  const onClickNext = () => {
+    setPage(pagination.currentPage + 1);
+    if (page % 6 === 5) {
+      console.log(page);
+      setCurPageIndex(curPageIndex + 1);
+    }
+  };
 
   return (
     <>
-      {isMobile ? (
-        <div style={{ marginBottom: "150px" }}>
-          <MobileContainer>
-            {!pagination.isFirst && !pagination.isEmpty ? (
-              <PrevBtn onClick={() => setPage(pagination.currentPage - 1)}>이전 페이지</PrevBtn>
-            ) : (
-              <NonePrevBtn />
-            )}
-            {!pagination.isLast && !pagination.isEmpty ? (
-              <NextBtn onClick={() => setPage(pagination.currentPage + 1)}>다음 페이지</NextBtn>
-            ) : (
-              <NoneBtn />
-            )}
-          </MobileContainer>
-          <Pagination />
-        </div>
-      ) : (
-        <Container>
-          {!pagination.isFirst && !pagination.isEmpty ? (
-            <PrevBtn onClick={() => setPage(pagination.currentPage - 1)}>이전 페이지</PrevBtn>
-          ) : (
-            <NoneBtn />
-          )}
-          <Pagination />
-          {!pagination.isLast && !pagination.isEmpty ? (
-            <NextBtn onClick={() => setPage(pagination.currentPage + 1)}>다음 페이지</NextBtn>
-          ) : (
-            <NoneBtn />
-          )}
-        </Container>
-      )}
+      <Container>
+        {!pagination.isFirst && !pagination.isEmpty ? <MoveBtn onClick={onClickPrev}>&lt;</MoveBtn> : <NoneBtn />}
+        <Pagination />
+        {!pagination.isLast && !pagination.isEmpty ? <MoveBtn onClick={onClickNext}>&gt;</MoveBtn> : <NoneBtn />}
+      </Container>
     </>
   );
 }

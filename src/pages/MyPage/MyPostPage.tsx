@@ -4,10 +4,12 @@ import { Header } from "../../components/elements/Header";
 import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
-import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import MyPagination from "../MyPage/MyPagination";
+import { useRecoilState } from "recoil";
+import { currPageState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -71,6 +73,12 @@ export function MyPostPage() {
   ];
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+  const [currPage] = useRecoilState(currPageState);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
+  
   const getMyPostAPI = async () => {
     await axios
       .get(`http://13.124.126.164:8080/mypage/posts/`, {
@@ -80,7 +88,7 @@ export function MyPostPage() {
         },
         params: {
           size: 5,
-          page: 1,
+          page: currPage,
         },
       })
       .then((response) => {
@@ -93,7 +101,7 @@ export function MyPostPage() {
   };
   useEffect(() => {
     getMyPostAPI();
-  }, []);
+  }, [currPage]);
 
   return (
     <>
@@ -104,20 +112,8 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             {isMobile ? "" : <Title>내가 쓴 글</Title>}
             <PostItemContainer>
-              {posts.map((post: any, index: number) => (
-                <PostItem
-                  key={index}
-                  postId={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImage={post.profileImage}
-                />
-              ))}
-              {/* {postList.map((post: IPost, index: number) => (
+              {/* 테스트 데이터 */}
+              {/* {posts.map((post: any, index: number) => (
                 <PostItem
                   key={index}
                   postId={post.postId}
@@ -130,8 +126,21 @@ export function MyPostPage() {
                   profileImage={post.profileImage}
                 />
               ))} */}
+              {postList.map((post: IPost, index: number) => (
+                <PostItem
+                  key={index}
+                  postId={post.postId}
+                  author={post.author}
+                  title={post.title}
+                  body={post.body}
+                  likes={post.likes}
+                  reply={post.reply}
+                  time={post.time}
+                  profileImage={post.profileImage}
+                />
+              ))}
             </PostItemContainer>
-            <PageMove />
+            <MyPagination />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

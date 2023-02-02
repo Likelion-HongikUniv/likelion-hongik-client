@@ -283,3 +283,22 @@ export const pageState = atom<number>({
   key: "pageState",
   default: 1,
 });
+
+
+export const curPageIndexState = atom<number>({
+  key: "curPageIndexState",
+  default: 0,
+});
+
+export const mypaginationState = atom<IPagination>({
+  key: "mypaginationState",
+  default: {
+    totalPage: 3,
+    totalElements: 14,
+    pagingSize: 5,
+    currentPage: 1,
+    isFirst: false,
+    isLast: false,
+    isEmpty: false,
+  },
+});

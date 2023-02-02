@@ -8,6 +8,9 @@ import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import MyPagination from "../MyPage/MyPagination";
+import { useRecoilState } from "recoil";
+import { currPageState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -24,9 +27,15 @@ export function MyReplyPage() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+  const [currPage] = useRecoilState(currPageState);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
+
   const getMyReplyAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/comments/`, {
+      .get(`http://13.124.126.164:8080/mypage/comment/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -37,7 +46,7 @@ export function MyReplyPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         setPostList(response.data);
       })
       .catch(function (error) {
@@ -71,7 +80,7 @@ export function MyReplyPage() {
                 />
               ))}
             </PostItemContainer>
-            <PageMove />
+            <MyPagination />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>
