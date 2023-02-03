@@ -25,7 +25,7 @@ export function Pagination() {
 
   return (
     <PageWrapper>
-      {curPageIndex !== 0 && (
+      {!pagination.isEmpty && curPageIndex !== 0 && (
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex - 1);
@@ -45,7 +45,7 @@ export function Pagination() {
           {pageNum}
         </PageBtn>
       ))}
-      {curPageIndex !== pageDividedArr?.length - 1 && (
+      {!pagination.isEmpty && curPageIndex !== pageDividedArr?.length - 1 && (
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);

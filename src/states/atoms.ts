@@ -213,7 +213,7 @@ export const tagListState = atom<ICategory[]>({
       text: "과제관리",
       tags: [
         {
-          key: "FRONT",
+          key: "FRONTEND",
           text: "프론트",
         },
         {
@@ -231,7 +231,7 @@ export const tagListState = atom<ICategory[]>({
       text: "프로젝트",
       tags: [
         {
-          key: "FRONT",
+          key: "FRONTEND",
           text: "프론트",
         },
         {
@@ -273,13 +273,13 @@ export const postsListState = atom<IPost[]>({
 export const paginationState = atom<IPagination>({
   key: "paginationState",
   default: {
-    totalPage: 23,
-    totalElements: 14,
+    totalPage: 1,
+    totalElements: 0,
     pagingSize: 5,
     currentPage: 1,
     isFirst: false,
     isLast: false,
-    isEmpty: false,
+    isEmpty: true,
   },
 });
 
