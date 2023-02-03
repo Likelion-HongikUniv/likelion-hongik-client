@@ -47,7 +47,6 @@ export function Pagination() {
       ))}
 
       {!pagination.isEmpty && curPageIndex !== pageDividedArr?.length - 1 && (
-
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);
@@ -64,13 +63,13 @@ export function Pagination() {
 const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 0.4167vw;
 `;
 
 const PageBtn = styled.button`
-  width: 33px;
-  height: 33px;
-  border: 1px solid #ffffff;
+  width: 1.7188vw;
+  height: 1.7188vw;
+  border: 0.0521vw solid #ffffff;
   border-radius: 0.2083vw;
   color: #ffffff;
   @media all and (max-width: 768px) {

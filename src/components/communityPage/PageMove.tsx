@@ -6,7 +6,7 @@ import { paginationState, pageState, curPageIndexState } from "../../states/atom
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { useEffect } from "react";
 
-export function  PageMove() {
+export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
   const isMobile = useMediaQuery("maxWidth: 768px");
   const [page, setPage] = useRecoilState<number>(pageState);
@@ -43,15 +43,15 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 60px;
-  margin-bottom: 340px;
+  margin-top: 3.125vw;
+  margin-bottom: 17.7083vw;
 `;
 
 const MoveBtn = styled.button`
-  width: 92px;
-  height: 33px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+  width: 4.7917vw;
+  height: 1.7188vw;
+  border: 0.0521vw solid #ffffff;
+  border-radius: 0.2083vw;
   color: #ffffff;
   @media all and (max-width: 768px) {
     border: none;
@@ -62,9 +62,9 @@ const MoveBtn = styled.button`
 `;
 
 const NoneBtn = styled(MoveBtn)`
-  width: 92px;
-  height: 33px;
-  border-radius: 4px;
+  width: 4.7917vw;
+  height: 1.7188vw;
+  border-radius: 0.2083vw;
   border: none;
   @media all and (max-width: 768px) {
     width: 1.8513vw;

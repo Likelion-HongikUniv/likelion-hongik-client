@@ -84,7 +84,7 @@ export function SideBar(categoryName: ICommunityParam) {
 const SideBarWrapper = styled.div`
   position: fixed;
   display: flex;
-  width: 190px;
+  width: 9.8958vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -101,15 +101,15 @@ const ProfileBoard = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
+  gap: 0.625vw;
   @media all and (max-width: 768px) {
     margin-bottom: 10.2564vw;
   }
 `;
 
 const ProfileImg = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 3.125vw;
+  height: 3.125vw;
   img {
     width: 100%;
     height: 100%;
@@ -119,14 +119,11 @@ const ProfileImg = styled.div`
 `;
 
 const ProfileDesc = styled.div`
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: -0.32px;
+  font-size: 0.7292vw;
   color: #b9b9b9;
   span {
     font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 0.9375vw;
     color: #fff;
   }
 `;
@@ -135,11 +132,10 @@ const TagWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-bottom: 1px solid #6d6d6d;
-  padding: 20px 0 0 0;
+  border-bottom: 0.0521vw solid #6d6d6d;
+  padding: 1.0417vw 0 0 0;
   span {
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 0.625vw;
     color: #979797;
   }
 
@@ -147,13 +143,12 @@ const TagWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    gap: 16px;
-    padding: 20px 11px;
+    gap: 0.8333vw;
+    padding: 1.0417vw 0.5729vw;
     font-weight: 500;
     span {
-      font-size: 16px;
-      line-height: 19px;
-      letter-spacing: -0.32px;
+      font-size: 0.8333vw;
+      letter-spacing: -0.0167vw;
       color: #ffffff;
       cursor: pointer;
       &:hover {
@@ -173,7 +168,6 @@ const SelectBox = styled.select`
   background-color: transparent;
   font-weight: 700;
   font-size: 3.5897vw;
-  line-height: 4.359vw;
   color: #fff;
   height: 10.5128vw;
   cursor: pointer;

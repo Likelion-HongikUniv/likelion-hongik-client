@@ -51,16 +51,16 @@ export function PostItem(post: IPost) {
 }
 
 const Item = styled.div`
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 1.6667vw 0;
+  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   img {
-    width: 140px;
-    height: 140px;
+    width: 7.2917vw;
+    height: 7.2917vw;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 0.625vw;
   }
   @media all and (max-width: 768px) {
     display: block;
@@ -82,25 +82,25 @@ const Left = styled.div`
 
 const User = styled.div`
   display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 0.625vw;
+  margin-bottom: 0.8333vw;
   div {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.2083vw;
   }
   img {
-    width: 30px;
-    height: 30px;
+    width: 1.5625vw;
+    height: 1.5625vw;
     border-radius: 100%;
   }
 `;
 
 const UserName = styled.span`
   font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  letter-spacing: -0.32px;
+  font-size: 0.8333vw;
+  line-height: 0.9896vw;
+  letter-spacing: -0.0167vw;
   color: #d7d7d7;
   opacity: 0.98;
   @media all and (max-width: 768px) {
@@ -112,9 +112,9 @@ const UserName = styled.span`
 
 const UploadDate = styled.span`
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: -0.32px;
+  font-size: 0.7292vw;
+  line-height: 0.8854vw;
+  letter-spacing: -0.0167vw;
   color: #d7d7d7;
   opacity: 0.98;
   @media all and (max-width: 768px) {
@@ -125,20 +125,20 @@ const UploadDate = styled.span`
 `;
 
 const Content = styled.div`
-  padding-left: 42px;
+  padding-left: 2.1875vw;
   width: 35.9896vw;
-  margin-bottom: 20px;
+  margin-bottom: 1.0417vw;
   p {
     display: inline-block;
     white-space: nowrap;
-    width: 691px;
-    height: 46px;
+    width: 35.9896vw;
+    height: 2.3958vw;
     text-overflow: ellipsis;
     overflow-x: hidden;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 23px;
-    letter-spacing: -0.32px;
+    font-size: 0.8333vw;
+    line-height: 1.1979vw;
+    letter-spacing: -0.0167vw;
     color: #ffffff;
     opacity: 0.98;
     margin: 0;
@@ -159,14 +159,14 @@ const Title = styled.span`
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 691px;
-  height: 24px;
+  width: 35.9896vw;
+  height: 1.25vw;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.0417vw;
   white-space: nowrap;
   color: #ffffff;
   opacity: 0.98;
-  margin-bottom: 12px;
+  margin-bottom: 0.625vw;
   @media all and (max-width: 768px) {
     width: 100%;
     height: auto;
@@ -176,9 +176,9 @@ const Title = styled.span`
 `;
 
 const Bottom = styled.div`
-  padding-left: 42px;
+  padding-left: 2.1875vw;
   display: flex;
-  gap: 15px;
+  gap: 0.7813vw;
   flex-direction: row;
   @media all and (max-width: 768px) {
     padding-left: 0.4282vw;
@@ -187,14 +187,14 @@ const Bottom = styled.div`
 
 const Icon = styled.div`
   display: flex;
-  gap: 6px;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
+  gap: 0.3125vw;
+  font-size: 0.7292vw;
+  line-height: 0.8854vw;
   color: rgba(255, 255, 255, 0.7);
   img {
-    width: 18px;
-    height: 18px;
+    width: 0.9375vw;
+    height: 0.9375vw;
   }
   @media all and (max-width: 768px) {
     img {

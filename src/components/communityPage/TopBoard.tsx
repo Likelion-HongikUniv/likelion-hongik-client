@@ -39,34 +39,33 @@ const Table = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  margin-top: 40px;
+  padding-bottom: 0.8333vw;
+  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
+  margin-top: 2.0833vw;
   div {
     display: flex;
-    gap: 6px;
+    gap: 0.3125vw;
     align-items: center;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 0.8333vw;
   }
   button {
+    width: 6.1979vw;
+    height: 2.7083vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 12.5px;
+    padding: 0.651vw;
     background: #ed7f30;
-    border-radius: 8px;
+    border-radius: 0.4167vw;
     img {
-      width: 18px;
-      height: 18px;
+      width: 0.3vw;
+      height: 0.3vw;
     }
     span {
       font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 1.0417vw;
       text-align: center;
-      letter-spacing: -0.32px;
       color: #000000;
     }
     @media all and (max-width: 768) {

@@ -10,36 +10,36 @@ export function SearchBar() {
 }
 
 const SearchContainer = styled.form`
-  margin-top: 20px;
   display: flex;
-  gap: 16px;
+  margin-top: 1.0417vw;
+  gap: 0.8333vw;
   width: 100%;
   input {
-    width: 783px;
-    height: 60px;
+    width: 40.7813vw;
+    height: 3.125vw;
     background: rgba(51, 51, 51, 0.6);
-    border-radius: 8px;
+    border-radius: 0.4167vw;
     border: none;
     color: #fff;
-    padding: 19px 16px;
     font-weight: 500;
-    font-size: 18px;
+    padding: 0.9896vw 0.8333vw;
+    font-size: 0.9375vw;
     &:focus {
       outline: none;
     }
   }
   button {
-    width: 126px;
-    height: 60px;
+    width: 6.5625vw;
+    height: 3.125vw;
+    line-height: 1.1458vw;
+    border-radius: 0.4167vw;
+    letter-spacing: -0.0167vw;
+    font-size: 1.0417vw;
     background: #e9e9e9;
-    border-radius: 8px;
     font-weight: 600;
-    line-height: 22px;
     text-align: center;
-    letter-spacing: -0.32px;
     color: #000000;
     border: none;
-    font-size: 20px;
   }
   @media all and (max-width: 768px) {
     width: 100%;

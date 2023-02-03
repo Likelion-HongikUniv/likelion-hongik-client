@@ -25,14 +25,14 @@ export function ProjectInfo() {
 const TeamWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.0417vw;
   div {
     display: flex;
     align-items: center;
     span {
-      margin-left: 15px;
       font-weight: 500;
-      font-size: 16px;
+      margin-left: 0.7813vw;
+      font-size: 0.8333vw;
       color: #c6c6c6;
     }
   }
@@ -40,19 +40,19 @@ const TeamWrapper = styled.div`
 
 const TeamName = styled.h1`
   font-weight: 700;
-  font-size: 24px;
-  line-height: 34px;
+  font-size: 1.25vw;
+  line-height: 1.7708vw;
   margin: 0;
 `;
 
 const ImgBox = styled.div`
-  width: 25px;
-  height: 32px;
+  width: 1.3021vw;
+  height: 1.6667vw;
   overflow-x: visible;
   img {
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 1.6667vw;
+    height: 1.6667vw;
     border-radius: 100%;
   }
   &:first-child {

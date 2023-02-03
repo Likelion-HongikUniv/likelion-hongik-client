@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100vw;
-  gap: 125px;
+  gap: 6.5104vw;
   @media all and (max-width: 768px) {
     flex-direction: column;
     width: 100vw;
