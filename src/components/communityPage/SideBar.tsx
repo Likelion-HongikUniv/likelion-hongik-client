@@ -6,7 +6,7 @@ import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("( max-width: 390px )");
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();
@@ -24,12 +24,20 @@ export function SideBar(categoryName: ICommunityParam) {
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    navigate(`/community/${event.target.value}`);
+    const category = event.target.value;
+    if (category === "BOARD") {
+      setNowTag("NOTICE");
+    } else if (category === "HOMEWORK") {
+      setNowTag("FRONTEND");
+    } else {
+      setNowTag("FRONTEND");
+    }
+    navigate(`/community/${category}`);
   };
   return (
     <SideBarWrapper>
       <div>
-        {isMobile && categoryName.categoryName === "project" ? (
+        {isMobile && categoryName.categoryName === "PROJECT" ? (
           ""
         ) : (
           <ProfileBoard>
@@ -45,7 +53,9 @@ export function SideBar(categoryName: ICommunityParam) {
         {isMobile ? (
           <SelectBox onChange={onChangeHandler}>
             {tagList.map((category: ICategory) => (
-              <Option value={category.key}>{category.text}</Option>
+              <Option value={category.key} key={category.key}>
+                {category.text}
+              </Option>
             ))}
           </SelectBox>
         ) : (
@@ -79,7 +89,7 @@ const SideBarWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   left: 17.7083vw;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     display: flex;
     position: static;
     flex-direction: row;
@@ -92,8 +102,8 @@ const ProfileBoard = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
-  @media (max-width: 390px) {
-    margin-bottom: 40px;
+  @media all and (max-width: 768px) {
+    margin-bottom: 10.2564vw;
   }
 `;
 
@@ -158,20 +168,21 @@ const TagWrapper = styled.div`
 `;
 
 const SelectBox = styled.select`
-  padding: 12px;
+  padding: 3.0769vw;
   border: none;
   background-color: transparent;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  color: #d7d7d7;
-  height: 41px;
+  font-size: 3.5897vw;
+  line-height: 4.359vw;
+  color: #fff;
+  height: 10.5128vw;
   cursor: pointer;
 `;
 
 const Option = styled.option`
-  background-color: transparent;
-  :disabled {
-    display: none;
-  }
+  color: #fff;
+  background: #333333;
+  width: 19.2308vw;
+  height: 10.5128vw;
+  padding: 3.0769vw;
 `;

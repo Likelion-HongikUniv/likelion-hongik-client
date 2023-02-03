@@ -31,8 +31,8 @@ export function Header() {
 
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
-    if (page === "community/post") {
-      setNowTag("notice");
+    if (page === "community/BOARD") {
+      setNowTag("NOTICE");
     }
     navigate(`/${page}`);
   };
@@ -45,7 +45,7 @@ export function Header() {
           <HeaderButton onClick={onClickHeaderButton} name="recruit">
             지원하기
           </HeaderButton>
-          <HeaderButton onClick={onClickHeaderButton} name="community/post">
+          <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
             커뮤니티
           </HeaderButton>
           <ProfileButton />
@@ -72,7 +72,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderMobileButton>
-            <HeaderMobileButton onClick={onClickHeaderButton} name="community/post">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 import { IPagination } from "../../interfaces/post";
 import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
+
 export function Pagination() {
   const pagination = useRecoilValue<IPagination>(paginationState);
   const setPage = useSetRecoilState<number>(pageState);
@@ -11,6 +12,7 @@ export function Pagination() {
     border: "none",
   };
   const pageArr = Array.from({ length: pagination?.totalPage }, (v, i) => i + 1);
+
   const division = (data: number[], size: number) => {
     const arr = [];
     for (let i = 0; i < data.length; i += size) {
@@ -18,10 +20,12 @@ export function Pagination() {
     }
     return arr;
   };
+
   const pageDividedArr = division(pageArr, 6);
+
   return (
     <PageWrapper>
-      {curPageIndex !== 0 && (
+      {!pagination.isEmpty && curPageIndex !== 0 && (
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex - 1);
@@ -42,7 +46,8 @@ export function Pagination() {
         </PageBtn>
       ))}
 
-      {curPageIndex !== pageDividedArr?.length - 1 && (
+      {!pagination.isEmpty && curPageIndex !== pageDividedArr?.length - 1 && (
+
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);
