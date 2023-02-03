@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
 
-const MyPagination = () => {
-  const totalPosts = 25; // 나중에 props로 받기
+interface ItotalPage {
+  totalPosts: number;
+}
+
+const MyPagination = ({ totalPosts }: ItotalPage) => {
   const [numPages, setNumPages] = useState(Math.ceil(totalPosts / 5));
   const [currPage, setCurrPage] = useRecoilState(currPageState);
 

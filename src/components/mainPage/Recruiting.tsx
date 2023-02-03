@@ -31,6 +31,7 @@ const Recruiting = () => {
 
 const BoxContainer = styled.div`
   background-image: url(${main_recruiting});
+  background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: overlay;
   width: 1040px;
@@ -44,6 +45,10 @@ const BoxContainer = styled.div`
     width: 350px;
     height: 297px;
     padding: 30px 20px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 688px;
+    height: 350px;
   }
 `;
 

@@ -74,6 +74,7 @@ export function MyPostPage() {
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
+  const [totalPosts, setTotalPosts] = useState(25);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -94,6 +95,7 @@ export function MyPostPage() {
       .then((response) => {
         console.log(response.data.content);
         setPostList(response.data.content);
+        setTotalPosts(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -140,7 +142,7 @@ export function MyPostPage() {
                 />
               ))}
             </PostItemContainer>
-            <MyPagination />
+            <MyPagination totalPosts={totalPosts} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

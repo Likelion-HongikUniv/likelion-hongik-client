@@ -53,6 +53,8 @@ const MainPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  width: 100vw;
+  overflow: hidden;
 `;
 
 const Title = styled.span`

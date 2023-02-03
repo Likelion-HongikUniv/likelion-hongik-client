@@ -4,7 +4,6 @@ import { Header } from "../../components/elements/Header";
 import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
-import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
@@ -27,8 +26,8 @@ export function MyLikePage() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
-
   const [currPage] = useRecoilState(currPageState);
+  const [totalPosts, setTotalPosts] = useState(25);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,12 +42,13 @@ export function MyLikePage() {
         },
         params: {
           size: 5,
-          page: 1,
+          page: currPage,
         },
       })
       .then((response) => {
         console.log(response);
         setPostList(response.data.content);
+        setTotalPosts(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -56,7 +56,7 @@ export function MyLikePage() {
   };
   useEffect(() => {
     getMyLikeAPI();
-  }, []);
+  }, [currPage]);
 
   return (
     <>
@@ -81,7 +81,7 @@ export function MyLikePage() {
                 />
               ))}
             </PostItemContainer>
-            <MyPagination />
+            <MyPagination totalPosts={totalPosts} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>
