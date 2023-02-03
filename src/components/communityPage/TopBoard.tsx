@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { SearchBar } from "./SearchBar";
 import { ICommunityParam } from "../../interfaces/category";
 import { WriteIcon } from "../icons/WriteIcon";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 390px )");
   return (
     <Wrapper>
       {categoryName.categoryName === "post" && <SearchBar />}
