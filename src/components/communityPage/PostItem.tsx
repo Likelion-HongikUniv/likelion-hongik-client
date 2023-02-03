@@ -4,16 +4,16 @@ import { CommentIcon } from "../icons/CommentIcon";
 import { IPost } from "../../interfaces/post";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function PostItem(post: IPost) {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery(" maxWidth: 768px; ");
   const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
 
   const onClickHandler = () => {
-    navigate(`/post/${post.postId}`);
+    navigate(`/community/post/${post.postId}`);
   };
   return (
     <Item onClick={onClickHandler}>
@@ -62,12 +62,12 @@ const Item = styled.div`
     object-fit: contain;
     border-radius: 12px;
   }
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     display: block;
     img {
-      width: 90px;
-      height: 90px;
-      margin-bottom: 20px;
+      width: 23.0769vw;
+      height: 23.0769vw;
+      margin-bottom: 5.1282vw;
     }
   }
   &:last-child {
@@ -103,10 +103,10 @@ const UserName = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 4.1026vw;
+    line-height: 4.8718vw;
   }
 `;
 
@@ -117,10 +117,10 @@ const UploadDate = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 3.0769vw;
+    line-height: 3.8462vw;
   }
 `;
 
@@ -143,13 +143,13 @@ const Content = styled.div`
     opacity: 0.98;
     margin: 0;
   }
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     width: 100%;
     padding-left: 0;
     p {
       width: 100%;
-      font-size: 12px;
-      line-height: 20px;
+      font-size: 3.0769vw;
+      line-height: 5.1282vw;
       height: auto;
     }
   }
@@ -167,10 +167,11 @@ const Title = styled.span`
   color: #ffffff;
   opacity: 0.98;
   margin-bottom: 12px;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     width: 100%;
-    font-size: 16px;
-    line-height: 24px;
+    height: auto;
+    font-size: 4.1026vw;
+    line-height: 100%;
   }
 `;
 
@@ -179,8 +180,8 @@ const Bottom = styled.div`
   display: flex;
   gap: 15px;
   flex-direction: row;
-  @media (max-width: 390px) {
-    padding-left: 1.67px;
+  @media all and (max-width: 768px) {
+    padding-left: 0.4282vw;
   }
 `;
 
@@ -195,10 +196,10 @@ const Icon = styled.div`
     width: 18px;
     height: 18px;
   }
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     img {
-      width: 14px;
-      height: 14px;
+      width: 3.5897vw;
+      height: 3.5897vw;
     }
   }
 `;

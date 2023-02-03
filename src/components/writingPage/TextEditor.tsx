@@ -37,7 +37,7 @@ export function TextEditor() {
   // }, []);
 
   return (
-    <Column width="100%" justifyContent="center" alignItems="center">
+    <Column width="80vw" justifyContent="center" alignItems="center" style={{ paddingBottom: "100px" }}>
       <EditorWrapper>
         <Editor
           ref={editorRef}
@@ -63,15 +63,10 @@ export function TextEditor() {
           }
         />
       </EditorWrapper>
-      <Row marginTop="24px" width="80%" justifyContent="flex-end" gap="12px">
+      <Row marginTop="24px" width="100%" justifyContent="flex-end" gap="12px">
         <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
         <SaveButton onClick={onClickRegisterButton}>등록</SaveButton>
       </Row>
-      <Viewer
-        initialValue={` 안녕하세요! 멋사 분들이 듣는 개발 강의가 있나용? 추천 부탁드립니다! 백준코딩만 하다가 대가리 깨질것같아서욧!!
-  개발짱짱맨 김아현이 되고싶습니닷 ㅇㅅㅇ 언능알려조잉~~ </br>
-  참고로 건빵이는 무지 귀엽구요 빼로는 카와이해요`}
-      ></Viewer>
     </Column>
   );
 }
@@ -79,7 +74,7 @@ export function TextEditor() {
 const EditorWrapper = styled.div`
   width: 100%;
   margin-top: 40px;
-  background-color: aliceblue;
+  background-color: black;
   border-radius: 4px;
 
   .toastui-editor-toolbar {

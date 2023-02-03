@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
+import BeatLoader from "react-spinners/BeatLoader";
+
 
 const Ing = () => {
   const navigate = useNavigate();
@@ -50,6 +52,18 @@ const Ing = () => {
     }
     getProfile();
   }, []);
-  return <div>로그인 진행 중…</div>;
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <BeatLoader color="#ED7F30" size={50} />
+    </div>
+  );
 };
 export default Ing;

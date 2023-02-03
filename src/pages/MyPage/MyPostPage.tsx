@@ -4,10 +4,12 @@ import { Header } from "../../components/elements/Header";
 import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
-import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import MyPagination from "../MyPage/MyPagination";
+import { useRecoilState } from "recoil";
+import { currPageState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -21,7 +23,7 @@ interface IPost {
 }
 
 export function MyPostPage() {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const posts = [
     {
       title: "게시글1",
@@ -71,6 +73,13 @@ export function MyPostPage() {
   ];
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+  const [currPage] = useRecoilState(currPageState);
+  const [totalPosts, setTotalPosts] = useState(25);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
+  
   const getMyPostAPI = async () => {
     await axios
       .get(`http://13.124.126.164:8080/mypage/posts/`, {
@@ -80,12 +89,13 @@ export function MyPostPage() {
         },
         params: {
           size: 5,
-          page: 1,
+          page: currPage,
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data.content);
         setPostList(response.data.content);
+        setTotalPosts(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -93,7 +103,7 @@ export function MyPostPage() {
   };
   useEffect(() => {
     getMyPostAPI();
-  }, [postList]);
+  }, [currPage]);
 
   return (
     <>
@@ -104,23 +114,11 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             {isMobile ? "" : <Title>내가 쓴 글</Title>}
             <PostItemContainer>
-              {posts.map((post: any, index: number) => (
+              {/* 테스트 데이터 */}
+              {/* {posts.map((post: any, index: number) => (
                 <PostItem
                   key={index}
-                  pid={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImage={post.profileImage}
-                />
-              ))}
-              {/* {postList.map((post: IPost, index: number) => (
-                <PostItem
-                  key={index}
-                  pid={post.postId}
+                  postId={post.postId}
                   author={post.author}
                   title={post.title}
                   body={post.body}
@@ -130,8 +128,21 @@ export function MyPostPage() {
                   profileImage={post.profileImage}
                 />
               ))} */}
+              {postList.map((post: IPost, index: number) => (
+                <PostItem
+                  key={index}
+                  postId={post.postId}
+                  author={post.author}
+                  title={post.title}
+                  body={post.body}
+                  likes={post.likes}
+                  reply={post.reply}
+                  time={post.time}
+                  profileImage={post.profileImage}
+                />
+              ))}
             </PostItemContainer>
-            <PageMove />
+            <MyPagination totalPosts={totalPosts} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>
@@ -143,7 +154,7 @@ const MyPostPageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 200px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100vw;
     flex-direction: column;
     overflow: hidden;
@@ -156,7 +167,7 @@ const MyPostBoxContainer = styled.div`
   justify-content: center;
   margin-top: 140px;
   margin-left: 8.33vw;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100vw;
     margin-top: 0px;
     margin-left: 0px;
@@ -169,14 +180,15 @@ const Title = styled.div`
   line-height: 34px;
   letter-spacing: -0.32px;
   color: #ffffff;
-  opacity: 0.98;
+  opacity: 0.98; 
   /* width: 925px; */
 `;
 
 const PostItemContainer = styled.div`
   /* width: 800px; */
   height: 1330px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     margin-bottom: 50px;
+    width: 100vw;
   }
 `;
