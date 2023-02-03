@@ -15,11 +15,11 @@ import { nowTagState, postsListState, pageState } from "../states/atoms";
 import { IPost } from "../interfaces/post";
 import getPostList from "../api/getPostList";
 import post from "../data/post.json";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 390px )");
   const tag = useRecoilValue<string>(nowTagState);
   // const postsData = useRecoilValue<IPost[]>(postsListState);
   const postsData = post.data;

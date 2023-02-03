@@ -1,38 +1,20 @@
 import styled from "styled-components";
 import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
-import { useMediaQuery } from "react-responsive";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { paginationState, pageState } from "../../states/atoms";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function  PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [page, setPage] = useRecoilState<number>(pageState);
-  const [curPageIndex, setCurPageIndex] = useRecoilState<number>(curPageIndexState);
-
-  const onClickPrev = () => {
-    setPage(pagination.currentPage - 1);
-    if (page % 6 === 0) {
-      console.log(page);
-      setCurPageIndex(curPageIndex - 1);
-    }
-  };
-
-  const onClickNext = () => {
-    setPage(pagination.currentPage + 1);
-    if (page % 6 === 5) {
-      console.log(page);
-      setCurPageIndex(curPageIndex + 1);
-    }
-  };
+  const isMobile = useMediaQuery("( max-width: 390px )");
 
   return (
     <>
       <Container>
-        {!pagination.isFirst && !pagination.isEmpty ? <MoveBtn onClick={onClickPrev}>&lt;</MoveBtn> : <NoneBtn />}
+        {!pagination.isFirst && !pagination.isEmpty ? <MoveBtn>&lt;</MoveBtn> : <NoneBtn />}
         <Pagination />
-        {!pagination.isLast && !pagination.isEmpty ? <MoveBtn onClick={onClickNext}>&gt;</MoveBtn> : <NoneBtn />}
+        {!pagination.isLast && !pagination.isEmpty ? <MoveBtn>&gt;</MoveBtn> : <NoneBtn />}
       </Container>
     </>
   );

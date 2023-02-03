@@ -5,7 +5,7 @@ import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import axios from "axios";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
@@ -23,7 +23,7 @@ interface IPost {
 }
 
 export function MyReplyPage() {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("( max-width: 390px )");
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
