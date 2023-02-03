@@ -17,7 +17,7 @@ export function RecruitPage() {
   return (
     <>
       <Header />
-      <Section>
+      <Section style={{overflow:"hidden"}}>
         <Column justifyContent="center" alignItems="center">
           <Section style={{ paddingTop: "0" }}>
             <Wrapper style={{ backgroundImage: `url(${recruitBackImg})` }}>
