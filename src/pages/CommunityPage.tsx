@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { Header } from "../components/elements/Header";
 import { CategoryTab } from "../components/communityPage/CategoryTab";
@@ -12,13 +12,13 @@ import { ProjectInfo } from "../components/communityPage/ProjectInfo";
 import Footer from "../components/elements/Footer";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState, postsListState, pageState, paginationState } from "../states/atoms";
-import { IPost, IPagination, IPostList } from "../interfaces/post";
+import { IPost, IPagination } from "../interfaces/post";
 import GetPostList from "../api/getPostList";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
-  const isMobile = useMediaQuery("maxWidth: 768px;");
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const tag = useRecoilValue<string>(nowTagState);
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const page = useRecoilValue<number>(pageState);
