@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BLACK_1, WHITE_1 } from "../../styles/theme";
 
 export function SearchBar() {
   return (
@@ -20,7 +21,7 @@ const SearchContainer = styled.form`
     background: rgba(51, 51, 51, 0.6);
     border-radius: 0.4167vw;
     border: none;
-    color: #fff;
+    color: ${WHITE_1};
     font-weight: 500;
     padding: 0.9896vw 0.8333vw;
     font-size: 0.9375vw;
@@ -38,18 +39,21 @@ const SearchContainer = styled.form`
     background: #e9e9e9;
     font-weight: 600;
     text-align: center;
-    color: #000000;
+    color: ${BLACK_1};
     border: none;
   }
   @media all and (max-width: 768px) {
+    margin-top: 4.1026vw;
     width: 100%;
     flex-direction: column;
+    gap: 3.0769vw;
     input {
       width: 100%;
       height: 12.3077vw;
       font-weight: 500;
       font-size: 3.5897vw;
-      line-height: 4.359vw;
+      border-radius: 2.0513vw;
+      padding: 3.8462vw 3.0769vw;
     }
     button {
       width: 100%;
@@ -57,6 +61,7 @@ const SearchContainer = styled.form`
       font-weight: 600;
       font-size: 4.1026vw;
       line-height: 4.8718vw;
+      border-radius: 2.0513vw;
     }
   }
 `;

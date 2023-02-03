@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 import { IPagination } from "../../interfaces/post";
 import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
+import { WHITE_1 } from "../../styles/theme";
 
 export function Pagination() {
   const pagination = useRecoilValue<IPagination>(paginationState);
@@ -69,9 +70,9 @@ const PageWrapper = styled.div`
 const PageBtn = styled.button`
   width: 1.7188vw;
   height: 1.7188vw;
-  border: 0.0521vw solid #ffffff;
+  border: 0.0521vw solid ${WHITE_1};
   border-radius: 0.2083vw;
-  color: #ffffff;
+  color: ${WHITE_1};
   @media all and (max-width: 768px) {
     width: 7.1795vw;
     height: 7.1795vw;

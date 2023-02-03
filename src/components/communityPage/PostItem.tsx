@@ -94,6 +94,17 @@ const User = styled.div`
     height: 1.5625vw;
     border-radius: 100%;
   }
+  @media all and (max-width: 768px) {
+    gap: 3.0769vw;
+    margin-bottom: 6.1538vw;
+    div {
+      gap: 1.0256vw;
+    }
+    img {
+      width: 7.6923vw;
+      height: 7.6923vw;
+    }
+  }
 `;
 
 const UserName = styled.span`

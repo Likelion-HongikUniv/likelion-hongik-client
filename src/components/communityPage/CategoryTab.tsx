@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListSelector } from "../../states/atoms";
 import { ICategory, ITag, ICommunityParam } from "../../interfaces/category";
+import { BLACK_1, WHITE_1 } from "../../styles/theme";
 
 export function CategoryTab(categoryName: ICommunityParam) {
   const tagList = useRecoilValue<ICategory[]>(tagListSelector(categoryName.categoryName));
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const navigate = useNavigate();
   const activeStyle = {
-    borderBottom: "2px solid #FFFFFF",
+    borderBottom: `2px solid %{WHITE_1}`,
   };
 
   const onClickTagHandler = (tag: ITag) => {
@@ -41,7 +42,7 @@ const CategoryList = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   a {
     text-decoration: none;
-    color: white;
+    color: ${WHITE_1};
   }
 `;
 

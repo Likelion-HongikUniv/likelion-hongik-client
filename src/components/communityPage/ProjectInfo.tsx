@@ -36,13 +36,24 @@ const TeamWrapper = styled.div`
       color: #c6c6c6;
     }
   }
+  @media all and (max-width: 768px) {
+    gap: 4.1026vw;
+    div {
+      span {
+        font-size: 3.5897vw;
+        margin-left: 6vw;
+      }
+    }
+  }
 `;
 
 const TeamName = styled.h1`
   font-weight: 700;
   font-size: 1.25vw;
-  line-height: 1.7708vw;
   margin: 0;
+  @media all and (max-width: 768px) {
+    font-size: 5.1282vw;
+  }
 `;
 
 const ImgBox = styled.div`
@@ -63,5 +74,13 @@ const ImgBox = styled.div`
   }
   &:nth-child(3) {
     opacity: 0.5;
+  }
+  @media all and (max-width: 768px) {
+    width: 6vw;
+    height: 8.2051vw;
+    img {
+      width: 8.2051vw;
+      height: 8.2051vw;
+    }
   }
 `;

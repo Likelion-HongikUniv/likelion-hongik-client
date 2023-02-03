@@ -3,6 +3,7 @@ import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
+import { WHITE_1 } from "../../styles/theme";
 
 export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
@@ -47,9 +48,9 @@ const Container = styled.div`
 const MoveBtn = styled.button`
   width: 4.7917vw;
   height: 1.7188vw;
-  border: 0.0521vw solid #ffffff;
+  border: 0.0521vw solid ${WHITE_1};
   border-radius: 0.2083vw;
-  color: #ffffff;
+  color: ${WHITE_1};
   @media all and (max-width: 768px) {
     border: none;
     width: 1.8513vw;

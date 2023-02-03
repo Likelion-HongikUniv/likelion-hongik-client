@@ -4,6 +4,7 @@ import { nowTagState, tagListState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { WHITE_1 } from "../../styles/theme";
 
 export function SideBar(categoryName: ICommunityParam) {
   const isMobile = useMediaQuery("( max-width: 768px )");
@@ -42,7 +43,7 @@ export function SideBar(categoryName: ICommunityParam) {
         ) : (
           <ProfileBoard>
             <ProfileImg>
-              <img alt="profile-img" />
+              <img alt="profile-img" src="https://placekitten.com/200/300" />
             </ProfileImg>
             <ProfileDesc>
               <span>김아현</span>
@@ -90,6 +91,7 @@ const SideBarWrapper = styled.div`
   align-items: center;
   left: 17.7083vw;
   @media all and (max-width: 768px) {
+    width: 100%;
     display: flex;
     position: static;
     flex-direction: row;
@@ -97,34 +99,46 @@ const SideBarWrapper = styled.div`
 `;
 
 const ProfileBoard = styled.div`
-  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.625vw;
   @media all and (max-width: 768px) {
+    width: 100%;
+    gap: 3.0769vw;
     margin-bottom: 10.2564vw;
   }
 `;
 
 const ProfileImg = styled.div`
-  width: 3.125vw;
-  height: 3.125vw;
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 3.125vw;
+    height: 3.125vw;
+    object-fit: cover;
     border-radius: 100%;
+  }
+  @media all and (max-width: 768px) {
+    img {
+      width: 15.3846vw;
+      height: 15.3846vw;
+    }
   }
 `;
 
 const ProfileDesc = styled.div`
-  font-size: 0.7292vw;
   color: #b9b9b9;
+  font-size: 0.7292vw;
+
   span {
     font-weight: 700;
     font-size: 0.9375vw;
-    color: #fff;
+    color: ${WHITE_1};
+  }
+  @media all and (max-width: 768px) {
+    font-size: 3.5897vw;
+    span {
+      font-size: 4.6154vw;
+    }
   }
 `;
 
@@ -149,7 +163,7 @@ const TagWrapper = styled.div`
     span {
       font-size: 0.8333vw;
       letter-spacing: -0.0167vw;
-      color: #ffffff;
+      color: ${WHITE_1};
       cursor: pointer;
       &:hover {
         color: #ed7f30;
@@ -168,13 +182,13 @@ const SelectBox = styled.select`
   background-color: transparent;
   font-weight: 700;
   font-size: 3.5897vw;
-  color: #fff;
+  color: ${WHITE_1};
   height: 10.5128vw;
   cursor: pointer;
 `;
 
 const Option = styled.option`
-  color: #fff;
+  color: ${WHITE_1};
   background: #333333;
   width: 19.2308vw;
   height: 10.5128vw;
