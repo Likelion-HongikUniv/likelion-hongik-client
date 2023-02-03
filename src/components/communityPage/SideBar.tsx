@@ -4,9 +4,13 @@ import { nowTagState, tagListState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
+// import { useMediaQuery } from "react-responsive";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("maxWidth: 768px;");
+  // const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("(min-width: 768px;)");
+  console.log(isMobile);
+
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();

@@ -35,7 +35,7 @@ export function HeartButton({ likes }: HeartButtonProps) {
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     axios
       .post(
-        `http://13.124.126.164:8080/community/post/${id}/like`,
+        `http://13.125.72.138:8080//community/post/${id}/like`,
         { body: null }, // body null이라도 있어야 이 문법에서 돌아감
         {
           headers: {
