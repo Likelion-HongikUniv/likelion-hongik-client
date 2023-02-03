@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function SideBar(categoryName: ICommunityParam) {
   const isMobile = useMediaQuery({ maxWidth: 768 });

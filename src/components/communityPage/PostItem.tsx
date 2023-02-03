@@ -4,7 +4,7 @@ import { CommentIcon } from "../icons/CommentIcon";
 import { IPost } from "../../interfaces/post";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function PostItem(post: IPost) {
   const isMobile = useMediaQuery({ maxWidth: 768 });
