@@ -180,11 +180,12 @@ const Title = styled.div`
   line-height: 34px;
   letter-spacing: -0.32px;
   color: #ffffff;
-  opacity: 0.98;
+  opacity: 0.98; 
+  /* width: 925px; */
 `;
 
 const PostItemContainer = styled.div`
-  width: 50vw;
+  /* width: 800px; */
   height: 1330px;
   @media (max-width: 768px) {
     margin-bottom: 50px;

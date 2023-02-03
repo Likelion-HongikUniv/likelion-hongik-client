@@ -25,23 +25,25 @@ export function FileUploader() {
     if (fileList && fileList[0]) {
       const url = URL.createObjectURL(fileList[0]);
       console.log(fileList[0]);
+      console.log(url);
 
-      setProfileImg({
-        file: fileList[0],
-        thumbnail: url,
-        type: fileList[0].type.slice(0, 5),
-      });
+      // setProfileImg({
+      //   // file: fileList[0],
+      //   // thumbnail: url,
+      //   // type: fileList[0].type.slice(0, 5),
+      //   URL.createObjectURL(fileList[0]);
+      // });
 
-      const formData = new FormData();
-      formData.append("files", fileList[0]);
+      // const formData = new FormData();
+      // formData.append("files", fileList[0]);
 
-      axios.post("///", {
-        //이미지파일 전송?
-        data: formData,
-        headers: {
-          "Content-Type": `multipart/form-data;`,
-        },
-      });
+      // axios.post("///", {
+      //   //이미지파일 전송?
+      //   data: formData,
+      //   headers: {
+      //     "Content-Type": `multipart/form-data;`,
+      //   },
+      // });
     }
   };
 
@@ -56,7 +58,7 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg?.thumbnail} onClick={handleClickFileInput} />
+      <ProfileThumbnail src={profileImg as string} onClick={handleClickFileInput} />
       <form>
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>

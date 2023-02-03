@@ -10,13 +10,13 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { userInfoState } from "../../states/user";
-import useAutoLogin from "../../hooks/useAutoLogin";
+// import useAutoLogin from "../../hooks/useAutoLogin";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { isLoggedInState } from "../../states";
 import { MenuClose } from "../icons/MenuClose";
 
 export function Header() {
-  useAutoLogin();
+  // useAutoLogin();
   const isPC = useMediaQuery("(min-width: 992px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
@@ -34,7 +34,7 @@ export function Header() {
     if (page === "community/BOARD") {
       setNowTag("NOTICE");
     }
-    navigate(`/${page}`);
+    window.location.replace(`/${page}`);
   };
 
   const NavPC = () => {

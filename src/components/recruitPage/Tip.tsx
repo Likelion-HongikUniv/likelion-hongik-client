@@ -47,18 +47,17 @@ const ForDiv = styled.div`
   @media (max-width: 391px) {
     padding: 0 0;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 0 0;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     padding: 0 0;
   }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding: 0 0;
   }
 `;
 
@@ -72,7 +71,7 @@ const TitleText = styled.div`
     padding-top: 120px;
     line-height: 33.89px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     font-size: 32px;
     padding-top: 140px;
@@ -80,15 +79,17 @@ const TitleText = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    font-size: 36px;
-    padding-top: 240px;
-    line-height: 42px;
+    font-size: 28px;
+    padding-top: 120px;
+    line-height: 33.89px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    font-size: 28px;
+    padding-top: 120px;
+    line-height: 33.89px;
   }
 `;
 
@@ -105,7 +106,7 @@ const DetailText = styled.div`
     line-height: 23px;
     width: 240px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     font-size: 22px;
     margin-top: 18px;
@@ -114,16 +115,19 @@ const DetailText = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    font-size: 24px;
-    margin-top: 22px;
-    line-height: 28.6px;
-    padding-right: 20px;
+    font-size: 16px;
+    margin-top: 16px;
+    line-height: 23px;
+    /* padding-right: 20px; */
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    font-size: 16px;
+    margin-top: 16px;
+    line-height: 23px;
+    /* padding-right: 20px; */
   }
 `;
 
@@ -141,7 +145,7 @@ const TipGrid = styled.div`
     margin-top: 40px;
     gap: 12px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -150,16 +154,16 @@ const TipGrid = styled.div`
     /* padding-left: 10px; */
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    margin-top: 68px;
-    gap: 18px;
+
+    margin-top: 60px;
+    gap: 16px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-top: 60px;
+    gap: 16px;
   }
 `;
 
@@ -184,7 +188,7 @@ const Tips = styled.div`
     font-size: 14px;
     line-height: 21px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     width: 370px;
     height: 112px;
@@ -195,13 +199,21 @@ const Tips = styled.div`
     line-height: 23px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    width: 748px;
+    width: 336px;
+    height: 106px;
+    padding: 36px 34px 32px 34px;
+    font-size: 12px;
+    line-height: 19px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    width: 336px;
+    height: 106px;
+    padding: 36px 34px 32px 34px;
+    font-size: 12px;
+    line-height: 19px;
   }
 `;
 
@@ -223,7 +235,7 @@ const RegBtn = styled.button`
     font-size: 16px;
     line-height: 19.2px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     margin-left: 0;
     width: 370px;
@@ -232,16 +244,20 @@ const RegBtn = styled.button`
     line-height: 22.6px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     margin-left: 0;
-    width: 748px;
-    margin-top: 60px;
-    font-size: 20px;
-    line-height: 33.6px;
+    width: 350px;
+    margin-top: 80px;
+    font-size: 16px;
+    line-height: 19.2.px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-left: 0;
+    width: 350px;
+    margin-top: 80px;
+    font-size: 16px;
+    line-height: 19.2.px;
   }
 `;

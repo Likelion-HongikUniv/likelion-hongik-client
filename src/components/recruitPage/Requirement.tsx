@@ -26,19 +26,21 @@ const ForDiv = styled.div`
     padding: 0 0;
     justify-content: center;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     justify-content: center;
     padding: 0 0;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     padding: 0 0;
+    /* padding-left: 40px; */
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding: 0 0;
+    /* padding-left: 40px; */
   }
 `;
 
@@ -52,22 +54,24 @@ const TitleText = styled.div`
     line-height: 33.89px;
     /* padding-left: 20px; */
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding-top: 140px;
     font-size: 32px;
     line-height: 38px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    padding-top: 240px;
-    font-size: 36px;
-    line-height: 42px;
+    padding-top: 160px;
+    font-size: 28px;
+    line-height: 33.89px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding-top: 160px;
+    font-size: 28px;
+    line-height: 33.89px;
   }
 `;
 
@@ -86,7 +90,7 @@ const ForLi = styled.div`
     padding-left: 20px;
     padding-right: 20px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     font-size: 24px;
     line-height: 38px;
@@ -94,15 +98,16 @@ const ForLi = styled.div`
     /* padding-right: 20px; */
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    width: max-content;
-    font-size: 26px;
-    line-height: 46px;
-    padding-right: 20px;
+    width: 600px;
+    font-size: 20px;
+    line-height: 32px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    width: 600px;
+    font-size: 20px;
+    line-height: 32px;
   }
 `;
