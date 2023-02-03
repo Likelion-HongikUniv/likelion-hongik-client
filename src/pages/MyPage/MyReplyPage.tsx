@@ -55,7 +55,7 @@ export function MyReplyPage() {
       });
   };
   useEffect(() => {
-    getMyReplyAPI();
+    getMyReplyAPI(); 
   }, [currPage]);
 
   return (

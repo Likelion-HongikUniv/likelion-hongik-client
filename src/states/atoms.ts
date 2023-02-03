@@ -13,7 +13,7 @@ export const commentsListState = atom<IComment[]>({
       commentId: 23,
       author: {
         authorId: 1,
-        nickname: "김스르으응ㄹ기",
+        nickname: "",
         profileImage: "https://lh3.googleusercontent.com/a/AEdFTp69-b0CJAMsVpp7Qy3awOPqG8gvK2xT6ysPZaKVXw=s96-c",
         isAuthor: true,
       },
@@ -39,6 +39,7 @@ export const commentsListState = atom<IComment[]>({
       likeCount: 0,
       replies: [
         {
+          commentId: 24,
           replyId: 25,
           author: {
             authorId: 1,
@@ -165,18 +166,18 @@ export const commentsListState = atom<IComment[]>({
 export const boardState = atom<IBoard>({
   key: "boardState",
   default: {
-    postId: 17,
+    postId: 1,
     author: {
       authorId: 1,
-      nickname: "김스르으응ㄹ기",
-      profileImage: "",
+      nickname: null,
+      profileImage: null,
       isAuthor: true,
     },
-    title: "게시문 5번쨰",
-    body: "게시물 5번쨰",
-    createdTime: "2023-01-17T04:14:10.997966",
+    title: "",
+    body: "",
+    createdTime: "",
     isLiked: true,
-    likeCount: 1,
+    likeCount: 0,
     comments: [],
     imageUrls: [],
   },

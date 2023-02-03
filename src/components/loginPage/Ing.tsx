@@ -5,14 +5,11 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
 import BeatLoader from "react-spinners/BeatLoader";
-
-
 const Ing = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
-  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
 
   const getProfile = async () => {
     await axios
@@ -34,7 +31,7 @@ const Ing = () => {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람
           console.log("멋사 회원이 아니에요!");
           navigate("/");
-        } else if (response.data.isJoined === false && response.data.role === "USER") {
+        } else if (response.data.isJoined == false && response.data.role == "USER") {
           console.log("멋사 회원 + 회원가입");
           navigate("/login/detail");
         } else {

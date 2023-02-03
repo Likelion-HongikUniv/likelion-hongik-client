@@ -55,8 +55,8 @@ export function MyLikePage() {
       });
   };
   useEffect(() => {
-    getMyLikeAPI();
-  }, [currPage]);
+    getMyLikeAPI(); 
+  }, [currPage]); 
 
   return (
     <>

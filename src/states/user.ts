@@ -1,10 +1,12 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
-interface IUserInfoState {
+const { persistAtom } = recoilPersist();
+export interface IUserInfoState {
   userId: number;
   profileImageSrc: string;
   username: string;
-  accessToken: string;
+  accessToken: string | null;
 }
 
 export const userInfoState = atom<IUserInfoState>({
@@ -15,4 +17,5 @@ export const userInfoState = atom<IUserInfoState>({
     username: "",
     accessToken: "",
   },
+
 });
