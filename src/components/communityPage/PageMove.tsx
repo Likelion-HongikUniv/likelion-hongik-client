@@ -6,7 +6,7 @@ import { paginationState, pageState, curPageIndexState } from "../../states/atom
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { useEffect } from "react";
 
-export function PageMove() {
+export function  PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
   const isMobile = useMediaQuery("maxWidth: 768px");
   const [page, setPage] = useRecoilState<number>(pageState);

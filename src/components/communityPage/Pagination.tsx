@@ -45,7 +45,9 @@ export function Pagination() {
           {pageNum}
         </PageBtn>
       ))}
+
       {!pagination.isEmpty && curPageIndex !== pageDividedArr?.length - 1 && (
+
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);

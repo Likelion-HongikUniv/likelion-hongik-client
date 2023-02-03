@@ -84,3 +84,9 @@ export const isCancelButtonClickedState = atom<boolean>({
   key: " isCancelButtonClickedState",
   default: false,
 });
+
+export const currPageState = atom<number>({
+  key: "currPageState",
+  default: 1,
+  effects_UNSTABLE: [persistAtom],
+});
