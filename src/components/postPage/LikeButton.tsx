@@ -31,7 +31,7 @@ export function LikeButton({ cid, isComment, likes }: LikeButtonProps) {
 
     axios
       .post(
-        `http://13.125.72.138:8080//community/comment/${cid}/like`,
+        `http://13.125.72.138:8080/community/comment/${cid}/like`,
         { body: null }, // body null이라도 있어야 이 문법에서 돌아감
         {
           headers: {
@@ -66,7 +66,7 @@ export function LikeButton({ cid, isComment, likes }: LikeButtonProps) {
     console.log("ㄴ대댓글 좋아요 clicked");
     axios
       .post(
-        `http://13.125.72.138:8080//community/reply/${cid}/like`,
+        `http://13.125.72.138:8080/community/reply/${cid}/like`,
         { body: null }, // body null이라도 있어야 이 문법에서 돌아감
         {
           headers: {

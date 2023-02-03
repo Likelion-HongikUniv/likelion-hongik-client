@@ -35,7 +35,7 @@ export function MyReplyPage() {
 
   const getMyReplyAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080//mypage/comment/`, {
+      .get(`http://13.125.72.138:8080/mypage/comment/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

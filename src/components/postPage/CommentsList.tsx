@@ -37,7 +37,7 @@ export function CommentsList(commentList: IComment[]) {
 
     axios
       .post(
-        `http://13.125.72.138:8080//community/post/${id}`,
+        `http://13.125.72.138:8080/community/post/${id}`,
         JSON.stringify(body),
         // { withCredentials: true },
         {

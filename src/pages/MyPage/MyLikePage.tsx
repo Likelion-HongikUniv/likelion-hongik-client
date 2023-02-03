@@ -35,7 +35,7 @@ export function MyLikePage() {
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080//mypage/like/`, {
+      .get(`http://13.125.72.138:8080/mypage/like/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

@@ -82,7 +82,7 @@ export function MyPostPage() {
 
   const getMyPostAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080//mypage/posts/`, {
+      .get(`http://13.125.72.138:8080/mypage/posts/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
