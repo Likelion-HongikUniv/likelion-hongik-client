@@ -14,11 +14,11 @@ import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState, postsListState, pageState, paginationState } from "../states/atoms";
 import { IPost, IPagination, IPostList } from "../interfaces/post";
 import GetPostList from "../api/getPostList";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 export function CommunityPage() {
   const { categoryName } = useParams() as { categoryName: string };
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("maxWidth: 768px;");
   const tag = useRecoilValue<string>(nowTagState);
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const page = useRecoilValue<number>(pageState);

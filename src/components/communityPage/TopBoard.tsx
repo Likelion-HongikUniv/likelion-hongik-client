@@ -5,7 +5,7 @@ import { WriteIcon } from "../icons/WriteIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("maxWidth: 768px;");
 
   return (
     <Wrapper>

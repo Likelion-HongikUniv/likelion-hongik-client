@@ -6,7 +6,7 @@ import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("maxWidth: 768px;");
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();

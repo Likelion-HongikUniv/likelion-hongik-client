@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function PostItem(post: IPost) {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery(" maxWidth: 768px; ");
   const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");

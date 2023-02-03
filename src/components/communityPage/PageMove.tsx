@@ -3,12 +3,12 @@ import { IPagination } from "../../interfaces/post";
 import { Pagination } from "./Pagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { useEffect } from "react";
 
 export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery("maxWidth: 768px");
   const [page, setPage] = useRecoilState<number>(pageState);
   const [curPageIndex, setCurPageIndex] = useRecoilState<number>(curPageIndexState);
 
