@@ -5,16 +5,17 @@ import { WriteIcon } from "../icons/WriteIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("( max-width: 390px )");
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   return (
     <Wrapper>
-      {categoryName.categoryName === "post" && <SearchBar />}
+      {categoryName.categoryName === "BOARD" && <SearchBar />}
       <Table>
         <div>
           <span style={{ color: "#ED7F30", fontSize: "4px" }}>•</span>
           <span>최신순</span>
         </div>
-        {categoryName.categoryName === "post" ? (
+        {categoryName.categoryName === "BOARD" ? (
           <button>
             <WriteIcon />
             {!isMobile && <span>글쓰기</span>}
@@ -68,15 +69,15 @@ const Table = styled.div`
       letter-spacing: -0.32px;
       color: #000000;
     }
-    @media (max-width: 390px) {
+    @media all and (max-width: 768) {
       img {
-        width: 15px;
-        height: 15px;
+        width: 3.8462vw;
+        height: 3.8462vw;
       }
       span {
+        font-size: 4.1026vw;
+        line-height: 4.8718vw;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
       }
     }
   }
