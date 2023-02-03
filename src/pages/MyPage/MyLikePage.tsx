@@ -27,7 +27,7 @@ export function MyLikePage() {
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
-  const [totalPosts, setTotalPosts] = useState(25);
+  const [totalPages, setTotalPages] = useState(5);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,7 +35,7 @@ export function MyLikePage() {
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/like/`, {
+      .get(`http://13.125.72.138:8080/mypage/likes/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -48,15 +48,15 @@ export function MyLikePage() {
       .then((response) => {
         console.log(response);
         setPostList(response.data.content);
-        setTotalPosts(response.data.totalElements);
+        setTotalPages(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
   useEffect(() => {
-    getMyLikeAPI(); 
-  }, [currPage]); 
+    getMyLikeAPI();
+  }, [currPage]);
 
   return (
     <>
@@ -81,7 +81,7 @@ export function MyLikePage() {
                 />
               ))}
             </PostItemContainer>
-            <MyPagination totalPosts={totalPosts} />
+            <MyPagination totalPages={totalPages} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

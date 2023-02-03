@@ -74,7 +74,7 @@ export function MyPostPage() {
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
-  const [totalPosts, setTotalPosts] = useState(25);
+  const [totalPages, setTotalPages] = useState(5);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -82,7 +82,7 @@ export function MyPostPage() {
   
   const getMyPostAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/posts/`, {
+      .get(`http://13.125.72.138:8080/mypage/posts/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -95,7 +95,8 @@ export function MyPostPage() {
       .then((response) => {
         console.log(response.data.content);
         setPostList(response.data.content);
-        setTotalPosts(response.data.totalElements);
+        setTotalPages(response.data.totalPages);
+        console.log(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
@@ -142,7 +143,7 @@ export function MyPostPage() {
                 />
               ))}
             </PostItemContainer>
-            <MyPagination totalPosts={totalPosts} />
+            <MyPagination totalPages={totalPages} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>
