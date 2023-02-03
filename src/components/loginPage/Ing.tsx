@@ -9,6 +9,7 @@ const Ing = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
   const token = searchParams.get("token");
 
   const getProfile = async () => {
