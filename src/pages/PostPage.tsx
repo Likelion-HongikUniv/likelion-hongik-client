@@ -12,7 +12,7 @@ import styled from "styled-components";
 import axios from "axios";
 import useMediaQuery from "../hooks/useMediaQuery";
 
-const baseURL = "http://13.124.126.164:8080";
+const baseURL = "http://13.125.72.138:8080";
 
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
@@ -21,11 +21,9 @@ export function PostPage() {
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
   const { id } = useParams<{ id?: string }>();
-  console.log(id);
 
   function GetPostDetail(postId: number) {
     const token = localStorage.getItem("token");
-
     axios
       .get(`${baseURL}/community/post/${postId}`, {
         headers: {
@@ -34,14 +32,19 @@ export function PostPage() {
         },
       })
       .then((response) => {
+        console.log(response.data);
+
         setBoardData(response.data);
         setCommentsData(response.data.comments);
         return response.data;
       })
       .catch((err) => {
+        console.log(err.message);
+
         throw err;
       });
   }
+  GetPostDetail(Number(id));
 
   useEffect(() => {
     const postIdToNumber = Number(id);

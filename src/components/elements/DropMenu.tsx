@@ -19,7 +19,7 @@ export function DropMenu(isActive: DropMenuProps) {
   );
 }
 
-const DropWrapper = styled.div`
+const DropWrapper = styled.button`
   display: flex;
   flex-direction: column;
   position: absolute;

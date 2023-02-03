@@ -15,7 +15,10 @@ import { useNavigate } from "react-router-dom";
 export function SocialLogin() {
   const navigate = useNavigate();
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    window.open("http://13.125.72.138:8080/oauth2/authorization/google", "_self");
+    window.open(
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
+      "_self",
+    );
   };
   const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("네이버 로그인 클릭");

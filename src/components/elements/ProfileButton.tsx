@@ -13,6 +13,7 @@ export function ProfileButton() {
   const [isMenu, setMenu] = useState(false);
   const [isDropDown, setDropDown] = useState(false);
   const isPC = useMediaQuery("(min-width: 1024px)");
+  const name = localStorage.getItem("username");
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,13 +38,10 @@ export function ProfileButton() {
         onMouseOver={() => {
           setDropDown(!isDropDown);
         }}
-        onMouseLeave={() => {
-          setDropDown(!isDropDown);
-        }}
         isPC={isPC}
       >
         <PersonIcon />
-        {isLoggedIn ? "로그아웃" : "로그인"}
+        {isLoggedIn ? name : "로그인"}
       </Wrapper>
       {isPC && isDropDown && <DropMenu isActive={isDropDown} />}
     </div>
