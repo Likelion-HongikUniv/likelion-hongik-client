@@ -121,7 +121,7 @@ const Content = styled.div`
   p {
     display: inline-block;
     white-space: nowrap;
-    width: 691px;
+    width: 649px;
     height: 46px;
     text-overflow: ellipsis;
     overflow-x: hidden;

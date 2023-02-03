@@ -26,6 +26,7 @@ const Ing = () => {
         setUsername(response.data.name);
         setProfileImg(response.data.profileImage);
         console.log(response.data.profileImage);
+        console.log(profileImg);
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
         if (response.data.isJoined === false && response.data.role === "GUEST") {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람

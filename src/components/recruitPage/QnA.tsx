@@ -31,20 +31,23 @@ const ForDiv = styled.div`
     padding: 0 0;
     justify-content: center;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 0 0;
     justify-content: center;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     padding: 0 0;
+    /* padding-left: 40px; */
     /* justify-content: center; */
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding: 0 0;
+    /* padding-left: 40px; */
+    /* justify-content: center; */
   }
 `;
 
@@ -58,7 +61,7 @@ const TitleText = styled.div`
     line-height: 33.89px;
     padding-top: 80px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     font-size: 32px;
     line-height: 38px;
@@ -66,15 +69,17 @@ const TitleText = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    font-size: 36px;
-    line-height: 42px;
-    padding-top: 240px;
+    font-size: 28px;
+    line-height: 33.89px;
+    padding-top: 136px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    font-size: 28px;
+    line-height: 33.89px;
+    padding-top: 136px;
   }
 `;
 
@@ -93,7 +98,7 @@ const SmallText = styled.div`
     height: 46px;
     margin-bottom: 16px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     margin-top: 18px;
     font-size: 20px;
@@ -103,18 +108,21 @@ const SmallText = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    margin-top: 22px;
-    font-size: 22px;
+    margin-top: 16px;
+    font-size: 16px;
     line-height: 28px;
-    width: max-content;
+    width: 550px;
     margin-bottom: 20px;
-    padding-right: 20px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 28px;
+    width: 550px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -135,7 +143,7 @@ const Question = styled.div`
     line-height: 28.8px;
     width: 318px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     margin-top: 28px;
     font-size: 28px;
@@ -144,16 +152,19 @@ const Question = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    margin-top: 26px;
-    font-size: 30px;
-    line-height: 34px;
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 28.8px;
     padding-right: 20px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 28.8px;
+    padding-right: 20px;
   }
 `;
 
@@ -170,7 +181,7 @@ const Answer = styled.div`
     line-height: 23px;
     width: 339px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     margin-top: 14px;
     font-size: 20px;
@@ -179,15 +190,18 @@ const Answer = styled.div`
     padding-left: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    margin-top: 18px;
-    font-size: 22px;
-    line-height: 28px;
+    margin-top: 12px;
+    font-size: 20px;
+    line-height: 23px;
     padding-right: 20px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-top: 12px;
+    font-size: 20px;
+    line-height: 23px;
+    padding-right: 20px;
   }
 `;
