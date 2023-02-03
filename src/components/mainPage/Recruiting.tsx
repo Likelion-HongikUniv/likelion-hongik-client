@@ -31,6 +31,7 @@ const Recruiting = () => {
 
 const BoxContainer = styled.div`
   background-image: url(${main_recruiting});
+  background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: overlay;
   width: 1040px;
@@ -40,10 +41,14 @@ const BoxContainer = styled.div`
   text-align: left;
   padding: 40px;
   margin: 50px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 350px;
     height: 297px;
     padding: 30px 20px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 688px;
+    height: 350px;
   }
 `;
 
@@ -68,7 +73,7 @@ const Text = styled.div`
   font-size: 22px;
   margin-top: 80px;
   line-height: 40px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 16px;
     line-height: 25px;
     font-weight: 600;
@@ -83,7 +88,7 @@ const ApplyBtn = styled.button`
   border-radius: 20px;
   font-weight: 500;
   font-size: 28px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 16px;
     width: 350px;
     height: 52px;
@@ -95,7 +100,7 @@ const Title = styled.div`
   font-weight: 700;
   font-size: 40px;
   margin-top: 20px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 28px;
   }
 `;

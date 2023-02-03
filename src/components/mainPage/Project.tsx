@@ -126,9 +126,12 @@ const ProjectContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  @media (max-width: 390px) {
-    width: 390px;
+  @media (max-width: 768px) {
     height: 225px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 100vw;
     overflow: hidden;
   }
 `;
@@ -190,7 +193,7 @@ const StyledSlider = styled(Slider)`
 const Next = styled.div`
   font-size: 25px;
   position: absolute;
-  top: 260px;
+  top: 280px;
   left: 780px;
   &:hover {
     cursor: pointer;
@@ -200,7 +203,7 @@ const Next = styled.div`
 const Prev = styled.div`
   font-size: 25px;
   position: absolute;
-  top: 260px;
+  top: 280px;
   right: 780px;
   &:hover {
     cursor: pointer;

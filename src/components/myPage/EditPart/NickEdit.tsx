@@ -23,12 +23,7 @@ const NicknamePart = styled.div`
     display: inline-block;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
@@ -44,12 +39,7 @@ const NickTitle = styled.div`
     text-align: left;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
@@ -80,11 +70,6 @@ const NickInput = styled.input`
     background-color: #222222;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;

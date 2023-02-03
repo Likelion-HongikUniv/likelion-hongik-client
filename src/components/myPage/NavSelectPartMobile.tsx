@@ -13,7 +13,7 @@ export function NavSelectPartMobile() {
         className={isBtnActive === 1 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(1);
-          navigate("/myPagePost");
+          navigate("/myPage/post");
         }}
       >
         내가 쓴 글
@@ -23,7 +23,7 @@ export function NavSelectPartMobile() {
         className={isBtnActive === 2 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(2);
-          navigate("/myPageReply");
+          navigate("/myPage/reply");
         }}
       >
         내가 쓴 댓글
@@ -33,7 +33,7 @@ export function NavSelectPartMobile() {
         className={isBtnActive === 3 ? "active" : ""}
         onClick={() => {
           SetIsBtnActive(3);
-          navigate("/myPageLike");
+          navigate("/myPage/like");
         }}
       >
         좋아요 누른 글
@@ -44,6 +44,7 @@ export function NavSelectPartMobile() {
 
 const MyPagePart = styled.div`
   display: flex;
+  justify-content: center;
   padding-top: 32px;
   font-weight: 700;
   font-size: 12px;

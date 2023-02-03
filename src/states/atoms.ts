@@ -192,56 +192,60 @@ export const tagListState = atom<ICategory[]>({
   key: "tagListState",
   default: [
     {
-      key: "post",
+      key: "BOARD",
       text: "게시판",
       tags: [
         {
-          key: "notice",
+          key: "NOTICE",
           text: "공지사항",
         },
         {
-          key: "qna",
+          key: "QNA",
           text: "Q&A",
         },
         {
-          key: "free",
+          key: "FREEBOARD",
           text: "자유게시판",
         },
       ],
     },
     {
-      key: "assignment",
+      key: "HOMEWORK",
       text: "과제관리",
       tags: [
         {
-          key: "front",
+          key: "FRONTEND",
           text: "프론트",
         },
         {
-          key: "back",
+          key: "BACKEND",
           text: "백엔드",
         },
         {
-          key: "pm",
+          key: "DESIGN",
           text: "기획·디자인",
         },
       ],
     },
     {
-      key: "project",
+      key: "PROJECT",
       text: "프로젝트",
       tags: [
         {
-          key: "front",
+          key: "FRONTEND",
           text: "프론트",
         },
         {
-          key: "back",
+          key: "BACKEND",
           text: "백엔드",
         },
         {
-          key: "pm",
+          key: "DESIGN",
           text: "기획·디자인",
+        },
+        {
+          key: "MEETING",
+          text: "프로젝트 회의",
         },
       ],
     },
@@ -250,7 +254,7 @@ export const tagListState = atom<ICategory[]>({
 
 export const nowTagState = atom<string>({
   key: "nowTagState",
-  default: "notice",
+  default: "NOTICE",
 });
 
 export const tagListSelector = selectorFamily({
@@ -270,17 +274,22 @@ export const postsListState = atom<IPost[]>({
 export const paginationState = atom<IPagination>({
   key: "paginationState",
   default: {
-    totalPage: 3,
-    totalElements: 14,
+    totalPage: 1,
+    totalElements: 0,
     pagingSize: 5,
     currentPage: 1,
     isFirst: false,
     isLast: false,
-    isEmpty: false,
+    isEmpty: true,
   },
 });
 
 export const pageState = atom<number>({
   key: "pageState",
   default: 1,
+});
+
+export const curPageIndexState = atom<number>({
+  key: "curPageIndexState",
+  default: 0,
 });
