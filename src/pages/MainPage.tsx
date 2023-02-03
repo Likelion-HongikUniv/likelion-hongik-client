@@ -38,7 +38,7 @@ export function MainPage() {
   return (
     <>
       <Header />
-      <Section>
+      <Section style={{ overflow: "hidden" }}>
         <MainPageContainer>
           <Main />
           <>
