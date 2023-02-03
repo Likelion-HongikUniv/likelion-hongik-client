@@ -1,45 +1,84 @@
 import styled from "styled-components";
 import { BLACK_2, WHITE_1 } from "../../styles/theme";
 import useInput from "../../hooks/useInput";
-import { useRecoilState } from "recoil";
+import { IReply, IComment } from "../../interfaces/comments";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { commentsListState } from "../../states/atoms";
+import { userInfoState } from "../../states/user";
 import moment from "moment";
+import axios from "axios";
+import { useEffect } from "react";
 
-export function Input({ pid, username }: any) {
+interface InputProps {
+  cid: number;
+  username: string | null | undefined;
+}
+
+export function Input({ cid, username }: InputProps) {
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
+  const userInfo = useRecoilValue(userInfoState);
+  const accessToken = localStorage.getItem("token");
   const commentInput = useInput("");
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const parentComment: any = commentsList.filter((comment) => comment.commentId === pid);
-    let parentReplies: any = parentComment[0].replies;
-    let curTime = new Date().toString();
-    let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
+    const parentComment: IComment[] = commentsList.filter((comment) => comment.commentId === cid && comment);
+    let parentReplies: any = parentComment[0]?.replies;
+    const curTime = new Date().toString();
+    const formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
+    const curTarget = parentComment[0];
+    const targetIdx = commentsList.indexOf(curTarget);
 
-    const tempObj = {
-      id: 27,
-      author: {
-        authorId: 2,
-        nickname: "dsadsad",
-        profileImage: "dadsa",
-        isAuthor: false,
-      },
+    console.log(parentComment, parentReplies, curTarget, targetIdx);
+
+    let body = {
       body: commentInput.value,
-      createdTime: formatTime,
-      likeCount: 0,
     };
-    parentReplies = [...parentReplies, tempObj];
 
-    let curTarget = parentComment[0];
-    let targetIdx = commentsList.indexOf(curTarget);
-    let newComment = { ...curTarget, replies: parentReplies };
-    let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
+    // axios
+    //   .post(
+    //     `http://13.124.126.164:8080/community/comment/${curTarget.commentId}`,
+    //     JSON.stringify(body),
+    //     // { withCredentials: true },
+    //     {
+    //       headers: {
+    //         "Content-Type": `application/json`,
+    //         JWT: `${accessToken}`,
+    //       },
+    //     },
+    //   )
+    //   .catch((err) => {
+    //     throw err;
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
 
-    commentInput.value = "";
+    //     const tempObj = {
+    //       replyId: curTarget.commentId + 1,
+    //       author: {
+    //         authorId: userInfo.userId,
+    //         nickname: userInfo.username,
+    //         profileImage: userInfo.profileImageSrc,
+    //         isAuthor: false,
+    //       },
+    //       body: commentInput.value,
+    //       createdTime: formatTime,
+    //       likeCount: 0,
+    //     };
+    //     if (parentReplies) {
+    //       parentReplies = [...parentReplies, tempObj];
+    //     } else {
+    //       parentReplies = [tempObj];
+    //     }
 
-    setCommentsList(() => {
-      return newList;
-    });
+    //     let newComment = { ...curTarget, replies: parentReplies };
+    //     let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
+
+    //     setCommentsList(() => {
+    //       return newList;
+    //     });
+    //   });
+    // commentInput.setValue("");
   };
 
   return (

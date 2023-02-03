@@ -3,7 +3,7 @@ import { IPost, IPagination, IPostList } from "../interfaces/post";
 import { useSetRecoilState } from "recoil";
 import { postsListState, paginationState } from "../states/atoms";
 
-const baseURL = "";
+const baseURL = "http://13.124.126.164:8080";
 
 interface postsProps {
   category?: string;
@@ -12,26 +12,21 @@ interface postsProps {
 }
 
 const GetPostList = async ({ category, tag, page }: postsProps) => {
-  const setPostsData = useSetRecoilState<IPost[]>(postsListState);
-  const setPagenation = useSetRecoilState<IPagination>(paginationState);
-  await axios
-    .get<IPostList>(`${baseURL}community/${category}/${tag}/${page}`)
-    .then((response) => {
-      setPagenation({
-        totalPage: response.data.totalPage,
-        totalElements: response.data.totalElements,
-        pagingSize: response.data.pagingSize,
-        currentPage: response.data.currentPage,
-        isFirst: response.data.isFirst,
-        isLast: response.data.isLast,
-        isEmpty: response.data.isEmpty,
-      });
-      setPostsData(response.data.data);
-      return response.data;
-    })
-    .catch((err) => {
-      throw err;
+  const token = localStorage.getItem("token");
+  console.log(category, tag, page);
+  try {
+    const response = await axios.get<IPostList>(`${baseURL}/community/posts/${category}/${tag}/?page=${page}`, {
+      headers: {
+        "Content-Type": `application/json`,
+        JWT: token,
+      },
     });
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (err) {
+    throw err;
+  }
 };
 
 export default GetPostList;

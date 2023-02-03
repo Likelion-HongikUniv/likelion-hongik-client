@@ -31,22 +31,11 @@ export function Header() {
 
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
-    if (page === "community/post") {
-      setNowTag("notice");
+    if (page === "community/BOARD") {
+      setNowTag("NOTICE");
     }
     window.location.replace(`/${page}`);
   };
-
-  useEffect(() => {
-    const token = userInfo.accessToken;
-    if (token) {
-      navigate("/");
-      localStorage.setItem("likelion-hongik-accessToken", token);
-      setIsLoggedIn(true);
-      // TODO 받은 token으로 유저 정보 GET API
-      setUserInfo({ userId: 1, profileImageSrc: "", username: "장영준", accessToken: token });
-    }
-  });
 
   const NavPC = () => {
     return (
@@ -56,7 +45,7 @@ export function Header() {
           <HeaderButton onClick={onClickHeaderButton} name="recruit">
             지원하기
           </HeaderButton>
-          <HeaderButton onClick={onClickHeaderButton} name="community/post">
+          <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
             커뮤니티
           </HeaderButton>
           <ProfileButton />
@@ -83,7 +72,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderMobileButton>
-            <HeaderMobileButton onClick={onClickHeaderButton} name="community/post">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">
@@ -105,7 +94,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 340px;
-
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};

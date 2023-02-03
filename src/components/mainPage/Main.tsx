@@ -40,24 +40,35 @@ const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
   line-height: 70px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     font-size: 28px;
     line-height: 34px;
+  }
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+    font-size: 40px;
+    line-height: 48px;
   }
 `;
 
 const TextContainer = styled.div`
-  margin-top: 40px;
   height: 132px;
   display: flex;
   justify-content: center;
+  margin: 40px auto;
   font-size: 24px;
   font-weight: 600;
   line-height: 44px;
-  @media (max-width: 390px) {
-    width: 88vw;
+  word-break: keep-all;
+  @media (max-width: 768px) {
+    width: 348px;
+    height: 168px;
     font-size: 15px;
     line-height: 24px;
-    margin: 21px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 595px;
+    height: 110px;
+    font-size: 16px;
+    line-height: 22px;
   }
 `;

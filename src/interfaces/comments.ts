@@ -1,4 +1,4 @@
-import { IAuthor } from './post';
+import { IAuthor } from "./post";
 
 export interface IBoard {
   postId: number;
@@ -23,10 +23,12 @@ export interface IComment {
 }
 
 export interface IReply {
-  replyId?: number;
+  commentId: number;
+  replyId: number;
   author?: IAuthor;
   body?: string;
   createdTime?: string;
+  isDeleted?: boolean;
   isLiked?: boolean;
   likeCount: number;
   deleted?: boolean;

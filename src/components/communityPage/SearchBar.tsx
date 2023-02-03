@@ -41,22 +41,22 @@ const SearchContainer = styled.form`
     border: none;
     font-size: 20px;
   }
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
     width: 100%;
     flex-direction: column;
     input {
       width: 100%;
-      height: 48px;
+      height: 12.3077vw;
       font-weight: 500;
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 3.5897vw;
+      line-height: 4.359vw;
     }
     button {
       width: 100%;
-      height: 40px;
+      height: 10.2564vw;
       font-weight: 600;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 4.1026vw;
+      line-height: 4.8718vw;
     }
   }
 `;

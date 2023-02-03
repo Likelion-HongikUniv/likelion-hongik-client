@@ -12,13 +12,13 @@ interface IPost {
   time: string;
   likes: number;
   reply: number;
-  pid: number;
+  postId: number;
 }
 
-export function PostItem({ pid, author, title, body, likes, reply, time, profileImage }: IPost) {
+export function PostItem({ postId, author, title, body, likes, reply, time, profileImage }: IPost) {
   const navigate = useNavigate();
   const onClickHandler = () => {
-    navigate(`/post/${pid}`);
+    navigate(`/community/post/${postId}`);
   };
   return (
     <Item onClick={onClickHandler}>
@@ -59,7 +59,7 @@ const Item = styled.div`
     height: 140px;
     object-fit: contain;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100vw;
     height: 270px;
     border-bottom: none;
@@ -76,7 +76,7 @@ const User = styled.div`
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     padding: 0px 20px;
   }
   div {
@@ -113,10 +113,11 @@ const Content = styled.div`
   padding-left: 42px;
   width: 691px;
   margin-bottom: 20px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     height: 60px;
     padding: 0 20px;
     margin-bottom: 0px;
+    width: 100vw;
   }
   p {
     display: inline-block;
@@ -132,7 +133,7 @@ const Content = styled.div`
     color: #ffffff;
     opacity: 0.98;
     margin: 0;
-    @media (max-width: 390px) {
+    @media (max-width: 768px) {
       width: 85.89vw;
       height: 60px;
     }
@@ -144,14 +145,13 @@ const Title = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 691px;
-  height: 24px;
   font-weight: 700;
   font-size: 20px;
   white-space: nowrap;
   color: #ffffff;
   opacity: 0.98;
   margin-bottom: 12px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 85.89vw;
     font-size: 4.1vw;
   }
@@ -162,7 +162,7 @@ const Bottom = styled.div`
   display: flex;
   gap: 15px;
   flex-direction: row;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100px;
     height: 17px;
     padding: 65px 20px;

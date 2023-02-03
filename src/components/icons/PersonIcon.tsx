@@ -1,7 +1,7 @@
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export function PersonIcon() {
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
   return (
     <>
       {isPC ? (

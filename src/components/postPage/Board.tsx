@@ -4,8 +4,11 @@ import { HeartButton } from "./HeartButton";
 import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
+import { useRecoilState } from "recoil";
+import { boardState } from "../../states/atoms";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MoreButton } from "../icons/MoreButton";
+import { useEffect } from "react";
 
 export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 992px)");
@@ -16,37 +19,32 @@ export function Board(boardData: IBoard) {
     <>
       {isPC ? (
         <Column gap="24px">
-          <Title>{boardData.title || "게시글 제목"}</Title>
+          <Title>{boardData.title}</Title>
           <SubTextDiv>
             <Row gap="1rem" alignItems="center">
               {boardData.author?.nickname}
-              <Date>{date || "2022.11.30"}</Date>
+              <Date>{date}</Date>
             </Row>
-            <MoreButton />
+            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">
-            <ViewerUi body={boardData.body} />
-          </Column>
+          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
           <HeartButton likes={boardData.likeCount} />
           <Hairline />
         </Column>
       ) : (
         <Column gap="12px">
-          <Title>{boardData.title || "게시글 제목"}</Title>
+          <Title>{boardData.title}</Title>
           <SubTextDiv>
             <AuthorDiv>
               <div className="author">{boardData.author?.nickname}</div>
-              <Date>{date || "2022.11.30"}</Date>
+              <Date>{date}</Date>
             </AuthorDiv>
-            <MoreButton />
+            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">
-            <ViewerUi body={boardData.body} />
-          </Column>
+          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
           <HeartButton likes={boardData.likeCount} />
-          <Hairline />
         </Column>
       )}
     </>
