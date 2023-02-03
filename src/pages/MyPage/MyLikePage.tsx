@@ -23,7 +23,7 @@ interface IPost {
 }
 
 export function MyLikePage() {
-  const isMobile = useMediaQuery("( max-width: 390px )");
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);

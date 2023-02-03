@@ -23,7 +23,7 @@ interface IPost {
 }
 
 export function MyPostPage() {
-  const isMobile = useMediaQuery("( max-width: 390px )");
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const posts = [
     {
       title: "게시글1",
