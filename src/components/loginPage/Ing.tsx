@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
+import { userInfoState } from "../../states/user";
 
 const Ing = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Ing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   const getProfile = async () => {
     await axios
@@ -23,6 +25,15 @@ const Ing = () => {
       })
       .then((response) => {
         console.log(response);
+        if (response.data) {
+          setUserInfo({
+            id: response.data.id,
+            isJoined: response.data.isJoined,
+            name: response.data.name,
+            profileImage: response.data.profileImage,
+            role: response.data.role,
+          });
+        }
         setUsername(response.data.name);
         setProfileImg(response.data.profileImage);
         console.log(response.data.profileImage);
