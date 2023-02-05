@@ -29,7 +29,7 @@ export function Board(boardData: IBoard) {
           </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
-          <HeartButton likes={boardData.likeCount} />
+          <HeartButton isLiked={boardData.isLiked} likes={boardData.likeCount} />
           <Hairline />
         </Column>
       ) : (
@@ -44,7 +44,7 @@ export function Board(boardData: IBoard) {
           </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
-          <HeartButton likes={boardData.likeCount} />
+          <HeartButton isLiked={boardData.isLiked} likes={boardData.likeCount} />
         </Column>
       )}
     </>

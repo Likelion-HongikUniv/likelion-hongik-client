@@ -49,7 +49,7 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
     } else if (isComment) {
       targetURL = `http://13.125.72.138:8080/community/comment/${cid}`;
     } else {
-      targetURL = `http://localhost:8080/community/reply/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/reply/${cid}`;
     }
     axios
       .delete(targetURL, {

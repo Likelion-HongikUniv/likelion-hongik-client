@@ -14,9 +14,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 export function CommentsList(commentList: IComment[]) {
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrollActive, setScrollActive] = useState(false);
-
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
@@ -48,13 +45,11 @@ export function CommentsList(commentList: IComment[]) {
         },
       )
       .then((response) => {
-        console.log(response);
-
         const tempObj = {
           commentId: comments.length + 1,
           author: {
             authorId: userInfo.userId,
-            nickname: userInfo.username,
+            nickname: localStorage.getItem("username"),
             profileImage: userInfo.profileImageSrc,
             isAuthor: false,
           },
@@ -85,7 +80,7 @@ export function CommentsList(commentList: IComment[]) {
         </Column>
       ) : (
         <Column>
-          <Column style={{ overflowY: "scroll" }} gap="20px">
+          <Column gap="20px">
             {comments.map((value, id) => {
               return <Comments key={id} {...value} />;
             })}

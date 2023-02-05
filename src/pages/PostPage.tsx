@@ -32,19 +32,22 @@ export function PostPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
-
-        setBoardData(response.data);
-        setCommentsData(response.data.comments);
-        return response.data;
+        if (response.status === 200) {
+          setBoardData(response.data);
+          setCommentsData(response.data.comments);
+          return response.data;
+        }
+        if (response.status === 401) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (response.status === 404 || response.status === 500) {
+          alert("게시글을 찾을 수 없습니다.");
+        }
       })
       .catch((err) => {
-        console.log(err.message);
-
         throw err;
       });
   }
-  GetPostDetail(Number(id));
 
   useEffect(() => {
     const postIdToNumber = Number(id);

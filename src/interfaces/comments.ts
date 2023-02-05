@@ -6,7 +6,7 @@ export interface IBoard {
   title: string;
   body: string;
   createdTime: string;
-  isLiked?: boolean | null;
+  isLiked: boolean;
   likeCount: number;
   comments: IComment[];
   imageUrls?: string[];
@@ -17,13 +17,12 @@ export interface IComment {
   body?: string;
   isDeleted?: boolean;
   createdTime?: string;
-  isLiked?: boolean | null;
+  isLiked?: boolean;
   likeCount: number;
   replies?: IReply[];
 }
 
 export interface IReply {
-  commentId: number;
   replyId: number;
   author?: IAuthor;
   body?: string;

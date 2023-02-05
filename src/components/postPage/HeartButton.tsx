@@ -9,28 +9,14 @@ import { commentsListState, boardState } from "../../states/atoms";
 import axios from "axios";
 
 interface HeartButtonProps {
+  isLiked: boolean;
   likes: number;
 }
 
-export function HeartButton({ likes }: HeartButtonProps) {
+export function HeartButton({ isLiked, likes }: HeartButtonProps) {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const [isLike, setLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(likes);
   const { id } = useParams<{ id?: string }>();
   const accessToken = localStorage.getItem("token");
-
-  // const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   setLike(!isLike);
-  //   if (!isLike) {
-  //     var count = likeCount + 1;
-  //     setLikeCount(count);
-  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-  //   } else {
-  //     var count = likeCount - 1;
-  //     setLikeCount(count);
-  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-  //   }
-  // };
 
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     axios
@@ -48,28 +34,22 @@ export function HeartButton({ likes }: HeartButtonProps) {
         throw err;
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
-          setLike(!isLike);
-          console.log("accessed 200");
-          console.log(isLike);
-          if (!isLike) {
-            var count = likeCount + 1;
-            setLikeCount(count);
-            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-          } else {
-            var count = likeCount - 1;
-            setLikeCount(count);
-            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-          }
+          console.log(response.data);
+          setBoardData({ ...board });
+          // if (!isLiked) {
+          //   setLikeCount(likeCount + 1);
+          // } else {
+          //   setLikeCount(likeCount - 1);
+          // }
         }
       });
   };
 
   return (
     <ButtonWrapper onClick={onClickLike}>
-      {isLike ? <HeartFilled /> : <HeartUnfilled />}
-      {likeCount}
+      {board.isLiked ? <HeartFilled /> : <HeartUnfilled />}
+      {board.likeCount}
     </ButtonWrapper>
   );
 }
