@@ -17,7 +17,7 @@ export function RecruitPage() {
   return (
     <>
       <Header />
-      <Section>
+      <Section style={{overflow:"hidden"}}>
         <Column justifyContent="center" alignItems="center">
           <Section style={{ paddingTop: "0" }}>
             <Wrapper style={{ backgroundImage: `url(${recruitBackImg})` }}>
@@ -25,15 +25,17 @@ export function RecruitPage() {
             </Wrapper>
           </Section>
         </Column>
-        <Wrappers>
-          <ForDiv>
-            <Curriculum />
-            <Part />
-            <Requirement />
-            <QnA />
-            <Tip />
-          </ForDiv>
-        </Wrappers>
+        <Section>
+          <Wrappers>
+            <ForDiv>
+              <Curriculum />
+              <Part />
+              <Requirement />
+              <QnA />
+              <Tip />
+            </ForDiv>
+          </Wrappers>
+        </Section>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
           <Footer style={{ marginTop: "70px" }} />
@@ -63,6 +65,7 @@ const Wrappers = styled.div`
   color: ${WHITE_1};
   display: flex;
   justify-content: center;
+  /* overflow: hidden; */
 `;
 
 const ForDiv = styled.div`
@@ -71,17 +74,12 @@ const ForDiv = styled.div`
     margin-top: 111.79px;
   }
 
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     margin-top: 150px;
     width: 100vw;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
+  @media (min-width: 768px) and (max-width: 1200px) {
     margin-top: 240px;
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;

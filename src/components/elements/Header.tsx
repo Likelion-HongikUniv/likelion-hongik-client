@@ -10,13 +10,13 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { userInfoState } from "../../states/user";
-import useAutoLogin from "../../hooks/useAutoLogin";
+// import useAutoLogin from "../../hooks/useAutoLogin";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { isLoggedInState } from "../../states";
 import { MenuClose } from "../icons/MenuClose";
 
 export function Header() {
-  useAutoLogin();
+  // useAutoLogin();
   const isPC = useMediaQuery("(min-width: 992px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
@@ -31,10 +31,10 @@ export function Header() {
 
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
-    if (page === "community/post") {
-      setNowTag("notice");
+    if (page === "community/BOARD") {
+      setNowTag("NOTICE");
     }
-    navigate(`/${page}`);
+    window.location.replace(`/${page}`);
   };
 
   const NavPC = () => {
@@ -45,7 +45,7 @@ export function Header() {
           <HeaderButton onClick={onClickHeaderButton} name="recruit">
             지원하기
           </HeaderButton>
-          <HeaderButton onClick={onClickHeaderButton} name="community/post">
+          <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
             커뮤니티
           </HeaderButton>
           <ProfileButton />
@@ -72,7 +72,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderMobileButton>
-            <HeaderMobileButton onClick={onClickHeaderButton} name="community/post">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">
@@ -94,7 +94,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 340px;
-
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};

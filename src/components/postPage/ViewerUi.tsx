@@ -2,7 +2,6 @@
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 import styled from "styled-components";
-
 interface ViewerUiProps {
   body: string;
 }
@@ -17,7 +16,9 @@ export function ViewerUi({ body }: ViewerUiProps) {
 }
 
 const Wrapper = styled.div`
-  & .toastui-editor-contents p {
+  & .toastui-editor-contents > p,
+  ul,
+  li {
     color: white !important;
     font-size: 15px;
   }

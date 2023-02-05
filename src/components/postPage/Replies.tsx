@@ -8,29 +8,32 @@ import { IReply } from "../../interfaces/comments";
 import moment from "moment";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { CommentArrowSmall } from "../icons/CommentArrowSmall";
-// interface 관리
+import { MoreButton } from "../icons/MoreButton";
 
 export function Replies(reply: IReply) {
   const curDate = reply.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
+  const isDeleted = reply.isDeleted;
 
   return (
     <>
       <Row>
         {isPC ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
-          <Profile />
-          <TextContainer>
-            <Column gap="4px">
-              <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
-              <Date>{date || `2022.11.30`}</Date>
-            </Column>
-            {reply?.body ||
-              `헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견
-          있나요? 헤엑 ~!! 고거 참 어려운 질문이군용! 다른 분들 의견 있나요?`}
-            <LikeButton likes={reply?.likeCount} />
-          </TextContainer>
+          <Row gap="10px">
+            <Profile />
+            <TextContainer isDeleted={isDeleted}>
+              <Column gap="4px">
+                <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
+                <Date>{date || `2022.11.30`}</Date>
+              </Column>
+              {reply.isDeleted ? "삭제된 댓글입니다." : reply?.body}
+              <LikeButton cid={reply?.replyId} isComment={false} likes={reply?.likeCount} />
+            </TextContainer>
+            {}
+          </Row>
+          <MoreButton cid={reply?.replyId} isBoard={false} isComment={false} />
         </Wrapper>
       </Row>
     </>
@@ -42,12 +45,13 @@ const Wrapper = styled.div`
   background-color: ${BLACK_2};
   border-radius: 12px;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
   gap: 10px;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ isDeleted: boolean | undefined }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -58,7 +62,7 @@ const TextContainer = styled.div`
 
   letter-spacing: -0.32px;
 
-  color: #ffffffb8;
+  color: ${(props) => (props.isDeleted ? "#333333" : " #ffffffb8;")};
 `;
 
 const UserId = styled.div`

@@ -4,10 +4,12 @@ import { Header } from "../../components/elements/Header";
 import { PostItem } from "../../components/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
-import { PageMove } from "../../components/communityPage/PageMove";
 import axios from "axios";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import MyPagination from "../MyPage/MyPagination";
+import { useRecoilState } from "recoil";
+import { currPageState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -21,24 +23,32 @@ interface IPost {
 }
 
 export function MyReplyPage() {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+  const [currPage] = useRecoilState(currPageState);
+  const [totalPosts, setTotalPosts] = useState(25);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
+
   const getMyReplyAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/comments/`, {
+      .get(`http://13.124.126.164:8080/mypage/comment/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
         },
         params: {
           size: 5,
-          page: 1,
+          page: currPage,
         },
       })
       .then((response) => {
         console.log(response);
         setPostList(response.data.content);
+        setTotalPosts(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,7 +56,7 @@ export function MyReplyPage() {
   };
   useEffect(() => {
     getMyReplyAPI();
-  }, []);
+  }, [currPage]);
 
   return (
     <>
@@ -60,7 +70,7 @@ export function MyReplyPage() {
               {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
-                  pid={post.postId}
+                  postId={post.postId}
                   author={post.author}
                   title={post.title}
                   body={post.body}
@@ -71,7 +81,7 @@ export function MyReplyPage() {
                 />
               ))}
             </PostItemContainer>
-            <PageMove />
+            <MyPagination totalPosts={totalPosts} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>
@@ -83,7 +93,7 @@ const MyPostPageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 200px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100vw;
     flex-direction: column;
     overflow: hidden;
@@ -96,7 +106,7 @@ const MyPostBoxContainer = styled.div`
   justify-content: center;
   margin-top: 140px;
   margin-left: 8.33vw;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 100vw;
     margin-top: 0px;
     margin-left: 0px;
@@ -110,13 +120,14 @@ const Title = styled.div`
   letter-spacing: -0.32px;
   color: #ffffff;
   opacity: 0.98;
-  width: 925px;
+  width: 691px;
 `;
 
 const PostItemContainer = styled.div`
-  width: 800px;
+  /* width: 800px; */
   height: 1330px;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     margin-bottom: 50px;
+    width: 100vw;
   }
 `;

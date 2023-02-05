@@ -3,10 +3,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { WHITE_1 } from "../../styles/theme";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery({ maxWidth: 390 });
+  const isMobile = useMediaQuery("( max-width: 768px )");
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();
@@ -24,17 +25,25 @@ export function SideBar(categoryName: ICommunityParam) {
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    navigate(`/community/${event.target.value}`);
+    const category = event.target.value;
+    if (category === "BOARD") {
+      setNowTag("NOTICE");
+    } else if (category === "HOMEWORK") {
+      setNowTag("FRONTEND");
+    } else {
+      setNowTag("FRONTEND");
+    }
+    navigate(`/community/${category}`);
   };
   return (
     <SideBarWrapper>
       <div>
-        {isMobile && categoryName.categoryName === "project" ? (
+        {isMobile && categoryName.categoryName === "PROJECT" ? (
           ""
         ) : (
           <ProfileBoard>
             <ProfileImg>
-              <img alt="profile-img" />
+              <img alt="profile-img" src="https://placekitten.com/200/300" />
             </ProfileImg>
             <ProfileDesc>
               <span>김아현</span>
@@ -45,7 +54,9 @@ export function SideBar(categoryName: ICommunityParam) {
         {isMobile ? (
           <SelectBox onChange={onChangeHandler}>
             {tagList.map((category: ICategory) => (
-              <Option value={category.key}>{category.text}</Option>
+              <Option value={category.key} key={category.key}>
+                {category.text}
+              </Option>
             ))}
           </SelectBox>
         ) : (
@@ -74,12 +85,13 @@ export function SideBar(categoryName: ICommunityParam) {
 const SideBarWrapper = styled.div`
   position: fixed;
   display: flex;
-  width: 190px;
+  width: 9.8958vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   left: 17.7083vw;
-  @media (max-width: 390px) {
+  @media all and (max-width: 768px) {
+    width: 100%;
     display: flex;
     position: static;
     flex-direction: row;
@@ -87,37 +99,46 @@ const SideBarWrapper = styled.div`
 `;
 
 const ProfileBoard = styled.div`
-  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  @media (max-width: 390px) {
-    margin-bottom: 40px;
+  gap: 0.625vw;
+  @media all and (max-width: 768px) {
+    width: 100%;
+    gap: 3.0769vw;
+    margin-bottom: 10.2564vw;
   }
 `;
 
 const ProfileImg = styled.div`
-  width: 60px;
-  height: 60px;
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 3.125vw;
+    height: 3.125vw;
+    object-fit: cover;
     border-radius: 100%;
+  }
+  @media all and (max-width: 768px) {
+    img {
+      width: 15.3846vw;
+      height: 15.3846vw;
+    }
   }
 `;
 
 const ProfileDesc = styled.div`
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: -0.32px;
   color: #b9b9b9;
+  font-size: 0.7292vw;
+
   span {
     font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
-    color: #fff;
+    font-size: 0.9375vw;
+    color: ${WHITE_1};
+  }
+  @media all and (max-width: 768px) {
+    font-size: 3.5897vw;
+    span {
+      font-size: 4.6154vw;
+    }
   }
 `;
 
@@ -125,11 +146,10 @@ const TagWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-bottom: 1px solid #6d6d6d;
-  padding: 20px 0 0 0;
+  border-bottom: 0.0521vw solid #6d6d6d;
+  padding: 1.0417vw 0 0 0;
   span {
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 0.625vw;
     color: #979797;
   }
 
@@ -137,14 +157,13 @@ const TagWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    gap: 16px;
-    padding: 20px 11px;
+    gap: 0.8333vw;
+    padding: 1.0417vw 0.5729vw;
     font-weight: 500;
     span {
-      font-size: 16px;
-      line-height: 19px;
-      letter-spacing: -0.32px;
-      color: #ffffff;
+      font-size: 0.8333vw;
+      letter-spacing: -0.0167vw;
+      color: ${WHITE_1};
       cursor: pointer;
       &:hover {
         color: #ed7f30;
@@ -158,20 +177,20 @@ const TagWrapper = styled.div`
 `;
 
 const SelectBox = styled.select`
-  padding: 12px;
+  padding: 3.0769vw;
   border: none;
   background-color: transparent;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  color: #d7d7d7;
-  height: 41px;
+  font-size: 3.5897vw;
+  color: ${WHITE_1};
+  height: 10.5128vw;
   cursor: pointer;
 `;
 
 const Option = styled.option`
-  background-color: transparent;
-  :disabled {
-    display: none;
-  }
+  color: ${WHITE_1};
+  background: #333333;
+  width: 19.2308vw;
+  height: 10.5128vw;
+  padding: 3.0769vw;
 `;

@@ -9,7 +9,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 export function ProfileButton() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // const loggedInState = e.currentTarget.name;

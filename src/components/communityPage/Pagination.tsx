@@ -1,29 +1,62 @@
 import styled from "styled-components";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 import { IPagination } from "../../interfaces/post";
-import { paginationState, pageState } from "../../states/atoms";
+import { paginationState, pageState, curPageIndexState } from "../../states/atoms";
+import { WHITE_1 } from "../../styles/theme";
 
 export function Pagination() {
   const pagination = useRecoilValue<IPagination>(paginationState);
-  const pageArr = Array.from({ length: pagination.totalPage }, (v, i) => i + 1);
   const setPage = useSetRecoilState<number>(pageState);
+  const [curPageIndex, setCurPageIndex] = useRecoilState<number>(curPageIndexState);
   const activeButton = {
     background: "#ED7F30",
     border: "none",
   };
+  const pageArr = Array.from({ length: pagination?.totalPage }, (v, i) => i + 1);
+
+  const division = (data: number[], size: number) => {
+    const arr = [];
+    for (let i = 0; i < data.length; i += size) {
+      arr.push(data.slice(i, i + size));
+    }
+    return arr;
+  };
+
+  const pageDividedArr = division(pageArr, 6);
 
   return (
     <PageWrapper>
-      {pageArr.map((pageNum: number) => (
+      {!pagination.isEmpty && curPageIndex !== 0 && (
+        <PageBtn
+          onClick={() => {
+            setCurPageIndex(curPageIndex - 1);
+            setPage(curPageIndex * 6);
+          }}
+        >
+          ...
+        </PageBtn>
+      )}
+      {pageDividedArr[curPageIndex]?.map((pageNum: number) => (
         <PageBtn
           key={pageNum}
           type="button"
-          style={pageNum === pagination.currentPage ? activeButton : {}}
+          style={pageNum === pagination?.currentPage ? activeButton : {}}
           onClick={() => setPage(pageNum)}
         >
           {pageNum}
         </PageBtn>
       ))}
+
+      {!pagination.isEmpty && curPageIndex !== pageDividedArr?.length - 1 && (
+        <PageBtn
+          onClick={() => {
+            setCurPageIndex(curPageIndex + 1);
+            setPage((curPageIndex + 1) * 6 + 1);
+          }}
+        >
+          ...
+        </PageBtn>
+      )}
     </PageWrapper>
   );
 }
@@ -31,17 +64,18 @@ export function Pagination() {
 const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 0.4167vw;
 `;
 
 const PageBtn = styled.button`
-  width: 33px;
-  height: 33px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  color: #ffffff;
-  @media (max-width: 390px) {
-    width: 28px;
-    height: 28px;
+  width: 1.7188vw;
+  height: 1.7188vw;
+  border: 0.0521vw solid ${WHITE_1};
+  border-radius: 0.2083vw;
+  color: ${WHITE_1};
+  @media all and (max-width: 768px) {
+    width: 7.1795vw;
+    height: 7.1795vw;
+    border-radius: 0.7vw;
   }
 `;

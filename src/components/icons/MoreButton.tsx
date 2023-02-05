@@ -3,24 +3,71 @@ import { BLACK_1 } from "../../styles/theme";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import axios from "axios";
 
-export function MoreButton() {
+interface MoreButtonProps {
+  cid: number;
+  isBoard: boolean;
+  isComment: boolean;
+}
+
+export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
+  const accessToken = localStorage.getItem("token");
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);
   const navigate = useNavigate();
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
+  let targetURL = "";
 
   const onClickMore = (event: React.MouseEvent<HTMLButtonElement>) => {
     setMore(!isMore);
   };
 
-  // const clickOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   if (isMore && ref.current && !ref.current.contains(e.target)) {
-  //     setMore(!isMore);
-  //   }
+  const onClickPatch = () => {
+    axios
+      .patch(
+        `http://13.124.126.164:8080/community/comment/${cid}/like`,
+        { body: null }, // body null이라도 있어야 이 문법에서 돌아감
+        {
+          headers: {
+            "Content-Type": `application/json`,
+            JWT: `${accessToken}`,
+          },
+        },
+      )
+      .catch((err) => {
+        throw err;
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
+
+  const onClickDelete = () => {
+    if (isBoard) {
+      targetURL = `http://13.124.126.164:8080/community/post/${cid}`;
+    } else if (isComment) {
+      targetURL = `http://13.124.126.164:8080/community/comment/${cid}`;
+    } else {
+      targetURL = `http://localhost:8080/community/reply/${cid}`;
+    }
+    axios
+      .delete(targetURL, {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: `${accessToken}`,
+        },
+      })
+      .catch((err) => {
+        throw err;
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <button ref={ref} onClick={onClickMore}>
         {isPC ? (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,29 +94,35 @@ export function MoreButton() {
           >
             수정하기
           </EditButton>
-          <EditButton onClick={() => {}}>삭제하기</EditButton>
+          <EditButton onClick={onClickDelete}>삭제하기</EditButton>
         </MoreSection>
       ) : null}
-    </>
+    </div>
   );
 }
 
 const MoreSection = styled.div`
   display: flex;
   flex-direction: column;
-  right: 20px;
+  z-index: 10;
 
-  margin-top: 140px;
+  position: absolute;
+  right: 0;
+
+  margin-left: auto;
   text-align: center;
   background-color: #333333;
   color: white;
   height: min-height;
+  border-radius: 8px;
 
-  transform: translate(-50%, -20px);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
 `;
 
 const EditButton = styled.button`
+  right: 0;
+  width: max-content;
   color: white;
   margin: 24px;
   letter-spacing: -0.32px;

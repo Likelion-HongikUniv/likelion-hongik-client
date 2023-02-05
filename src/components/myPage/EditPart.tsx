@@ -78,24 +78,22 @@ export function EditPart() {
 }
 
 const EditPartDiv = styled.div`
-  width: 100%;
+  width: 691px;
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
-  padding-left: 163px;
+  margin-left: 8.33vw;
   padding-top: 140px;
 
   @media (max-width: 768px) {
     //모바일
     padding: 0 0;
+    width: max-content;
+    margin-left: 6vw;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 500px;
   }
 `;
 
@@ -112,17 +110,12 @@ const EditTitle = styled.div`
     display: none;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
 const Bar = styled.div`
-  width: 725px; //원래 925
+  width: 691px; //원래 925
   height: 1px;
   background-color: #ffffff66;
   margin: 40px 0;
@@ -134,13 +127,9 @@ const Bar = styled.div`
     margin: 20px 0;
   }
 
-  @media (min-width: 769px) and (max-width: 992px) {
+  @media (min-width: 769px) and (max-width: 1024px) {
     // 테블릿 세로
     width: 650px;
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;
 
@@ -150,25 +139,24 @@ const SaveBtn = styled.button`
   border-radius: 8px;
   background-color: ${WHITE_1};
   color: ${BLACK_1};
-  margin-left: 652px;
+  /* margin-left: 652px; */
+  float: right;
   font-weight: 600;
   font-size: 18px;
   line-height: 21.78px;
+
   @media (max-width: 768px) {
     //모바일
     margin-left: 0;
     width: 88vw;
     margin-top: 44px;
     margin-bottom: 106px;
+    float: none;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 769px) and (max-width: 1024px) {
     // 테블릿 세로
     float: right;
     margin-right: 40px;
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;

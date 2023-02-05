@@ -12,7 +12,7 @@ export function MyPageNav() {
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
-        <ProfileCopy src={profileImg?.thumbnail} />
+        <ProfileCopy src={profileImg as string} />
         <div style={{ width: "88px" }}>
           <Name>{info.nickname}</Name>
           <Team>{team} 팀</Team>
@@ -39,12 +39,10 @@ const LeftNav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
+    overflow: hidden;
+    width: max-content;
+    padding-left: 40px;
   }
 `;
 

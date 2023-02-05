@@ -5,14 +5,15 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
 import { userInfoState } from "../../states/user";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Ing = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const token = searchParams.get("token");
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const token = searchParams.get("token");
 
   const getProfile = async () => {
     await axios
@@ -37,12 +38,13 @@ const Ing = () => {
         setUsername(response.data.name);
         setProfileImg(response.data.profileImage);
         console.log(response.data.profileImage);
+        console.log(profileImg);
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
         if (response.data.isJoined === false && response.data.role === "GUEST") {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람
           console.log("멋사 회원이 아니에요!");
           navigate("/");
-        } else if (response.data.isJoined === false && response.data.role === "USER") {
+        } else if (response.data.isJoined == false && response.data.role == "USER") {
           console.log("멋사 회원 + 회원가입");
           navigate("/login/detail");
         } else {
@@ -60,6 +62,18 @@ const Ing = () => {
     }
     getProfile();
   }, []);
-  return <div>로그인 진행 중…</div>;
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <BeatLoader color="#ED7F30" size={50} />
+    </div>
+  );
 };
 export default Ing;
