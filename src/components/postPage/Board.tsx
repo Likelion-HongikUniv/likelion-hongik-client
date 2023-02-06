@@ -4,11 +4,14 @@ import { HeartButton } from "./HeartButton";
 import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
+import { useRecoilState } from "recoil";
+import { boardState } from "../../states/atoms";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MoreButton } from "../icons/MoreButton";
+import { useEffect } from "react";
 
 export function Board(boardData: IBoard) {
-  const isPC = useMediaQuery("(min-width: 1024px)");
+  const isPC = useMediaQuery("(min-width: 992px)");
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
 
@@ -26,7 +29,7 @@ export function Board(boardData: IBoard) {
           </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
-          <HeartButton />
+          <HeartButton likes={boardData.likeCount} />
           <Hairline />
         </Column>
       ) : (
@@ -40,8 +43,8 @@ export function Board(boardData: IBoard) {
             {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          {boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}
-          <HeartButton />
+          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
+          <HeartButton likes={boardData.likeCount} />
         </Column>
       )}
     </>

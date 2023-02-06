@@ -11,7 +11,7 @@ const Ing = () => {
 
   const getProfile = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/profile`, {
+      .get(`http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
         // withCredentials: true,
         headers: {
           "Content-Type": `application/json`,
