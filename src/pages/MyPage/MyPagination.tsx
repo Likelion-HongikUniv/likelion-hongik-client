@@ -4,11 +4,10 @@ import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
 
 interface ItotalPage {
-  totalPosts: number;
+  totalPages: number;
 }
 
-const MyPagination = ({ totalPosts }: ItotalPage) => {
-  const [numPages, setNumPages] = useState(Math.ceil(totalPosts / 5));
+const MyPagination = ({ totalPages }: ItotalPage) => {
   const [currPage, setCurrPage] = useRecoilState(currPageState);
 
   const activeButton = {
@@ -16,19 +15,29 @@ const MyPagination = ({ totalPosts }: ItotalPage) => {
     border: "none",
   };
 
+  const onHandlePrev = () => {
+    if (currPage === 1) setCurrPage(1);
+    else setCurrPage(currPage - 1);
+  };
+
+  const onHandleNext = () => {
+    if (currPage === totalPages) setCurrPage(totalPages);
+    else setCurrPage(currPage + 1);
+  };
+
   return (
     <PageSection>
-      <Button onClick={() => setCurrPage(currPage - 1)} style={{ marginRight: "10px" }}>
+      <Button onClick={onHandlePrev} style={{ marginRight: "10px" }}>
         &lt;
       </Button>
-      {[...Array(numPages)].map((_, i) => {
+      {[...Array(totalPages)].map((_, i) => {
         return (
           <Button key={i + 1} onClick={() => setCurrPage(i + 1)} style={currPage === i + 1 ? activeButton : {}}>
             {i + 1}
           </Button>
         );
       })}
-      <Button onClick={() => setCurrPage(currPage + 1)} style={{ marginLeft: "10px" }}>
+      <Button onClick={onHandleNext} style={{ marginLeft: "10px" }}>
         &gt;
       </Button>
     </PageSection>

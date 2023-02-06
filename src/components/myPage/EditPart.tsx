@@ -40,7 +40,7 @@ export function EditPart() {
 
     axios
       .post(
-        "http://13.125.72.138:8080/accounts/detail_info/",
+        "http://13.124.126.164:8080/accounts/detail_info/",
         JSON.stringify(data),
         // { withCredentials: true },
         {
@@ -78,7 +78,7 @@ export function EditPart() {
 }
 
 const EditPartDiv = styled.div`
-  width: 691px;
+  width: 768px;
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
