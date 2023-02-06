@@ -79,10 +79,10 @@ export function MyPostPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currPage]);
-  
+
   const getMyPostAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/posts/`, {
+      .get(`http://13.125.72.138:8080/mypage/posts/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -180,7 +180,7 @@ const Title = styled.div`
   line-height: 34px;
   letter-spacing: -0.32px;
   color: #ffffff;
-  opacity: 0.98; 
+  opacity: 0.98;
   /* width: 925px; */
 `;
 
