@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import { useRecoilValue } from "recoil";
-import { editState, profileState } from "./../../states/index";
+import { editState, profileImgState, teamState } from "./../../states/index";
 import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export function MyPageMobileNav() {
-  const profileImg = useRecoilValue(profileState);
-  const [nickname, setNickname] = useState("닉네임");
-  const [major, setMajor] = useState("학과");
+  const profileImg = useRecoilValue(profileImgState);
+  const info = useRecoilValue(editState);
+  const team = useRecoilValue(teamState);
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPage/edit");
@@ -26,8 +26,6 @@ export function MyPageMobileNav() {
       })
       .then((response) => {
         console.log(response);
-        setNickname(response.data.nickname);
-        setMajor(response.data.major);
       })
       .catch(function (error) {
         console.log(error);
@@ -40,10 +38,10 @@ export function MyPageMobileNav() {
   return (
     <MobileNavContainer>
       <Profile>
-        <ProImg src={profileImg?.thumbnail} />
+        <ProImg src={profileImg as string} />
         <div style={{ width: "88px" }}>
-          <Name>{nickname}</Name>
-          <Team>{major}</Team>
+          <Name>{info.nickname}</Name>
+          <Team>{team}</Team>
         </div>
       </Profile>
       <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
