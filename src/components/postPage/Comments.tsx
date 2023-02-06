@@ -10,6 +10,7 @@ import { LikeButton } from "./LikeButton";
 import { WHITE_1, WHITE_2 } from "../../styles/theme";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MoreButton } from "../icons/MoreButton";
+import { IAuthor } from "../../interfaces/post";
 
 export function Comments(props: IComment) {
   const isPC = useMediaQuery("(min-width: 1024px)");
@@ -20,13 +21,12 @@ export function Comments(props: IComment) {
   };
   const curDate = props.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm");
-
   return (
     <>
-      {isPC ? (
+      {isPC && props.replies && (
         <Column gap="32px">
           <Row gap="16px" alignItems="flex-start">
-            <Profile />
+            {props.author.profileImage && <Profile profile={props.author.profileImage} />}
             <Column gap="20px">
               <Column gap="2px">
                 <UserId fontSize={16}>{props.author?.nickname}</UserId>
@@ -50,10 +50,11 @@ export function Comments(props: IComment) {
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>
-      ) : (
+      )}
+      {isPC === false && props.replies && (
         <Column gap="20px">
           <Row gap="12px">
-            <Profile />
+            {props.author.profileImage && <Profile profile={props.author.profileImage} />}
             <Column>
               <UserId fontSize={14}>{props.author?.nickname}</UserId>
               <Date fontSize={12}>{date}</Date>

@@ -22,7 +22,7 @@ export function Replies(reply: IReply) {
         {isPC ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
           <Row gap="10px">
-            <Profile />
+            {props.reply.author.profileImage && <Profile profile={props.reply.author.profileImage} />}
             <TextContainer isDeleted={isDeleted}>
               <Column gap="4px">
                 <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
