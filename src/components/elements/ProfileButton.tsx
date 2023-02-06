@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { isLoggedInState } from "../../states";
 import { PersonIcon } from "../icons/PersonIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { DropMenu } from "./DropMenu";
 
 export function ProfileButton() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [isMenu, setMenu] = useState(false);
+  const [isDropDown, setDropDown] = useState(false);
   const isPC = useMediaQuery("(min-width: 1024px)");
+  const name = localStorage.getItem("username");
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setMenu(!isMenu);
     // const loggedInState = e.currentTarget.name;
     // if (loggedInState === "로그인") {
     //   navigate("/login");
@@ -26,10 +32,19 @@ export function ProfileButton() {
   };
 
   return (
-    <Wrapper name={isLoggedIn ? "김아현" : "로그인"} onClick={onClick} isPC={isPC}>
-      <PersonIcon />
-      {isLoggedIn ? "로그아웃" : "로그인"}
-    </Wrapper>
+    <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+      <Wrapper
+        onClick={onClick}
+        onMouseOver={() => {
+          setDropDown(!isDropDown);
+        }}
+        isPC={isPC}
+      >
+        <PersonIcon />
+        {isLoggedIn ? name : "로그인"}
+      </Wrapper>
+      {isPC && isDropDown && <DropMenu isActive={isDropDown} />}
+    </div>
   );
 }
 

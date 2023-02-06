@@ -14,9 +14,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 export function CommentsList(commentList: IComment[]) {
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrollActive, setScrollActive] = useState(false);
-
   const [commentsList, setCommentsList] = useRecoilState(commentsListState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
@@ -30,14 +27,13 @@ export function CommentsList(commentList: IComment[]) {
     e.preventDefault();
     let curTime = new Date().toString();
     let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
-
     let body = {
       body: commentInput.value,
     };
 
     axios
       .post(
-        `http://13.124.126.164:8080/community/post/${id}`,
+        `http://13.125.72.138:8080/community/post/${id}`,
         JSON.stringify(body),
         // { withCredentials: true },
         {
@@ -48,19 +44,20 @@ export function CommentsList(commentList: IComment[]) {
         },
       )
       .then((response) => {
-        console.log(response);
-
         const tempObj = {
           commentId: comments.length + 1,
           author: {
             authorId: userInfo.userId,
-            nickname: userInfo.username,
+            nickname: localStorage.getItem("username"),
             profileImage: userInfo.profileImageSrc,
-            isAuthor: false,
+            isAuthor: true,
           },
           body: commentInput.value,
+          isDeleted: false,
+          isLiked: false,
           createdTime: formatTime,
           likeCount: 0,
+          replies: [],
         };
 
         let newList = [...comments, tempObj];
@@ -85,7 +82,7 @@ export function CommentsList(commentList: IComment[]) {
         </Column>
       ) : (
         <Column>
-          <Column style={{ overflowY: "scroll" }} gap="20px">
+          <Column gap="20px">
             {comments.map((value, id) => {
               return <Comments key={id} {...value} />;
             })}

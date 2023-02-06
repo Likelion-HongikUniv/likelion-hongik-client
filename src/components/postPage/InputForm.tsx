@@ -29,56 +29,54 @@ export function Input({ cid, username }: InputProps) {
     const curTarget = parentComment[0];
     const targetIdx = commentsList.indexOf(curTarget);
 
-    console.log(parentComment, parentReplies, curTarget, targetIdx);
-
     let body = {
       body: commentInput.value,
     };
 
-    // axios
-    //   .post(
-    //     `http://13.124.126.164:8080/community/comment/${curTarget.commentId}`,
-    //     JSON.stringify(body),
-    //     // { withCredentials: true },
-    //     {
-    //       headers: {
-    //         "Content-Type": `application/json`,
-    //         JWT: `${accessToken}`,
-    //       },
-    //     },
-    //   )
-    //   .catch((err) => {
-    //     throw err;
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
+    axios
+      .post(
+        `http://13.125.72.138:8080/community/comment/${curTarget.commentId}`,
+        JSON.stringify(body),
+        // { withCredentials: true },
+        {
+          headers: {
+            "Content-Type": `application/json`,
+            JWT: `${accessToken}`,
+          },
+        },
+      )
+      .catch((err) => {
+        throw err;
+      })
+      .then((response) => {
+        const tempObj = {
+          replyId: curTarget.commentId + 1,
+          author: {
+            authorId: userInfo.userId,
+            nickname: userInfo.username,
+            profileImage: userInfo.profileImageSrc,
+            isAuthor: false,
+          },
+          body: commentInput.value,
+          createdTime: formatTime,
+          likeCount: 0,
+        };
+        if (parentReplies) {
+          parentReplies = [...parentReplies, tempObj];
+        } else {
+          parentReplies = [tempObj];
+        }
+        console.log(parentReplies);
 
-    //     const tempObj = {
-    //       replyId: curTarget.commentId + 1,
-    //       author: {
-    //         authorId: userInfo.userId,
-    //         nickname: userInfo.username,
-    //         profileImage: userInfo.profileImageSrc,
-    //         isAuthor: false,
-    //       },
-    //       body: commentInput.value,
-    //       createdTime: formatTime,
-    //       likeCount: 0,
-    //     };
-    //     if (parentReplies) {
-    //       parentReplies = [...parentReplies, tempObj];
-    //     } else {
-    //       parentReplies = [tempObj];
-    //     }
+        let newComment = { ...curTarget, replies: parentReplies };
+        let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
+        console.log(newList);
 
-    //     let newComment = { ...curTarget, replies: parentReplies };
-    //     let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
-
-    //     setCommentsList(() => {
-    //       return newList;
-    //     });
-    //   });
-    // commentInput.setValue("");
+        setCommentsList(() => {
+          return newList;
+        });
+      });
+    commentInput.setValue("");
   };
 
   return (

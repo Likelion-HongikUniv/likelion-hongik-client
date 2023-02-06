@@ -3,7 +3,7 @@ import { IPost, IPagination, IPostList } from "../interfaces/post";
 import { useSetRecoilState } from "recoil";
 import { postsListState, paginationState } from "../states/atoms";
 
-const baseURL = "http://13.124.126.164:8080";
+const baseURL = "http://13.125.72.138:8080";
 
 interface postsProps {
   category?: string;
