@@ -27,7 +27,7 @@ export function Replies(props: IReplyProps) {
         {isPC ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
           <Row gap="10px">
-            <Profile />
+            {props.reply.author.profileImage && <Profile profile={props.reply.author.profileImage} />}
             <TextContainer isDeleted={isDeleted}>
               <Column gap="4px">
                 <UserId>{props.reply?.author?.nickname}</UserId>

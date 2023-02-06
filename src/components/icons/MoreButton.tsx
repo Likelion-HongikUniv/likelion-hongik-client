@@ -87,13 +87,6 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
       </button>
       {isMore ? (
         <MoreSection>
-          <EditButton
-            onClick={() => {
-              navigate("/write");
-            }}
-          >
-            수정하기
-          </EditButton>
           <EditButton onClick={onClickDelete}>삭제하기</EditButton>
         </MoreSection>
       ) : null}
