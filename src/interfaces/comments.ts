@@ -6,29 +6,30 @@ export interface IBoard {
   title: string;
   body: string;
   createdTime: string;
-  isLiked: boolean;
+  isLiked?: boolean | null;
   likeCount: number;
   comments: IComment[];
   imageUrls?: string[];
 }
 export interface IComment {
   commentId: number;
-  author: IAuthor;
+  author?: IAuthor;
   body?: string;
-  isDeleted: boolean;
-  createdTime: string;
-  isLiked: boolean;
+  isDeleted?: boolean;
+  createdTime?: string;
+  isLiked?: boolean | null;
   likeCount: number;
   replies?: IReply[];
 }
 
 export interface IReply {
+  commentId: number;
   replyId: number;
-  author: IAuthor;
+  author?: IAuthor;
   body?: string;
   createdTime?: string;
   isDeleted?: boolean;
-  isLiked: boolean;
+  isLiked?: boolean;
   likeCount: number;
   deleted?: boolean;
 }

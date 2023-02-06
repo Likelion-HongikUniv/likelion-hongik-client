@@ -33,28 +33,18 @@ export function Comments(props: IComment) {
                 <Date fontSize={12}>{date}</Date>
               </Column>
               {props.isDeleted ? <p style={{ color: "#333333" }}>삭제된 댓글입니다.</p> : <p>{props?.body}</p>}
-              {props.isDeleted ? null : (
-                <Row gap="12px">
-                  <LikeButton
-                    cid={props.commentId}
-                    isLiked={props.isLiked}
-                    isAuthor={props.author?.isAuthor}
-                    isComment={true}
-                    likes={props.likeCount}
-                  />
-                  <ReplyButton className="replyOption" onClick={onClickReplyButton}>
-                    댓글 달기
-                  </ReplyButton>
-                </Row>
-              )}
+              <Row gap="12px">
+                <LikeButton cid={props.commentId} isComment={true} likes={props.likeCount} />
+                <ReplyButton className="replyOption" onClick={onClickReplyButton}>
+                  댓글 달기
+                </ReplyButton>
+              </Row>
             </Column>
-            {props.author?.isAuthor && props.isDeleted === false && (
-              <MoreButton cid={props.commentId} isBoard={false} isComment={true} />
-            )}
+            {props.author?.isAuthor && <MoreButton cid={props.commentId} isBoard={false} isComment={true} />}
           </Row>
           {props.replies
             ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
+                return <Replies key={idx} {...reply} />;
               })
             : null}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
@@ -68,30 +58,20 @@ export function Comments(props: IComment) {
               <UserId fontSize={14}>{props.author?.nickname}</UserId>
               <Date fontSize={12}>{date}</Date>
             </Column>
-            {props.author?.isAuthor && props.isDeleted === false && (
-              <MoreButton cid={props.commentId} isBoard={false} isComment={true} />
-            )}
+            {props.author?.isAuthor && <MoreButton cid={props.commentId} isBoard={false} isComment={true} />}
           </Row>
           <Column gap="20px">
-            {props.isDeleted ? <p style={{ color: "#333333" }}>삭제된 댓글입니다.</p> : <p>{props?.body}</p>}
-            {props.isDeleted ? null : (
-              <Row gap="12px">
-                <LikeButton
-                  cid={props.commentId}
-                  isAuthor={props.author?.isAuthor}
-                  isComment={true}
-                  isLiked={props.isLiked}
-                  likes={props.likeCount}
-                />
-                <ReplyButton className="replyOption" onClick={onClickReplyButton}>
-                  댓글 달기
-                </ReplyButton>
-              </Row>
-            )}
+            {props?.body}
+            <Row gap="12px">
+              <LikeButton cid={props.commentId} isComment={true} likes={props.likeCount} />
+              <ReplyButton className="replyOption" onClick={onClickReplyButton}>
+                댓글 달기
+              </ReplyButton>
+            </Row>
           </Column>
           {props.replies
             ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
+                return <Replies key={idx} {...reply} />;
               })
             : null}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}

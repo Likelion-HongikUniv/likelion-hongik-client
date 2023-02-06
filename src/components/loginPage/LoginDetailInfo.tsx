@@ -39,7 +39,7 @@ export function LoginDetailInfo() {
 
     axios
       .post(
-        "http://13.125.72.138:8080/accounts/detail_info/",
+        "http://13.124.126.164:8080/accounts/detail_info/",
         JSON.stringify(data),
         // { withCredentials: true },
         {

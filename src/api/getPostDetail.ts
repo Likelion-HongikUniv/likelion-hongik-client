@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://13.125.72.138:8080/";
+const baseURL = "http://13.124.126.164:8080";
 
 function GetPostDetail(postId: number) {
   const token = localStorage.getItem("token");
