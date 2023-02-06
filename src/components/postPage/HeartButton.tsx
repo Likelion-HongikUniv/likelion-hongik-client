@@ -1,21 +1,17 @@
 import styled from "styled-components";
 import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { HeartFilled } from "../icons/HeartFilled";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { IBoard } from "../../interfaces/comments";
-import { commentsListState, boardState } from "../../states/atoms";
+import { boardState } from "../../states/atoms";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import axios from "axios";
 
-interface HeartButtonProps {
-  isLiked: boolean;
-  likes: number;
-}
-
-export function HeartButton({ isLiked, likes }: HeartButtonProps) {
+export function HeartButton() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const { id } = useParams<{ id?: string }>();
+  const isPC = useMediaQuery("(min-width: 1024px)");
   const accessToken = localStorage.getItem("token");
 
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,31 +32,31 @@ export function HeartButton({ isLiked, likes }: HeartButtonProps) {
       .then((response) => {
         if (response.status === 200) {
           console.log(response.data);
-          setBoardData({ ...board });
-          // if (!isLiked) {
-          //   setLikeCount(likeCount + 1);
-          // } else {
-          //   setLikeCount(likeCount - 1);
-          // }
+          if (!board.isLiked) {
+            setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount + 1 });
+          } else {
+            setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount - 1 });
+          }
         }
       });
   };
 
   return (
-    <ButtonWrapper onClick={onClickLike}>
+    <ButtonWrapper isPC={isPC} onClick={onClickLike}>
       {board.isLiked ? <HeartFilled /> : <HeartUnfilled />}
       {board.likeCount}
     </ButtonWrapper>
   );
 }
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.button<{ isPC: boolean }>`
   box-sizing: border-box;
   min-width: 80px;
   font-size: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-self: ${(props) => (props.isPC ? "none" : "center")};
   padding: 12px 20px;
   gap: 4px;
 

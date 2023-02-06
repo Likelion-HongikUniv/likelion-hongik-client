@@ -80,6 +80,7 @@ export function Comments(props: IComment) {
                   cid={props.commentId}
                   isAuthor={props.author?.isAuthor}
                   isComment={true}
+                  isLiked={props.isLiked}
                   likes={props.likeCount}
                 />
                 <ReplyButton className="replyOption" onClick={onClickReplyButton}>

@@ -57,14 +57,24 @@ export function PostPage() {
   return (
     <>
       <Header />
-      {isPC ? (
-        <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
+      {isPC && (
+        <Section style={{ padding: "0 340px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
             <CommentsList {...comments} />
           </Column>
         </Section>
-      ) : (
+      )}
+      {isTablet && (
+        <Section style={{ padding: "0 40px", display: "flex", justifyContent: "center" }}>
+          <Column style={{ marginTop: "100px" }}>
+            <Board {...board} />
+            <Hairline />
+            <CommentsList {...comments} />
+          </Column>
+        </Section>
+      )}
+      {isMobile && (
         <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />

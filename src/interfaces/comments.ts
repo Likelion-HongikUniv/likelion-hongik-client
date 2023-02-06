@@ -13,22 +13,22 @@ export interface IBoard {
 }
 export interface IComment {
   commentId: number;
-  author?: IAuthor;
+  author: IAuthor;
   body?: string;
-  isDeleted?: boolean;
-  createdTime?: string;
-  isLiked?: boolean;
+  isDeleted: boolean;
+  createdTime: string;
+  isLiked: boolean;
   likeCount: number;
   replies?: IReply[];
 }
 
 export interface IReply {
   replyId: number;
-  author?: IAuthor;
+  author: IAuthor;
   body?: string;
   createdTime?: string;
   isDeleted?: boolean;
-  isLiked?: boolean;
+  isLiked: boolean;
   likeCount: number;
   deleted?: boolean;
 }
