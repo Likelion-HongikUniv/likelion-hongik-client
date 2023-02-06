@@ -53,19 +53,19 @@ const ForDiv = styled.div`
   @media (max-width: 391px) {
     padding: 0 0;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 0 0;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     padding: 0 0;
     /* display: inline; */
   }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding: 0 0;
+    /* display: inline; */
   }
 `;
 
@@ -79,23 +79,26 @@ const TitleText = styled.div`
     font-size: 28px;
     line-height: 33.89px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding-top: 360px;
     font-size: 32px;
     line-height: 36px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    padding-top: 240px;
-    font-size: 36px;
-    line-height: 32px;
-    margin-bottom: 48px;
+    padding-top: 160px;
+    font-size: 28px;
+    line-height: 33.89px;
+    margin-bottom: 40px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding-top: 160px;
+    font-size: 28px;
+    line-height: 33.89px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -111,21 +114,24 @@ const PartBox = styled.div`
     width: 350px;
     height: 192px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     margin-top: 32px;
     width: 370px;
     height: 220px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     margin-top: 20px;
-    width: 360px;
+    width: 220px;
+    height: 148px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    margin-top: 20px;
+    width: 220px;
+    height: 148px;
   }
 `;
 
@@ -139,21 +145,22 @@ const BoxGrid = styled.div`
     display: inline;
     /* padding-right: 20px; */
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     display: inline;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
+    column-gap: 17px;
     justify-content: center;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    display: grid;
+    column-gap: 17px;
+    justify-content: center;
   }
 `;
 
@@ -169,21 +176,24 @@ const PartText = styled.div`
     font-size: 28px;
     line-height: 33.89px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 26px 0 20px 26px;
     font-size: 32px;
     line-height: 38px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    line-height: 38.73px;
-    padding: 28px 0 28px 28px;
+    line-height: 24.2px;
+    padding: 20px 0 12px 20px;
+    font-size: 20px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    line-height: 24.2px;
+    padding: 20px 0 12px 20px;
+    font-size: 20px;
   }
 `;
 
@@ -200,20 +210,23 @@ const PartSmallText = styled.div`
     font-size: 16px;
     line-height: 30px;
   }
-  @media (min-width: 391px) and (max-width: 768px) {
+  @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 0 0 0 26px;
     font-size: 20px;
     line-height: 32px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
-    padding: 0 0 0 28px;
-    line-height: 34px;
+    padding: 0px 28px 20px 20px;
+    line-height: 24px;
+    font-size: 11px;
   }
 
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    padding: 0px 28px 20px 20px;
+    line-height: 24px;
+    font-size: 11px;
   }
 `;

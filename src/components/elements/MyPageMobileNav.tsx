@@ -13,7 +13,7 @@ export function MyPageMobileNav() {
   const [major, setMajor] = useState("학과");
   const navigate = useNavigate();
   const onNavigate = () => {
-    navigate("/myPageEdit");
+    navigate("/myPage/edit");
   };
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
@@ -38,31 +38,35 @@ export function MyPageMobileNav() {
   }, []);
 
   return (
-    <LeftNav>
-      <div style={{ display: "flex" }}>
-        <ProfileCopy src={profileImg?.thumbnail} />
+    <MobileNavContainer>
+      <Profile>
+        <ProImg src={profileImg?.thumbnail} />
         <div style={{ width: "88px" }}>
           <Name>{nickname}</Name>
           <Team>{major}</Team>
         </div>
-      </div>
+      </Profile>
       <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
       <NavSelectPartMobile />
-    </LeftNav>
+    </MobileNavContainer>
   );
 }
 
-const LeftNav = styled.nav`
+const MobileNavContainer = styled.nav`
   width: 100vw;
-  height: 223px;
+  height: 250px;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
   letter-spacing: -0.32px;
   padding: 0 20px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-const ProfileCopy = styled.img`
+const ProImg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -99,4 +103,9 @@ const EditBtn = styled.button`
   text-align: center;
   color: #ffffff;
   margin-top: 24px;
+`;
+
+const Profile = styled.div`
+  display: flex;
+  width: 350px;
 `;

@@ -17,46 +17,23 @@ export const btnActiveState = atom<number>({
   default: 1,
 });
 
-// export const nickState = atom<string>({
-//   key: "nickname",
-//   default: "건뺑이",
-// });
-
-// export const majorState = atom<string>({
-//   key: "majorState",
-//   default: "컴퓨터공학과",
-// });
-
-// export const majorState = selector({
-//   key: "majorState",
-//   get: ({ get }) => {
-//     const changeMajor = get(editState);
-//     return changeMajor.major;
-//   },
-// });
-
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const profileImgState = atom<UploadImage | null>({
+export const profileImgState = atom<string>({
   key: "profileImgState",
-  default: null,
+  default: "",
+  effects_UNSTABLE: [persistAtom],
 });
-
-// export const partState = atom<string>({
-//   key: "partState",
-//   default: "",
-// });
 
 interface IEdit {
   key?: string;
   major?: string;
   profile?: UploadImage | null;
   part?: string;
-  // team?: string;
   nickname?: string;
   studentId?: string;
 }
@@ -85,4 +62,10 @@ export const isLoggedInState = atom<boolean>({
 export const isCancelButtonClickedState = atom<boolean>({
   key: " isCancelButtonClickedState",
   default: false,
+});
+
+export const currPageState = atom<number>({
+  key: "currPageState",
+  default: 1,
+  effects_UNSTABLE: [persistAtom],
 });

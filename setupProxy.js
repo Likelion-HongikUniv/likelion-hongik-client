@@ -6,7 +6,7 @@ const baseURL2 = "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com
 module.exports = function (app) {
   app.use(
     createProxyMiddleware("/v1/**", {
-      target: baseURL2,
+      target: baseURL,
       changeOrigin: true,
     }),
   );

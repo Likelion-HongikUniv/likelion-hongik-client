@@ -2,29 +2,69 @@ import styled from "styled-components";
 import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { HeartFilled } from "../icons/HeartFilled";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { IBoard } from "../../interfaces/comments";
+import { commentsListState, boardState } from "../../states/atoms";
+import axios from "axios";
 
 interface HeartButtonProps {
   likes: number;
 }
 
 export function HeartButton({ likes }: HeartButtonProps) {
+  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [isLike, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
-  const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // if (isLoggedInState);
-    setLike(!isLike);
-    if (!isLike) {
-      var count = likeCount + 1;
-      setLikeCount(count);
-    } else {
-      var count = likeCount - 1;
-      setLikeCount(count);
-    }
-  };
+  const { id } = useParams<{ id?: string }>();
+  const accessToken = localStorage.getItem("token");
 
-  useEffect(() => {
-    console.log("like 눌림");
-  }, [likeCount]);
+  // const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   setLike(!isLike);
+  //   if (!isLike) {
+  //     var count = likeCount + 1;
+  //     setLikeCount(count);
+  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+  //   } else {
+  //     var count = likeCount - 1;
+  //     setLikeCount(count);
+  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+  //   }
+  // };
+
+  const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    axios
+      .post(
+        `http://13.124.126.164:8080/community/post/${id}/like`,
+        { body: null }, // body null이라도 있어야 이 문법에서 돌아감
+        {
+          headers: {
+            "Content-Type": `application/json`,
+            JWT: `${accessToken}`,
+          },
+        },
+      )
+      .catch((err) => {
+        throw err;
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setLike(!isLike);
+          console.log("accessed 200");
+          console.log(isLike);
+          if (!isLike) {
+            var count = likeCount + 1;
+            setLikeCount(count);
+            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+          } else {
+            var count = likeCount - 1;
+            setLikeCount(count);
+            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+          }
+        }
+      });
+  };
 
   return (
     <ButtonWrapper onClick={onClickLike}>

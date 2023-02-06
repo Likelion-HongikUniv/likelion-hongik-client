@@ -31,12 +31,7 @@ const EditTitle = styled.div`
     display: none;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
@@ -49,12 +44,7 @@ const BasicInfo = styled.div`
     margin-top: 6px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
@@ -69,12 +59,7 @@ const Major = styled.div`
     line-height: 16.94px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;
 
@@ -88,11 +73,6 @@ const Names = styled.div`
     line-height: 21.78px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 769px) and (max-width: 1024px) {
   }
 `;

@@ -3,18 +3,20 @@ import { SearchBar } from "./SearchBar";
 import { ICommunityParam } from "../../interfaces/category";
 import { WriteIcon } from "../icons/WriteIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { BLACK_1 } from "../../styles/theme";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("( max-width: 390px )");
+  const isMobile = useMediaQuery("( max-width: 768px )");
+
   return (
     <Wrapper>
-      {categoryName.categoryName === "post" && <SearchBar />}
+      <SearchBar />
       <Table>
         <div>
-          <span style={{ color: "#ED7F30", fontSize: "4px" }}>•</span>
+          <span style={{ color: "#ED7F30" }}>•</span>
           <span>최신순</span>
         </div>
-        {categoryName.categoryName === "post" ? (
+        {categoryName.categoryName === "BOARD" ? (
           <button>
             <WriteIcon />
             {!isMobile && <span>글쓰기</span>}
@@ -38,45 +40,51 @@ const Table = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  margin-top: 40px;
+  padding-bottom: 0.8333vw;
+  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
+  margin-top: 6.1538vw;
   div {
     display: flex;
-    gap: 6px;
+    gap: 0.3125vw;
     align-items: center;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 0.8333vw;
+    @media all and (max-width: 768px) {
+      font-size: 4.1026vw;
+    }
   }
   button {
+    width: 6.1979vw;
+    height: 2.7083vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 12.5px;
+    padding: 0.651vw;
     background: #ed7f30;
-    border-radius: 8px;
+    border-radius: 0.4167vw;
     img {
-      width: 18px;
-      height: 18px;
+      width: 0.3vw;
+      height: 0.3vw;
     }
     span {
       font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 1.0417vw;
       text-align: center;
-      letter-spacing: -0.32px;
-      color: #000000;
+      color: ${BLACK_1};
     }
-    @media (max-width: 390px) {
+    @media all and (max-width: 768px) {
+      width: auto;
+      height: auto;
+      padding: 3.2051vw;
+      border-radius: 2.0513vw;
       img {
-        width: 15px;
-        height: 15px;
+        width: 3.8462vw;
+        height: 3.8462vw;
       }
       span {
+        font-size: 4.1026vw;
+        line-height: 4.8718vw;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
       }
     }
   }
