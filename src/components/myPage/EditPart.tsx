@@ -78,7 +78,7 @@ export function EditPart() {
 }
 
 const EditPartDiv = styled.div`
-  width: 691px;
+  width: 768px;
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};

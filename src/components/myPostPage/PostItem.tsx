@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  profileImg?: string;
   body: string;
   time: string;
   likes: number;
@@ -15,7 +15,7 @@ interface IPost {
   postId: number;
 }
 
-export function PostItem({ postId, author, title, body, likes, reply, time, profileImage }: IPost) {
+export function PostItem({ postId, author, title, body, likes, reply, time, profileImg }: IPost) {
   const navigate = useNavigate();
   const onClickHandler = () => {
     navigate(`/community/post/${postId}`);
@@ -24,7 +24,7 @@ export function PostItem({ postId, author, title, body, likes, reply, time, prof
     <Item onClick={onClickHandler}>
       <Left>
         <User>
-          <img src={profileImage} alt="profile" />
+          <img src={profileImg} alt="profile" />
           <div>
             <UserName>{author}</UserName>
             <UploadDate>{time}</UploadDate>
