@@ -5,6 +5,7 @@ import { IBoard, IComment } from "../interfaces/comments";
 import { ICategory } from "../interfaces/category";
 import { IPost } from "../interfaces/post";
 import { IPagination } from "../interfaces/post";
+import { IProjectTeam } from "../interfaces/team";
 
 export const commentsListState = atom<IComment[]>({
   key: "commentsState",
@@ -291,4 +292,20 @@ export const pageState = atom<number>({
 export const curPageIndexState = atom<number>({
   key: "curPageIndexState",
   default: 0,
+});
+
+export const projectTeamState = atom<IProjectTeam>({
+  key: "projectTeamState",
+  default: {
+    teamId: 2,
+    teamName: "낙타",
+    memberCount: 5,
+    members: [
+      {
+        userId: 39,
+        userName: "이지민",
+        profileImage: "https://lh3.googleusercontent.com/a/AEdFTp69-b0CJAMsVpp7Qy3awOPqG8gvK2xT6ysPZaKVXw=s96-c",
+      },
+    ],
+  },
 });
