@@ -17,6 +17,7 @@ const Ing = () => {
 
   const getProfile = async () => {
     await axios.post(
+        // `http://localhost:8080/v1/token`, 
         `http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, 
         UID,
         {
