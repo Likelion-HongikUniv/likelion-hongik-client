@@ -60,7 +60,7 @@ export function CommentsList(commentList: IComment[]) {
           replies: [],
         };
 
-        let newList = [...comments, tempObj];
+        let newList: any = [...comments, tempObj];
         setCommentsList(newList);
         commentInput.setValue("");
       });

@@ -17,7 +17,7 @@ const Ing = () => {
 
   const getProfile = async () => {
     await axios
-      .get(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
+      .get(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, {
         // withCredentials: true,
         headers: {
           "Content-Type": `application/json`,
@@ -26,13 +26,14 @@ const Ing = () => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data) {
+        if (response.data && token) {
           setUserInfo({
-            id: response.data.id,
+            userId: response.data.id,
             isJoined: response.data.isJoined,
-            name: response.data.name,
-            profileImage: response.data.profileImage,
+            username: response.data.name,
+            profileImageSrc: response.data.profileImage,
             role: response.data.role,
+            accessToken: token,
           });
         }
         setUsername(response.data.name);
