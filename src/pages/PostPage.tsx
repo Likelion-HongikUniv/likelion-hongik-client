@@ -12,19 +12,18 @@ import styled from "styled-components";
 import axios from "axios";
 import useMediaQuery from "../hooks/useMediaQuery";
 
-const baseURL = "http://13.124.126.164:8080";
+const baseURL = "http://13.125.72.138:8080";
 
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
   const isPC = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width : 768px)");
   const { id } = useParams<{ id?: string }>();
-  console.log(id);
 
   function GetPostDetail(postId: number) {
     const token = localStorage.getItem("token");
-
     axios
       .get(`${baseURL}/community/post/${postId}`, {
         headers: {
@@ -33,9 +32,17 @@ export function PostPage() {
         },
       })
       .then((response) => {
-        setBoardData(response.data);
-        setCommentsData(response.data.comments);
-        return response.data;
+        if (response.status === 200) {
+          setBoardData(response.data);
+          setCommentsData(response.data.comments);
+          return response.data;
+        }
+        if (response.status === 401) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (response.status === 404 || response.status === 500) {
+          alert("게시글을 찾을 수 없습니다.");
+        }
       })
       .catch((err) => {
         throw err;
@@ -50,14 +57,24 @@ export function PostPage() {
   return (
     <>
       <Header />
-      {isPC ? (
-        <Section style={{ padding: "0 340px 0 340px", display: "flex", justifyContent: "center" }}>
+      {isPC && (
+        <Section style={{ padding: "0 340px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
             <CommentsList {...comments} />
           </Column>
         </Section>
-      ) : (
+      )}
+      {isTablet && (
+        <Section style={{ padding: "0 40px", display: "flex", justifyContent: "center" }}>
+          <Column style={{ marginTop: "100px" }}>
+            <Board {...board} />
+            <Hairline />
+            <CommentsList {...comments} />
+          </Column>
+        </Section>
+      )}
+      {isMobile && (
         <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />

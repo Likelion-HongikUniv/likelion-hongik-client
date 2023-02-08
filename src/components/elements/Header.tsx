@@ -17,7 +17,7 @@ import { MenuClose } from "../icons/MenuClose";
 
 export function Header() {
   // useAutoLogin();
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1024px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
@@ -39,18 +39,20 @@ export function Header() {
 
   const NavPC = () => {
     return (
-      <Wrapper>
-        <Logo />
-        <Row gap="60px" alignItems="center">
-          <HeaderButton onClick={onClickHeaderButton} name="recruit">
-            지원하기
-          </HeaderButton>
-          <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
-            커뮤니티
-          </HeaderButton>
-          <ProfileButton />
-        </Row>
-      </Wrapper>
+      <>
+        <Wrapper>
+          <Logo />
+          <Row style={{ position: "relative" }} gap="60px" alignItems="center" justifyContent="center">
+            <HeaderButton onClick={onClickHeaderButton} name="recruit">
+              지원하기
+            </HeaderButton>
+            <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
+              커뮤니티
+            </HeaderButton>
+            <ProfileButton />
+          </Row>
+        </Wrapper>
+      </>
     );
   };
 
@@ -75,8 +77,11 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
+            <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/edit">
+              마이페이지
+            </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">
-              로그인
+              {isLoggedIn ? "로그아웃" : "로그인"}
             </HeaderMobileButton>
           </ToggleWrapper>
         )}
