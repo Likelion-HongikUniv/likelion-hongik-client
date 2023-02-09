@@ -24,8 +24,9 @@ export function LoginDetailInfo() {
     studentId: studentId.value,
     part: part.value,
   };
+  console.log(JSON.stringify(data));
 
-  const onClickSave = () => {
+  const onClickSaveButton = () => {
     //저장 버튼 클릭 시 정보 넘겨주기
 
     const infoHandler = {
@@ -84,7 +85,7 @@ export function LoginDetailInfo() {
           disabled={
             nickname.value?.length !== 0 && studentId.value?.length !== 0 && major.value?.length !== 0 ? false : true
           }
-          onClick={onClickSave}
+          onClick={onClickSaveButton}
         >
           완료
         </DoneBtn>

@@ -18,8 +18,8 @@ export default function useAutoLogin() {
   useEffect(() => {
     if (accessToken) {
       setIsLoggedIn(true);
-    } else if (!accessToken && privatePage) {
-      navigate("/");
+    } else if (!accessToken) {
+      // navigate("/");
     }
   }, [accessToken]);
 }

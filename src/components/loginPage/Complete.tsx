@@ -1,9 +1,18 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-
 import { LionIcon } from "./../icons/LionIcon";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isLoggedInState } from "../../states";
 
 export function Complete() {
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const navigate = useNavigate();
+
+  const onClickConfirmButton = () => {
+    setIsLoggedIn(true);
+    navigate("/login");
+  };
   return (
     <div>
       <Title>회원가입 완료!</Title>
@@ -14,7 +23,7 @@ export function Complete() {
       </SmallText>
       <LionIcon />
       <div>
-        <OkBtn>로그인</OkBtn>
+        <OkBtn onClick={onClickConfirmButton}>로그인</OkBtn>
       </div>
     </div>
   );

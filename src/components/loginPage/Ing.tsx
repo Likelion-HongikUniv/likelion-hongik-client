@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userState } from "../../states/index";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isLoggedInState, userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
 import { userInfoState } from "../../states/user";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -13,20 +13,21 @@ const Ing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const token = searchParams.get("token");
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const UID = searchParams.get("UID");
 
   const getProfile = async () => {
     await axios
-      .get(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, {
-        // withCredentials: true,
+      .post(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, UID, {
         headers: {
           "Content-Type": `application/json`,
-          JWT: token,
         },
       })
       .then((response) => {
         console.log(response);
+        const token = response.data.JWT;
         if (response.data && token) {
+          localStorage.setItem("token", token);
           setUserInfo({
             userId: response.data.id,
             isJoined: response.data.isJoined,
@@ -38,18 +39,17 @@ const Ing = () => {
         }
         setUsername(response.data.name);
         setProfileImg(response.data.profileImage);
-        console.log(response.data.profileImage);
-        console.log(profileImg);
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
         if (response.data.isJoined === false && response.data.role === "GUEST") {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람
           console.log("멋사 회원이 아니에요!");
           navigate("/");
-        } else if (response.data.isJoined == false && response.data.role == "USER") {
+        } else if (response.data.isJoined === false && response.data.role === "USER") {
           console.log("멋사 회원 + 회원가입");
           navigate("/login/detail");
         } else {
           console.log("멋사 회원 + 로그인");
+          setIsLoggedIn(true);
           navigate("/");
         }
       })
@@ -57,12 +57,11 @@ const Ing = () => {
         console.log(err);
       });
   };
+
   useEffect(() => {
-    if (token) {
-      localStorage.setItem("token", token);
-    }
     getProfile();
   }, []);
+
   return (
     <div
       style={{
