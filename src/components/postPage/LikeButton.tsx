@@ -50,9 +50,8 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
           throw err;
         })
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
-            if (!isLikeActive) {
+            if (!isLiked) {
               setLikeCount(likeCount + 1);
               setIsLikeActive(!isLiked);
             } else {
