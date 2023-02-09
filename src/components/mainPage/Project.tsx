@@ -8,6 +8,7 @@ import project2 from "../images/main_project2.png";
 import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
 import project5 from "../images/main_project5.png";
+import project_default from "../images/project_default.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -25,27 +26,27 @@ interface Iprojects {
 const imageList = [
   {
     pid: 1,
-    title: project1,
+    title: project_default,
     desc: "project1 설명",
   },
   {
     pid: 2,
-    title: project2,
+    title: project_default,
     desc: "project2 설명",
   },
   {
     pid: 3,
-    title: project3,
+    title: project_default,
     desc: "project3 설명",
   },
   {
     pid: 4,
-    title: project4,
+    title: project_default,
     desc: "project4 설명",
   },
   {
     pid: 5,
-    title: project5,
+    title: project_default,
     desc: "project5 설명",
   },
 ];

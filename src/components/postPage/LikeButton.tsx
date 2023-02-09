@@ -26,7 +26,6 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
 
   const onClickLikeComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("댓글 좋아요 clicked");
-    console.log(" before axios : ", isLikeActive, likeCount);
 
     if (isAuthor === false) {
       axios
@@ -41,19 +40,24 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
           },
         )
         .catch((err) => {
+          if (err.response.status === 401 || err.response.status === 500) {
+            alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+          }
+          if (err.response.status === 404) {
+            alert("좋아요 대상을 찾을 수 없습니다.");
+          }
+          window.location.reload();
           throw err;
         })
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
-            if (!isLikeActive) {
+            if (!isLiked) {
               setLikeCount(likeCount + 1);
               setIsLikeActive(!isLiked);
             } else {
               setLikeCount(likeCount - 1);
               setIsLikeActive(!isLiked);
             }
-            console.log(" after axios : ", isLikeActive, likeCount);
           }
         });
     } else {
@@ -76,6 +80,13 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
           },
         )
         .catch((err) => {
+          if (err.response.status === 401 || err.response.status === 500) {
+            alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+          }
+          if (err.response.status === 404) {
+            alert("좋아요 대상을 찾을 수 없습니다.");
+          }
+          window.location.reload();
           throw err;
         })
         .then((response) => {

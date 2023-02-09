@@ -46,35 +46,41 @@ export function Input({ cid, username }: InputProps) {
         },
       )
       .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 500) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (err.response.status === 404) {
+          alert("대상을 찾을 수 없습니다.");
+        }
+        window.location.reload();
         throw err;
       })
       .then((response) => {
-        const tempObj = {
-          replyId: curTarget.commentId + 1,
-          author: {
-            authorId: userInfo.userId,
-            nickname: userInfo.username,
-            profileImage: userInfo.profileImageSrc,
-            isAuthor: false,
-          },
-          body: commentInput.value,
-          createdTime: formatTime,
-          likeCount: 0,
-        };
-        if (parentReplies) {
-          parentReplies = [...parentReplies, tempObj];
-        } else {
-          parentReplies = [tempObj];
+        if (response.status === 200) {
+          const tempObj = {
+            replyId: curTarget.commentId + 1,
+            author: {
+              authorId: userInfo.userId,
+              // nickname과 이미지 모두 가져온 유저 state 기반으로 수정해야함
+              nickname: userInfo.username,
+              profileImage: userInfo.profileImageSrc,
+              isAuthor: true,
+            },
+            body: commentInput.value,
+            createdTime: formatTime,
+            likeCount: 0,
+          };
+          if (parentReplies) {
+            parentReplies = [...parentReplies, tempObj];
+          } else {
+            parentReplies = [tempObj];
+          }
+          let newComment = { ...curTarget, replies: parentReplies };
+          let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
+          setCommentsList(() => {
+            return newList;
+          });
         }
-        console.log(parentReplies);
-
-        let newComment = { ...curTarget, replies: parentReplies };
-        let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
-        console.log(newList);
-
-        setCommentsList(() => {
-          return newList;
-        });
       });
     commentInput.setValue("");
   };

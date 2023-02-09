@@ -44,25 +44,38 @@ export function CommentsList(commentList: IComment[]) {
         },
       )
       .then((response) => {
-        const tempObj = {
-          commentId: comments.length + 1,
-          author: {
-            authorId: userInfo.userId,
-            nickname: localStorage.getItem("username"),
-            profileImage: userInfo.profileImageSrc,
-            isAuthor: true,
-          },
-          body: commentInput.value,
-          isDeleted: false,
-          isLiked: false,
-          createdTime: formatTime,
-          likeCount: 0,
-          replies: [],
-        };
+        if (response.status === 200) {
+          const tempObj = {
+            commentId: comments.length + 1,
+            author: {
+              authorId: userInfo.userId,
+              // nickname과 이미지 모두 가져온 유저 state 기반으로 수정해야함
+              nickname: localStorage.getItem("username"),
+              profileImage: userInfo.profileImageSrc,
+              isAuthor: true,
+            },
+            body: commentInput.value,
+            isDeleted: false,
+            isLiked: false,
+            createdTime: formatTime,
+            likeCount: 0,
+            replies: [],
+          };
 
-        let newList = [...comments, tempObj];
-        setCommentsList(newList);
-        commentInput.setValue("");
+          let newList = [...comments, tempObj];
+          setCommentsList(newList);
+          commentInput.setValue("");
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 500) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (err.response.status === 404) {
+          alert("삭제 대상을 찾을 수 없습니다.");
+        }
+        window.location.reload();
+        throw err;
       });
   };
 
