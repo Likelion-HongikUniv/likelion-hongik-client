@@ -10,7 +10,7 @@ export function CategoryTab(categoryName: ICommunityParam) {
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const navigate = useNavigate();
   const activeStyle = {
-    borderBottom: `2px solid %{WHITE_1}`,
+    borderBottom: `2px solid #fff`,
   };
 
   const onClickTagHandler = (tag: ITag) => {
