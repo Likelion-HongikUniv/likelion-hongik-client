@@ -17,11 +17,11 @@ const Recruiting = () => {
     <RecruitingContainer data-aos="zoom-in">
       <BoxContainer>
         <Now>NOW</Now>
-        <Title>멋쟁이 사자처럼 11기</Title>
+        <Title>멋쟁이사자처럼 11기</Title>
         <Text>
-          지원 기간 : 2022.02.23 ~ 2022.03.13
+          지원 기간: 2023.02.20 ~ 2023.03.10
           <br />
-          모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명
+          모집 인원: 총 30명 내외 선발 예정
         </Text>
       </BoxContainer>
       <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>

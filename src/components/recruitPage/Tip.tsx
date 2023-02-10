@@ -7,7 +7,7 @@ export function Tip() {
     <ForDiv>
       <div>
         <TitleText>서류·면접 합격 꿀팁!</TitleText>
-        <DetailText>멋쟁이 사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
+        <DetailText>멋쟁이사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
         <TipGrid>
           <Tips>
             2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
