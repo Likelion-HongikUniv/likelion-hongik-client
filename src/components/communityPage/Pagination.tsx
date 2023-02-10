@@ -13,6 +13,7 @@ export function Pagination() {
     border: "none",
   };
   const pageArr = Array.from({ length: pagination?.totalPage }, (v, i) => i + 1);
+  const PAGE_MAX = 6;
 
   const division = (data: number[], size: number) => {
     const arr = [];
@@ -22,7 +23,7 @@ export function Pagination() {
     return arr;
   };
 
-  const pageDividedArr = division(pageArr, 6);
+  const pageDividedArr = division(pageArr, PAGE_MAX);
 
   return (
     <PageWrapper>
@@ -30,7 +31,7 @@ export function Pagination() {
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex - 1);
-            setPage(curPageIndex * 6);
+            setPage(curPageIndex * PAGE_MAX);
           }}
         >
           ...
@@ -51,7 +52,7 @@ export function Pagination() {
         <PageBtn
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);
-            setPage((curPageIndex + 1) * 6 + 1);
+            setPage((curPageIndex + 1) * PAGE_MAX + 1);
           }}
         >
           ...

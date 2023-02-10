@@ -42,14 +42,17 @@ const Table = styled.div`
   align-items: flex-end;
   padding-bottom: 0.8333vw;
   border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
-  margin-top: 6.1538vw;
+  margin-top: 1vw;
   div {
     display: flex;
     gap: 0.3125vw;
     align-items: center;
     font-weight: 600;
     font-size: 0.8333vw;
-    @media all and (max-width: 768px) {
+  }
+  @media all and (max-width: 768px) {
+    margin-top: 6.1538vw;
+    div {
       font-size: 4.1026vw;
     }
   }

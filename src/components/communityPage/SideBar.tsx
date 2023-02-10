@@ -5,8 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
+import { profileImgState } from "../../states";
+import { editState } from "../../states/index";
 
 export function SideBar(categoryName: ICommunityParam) {
+  const profileImg = useRecoilValue(profileImgState);
+  const info = useRecoilValue(editState);
   const isMobile = useMediaQuery("( max-width: 768px )");
   const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
@@ -43,11 +47,11 @@ export function SideBar(categoryName: ICommunityParam) {
         ) : (
           <ProfileBoard>
             <ProfileImg>
-              <img alt="profile-img" src="https://placekitten.com/200/300" />
+              <img alt="profile-img" src={profileImg ? (profileImg as string) : ""} />
             </ProfileImg>
             <ProfileDesc>
-              <span>김아현</span>
-              <div>컴퓨터공학과</div>
+              <span>{info.nickname}</span>
+              <div>{info.major}</div>
             </ProfileDesc>
           </ProfileBoard>
         )}
