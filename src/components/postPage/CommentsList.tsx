@@ -20,7 +20,7 @@ export function CommentsList(commentList: IComment[]) {
   const comments = Object.values(commentList).map((comments: IComment) => comments);
   const accessToken = localStorage.getItem("token");
   const commentInput = useInput("");
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id?: string }>();
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
@@ -118,7 +118,7 @@ const InputForm = styled.form<{ isPC: boolean }>`
   justify-content: center;
   align-items: center;
   padding: ${(props) => (props.isPC ? "none" : "0px")};
-  /* position: ${(props) => (props.isPC ? "relative" : "fixed")}; */
+  position: ${(props) => (props.isPC ? "relative" : "fixed")};
   /* bottom: ${(props) => (props.isPC ? "none" : "0px")}; */
   background-color: ${(props) => (props.isPC ? "none" : BLACK_1)};
 `;

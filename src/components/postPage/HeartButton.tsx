@@ -38,7 +38,6 @@ export function HeartButton() {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data);
           if (!board.isLiked) {
             setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount + 1 });
           } else {
