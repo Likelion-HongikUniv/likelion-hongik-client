@@ -30,9 +30,9 @@ const Ing = () => {
         console.log(response);
         setUsername(response.data.name);
 
-        if (response.data.isJoined === false) {
+        // if (response.data.isJoined === false) {
           setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
-        }
+        // }
 
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
         localStorage.setItem("token", response.data.JWT);

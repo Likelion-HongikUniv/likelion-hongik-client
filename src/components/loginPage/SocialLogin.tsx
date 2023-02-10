@@ -39,7 +39,7 @@ export function SocialLogin() {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/github",
       "_self",
-    );
+    )
   };
 
   return (
