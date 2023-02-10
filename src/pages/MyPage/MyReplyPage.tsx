@@ -28,7 +28,6 @@ export function MyReplyPage() {
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  // const [profileImg] = useRecoilState(profileImgState);
 
   useEffect(() => {
     window.scrollTo(0, 0);

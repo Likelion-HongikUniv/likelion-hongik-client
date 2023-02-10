@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { HeartIcon } from "../icons/HeartIcon";
 import { CommentIcon } from "../icons/CommentIcon";
 import { useNavigate } from "react-router-dom";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 interface IPost {
   title: string;
@@ -24,7 +25,7 @@ export function PostItem({ postId, author, title, body, likes, reply, time, prof
     <Item onClick={onClickHandler}>
       <Left>
         <User>
-          <img src={profileImg} alt="profile" />
+          <img src={profileImg || emoji_lion} alt="profile" />
           <div>
             <UserName>{author}</UserName>
             <UploadDate>{time}</UploadDate>

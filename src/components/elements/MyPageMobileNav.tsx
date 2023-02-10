@@ -6,6 +6,7 @@ import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileImgState);
@@ -47,7 +48,7 @@ export function MyPageMobileNav() {
   return (
     <MobileNavContainer>
       <Profile>
-        <ProImg src={profileImg as string} />
+        <ProImg src={profileImg || emoji_lion} />
         <div style={{ width: "88px" }}>
           <Name>{info.nickname}</Name>
           <Team>{info.major}</Team>
