@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { editState, profileState } from "./../../states/index";
 import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
@@ -9,16 +9,20 @@ import { useEffect, useState } from "react";
 
 export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileState);
-  const [nickname, setNickname] = useState("닉네임");
-  const [major, setMajor] = useState("학과");
+  const [info, setInfo] = useRecoilState(editState);
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPage/edit");
   };
+
+  useEffect(() => {
+    getUserInfoAPI();
+  }, []);
+
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.124.126.164:8080/mypage`, {
+      .get(`http://13.125.72.138:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -26,24 +30,27 @@ export function MyPageMobileNav() {
       })
       .then((response) => {
         console.log(response);
-        setNickname(response.data.nickname);
-        setMajor(response.data.major);
+        const infoHandler = {
+          ...info,
+          major: response.data.major,
+          nickname: response.data.nickname,
+          part: response.data.part,
+          // team: changeTeam.value,
+        };
+        setInfo(infoHandler);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  useEffect(() => {
-    getUserInfoAPI();
-  }, []);
 
   return (
     <MobileNavContainer>
       <Profile>
         <ProImg src={profileImg?.thumbnail} />
         <div style={{ width: "88px" }}>
-          <Name>{nickname}</Name>
-          <Team>{major}</Team>
+          <Name>{info.nickname}</Name>
+          <Team>{info.major}</Team>
         </div>
       </Profile>
       <EditBtn onClick={onNavigate}>정보 변경</EditBtn>

@@ -23,6 +23,7 @@ export function ProfileButton() {
     } else {
       navigate("/login");
     }
+    console.log(isLoggedIn);
   };
 
   return (

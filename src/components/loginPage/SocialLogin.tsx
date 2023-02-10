@@ -16,14 +16,14 @@ export function SocialLogin() {
   const navigate = useNavigate();
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     window.open(
-      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
   };
   const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("네이버 로그인 클릭");
     window.open(
-      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
       "_self",
     );
   };
@@ -31,7 +31,7 @@ export function SocialLogin() {
   const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("카카오 로그인 클릭");
     window.open(
-      "http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
       "_self",
     );
   };
@@ -60,7 +60,6 @@ export function SocialLogin() {
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
       </SocialBtn>
-      <Footer style={{ marginTop: "334px" }} />
     </ForDiv>
   );
 }

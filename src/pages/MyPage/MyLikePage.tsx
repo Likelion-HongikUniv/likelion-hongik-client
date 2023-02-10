@@ -35,7 +35,7 @@ export function MyLikePage() {
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/like/`, {
+      .get(`http://13.125.72.138:8080/mypage/likes/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -55,8 +55,8 @@ export function MyLikePage() {
       });
   };
   useEffect(() => {
-    getMyLikeAPI(); 
-  }, [currPage]); 
+    getMyLikeAPI();
+  }, [currPage]);
 
   return (
     <>

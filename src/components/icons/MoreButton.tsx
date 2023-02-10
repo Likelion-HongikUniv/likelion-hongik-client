@@ -26,7 +26,7 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
   const onClickPatch = () => {
     axios
       .patch(
-        `http://13.124.126.164:8080/community/comment/${cid}/like`,
+        `http://13.125.72.138:8080/community/comment/${cid}/like`,
         { body: null }, // body null이라도 있어야 이 문법에서 돌아감
         {
           headers: {
@@ -45,9 +45,9 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
 
   const onClickDelete = () => {
     if (isBoard) {
-      targetURL = `http://13.124.126.164:8080/community/post/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/post/${cid}`;
     } else if (isComment) {
-      targetURL = `http://13.124.126.164:8080/community/comment/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/comment/${cid}`;
     } else {
       targetURL = `http://localhost:8080/community/reply/${cid}`;
     }
