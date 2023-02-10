@@ -9,12 +9,12 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
-import { currPageState } from "../../states/index";
+import { currPageState, profileImgState } from "../../states/index";
 
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  profileImg?: string;
   body: string;
   time: string;
   likes: number;
@@ -24,57 +24,11 @@ interface IPost {
 
 export function MyPostPage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
-  const posts = [
-    {
-      title: "게시글1",
-      body: "body1",
-      likes: "likes",
-      reply: "reply",
-      time: "time",
-      profileImage: "pri",
-      author: "author",
-    },
-    {
-      title: "게시글1",
-      body: "body1",
-      likes: "likes",
-      reply: "reply",
-      time: "time",
-      profileImage: "pri",
-      author: "author",
-    },
-    {
-      title: "게시글1",
-      body: "body1",
-      likes: "likes",
-      reply: "reply",
-      time: "time",
-      profileImage: "pri",
-      author: "author",
-    },
-    {
-      title: "게시글1",
-      body: "body1",
-      likes: "likes",
-      reply: "reply",
-      time: "time",
-      profileImage: "pri",
-      author: "author",
-    },
-    {
-      title: "게시글1",
-      body: "body1",
-      likes: "likes",
-      reply: "reply",
-      time: "time",
-      profileImage: "pri",
-      author: "author",
-    },
-  ];
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
-  const [totalPosts, setTotalPosts] = useState(25);
+  const [totalPages, setTotalPages] = useState(5);
+  const [profileImg] = useRecoilState(profileImgState);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,9 +47,10 @@ export function MyPostPage() {
         },
       })
       .then((response) => {
-        console.log(response.data.content);
+        console.log(response.data);
         setPostList(response.data.content);
-        setTotalPosts(response.data.totalElements);
+        setTotalPages(response.data.totalPages);
+        console.log(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
@@ -114,20 +69,6 @@ export function MyPostPage() {
           <MyPostBoxContainer>
             {isMobile ? "" : <Title>내가 쓴 글</Title>}
             <PostItemContainer>
-              {/* 테스트 데이터 */}
-              {/* {posts.map((post: any, index: number) => (
-                <PostItem
-                  key={index}
-                  postId={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImage={post.profileImage}
-                />
-              ))} */}
               {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
@@ -138,11 +79,11 @@ export function MyPostPage() {
                   likes={post.likes}
                   reply={post.reply}
                   time={post.time}
-                  profileImage={post.profileImage}
+                  profileImg={profileImg}
                 />
               ))}
             </PostItemContainer>
-            <MyPagination totalPosts={totalPosts} />
+            <MyPagination totalPages={totalPages} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

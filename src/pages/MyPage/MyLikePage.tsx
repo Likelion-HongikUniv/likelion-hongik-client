@@ -9,12 +9,12 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
-import { currPageState } from "../../states/index";
+import { currPageState, profileImgState } from "../../states/index";
 
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  profileImg?: string;
   body: string;
   time: string;
   likes: number;
@@ -27,7 +27,8 @@ export function MyLikePage() {
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
-  const [totalPosts, setTotalPosts] = useState(25);
+  const [totalPages, setTotalPages] = useState(5);
+  const [profileImg] = useRecoilState(profileImgState);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,7 +49,7 @@ export function MyLikePage() {
       .then((response) => {
         console.log(response);
         setPostList(response.data.content);
-        setTotalPosts(response.data.totalElements);
+        setTotalPages(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
@@ -77,11 +78,11 @@ export function MyLikePage() {
                   likes={post.likes}
                   reply={post.reply}
                   time={post.time}
-                  profileImage={post.profileImage}
+                  profileImg={profileImg}
                 />
               ))}
             </PostItemContainer>
-            <MyPagination totalPosts={totalPosts} />
+            <MyPagination totalPages={totalPages} />
           </MyPostBoxContainer>
         </MyPostPageContainer>
       </Section>

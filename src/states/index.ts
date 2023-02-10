@@ -14,6 +14,7 @@ export const userState = atom<string>({
 export const btnActiveState = atom<number>({
   key: "btnActiveState",
   default: 1,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const profileState = atom<UploadImage | null>({

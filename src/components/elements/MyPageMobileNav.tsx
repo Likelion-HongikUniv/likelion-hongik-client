@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { editState, profileState } from "./../../states/index";
+import { editState, profileImgState } from "./../../states/index";
 import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export function MyPageMobileNav() {
-  const profileImg = useRecoilValue(profileState);
+  const profileImg = useRecoilValue(profileImgState);
   const [info, setInfo] = useRecoilState(editState);
   const navigate = useNavigate();
   const onNavigate = () => {
@@ -47,7 +47,7 @@ export function MyPageMobileNav() {
   return (
     <MobileNavContainer>
       <Profile>
-        <ProImg src={profileImg?.thumbnail} />
+        <ProImg src={profileImg as string} />
         <div style={{ width: "88px" }}>
           <Name>{info.nickname}</Name>
           <Team>{info.major}</Team>
