@@ -10,11 +10,16 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { CommentArrowSmall } from "../icons/CommentArrowSmall";
 import { MoreButton } from "../icons/MoreButton";
 
-export function Replies(reply: IReply) {
-  const curDate = reply.createdTime;
+interface IReplyProps {
+  cid: number;
+  reply: IReply;
+}
+
+export function Replies(props: IReplyProps) {
+  const curDate = props.reply.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
   const isPC = useMediaQuery("(min-width: 1024px)");
-  const isDeleted = reply.isDeleted;
+  const isDeleted = props.reply.deleted;
 
   return (
     <>
@@ -22,18 +27,33 @@ export function Replies(reply: IReply) {
         {isPC ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
           <Row gap="10px">
-            <Profile />
+            {props.reply.author?.profileImage && <Profile profile={props.reply.author?.profileImage} />}
             <TextContainer isDeleted={isDeleted}>
               <Column gap="4px">
-                <UserId>{reply?.author?.nickname || `AhhyunKim`}</UserId>
-                <Date>{date || `2022.11.30`}</Date>
+                <UserId>{props.reply?.author?.nickname}</UserId>
+                <Date>{date}</Date>
               </Column>
-              {reply.isDeleted ? "삭제된 댓글입니다." : reply?.body}
-              <LikeButton cid={reply?.replyId} isComment={false} likes={reply?.likeCount} />
+              {props.reply.deleted ? (
+                <p style={{ color: "#666666" }}>삭제된 댓글입니다.</p>
+              ) : (
+                <>
+                  {props.reply?.body}
+                  <LikeButton
+                    cid={props.cid}
+                    rid={props.reply?.replyId}
+                    isLiked={props.reply.isLiked}
+                    isAuthor={props.reply.author?.isAuthor}
+                    isComment={false}
+                    likes={props.reply?.likeCount}
+                  />
+                </>
+              )}
             </TextContainer>
             {}
           </Row>
-          <MoreButton cid={reply?.replyId} isBoard={false} isComment={false} />
+          {props.reply.deleted === false && props.reply.author?.isAuthor && (
+            <MoreButton cid={props.reply?.replyId} isBoard={false} isComment={false} />
+          )}
         </Wrapper>
       </Row>
     </>
@@ -61,8 +81,6 @@ const TextContainer = styled.div<{ isDeleted: boolean | undefined }>`
   /* or 144% */
 
   letter-spacing: -0.32px;
-
-  color: ${(props) => (props.isDeleted ? "#333333" : " #ffffffb8;")};
 `;
 
 const UserId = styled.div`

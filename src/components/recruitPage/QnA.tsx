@@ -6,14 +6,16 @@ export function QnA() {
     <ForDiv>
       <div>
         <TitleText>자주 묻는 질문</TitleText>
-        <SmallText>찾으시는 내용이 없다면 멋사 카카오톡 채널(@muts)으로 궁금한 점을 전달해 주세요.</SmallText>
+        <SmallText>
+          찾으시는 내용이 없다면 홍익대학교 멋쟁이사자처럼 인스타그램(@likelion_hongik)으로 궁금한 점을 전달해 주세요.
+        </SmallText>
         <div>
-          <Question style={{ marginTop: "60px" }}>Q. X학년인데 지원할 수 있나요?</Question>
-          <Answer>네, 지원 할 수 있습니다. 멋사는 학년, 나이 제한이 없습니다!</Answer>
-          <Question>Q. 개발 경험이 있어야 지원할 수 있나요?</Question>
-          <Answer>네, 지원 할 수 있습니다. 멋사는 학년, 나이 제한이 없습니다!</Answer>
-          <Question>Q. 활동 시간은 언제인가요??</Question>
-          <Answer>2023년 3월 부터 12월까지이며 매주 금요일에 세션이 진행됩니다!</Answer>
+          <Question style={{ marginTop: "60px" }}>Q. 휴학 중인데 지원할 수 있나요?</Question>
+          <Answer>네, 지원 할 수 있습니다. 멋사는 재학생, 휴학생 제한이 없습니다!</Answer>
+          <Question>Q. 개발 경험이 없어도 지원할 수 있나요?</Question>
+          <Answer>네, 지원 할 수 있습니다. 개발을 배우고자 하는 열정이 중요합니다.</Answer>
+          <Question>Q. 활동은 언제인가요??</Question>
+          <Answer>멋사는 1년 단위로 모집하며 매주 목요일에 세션이 진행됩니다!</Answer>
           <Question>Q. 여러 파트 지원할 수 있나요?</Question>
           <Answer>아쉽게도 하나의 파트만 지원 가능합니다.</Answer>
         </div>
@@ -89,6 +91,7 @@ const SmallText = styled.div`
   line-height: 28.8px;
   color: #dfdfdf;
   margin-top: 30px;
+  padding-right: 20px;
 
   @media (max-width: 391px) {
     margin-top: 16px;
@@ -97,6 +100,7 @@ const SmallText = styled.div`
     width: 347px;
     height: 46px;
     margin-bottom: 16px;
+    padding-right: 0px;
   }
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일

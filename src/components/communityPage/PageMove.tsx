@@ -9,19 +9,18 @@ export function PageMove() {
   const pagination = useRecoilValue<IPagination>(paginationState);
   const [page, setPage] = useRecoilState<number>(pageState);
   const [curPageIndex, setCurPageIndex] = useRecoilState<number>(curPageIndexState);
+  const PAGE_MAX = 6;
 
   const onClickPrev = () => {
     setPage(pagination.currentPage - 1);
-    if (page % 6 === 0) {
-      console.log("설마2");
+    if (pagination.currentPage % PAGE_MAX === 1) {
       setCurPageIndex(curPageIndex - 1);
     }
   };
 
   const onClickNext = () => {
     setPage(pagination.currentPage + 1);
-    if (page % 6 === 5) {
-      console.log(page, "설마1");
+    if (pagination.currentPage % PAGE_MAX === 0) {
       setCurPageIndex(curPageIndex + 1);
     }
   };

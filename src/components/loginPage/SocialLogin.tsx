@@ -66,7 +66,6 @@ export function SocialLogin() {
         <GoogleIcon />
         <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
       </SocialBtn>
-      <Footer style={{ marginTop: "334px" }} />
     </ForDiv>
   );
 }

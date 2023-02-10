@@ -26,17 +26,17 @@ export function MainPage() {
           <Main />
           <>
             <Title data-aos="fade-up">Curriculum</Title>
-            <Desc data-aos="fade-up">멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</Desc>
+            <Desc data-aos="fade-up">멋쟁이사자처럼 11기의 파트별 커리큘럼을 소개합니다.</Desc>
             <Curriculum />
           </>
           <>
             <Title data-aos="fade-up">Our Projects</Title>
-            <Desc data-aos="fade-up">역대 기수에서 진행한 프로젝트를 소개합니다.</Desc>
+            <Desc data-aos="fade-up">홍익대학교 멋쟁이사자처럼 10기에서 진행한 프로젝트를 소개합니다.</Desc>
             <Project />
           </>
           <>
             <Title data-aos="zoom-in">Recruiting</Title>
-            <Desc data-aos="zoom-in">멋쟁이 사자처럼에 지원하기</Desc>
+            <Desc data-aos="zoom-in">멋쟁이사자처럼에 지원하기</Desc>
             <Recruiting />
           </>
           <Channel />
