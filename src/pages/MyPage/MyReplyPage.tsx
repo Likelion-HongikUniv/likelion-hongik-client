@@ -14,7 +14,7 @@ import { currPageState } from "../../states/index";
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  authorImage?: string;
   body: string;
   time: string;
   likes: number;
@@ -77,7 +77,7 @@ export function MyReplyPage() {
                   likes={post.likes}
                   reply={post.reply}
                   time={post.time}
-                  profileImg={post.profileImage}
+                  profileImg={post.authorImage}
                 />
               ))}
             </PostItemContainer>

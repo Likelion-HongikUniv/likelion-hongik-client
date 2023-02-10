@@ -5,7 +5,7 @@ import { CommentIcon } from "../icons/CommentIcon";
 import { useNavigate } from "react-router-dom";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
-interface IPost {
+interface IPostItem {
   title: string;
   author: string;
   profileImg?: string;
@@ -16,7 +16,7 @@ interface IPost {
   postId: number;
 }
 
-export function PostItem({ postId, author, title, body, likes, reply, time, profileImg }: IPost) {
+export function PostItem({ postId, author, title, body, likes, reply, time, profileImg }: IPostItem) {
   const navigate = useNavigate();
   const onClickHandler = () => {
     navigate(`/community/post/${postId}`);
