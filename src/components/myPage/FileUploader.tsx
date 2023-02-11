@@ -24,6 +24,7 @@ export function FileUploader() {
     if (fileList && fileList[0]) {
       const presignedUrl = async () => {
         await axios
+          // .get(`http://localhost:8080/pre-signed-url/profileImage`, {
           .get(`http://13.125.72.138:8080/pre-signed-url/profileImage`, {
             headers: {
               JWT: token,
@@ -53,6 +54,26 @@ export function FileUploader() {
             }
             console.log("url 파싱한 결과: ", resultUrlParse);
             setProfileImg(resultUrlParse);
+
+            const data = {
+              url : resultUrlParse
+            }
+            axios.post(
+              `http://13.125.72.138:8080/mypage/edit/profileImage`,
+              // `http://localhost:8080/mypage/edit/profileImage`,
+              JSON.stringify(data),
+              // resultUrlParse,
+              {
+                headers: {
+                  JWT: token,
+                  "Content-Type": `application/json`,
+                },
+              }
+              ).then((response) => {
+                console.log(response.status);
+              })
+              .catch((error) => console.error(error));
+            
           })
           .catch((error) => console.error(error));
       };
