@@ -63,6 +63,11 @@ export const isCancelButtonClickedState = atom<boolean>({
   default: false,
 });
 
+export const isThumbnailSetButtonClickedState = atom<boolean>({
+  key: "isThumbnailSetButtonClickedState",
+  default: false,
+});
+
 export const currPageState = atom<number>({
   key: "currPageState",
   default: 1,

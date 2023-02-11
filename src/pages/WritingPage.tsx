@@ -6,10 +6,12 @@ import { ConfirmationPopup } from "../components/writingPage/ConfirmationPopup";
 import { InputBar } from "../components/writingPage/InputBar";
 import { TabBar } from "../components/writingPage/TabBar";
 import { TextEditor } from "../components/writingPage/TextEditor";
-import { isCancelButtonClickedState } from "../states";
+import { ThumbnailUploadPopup } from "../components/writingPage/ThumbniailUploadPopup";
+import { isCancelButtonClickedState, isThumbnailSetButtonClickedState } from "../states";
 
 export function WritingPage() {
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
+  const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
   const [clickedCategory, setClickedCategory] = useState("공지사항");
   return (
     <>
@@ -30,7 +32,8 @@ export function WritingPage() {
           />
           <InputBar style={{ marginTop: "60px" }} />
           <TextEditor />
-          {isCancelButtonClicked ? <ConfirmationPopup /> : <></>}
+          {isCancelButtonClicked && <ConfirmationPopup />}
+          {isThumbnailSetButtonClicked && <ThumbnailUploadPopup />}
         </div>
       </Section>
     </>

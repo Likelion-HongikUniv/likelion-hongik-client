@@ -1,41 +1,39 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { isCancelButtonClickedState } from "../../states";
+import { isThumbnailSetButtonClickedState } from "../../states";
 import { Column, Row } from "../elements/Wrapper";
+import { ImageIcon } from "../icons/ImageIcon";
 
-// interface ConfirmationPopUpProps {
-//   onClickCancelButton?: React.MouseEventHandler<HTMLButtonElement>;
-//   onClickLeaveButton?: React.MouseEventHandler<HTMLButtonElement>;
-// }
-
-export function ConfirmationPopup() {
-  const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
+export function ThumbnailUploadPopup() {
+  const SetIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
   const navigate = useNavigate();
+
   return (
     <>
       <ConfirmationPopUpWrapper>
-        <Column gap="16px">
-          <div style={{ color: "white", fontSize: "24px", fontWeight: "700" }}>작성 취소</div>
-          <Column gap="40px">
-            <div style={{ color: "rgba(255, 255, 255, 0.6)", fontWeight: "400", fontSize: "18px", opacity: "0.98" }}>
-              앗! 작성 중인 글이 있어요. 정말 이동하시겠어요?
-            </div>
-            <Row gap="12px">
+        <Column gap="16px" justifyContent="flex-start">
+          <div style={{ color: "white", fontSize: "24px", fontWeight: "700" }}>썸네일 업로드</div>
+          <Column width="100%" marginTop="25px" alignItems="center">
+            {/* <img src="" width={209} height={209} /> */}
+            <ImageArea>
+              <ImageIcon />
+            </ImageArea>
+            <TextArea>썸네일 이미지 미설정 시 기본 이미지로 업로드됩니다.</TextArea>
+            <Row gap="12px" style={{ height: "auto" }}>
               <CancelButton
                 onClick={() => {
-                  setIsCancelButtonClicked(false);
+                  SetIsThumbnailSetButtonClicked(false);
                 }}
               >
                 취소
               </CancelButton>
               <LeaveButton
                 onClick={() => {
-                  navigate("/community");
+                  // 썸네일 업로드
                 }}
               >
-                나가기
+                등록
               </LeaveButton>
             </Row>
           </Column>
@@ -48,41 +46,48 @@ export function ConfirmationPopup() {
 
 const BackDrop = styled.div`
   z-index: 15000;
-
   width: 100%;
   height: 100%;
-
   position: fixed;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   background-color: rgba(14, 14, 14, 0.5);
 `;
 
 const ConfirmationPopUpWrapper = styled.div`
   z-index: 16000;
-
   background-color: #222222;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 
-  padding: 32px 24px;
-  border-radius: 20px;
-
+  padding: 24px;
+  border-radius: 12px;
   width: 420px;
-  height: 238px;
-
+  height: 420px;
   position: fixed;
-  margin: 0 auto;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const TextArea = styled.text`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 34px;
+  color: rgba(255, 255, 255, 0.6);
+`;
+
+const ImageArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 209px;
+  height: 209px;
+  background: #333333;
+  border-radius: 8px;
 `;
 
 const CancelButton = styled.button`
@@ -98,10 +103,9 @@ const CancelButton = styled.button`
 const LeaveButton = styled.button`
   width: 180px;
   height: 52px;
-  /* border: 1px solid rgba(255, 255, 255, 0.6); */
   background-color: #ed7f30;
   border-radius: 8px;
-  color: "black";
+  color: black;
   font-weight: 500;
   font-size: 20px;
 `;

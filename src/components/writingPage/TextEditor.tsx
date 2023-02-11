@@ -4,14 +4,15 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import styled from "styled-components";
 import { Column, Row } from "../elements/Wrapper";
-import { useRecoilState } from "recoil";
-import { isCancelButtonClickedState } from "../../states/index";
+import { useSetRecoilState } from "recoil";
+import { isCancelButtonClickedState, isThumbnailSetButtonClickedState } from "../../states/index";
 
 type HookCallback = (url: string, text?: string) => void;
 
 export function TextEditor() {
   const editorRef = useRef<Editor>(null);
-  const [isCancelButtonClicked, setIsancelButtonClicked] = useRecoilState(isCancelButtonClickedState);
+  const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
+  const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
 
   const onUploadImage = async (blob: Blob | File, callback: HookCallback) => {
     console.log(blob);
@@ -25,7 +26,11 @@ export function TextEditor() {
   };
 
   const onClickCancelButton = () => {
-    setIsancelButtonClicked(true);
+    setIsCancelButtonClicked(true);
+  };
+
+  const onClickThumbnailSetButton = () => {
+    setIsThumbnailSetButtonClicked(true);
   };
 
   // useEffect(() => {
@@ -63,9 +68,12 @@ export function TextEditor() {
           }
         />
       </EditorWrapper>
-      <Row marginTop="24px" width="100%" justifyContent="flex-end" gap="12px">
-        <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
-        <SaveButton onClick={onClickRegisterButton}>등록</SaveButton>
+      <Row marginTop="24px" width="100%" justifyContent="space-between">
+        <CancelButton onClick={onClickThumbnailSetButton}>썸네일 설정</CancelButton>
+        <Row width="100%" justifyContent="flex-end" gap="12px">
+          <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
+          <SaveButton onClick={onClickRegisterButton}>등록</SaveButton>
+        </Row>
       </Row>
     </Column>
   );
@@ -88,7 +96,7 @@ const SaveButton = styled.button`
   font-size: 20px;
   line-height: 24.2px;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: 8px;
   background-color: #ed7f30;
   color: black;
 `;
@@ -99,7 +107,7 @@ const CancelButton = styled.button`
   font-size: 20px;
   line-height: 24.2px;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   color: white;
 `;
