@@ -1,20 +1,25 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
-import { useRecoilValue } from "recoil";
-import { editState, profileImgState, teamState } from "./../../states/index";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { editState, profileImgState } from "./../../states/index";
 import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageMobileNav() {
   const profileImg = useRecoilValue(profileImgState);
-  const info = useRecoilValue(editState);
-  const team = useRecoilValue(teamState);
+  const [info, setInfo] = useRecoilState(editState);
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPage/edit");
   };
+
+  useEffect(() => {
+    getUserInfoAPI();
+  }, []);
+
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
@@ -26,22 +31,27 @@ export function MyPageMobileNav() {
       })
       .then((response) => {
         console.log(response);
+        const infoHandler = {
+          ...info,
+          major: response.data.major,
+          nickname: response.data.nickname,
+          part: response.data.part,
+          // team: changeTeam.value,
+        };
+        setInfo(infoHandler);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  useEffect(() => {
-    getUserInfoAPI();
-  }, []);
 
   return (
     <MobileNavContainer>
       <Profile>
-        <ProImg src={profileImg as string} />
+        <ProImg src={profileImg || emoji_lion} />
         <div style={{ width: "88px" }}>
           <Name>{info.nickname}</Name>
-          <Team>{team}</Team>
+          <Team>{info.major}</Team>
         </div>
       </Profile>
       <EditBtn onClick={onNavigate}>정보 변경</EditBtn>

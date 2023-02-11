@@ -10,7 +10,7 @@ interface ViewerUiProps {
 
 export function ViewerUi({ body }: ViewerUiProps) {
   return (
-    <Wrapper>
+    <Wrapper className="viewer">
       <Viewer initialValue={body} />
     </Wrapper>
   );

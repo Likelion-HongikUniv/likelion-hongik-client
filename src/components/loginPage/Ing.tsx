@@ -38,8 +38,13 @@ const Ing = () => {
           });
         }
         setUsername(response.data.name);
-        setProfileImg(response.data.profileImage);
+
+        if (response.data.isJoined === false) {
+          setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
+        }
+
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
+        localStorage.setItem("token", response.data.JWT);
         if (response.data.isJoined === false && response.data.role === "GUEST") {
           // 멋사회원도 아니고 그냥 소셜로그인 한 사람
           console.log("멋사 회원이 아니에요!");

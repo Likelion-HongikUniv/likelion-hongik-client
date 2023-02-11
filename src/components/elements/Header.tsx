@@ -17,7 +17,7 @@ import { MenuClose } from "../icons/MenuClose";
 
 export function Header() {
   useAutoLogin();
-  const isPC = useMediaQuery("(min-width: 1024px)");
+  const isPC = useMediaQuery("(min-width: 992px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);

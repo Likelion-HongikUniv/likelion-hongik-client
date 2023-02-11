@@ -1,21 +1,35 @@
+import { useState, ChangeEvent } from "react";
 import styled from "styled-components";
-import { BLACK_1, WHITE_1 } from "../../styles/theme";
-import { BasicEdit } from "./EditPart/BasicEdit";
-import { PartEdit } from "./EditPart/PartEdit";
-import { useRecoilState } from "recoil";
-import { editState } from "./../../states/index";
-import useInput from "../../hooks/useInput";
-import { NickEdit } from "./EditPart/NickEdit";
-import { MajorEdit } from "./EditPart/MajorEdit";
 import useSelect from "./../../hooks/useSelect";
 import axios from "axios";
+import useInput from "../../hooks/useInput";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { BasicEdit } from "./EditPart/BasicEdit";
+import { PartEdit } from "./EditPart/PartEdit";
+import { NickEdit } from "./EditPart/NickEdit";
+import { MajorEdit } from "./EditPart/MajorEdit";
+import { editState, mulBtnState, NickMulState } from "./../../states/index";
+import { BLACK_1, WHITE_1 } from "../../styles/theme";
 
 export function EditPart() {
   const [info, setInfo] = useRecoilState(editState);
+  const [nickCheck, setNickCheck] = useRecoilState(mulBtnState);
+  const mulNick = useRecoilValue(NickMulState);
 
   const jwt = localStorage.getItem("token");
 
-  const changeNickname = useInput(info.nickname);
+  const useNickInput = (initialValue: string | undefined) => {
+    const [value, setValue] = useState(initialValue);
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setValue(e.target.value);
+      setNickCheck(false);
+      //이걸 위해서 useInput 살짝 수정해서 붙여옴 허허
+      // input값이 바뀔 때마다 중복확인 체크를 다시 해줘야함
+    };
+    return { value, setValue, onChange };
+  };
+
+  const changeNickname = useNickInput(info.nickname);
   const changeMajor = useInput(info.major);
   const changePart = useSelect(info.part);
   // const changeTeam = useSelect(info.team);
@@ -39,8 +53,8 @@ export function EditPart() {
     console.log(info);
 
     axios
-      .post(
-        "http://13.125.72.138:8080/accounts/detail_info/",
+      .patch(
+        "http://13.125.72.138:8080/mypage/edit",
         JSON.stringify(data),
         // { withCredentials: true },
         {
@@ -52,7 +66,7 @@ export function EditPart() {
       )
       .then((response) => {
         console.log(response);
-        window.location.reload(); //새로고침되게?
+        window.location.reload(); //새로고침되게
       })
       .catch((err) => {
         console.log(err);
@@ -69,8 +83,19 @@ export function EditPart() {
           <Bar />
           <EditTitle>멋사 정보 변경</EditTitle>
           <PartEdit {...changePart} />
-          {/* <TeamEdit {...changeTeam} /> */}
-          <SaveBtn onClick={onClickSave}>저장</SaveBtn>
+          <SaveBtn
+            disabled={
+              (nickCheck === true || changeNickname.value === info.nickname) &&
+              mulNick === true &&
+              changeNickname.value?.length !== 0 &&
+              changeMajor.value?.length !== 0
+                ? false
+                : true
+            }
+            onClick={onClickSave}
+          >
+            저장
+          </SaveBtn>
         </div>
       </div>
     </EditPartDiv>
@@ -158,5 +183,9 @@ const SaveBtn = styled.button`
     // 테블릿 세로
     float: right;
     margin-right: 40px;
+  }
+
+  &:disabled {
+    cursor: default;
   }
 `;

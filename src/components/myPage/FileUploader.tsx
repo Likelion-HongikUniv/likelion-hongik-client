@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { profileImgState } from "./../../states/index";
@@ -13,8 +13,7 @@ export interface UploadImage {
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
-
-  console.log(profileImg);
+  const token = localStorage.getItem("token");
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();
@@ -23,43 +22,47 @@ export function FileUploader() {
   const uploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
     if (fileList && fileList[0]) {
-      const url = URL.createObjectURL(fileList[0]);
-      console.log(fileList[0]);
-      console.log(url);
+      const presignedUrl = async () => {
+        await axios
+          .get(`http://13.125.72.138:8080/pre-signed-url/profileImage`, {
+            headers: {
+              JWT: token,
+            },
+          })
+          .then((response) => {
+            console.log("presigned url에서 get 해온 url은 ", response.data);
+            const presignedUrlResult = response.data;
+            uploadImageToS3(presignedUrlResult, fileList[0]);
+          })
+          .catch((error) => console.log(error));
+      };
+      presignedUrl();
 
-      // setProfileImg({
-      //   // file: fileList[0],
-      //   // thumbnail: url,
-      //   // type: fileList[0].type.slice(0, 5),
-      //   URL.createObjectURL(fileList[0]);
-      // });
-
-      // const formData = new FormData();
-      // formData.append("files", fileList[0]);
-
-      // axios.post("///", {
-      //   //이미지파일 전송?
-      //   data: formData,
-      //   headers: {
-      //     "Content-Type": `multipart/form-data;`,
-      //   },
-      // });
+      const uploadImageToS3 = async (url: string, file: File) => {
+        await axios
+          .put(url, file, {
+            headers: {
+              "Content-Type": file.type,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            let resultUrlParse = "";
+            if (url.includes("?")) {
+              resultUrlParse = url.slice(0, url.indexOf("?"));
+            }
+            console.log("url 파싱한 결과: ", resultUrlParse);
+            setProfileImg(resultUrlParse);
+          })
+          .catch((error) => console.error(error));
+      };
     }
   };
 
-  // console.log(profileUrl);
-
-  // const showImage = useMemo(() => {
-  //   if (!profileImg && profileImg == null) {
-  //     return <ProfileImg />;
-  //   }
-  //   return <ProfileThumbnail src={profileImg.thumbnail} alt={profileImg.type} onClick={handleClickFileInput} />;
-  // }, [profileImg]);
-
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg as string} onClick={handleClickFileInput} />
-      <form>
+      <ProfileThumbnail src={profileImg} onClick={handleClickFileInput} />
+      <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>
     </FileUploadContainer>

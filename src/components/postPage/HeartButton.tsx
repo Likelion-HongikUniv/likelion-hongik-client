@@ -27,11 +27,17 @@ export function HeartButton() {
         },
       )
       .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 500) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (err.response.status === 404) {
+          alert("좋아요 대상을 찾을 수 없습니다.");
+        }
+        window.location.href = "/community/board";
         throw err;
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data);
           if (!board.isLiked) {
             setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount + 1 });
           } else {

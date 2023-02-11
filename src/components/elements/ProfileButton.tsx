@@ -2,10 +2,10 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { isLoggedInState } from "../../states";
-import { PersonIcon } from "../icons/PersonIcon";
+import { isLoggedInState, profileImgState } from "../../states";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { DropMenu } from "./DropMenu";
+import emoji_lion_24x24 from "./../images/emoji_lion_24x24.png";
 
 export function ProfileButton() {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export function ProfileButton() {
   const [isDropDown, setDropDown] = useState(false);
   const isPC = useMediaQuery("(min-width: 1024px)");
   const name = localStorage.getItem("username");
+  const profileImg = useRecoilValue(profileImgState);
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ export function ProfileButton() {
     } else {
       navigate("/login");
     }
+    console.log(isLoggedIn);
   };
 
   return (
@@ -40,13 +42,22 @@ export function ProfileButton() {
         }}
         isPC={isPC}
       >
-        <PersonIcon />
+        <PersonIcon url={profileImg} />
         {isLoggedIn ? name : "로그인"}
       </Wrapper>
       {isPC && isDropDown && <DropMenu isActive={isDropDown} />}
     </div>
   );
 }
+
+const PersonIcon = styled.div<{ url: string }>`
+  width: 24px;
+  height: 24px;
+  background-image: url(${emoji_lion_24x24});
+  /* background-image: ${(props) => (props.url !== undefined ? props.url : emoji_lion_24x24)} */
+  background-position: center;
+  background-size: cover;
+`;
 
 const Wrapper = styled.button<{ isPC: boolean }>`
   display: flex;

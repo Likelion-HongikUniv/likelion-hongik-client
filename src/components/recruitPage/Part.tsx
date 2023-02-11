@@ -20,11 +20,11 @@ export function Part() {
           <PartBox>
             <PartText>프론트엔드</PartText>
             <PartSmallText>
-              모바일 앱과 웹 서비스 개발을 위한
+              API에서 가져온 데이터의 출력, 입력을
               <br />
-              이론을 배우고 실습합니다.
+              통한 비즈니스 로직 구성과 사용자
               <br />
-              안드로이드/iOS/웹 파트로 나뉩니다.
+              인터페이스에 대한 작업을 수행합니다.
             </PartSmallText>
           </PartBox>
           <PartBox>
