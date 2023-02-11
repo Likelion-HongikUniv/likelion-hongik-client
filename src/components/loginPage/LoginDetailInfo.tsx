@@ -37,6 +37,7 @@ export function LoginDetailInfo() {
     studentId: studentId.value,
     part: part.value,
   };
+  console.log(JSON.stringify(data));
 
   const nick = {
     nickname: nickname.value,
