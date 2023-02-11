@@ -53,14 +53,17 @@ export function EditPart() {
     console.log(info);
 
     axios
-      .patch(
-        "http://13.125.72.138:8080/mypage/edit",
+      .put(
+        `http://13.125.72.138:8080/mypage/edit`,
+        // `http://localhost:8080/mypage/edit`,
         JSON.stringify(data),
         // { withCredentials: true },
         {
+          withCredentials: true,
           headers: {
             "Content-Type": `application/json`,
-            JWT: `${jwt}`,
+            
+            JWT: jwt,
           },
         },
       )
