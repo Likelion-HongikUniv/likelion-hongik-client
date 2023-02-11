@@ -25,8 +25,6 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
   const accessToken = localStorage.getItem("token");
 
   const onClickLikeComment = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("댓글 좋아요 clicked");
-
     if (isAuthor === false) {
       axios
         .post(
@@ -51,12 +49,12 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
         })
         .then((response) => {
           if (response.status === 200) {
-            if (!isLiked) {
+            if (!isLikeActive) {
               setLikeCount(likeCount + 1);
-              setIsLikeActive(!isLiked);
+              setIsLikeActive(!isLikeActive);
             } else {
               setLikeCount(likeCount - 1);
-              setIsLikeActive(!isLiked);
+              setIsLikeActive(!isLikeActive);
             }
           }
         });
@@ -66,7 +64,6 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
   };
 
   const onClickLikeReply = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("ㄴ대댓글 좋아요 clicked");
     if (isAuthor === false) {
       axios
         .post(
@@ -91,12 +88,12 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
         })
         .then((response) => {
           if (response.status === 200) {
-            if (!isLiked) {
+            if (!isLikeActive) {
               setLikeCount(likeCount + 1);
-              setIsLikeActive(!isLiked);
+              setIsLikeActive(!isLikeActive);
             } else {
               setLikeCount(likeCount - 1);
-              setIsLikeActive(!isLiked);
+              setIsLikeActive(!isLikeActive);
             }
           }
         });
