@@ -14,7 +14,7 @@ import { currPageState } from "../../states/index";
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  authorImage?: string;
   body: string;
   time: string;
   likes: number;
@@ -28,7 +28,6 @@ export function MyLikePage() {
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  // const [profileImg] = useRecoilState(profileImgState);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,7 +77,7 @@ export function MyLikePage() {
                   likes={post.likes}
                   reply={post.reply}
                   time={post.time}
-                  profileImg={post.profileImage}
+                  profileImg={post.authorImage}
                 />
               ))}
             </PostItemContainer>

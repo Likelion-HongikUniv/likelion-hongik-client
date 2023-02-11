@@ -3,26 +3,29 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Footer from "../elements/Footer";
 import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { ReactHTMLElement, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function SocialLogin() {
   const navigate = useNavigate();
   const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("구글 로그인 클릭");
-    window.open("http://localhost:8080/oauth2/authorization/google", "_self");
-    // window.open("http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
+    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+    window.open(
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
+      "_self",
+    );
     // navigate('/ing');
   };
   const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("네이버 로그인 클릭");
-    window.open("http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver", "_self");
+    window.open(
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
+      "_self",
+    );
     // navigate('/ing');
   };
 
@@ -39,7 +42,7 @@ export function SocialLogin() {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/github",
       "_self",
-    )
+    );
   };
 
   return (
