@@ -16,12 +16,13 @@ const Ing = () => {
   const UID = searchParams.get("UID");
 
   const getProfile = async () => {
-    axios.post(
-        // `http://localhost:8080/v1/token`, 
-        `http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, 
+    axios
+      .post(
+        // `http://localhost:8080/v1/token`,
+        `http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`,
         UID,
         {
-          headers: { 
+          headers: {
             "Content-Type": `application/json`,
           },
         },
@@ -31,7 +32,7 @@ const Ing = () => {
         setUsername(response.data.name);
 
         // if (response.data.isJoined === false) {
-          setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
+        setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
         // }
 
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장

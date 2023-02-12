@@ -56,24 +56,25 @@ export function FileUploader() {
             setProfileImg(resultUrlParse);
 
             const data = {
-              url : resultUrlParse
-            }
-            axios.post(
-              `http://13.125.72.138:8080/mypage/edit/profileImage`,
-              // `http://localhost:8080/mypage/edit/profileImage`,
-              JSON.stringify(data),
-              // resultUrlParse,
-              {
-                headers: {
-                  JWT: token,
-                  "Content-Type": `application/json`,
+              url: resultUrlParse,
+            };
+            axios
+              .post(
+                `http://13.125.72.138:8080/mypage/edit/profileImage`,
+                // `http://localhost:8080/mypage/edit/profileImage`,
+                JSON.stringify(data),
+                // resultUrlParse,
+                {
+                  headers: {
+                    JWT: token,
+                    "Content-Type": `application/json`,
+                  },
                 },
-              }
-              ).then((response) => {
+              )
+              .then((response) => {
                 console.log(response.status);
               })
               .catch((error) => console.error(error));
-            
           })
           .catch((error) => console.error(error));
       };
