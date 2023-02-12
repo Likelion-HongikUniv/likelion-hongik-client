@@ -6,7 +6,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { BLACK_1 } from "../../styles/theme";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("( max-width: 768px )");
+  const isMobile = useMediaQuery("( max-width: 767px )");
 
   return (
     <Wrapper>
@@ -42,7 +42,7 @@ const Table = styled.div`
   align-items: flex-end;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  margin-top: 19px;
+  margin-top: 40px;
   div {
     display: flex;
     gap: 6px;
@@ -50,7 +50,7 @@ const Table = styled.div`
     font-weight: 600;
     font-size: 16px;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     margin-top: 6.1538vw;
     div {
       font-size: 4.1026vw;
@@ -77,7 +77,7 @@ const Table = styled.div`
       letter-spacing: -0.32px;
       color: ${BLACK_1};
     }
-    @media all and (max-width: 768px) {
+    @media all and (max-width: 767px) {
       width: auto;
       height: auto;
       padding: 3.2051vw;

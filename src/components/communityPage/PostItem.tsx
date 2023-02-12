@@ -11,7 +11,7 @@ import { WHITE_1 } from "../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function PostItem(post: IPost) {
-  const isMobile = useMediaQuery("( max-width: 768px )");
+  const isMobile = useMediaQuery("( max-width: 767px )");
   const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
@@ -48,7 +48,7 @@ export function PostItem(post: IPost) {
         )}
       </Left>
       {!isMobile && post.thumbNailImage ? (
-        <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+        <PostImg src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
       ) : (
         <NoneImg />
       )}
@@ -68,14 +68,27 @@ const Item = styled.div`
     border-radius: 12px;
     object-fit: cover;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     padding-bottom: 5.1282vw;
     display: block;
-    img {
-      width: 23.0769vw;
-      height: 23.0769vw;
-      margin-bottom: 5.1282vw;
-    }
+  }
+`;
+
+const PostImg = styled.img`
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+  }
+  @media all and (max-width: 767px) {
+    width: 23.0769vw;
+    height: 23.0769vw;
+    margin-bottom: 5.1282vw;
   }
 `;
 
@@ -97,6 +110,11 @@ const NoneImg = styled.div`
   background: transparent;
   opacity: 0.98;
   border-radius: 12px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+  }
 `;
 
 const UserName = styled.span`
@@ -106,7 +124,7 @@ const UserName = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-weight: 600;
     font-size: 4.1026vw;
     line-height: 4.8718vw;
@@ -117,16 +135,9 @@ const UploadDate = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  /* identical to box height */
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
-  @media all and (max-width: 768px) {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: -0.32px;
-  }
 `;
 
 const Title = styled.span`
@@ -141,11 +152,16 @@ const Title = styled.span`
   letter-spacing: -0.32px;
   color: ${WHITE_1};
   opacity: 0.98;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 100%;
     height: auto;
     font-size: 4.1vw;
     line-height: 100%;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 68.5vw;
+    font-size: 16px;
+    line-height: 19px;
   }
 `;
 
@@ -161,6 +177,11 @@ const Body = styled.p`
   letter-spacing: -0.32px;
   color: ${WHITE_1};
   opacity: 0.98;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 68.5vw;
+    font-size: 14px;
+    line-height: 21px;
+  }
 `;
 
 const Bottom = styled.div`
@@ -168,7 +189,7 @@ const Bottom = styled.div`
   gap: 15px;
   flex-direction: row;
   margin-top: 13px;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     padding-left: 0.4vw;
     gap: 3.8462vw;
   }
@@ -186,7 +207,7 @@ const Icon = styled.div`
     width: 20px;
     height: 20px;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     gap: 1.5385vw;
     svg {
       width: 4.2744vw;

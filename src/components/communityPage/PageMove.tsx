@@ -48,6 +48,9 @@ const Container = styled.div`
   align-items: center;
   margin-top: 60px;
   margin-bottom: 340px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-bottom: 193px;
+  }
 `;
 
 const MoveBtn = styled.button`
@@ -56,7 +59,7 @@ const MoveBtn = styled.button`
   border: 1px solid ${WHITE_1};
   border-radius: 4px;
   color: ${WHITE_1};
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 1023px) {
     border: none;
     width: 1.8513vw;
     height: 3.2436vw;
@@ -69,7 +72,7 @@ const NoneBtn = styled(MoveBtn)`
   height: 33px;
   border-radius: 4px;
   border: none;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 1023px) {
     width: 1.8513vw;
     height: 3.2436vw;
   }

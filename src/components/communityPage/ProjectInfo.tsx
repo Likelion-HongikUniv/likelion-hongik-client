@@ -78,7 +78,7 @@ const TeamWrapper = styled.div`
       color: #c6c6c6;
     }
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     gap: 4.1026vw;
     div {
       span {
@@ -93,7 +93,7 @@ const TeamName = styled.h1`
   font-weight: 700;
   font-size: 24px;
   margin: 0;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-size: 5.1282vw;
   }
 `;
@@ -108,7 +108,7 @@ const ImgBox = styled.div`
     height: 32px;
     border-radius: 100%;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 6vw;
     height: 8.2051vw;
     img {

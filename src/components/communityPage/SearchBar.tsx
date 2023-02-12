@@ -43,7 +43,7 @@ const SearchContainer = styled.form`
     color: ${BLACK_1};
     border: none;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     margin-top: 4.1026vw;
     width: 100%;
     flex-direction: column;

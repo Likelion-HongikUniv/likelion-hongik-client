@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { nowTagState, tagListState } from "../../states/atoms";
+import { nowTagState, tagListState, selectModalState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -8,19 +8,23 @@ import { WHITE_1 } from "../../styles/theme";
 import { profileImgState } from "../../states";
 import { editState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
+import { SelectArrowDown } from "../icons/SelectArrowDown";
+import { SelectModal } from "./SelectModal";
 
 export function SideBar(categoryName: ICommunityParam) {
+  const [isModal, setIsModal] = useRecoilState(selectModalState);
   const profileImg = useRecoilValue(profileImgState);
   const info = useRecoilValue(editState);
-  const isMobile = useMediaQuery("( max-width: 768px )");
-  const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
+  const isMobile = useMediaQuery("( max-width: 767px )");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
+  const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const navigate = useNavigate();
   const activeStyle = {
     fontWeight: "700",
     color: "#ED7F30",
   };
-  const onTagClickHandler = (category: string, tag: string) => {
+  const onTagClickHandler = (category: string, tag: ITag) => {
     setNowTag(tag);
     window.scrollTo({
       top: 0,
@@ -32,57 +36,65 @@ export function SideBar(categoryName: ICommunityParam) {
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
     if (category === "BOARD") {
-      setNowTag("NOTICE");
+      setNowTag({ key: "NOTICE", text: "공지사항" });
     } else if (category === "HOMEWORK") {
-      setNowTag("FRONTEND");
+      setNowTag({ key: "FRONTEND", text: "프론트" });
     } else {
-      setNowTag("FRONTEND");
+      setNowTag({ key: "FRONTEND", text: "프론트" });
     }
     navigate(`/community/${category}`);
   };
   return (
     <SideBarWrapper>
-      <div>
-        {isMobile && categoryName.categoryName === "PROJECT" ? (
-          ""
-        ) : (
-          <ProfileBoard>
-            <ProfileImg>
-              <img alt="profile-img" src={profileImg || emoji_lion} />
-            </ProfileImg>
-            <ProfileDesc>
-              <span>{info.nickname}</span>
-              <div>{info.major}</div>
-            </ProfileDesc>
-          </ProfileBoard>
-        )}
-        {isMobile ? (
-          <SelectBox onChange={onChangeHandler}>
-            {tagList.map((category: ICategory) => (
-              <Option value={category.key} key={category.key}>
-                {category.text}
-              </Option>
-            ))}
-          </SelectBox>
-        ) : (
-          tagList.map((category: ICategory) => (
-            <TagWrapper key={category.key}>
-              <span>{category.text}</span>
-              <div>
-                {category.tags?.map((tag: ITag) => (
-                  <span
-                    key={tag.key}
-                    onClick={() => onTagClickHandler(category.key, tag.key)}
-                    style={category.key === categoryName.categoryName && tag.key === nowTag ? activeStyle : {}}
-                  >
-                    {tag.text}
-                  </span>
-                ))}
-              </div>
-            </TagWrapper>
-          ))
-        )}
-      </div>
+      {isMobile && categoryName.categoryName === "PROJECT" ? (
+        ""
+      ) : (
+        <ProfileBoard>
+          <ProfileImg>
+            <img alt="profile-img" src={profileImg || emoji_lion} />
+          </ProfileImg>
+          <ProfileDesc>
+            <span>{info.nickname}</span>
+            <div>{info.major}</div>
+          </ProfileDesc>
+        </ProfileBoard>
+      )}
+      {isMobile ? (
+        <SelectBox onChange={onChangeHandler}>
+          {tagList.map((category: ICategory) => (
+            <Option value={category.key} key={category.key}>
+              {category.text}
+            </Option>
+          ))}
+        </SelectBox>
+      ) : isTablet ? (
+        <Accordian onClick={() => setIsModal(true)}>
+          <div>{nowTag.text}</div>
+          <SelectArrowDown />
+        </Accordian>
+      ) : (
+        tagList.map((category: ICategory) => (
+          <TagWrapper key={category.key}>
+            <span>{category.text}</span>
+            <div>
+              {category.tags?.map((tag: ITag) => (
+                <span
+                  key={tag.key}
+                  onClick={() => onTagClickHandler(category.key, tag)}
+                  style={category.key === categoryName.categoryName && tag.key === nowTag.key ? activeStyle : {}}
+                >
+                  {tag.text}
+                </span>
+              ))}
+            </div>
+          </TagWrapper>
+        ))
+      )}
+      {isModal && (
+        <ModalWrapper>
+          <SelectModal categoryName={categoryName.categoryName} />
+        </ModalWrapper>
+      )}
     </SideBarWrapper>
   );
 }
@@ -93,20 +105,22 @@ const SideBarWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 1023px) {
     width: 100%;
     display: flex;
     position: static;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
   }
 `;
 
 const ProfileBoard = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 100%;
     gap: 3.0769vw;
     margin-bottom: 10.2564vw;
@@ -120,7 +134,7 @@ const ProfileImg = styled.div`
     object-fit: cover;
     border-radius: 100%;
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     img {
       width: 15.3846vw;
       height: 15.3846vw;
@@ -131,13 +145,13 @@ const ProfileImg = styled.div`
 const ProfileDesc = styled.div`
   color: #b9b9b9;
   font-size: 14px;
-
+  margin-top: 6px;
   span {
     font-weight: 700;
     font-size: 18px;
     color: ${WHITE_1};
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-size: 3.5897vw;
     span {
       font-size: 4.6154vw;
@@ -195,4 +209,29 @@ const Option = styled.option`
   width: 19.2308vw;
   height: 10.5128vw;
   padding: 3.0769vw;
+`;
+
+const Accordian = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 0.6);
+  border-radius: 12px;
+  padding: 27.5px 24px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: -0.32px;
+  color: #ed7f30;
+`;
+
+const ModalWrapper = styled.div`
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
 `;

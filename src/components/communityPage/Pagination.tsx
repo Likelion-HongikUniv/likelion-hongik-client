@@ -85,7 +85,7 @@ const PageBtn = styled.button`
   border: 1px solid ${WHITE_1};
   border-radius: 4px;
   color: ${WHITE_1};
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 7.1795vw;
     height: 7.1795vw;
     border-radius: 0.7vw;
