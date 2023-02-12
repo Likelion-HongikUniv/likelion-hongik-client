@@ -9,7 +9,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
-import { currPageState, profileImgState } from "../../states/index";
+import { btnActiveState, currPageState, profileImgState } from "../../states/index";
 
 interface IPost {
   title: string;
@@ -29,6 +29,12 @@ export function MyPostPage() {
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
   const [profileImg] = useRecoilState(profileImgState);
+  const [navSelect, setNavSelect] = useRecoilState(btnActiveState);
+
+  useEffect(() => {
+    setNavSelect(1); //nav 오류 방지를 위해 마이페이지 접속시에 btnActiveState 1로 초기화
+    console.log(navSelect);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

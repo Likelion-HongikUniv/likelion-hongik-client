@@ -30,7 +30,7 @@ const ForDiv = styled.div`
   @media (max-width: 768px) {
     //모바일
     height: max-content;
-    padding-top: 139px;
+    padding-top: 60px; //피그마에선 139px
     margin-left: 0;
   }
 

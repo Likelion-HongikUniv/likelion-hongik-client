@@ -37,7 +37,7 @@ export function LoginDetailInfo() {
     studentId: studentId.value,
     part: part.value,
   };
-  console.log(JSON.stringify(data));
+  // console.log(JSON.stringify(data));
 
   const nick = {
     nickname: nickname.value,
@@ -72,8 +72,8 @@ export function LoginDetailInfo() {
   const onClickSave = () => {
     //저장 버튼 클릭 시 정보 넘겨주기
     console.log(studentId.value);
-    if(studentId.value){
-      console.log("if 속!")
+    if (studentId.value) {
+      console.log("if 속!");
       const infoHandler = {
         ...info,
         major: major.value,
@@ -83,12 +83,12 @@ export function LoginDetailInfo() {
       };
       setInfo(infoHandler);
       console.log(info);
-      }
+    }
     const data = {
       nickname: nickname.value,
       major: major.value,
       studentId: studentId.value,
-      part: part.value
+      part: part.value,
     };
 
     axios
@@ -97,9 +97,10 @@ export function LoginDetailInfo() {
         JSON.stringify(data),
         // { withCredentials: true },
         {
-          headers: { 
+          headers: {
             "Content-Type": `application/json`,
-            JWT: `${jwt}` },
+            JWT: `${jwt}`,
+          },
         },
       )
       .then((response) => {
@@ -109,7 +110,7 @@ export function LoginDetailInfo() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
   return (
     <div style={{ textAlign: "center" }}>
       <Title>추가 정보 입력하기</Title>

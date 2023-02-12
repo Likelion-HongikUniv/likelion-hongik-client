@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { profileImgState } from "./../../states/index";
 import axios from "axios";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export interface UploadImage {
   file: File;
@@ -24,8 +25,7 @@ export function FileUploader() {
     if (fileList && fileList[0]) {
       const presignedUrl = async () => {
         await axios
-          // .get(`http://localhost:8080/pre-signed-url/profileImage`, {
-          .get(`http://13.125.72.138:8080/pre-signed-url/profileImage`, {
+          .get("http://13.125.72.138:8080/pre-signed-url/profileImage", {
             headers: {
               JWT: token,
             },
@@ -83,7 +83,7 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg} onClick={handleClickFileInput} />
+      <ProfileThumbnail src={profileImg || emoji_lion} onClick={handleClickFileInput} />
       <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>
