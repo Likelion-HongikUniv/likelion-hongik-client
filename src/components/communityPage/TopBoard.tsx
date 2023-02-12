@@ -40,15 +40,15 @@ const Table = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 0.8333vw;
-  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
-  margin-top: 1vw;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  margin-top: 19px;
   div {
     display: flex;
-    gap: 0.3125vw;
+    gap: 6px;
     align-items: center;
     font-weight: 600;
-    font-size: 0.8333vw;
+    font-size: 16px;
   }
   @media all and (max-width: 768px) {
     margin-top: 6.1538vw;
@@ -57,22 +57,24 @@ const Table = styled.div`
     }
   }
   button {
-    width: 6.1979vw;
-    height: 2.7083vw;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    padding: 0.651vw;
     background: #ed7f30;
-    border-radius: 0.4167vw;
-    img {
-      width: 0.3vw;
-      height: 0.3vw;
+    width: 119px;
+    height: 52px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    svg {
+      width: 18px;
+      height: 18px;
     }
     span {
       font-weight: 600;
-      font-size: 1.0417vw;
+      font-size: 20px;
+      line-height: 24px;
       text-align: center;
+      letter-spacing: -0.32px;
       color: ${BLACK_1};
     }
     @media all and (max-width: 768px) {

@@ -7,6 +7,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
 import { profileImgState } from "../../states";
 import { editState } from "../../states/index";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function SideBar(categoryName: ICommunityParam) {
   const profileImg = useRecoilValue(profileImgState);
@@ -47,7 +48,7 @@ export function SideBar(categoryName: ICommunityParam) {
         ) : (
           <ProfileBoard>
             <ProfileImg>
-              <img alt="profile-img" src={profileImg ? (profileImg as string) : ""} />
+              <img alt="profile-img" src={profileImg || emoji_lion} />
             </ProfileImg>
             <ProfileDesc>
               <span>{info.nickname}</span>
@@ -87,13 +88,11 @@ export function SideBar(categoryName: ICommunityParam) {
 }
 
 const SideBarWrapper = styled.div`
-  position: fixed;
   display: flex;
-  width: 9.8958vw;
+  width: 190px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  left: 17.7083vw;
   @media all and (max-width: 768px) {
     width: 100%;
     display: flex;
@@ -106,7 +105,7 @@ const ProfileBoard = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.625vw;
+  gap: 12px;
   @media all and (max-width: 768px) {
     width: 100%;
     gap: 3.0769vw;
@@ -116,8 +115,8 @@ const ProfileBoard = styled.div`
 
 const ProfileImg = styled.div`
   img {
-    width: 3.125vw;
-    height: 3.125vw;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 100%;
   }
@@ -131,11 +130,11 @@ const ProfileImg = styled.div`
 
 const ProfileDesc = styled.div`
   color: #b9b9b9;
-  font-size: 0.7292vw;
+  font-size: 14px;
 
   span {
     font-weight: 700;
-    font-size: 0.9375vw;
+    font-size: 18px;
     color: ${WHITE_1};
   }
   @media all and (max-width: 768px) {
@@ -150,10 +149,10 @@ const TagWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-bottom: 0.0521vw solid #6d6d6d;
-  padding: 1.0417vw 0 0 0;
+  border-bottom: 1px solid #6d6d6d;
+  padding: 20px 0 0 0;
   span {
-    font-size: 0.625vw;
+    font-size: 12px;
     color: #979797;
   }
 
@@ -161,12 +160,11 @@ const TagWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    gap: 0.8333vw;
-    padding: 1.0417vw 0.5729vw;
+    gap: 16px;
+    padding: 20px 11px;
     font-weight: 500;
     span {
-      font-size: 0.8333vw;
-      letter-spacing: -0.0167vw;
+      font-size: 16px;
       color: ${WHITE_1};
       cursor: pointer;
       &:hover {

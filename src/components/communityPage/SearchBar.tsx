@@ -12,30 +12,31 @@ export function SearchBar() {
 
 const SearchContainer = styled.form`
   display: flex;
-  margin-top: 1.0417vw;
-  gap: 0.8333vw;
+  margin-top: 20px;
   width: 100%;
+  justify-content: space-between;
+  gap: 16px;
   input {
-    width: 40.7813vw;
-    height: 3.125vw;
+    width: 100%;
+    height: 60px;
     background: rgba(51, 51, 51, 0.6);
-    border-radius: 0.4167vw;
+    border-radius: 8px;
     border: none;
     color: ${WHITE_1};
     font-weight: 500;
-    padding: 0.9896vw 0.8333vw;
-    font-size: 0.9375vw;
+    padding: 19px 16px;
+    font-size: 18px;
     &:focus {
       outline: none;
     }
   }
   button {
-    width: 6.5625vw;
-    height: 3.125vw;
-    line-height: 1.1458vw;
-    border-radius: 0.4167vw;
-    letter-spacing: -0.0167vw;
-    font-size: 1.0417vw;
+    width: 126px;
+    height: 60px;
+    line-height: 22px;
+    border-radius: 8px;
+    letter-spacing: -0px;
+    font-size: 20px;
     background: #e9e9e9;
     font-weight: 600;
     text-align: center;

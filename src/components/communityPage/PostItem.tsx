@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { Column, Row } from "../elements/Wrapper";
 import { Profile } from "../icons/Profile";
+import { WHITE_1 } from "../../styles/theme";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
+
 export function PostItem(post: IPost) {
   const isMobile = useMediaQuery("( max-width: 768px )");
   const navigate = useNavigate();
@@ -20,16 +23,15 @@ export function PostItem(post: IPost) {
     <Item onClick={onClickHandler}>
       <Left>
         <Row gap="12px">
-          <Profile profile={post.author.profileImage as string} />
+          <Profile profile={(post.author.profileImage as string) || (emoji_lion as string)} />
           <Column gap="16px">
             <Column gap="4px">
               <UserName>{post.author.nickname ? post.author.nickname : "아기사자"}</UserName>
               <UploadDate>{date}</UploadDate>
             </Column>
             <Title>{post.title}</Title>
-            {/* <Body>{post.body}</Body> */}
-            <Body>dasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasad</Body>
-            <Row gap="15px">
+            <Body>{post.body}</Body>
+            <Bottom>
               <Icon>
                 <HeartIcon />
                 <span>{post.likeCount}</span>
@@ -38,15 +40,17 @@ export function PostItem(post: IPost) {
                 <CommentIcon />
                 <span>{post.commentCount}</span>
               </Icon>
-            </Row>
+            </Bottom>
           </Column>
         </Row>
-        {post.thumbNailImage && isMobile && (
+        {isMobile && post.thumbNailImage && (
           <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
         )}
       </Left>
-      {post.thumbNailImage && !isMobile && (
+      {!isMobile && post.thumbNailImage ? (
         <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+      ) : (
+        <NoneImg />
       )}
     </Item>
   );
@@ -59,10 +63,10 @@ const Item = styled.div`
   justify-content: space-between;
   cursor: pointer;
   img {
-    width: 7.2917vw;
-    height: 7.2917vw;
-    object-fit: contain;
-    border-radius: 0.625vw;
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    object-fit: cover;
   }
   @media all and (max-width: 768px) {
     padding-bottom: 5.1282vw;
@@ -72,9 +76,6 @@ const Item = styled.div`
       height: 23.0769vw;
       margin-bottom: 5.1282vw;
     }
-  }
-  &:last-child {
-    border: none;
   }
 `;
 
@@ -90,12 +91,20 @@ const Left = styled.div`
   }
 `;
 
+const NoneImg = styled.div`
+  width: 140px;
+  height: 140px;
+  background: transparent;
+  opacity: 0.98;
+  border-radius: 12px;
+`;
+
 const UserName = styled.span`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.32px;
-  color: #fff;
+  color: #d7d7d7;
   opacity: 0.98;
   @media all and (max-width: 768px) {
     font-weight: 600;
@@ -106,9 +115,10 @@ const UserName = styled.span`
 
 const UploadDate = styled.span`
   font-weight: 400;
-  font-size: 0.7292vw;
-  line-height: 0.8854vw;
-  letter-spacing: -0.0167vw;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
   @media all and (max-width: 768px) {
@@ -119,48 +129,17 @@ const UploadDate = styled.span`
   }
 `;
 
-const Content = styled.div`
-  padding-left: 2.1875vw;
-  width: 35.9896vw;
-  margin-bottom: 1.0417vw;
-  p {
-    display: inline-block;
-    white-space: nowrap;
-    width: 100%;
-    height: 46px;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 23px;
-    letter-spacing: -0.32px;
-    color: #ffffff;
-    opacity: 0.98;
-    margin: 0;
-  }
-  @media all and (max-width: 768px) {
-    width: 100%;
-    padding-left: 0;
-    p {
-      width: 100%;
-      font-size: 3.1vw;
-      line-height: 5.1vw;
-      height: auto;
-    }
-  }
-`;
-
 const Title = styled.span`
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 100%;
+  width: 35.9896vw;
+  height: 24px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.32px;
-  white-space: nowrap;
-  color: #ffffff;
+  color: ${WHITE_1};
   opacity: 0.98;
   @media all and (max-width: 768px) {
     width: 100%;
@@ -174,13 +153,21 @@ const Body = styled.p`
   margin: 0;
   text-overflow: ellipsis;
   overflow-x: hidden;
+  width: 35.9896vw;
+  height: 46px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.32px;
+  color: ${WHITE_1};
+  opacity: 0.98;
 `;
 
 const Bottom = styled.div`
-  padding-left: 2.2vw;
   display: flex;
-  gap: 0.8vw;
+  gap: 15px;
   flex-direction: row;
+  margin-top: 13px;
   @media all and (max-width: 768px) {
     padding-left: 0.4vw;
     gap: 3.8462vw;
@@ -191,13 +178,13 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   font-weight: 600;
-  gap: 0.3125vw;
-  font-size: 0.7292vw;
-  line-height: 0.8854vw;
+  font-size: 14px;
+  line-height: 17px;
+  gap: 6px;
   color: rgba(255, 255, 255, 0.7);
   svg {
-    width: 0.9375vw;
-    height: 0.9375vw;
+    width: 20px;
+    height: 20px;
   }
   @media all and (max-width: 768px) {
     gap: 1.5385vw;

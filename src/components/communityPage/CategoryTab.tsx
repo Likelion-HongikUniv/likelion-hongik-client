@@ -51,9 +51,10 @@ const CategoryItem = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 0.9375vw;
-  line-height: 1.1458vw;
-  padding: 1.0417vw;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 20px;
+  padding-top: 0;
   cursor: pointer;
 
   @media all and (max-width: 768px) {

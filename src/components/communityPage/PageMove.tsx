@@ -16,6 +16,9 @@ export function PageMove() {
     if (pagination.currentPage % PAGE_MAX === 1) {
       setCurPageIndex(curPageIndex - 1);
     }
+    window.scrollTo({
+      top: 0,
+    });
   };
 
   const onClickNext = () => {
@@ -23,6 +26,9 @@ export function PageMove() {
     if (pagination.currentPage % PAGE_MAX === 0) {
       setCurPageIndex(curPageIndex + 1);
     }
+    window.scrollTo({
+      top: 0,
+    });
   };
 
   return (
@@ -40,15 +46,15 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3.125vw;
-  margin-bottom: 17.7083vw;
+  margin-top: 60px;
+  margin-bottom: 340px;
 `;
 
 const MoveBtn = styled.button`
-  width: 4.7917vw;
-  height: 1.7188vw;
-  border: 0.0521vw solid ${WHITE_1};
-  border-radius: 0.2083vw;
+  width: 92px;
+  height: 33px;
+  border: 1px solid ${WHITE_1};
+  border-radius: 4px;
   color: ${WHITE_1};
   @media all and (max-width: 768px) {
     border: none;
@@ -59,9 +65,9 @@ const MoveBtn = styled.button`
 `;
 
 const NoneBtn = styled(MoveBtn)`
-  width: 4.7917vw;
-  height: 1.7188vw;
-  border-radius: 0.2083vw;
+  width: 92px;
+  height: 33px;
+  border-radius: 4px;
   border: none;
   @media all and (max-width: 768px) {
     width: 1.8513vw;

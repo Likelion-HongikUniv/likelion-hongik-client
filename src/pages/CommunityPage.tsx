@@ -65,6 +65,7 @@ export function CommunityPage() {
   useEffect(() => {
     GetPostList(categoryName, tag, page);
   }, [categoryName, tag, page]);
+
   return (
     <>
       <Header />
@@ -88,9 +89,10 @@ export function CommunityPage() {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100vw;
-  gap: 6.5104vw;
+  margin-top: 140px;
+  gap: 125px;
   @media all and (max-width: 768px) {
     flex-direction: column;
     width: 100vw;
@@ -101,7 +103,6 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 48.1771vw;
-  margin-left: 34.1146vw;
   @media all and (max-width: 768px) {
     margin-left: 0;
     width: 100%;
