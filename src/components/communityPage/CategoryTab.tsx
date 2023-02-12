@@ -59,8 +59,8 @@ const CategoryItem = styled.div`
 
   @media all and (max-width: 767px) {
     font-weight: 500;
-    font-size: 3.0769vw;
-    line-height: 3.8462vw;
-    padding: 3.0769vw;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 12px;
   }
 `;

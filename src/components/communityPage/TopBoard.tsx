@@ -51,9 +51,9 @@ const Table = styled.div`
     font-size: 16px;
   }
   @media all and (max-width: 767px) {
-    margin-top: 6.1538vw;
+    margin-top: 24px;
     div {
-      font-size: 4.1026vw;
+      font-size: 16px;
     }
   }
   button {
@@ -80,16 +80,15 @@ const Table = styled.div`
     @media all and (max-width: 767px) {
       width: auto;
       height: auto;
-      padding: 3.2051vw;
-      border-radius: 2.0513vw;
+      padding: 12px;
+      border-radius: 8px;
       img {
-        width: 3.8462vw;
-        height: 3.8462vw;
+        width: 15px;
+        height: 15px;
       }
       span {
-        font-size: 4.1026vw;
-        line-height: 4.8718vw;
-        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
       }
     }
   }

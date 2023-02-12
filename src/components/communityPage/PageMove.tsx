@@ -61,9 +61,9 @@ const MoveBtn = styled.button`
   color: ${WHITE_1};
   @media all and (max-width: 1023px) {
     border: none;
-    width: 1.8513vw;
-    height: 3.2436vw;
-    font-size: 4vw;
+    width: 7px;
+    height: 13px;
+    font-size: 16px;
   }
 `;
 
@@ -73,7 +73,7 @@ const NoneBtn = styled(MoveBtn)`
   border-radius: 4px;
   border: none;
   @media all and (max-width: 1023px) {
-    width: 1.8513vw;
-    height: 3.2436vw;
+    width: 7px;
+    height: 13px;
   }
 `;

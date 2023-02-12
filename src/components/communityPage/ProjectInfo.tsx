@@ -79,11 +79,11 @@ const TeamWrapper = styled.div`
     }
   }
   @media all and (max-width: 767px) {
-    gap: 4.1026vw;
+    gap: 16px;
     div {
       span {
-        font-size: 3.5897vw;
-        margin-left: 6vw;
+        font-size: 14px;
+        margin-left: 23px;
       }
     }
   }
@@ -94,7 +94,7 @@ const TeamName = styled.h1`
   font-size: 24px;
   margin: 0;
   @media all and (max-width: 767px) {
-    font-size: 5.1282vw;
+    font-size: 20px;
   }
 `;
 
@@ -109,11 +109,7 @@ const ImgBox = styled.div`
     border-radius: 100%;
   }
   @media all and (max-width: 767px) {
-    width: 6vw;
-    height: 8.2051vw;
-    img {
-      width: 8.2051vw;
-      height: 8.2051vw;
-    }
+    width: 23px;
+    height: 32px;
   }
 `;

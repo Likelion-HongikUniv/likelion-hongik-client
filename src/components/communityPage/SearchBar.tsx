@@ -44,25 +44,23 @@ const SearchContainer = styled.form`
     border: none;
   }
   @media all and (max-width: 767px) {
-    margin-top: 4.1026vw;
+    margin-top: 16px;
     width: 100%;
     flex-direction: column;
-    gap: 3.0769vw;
+    gap: 12px;
     input {
       width: 100%;
-      height: 12.3077vw;
-      font-weight: 500;
-      font-size: 3.5897vw;
-      border-radius: 2.0513vw;
-      padding: 3.8462vw 3.0769vw;
+      height: 48px;
+      font-size: 14px;
+      border-radius: 8px;
+      padding: 15px 12px;
     }
     button {
       width: 100%;
-      height: 10.2564vw;
-      font-weight: 600;
-      font-size: 4.1026vw;
-      line-height: 4.8718vw;
-      border-radius: 2.0513vw;
+      height: 40px;
+      font-size: 16px;
+      line-height: 19px;
+      border-radius: 8px;
     }
   }
 `;

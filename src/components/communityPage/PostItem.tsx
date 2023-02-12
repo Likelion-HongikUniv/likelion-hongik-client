@@ -22,15 +22,22 @@ export function PostItem(post: IPost) {
   return (
     <Item onClick={onClickHandler}>
       <Left>
-        <Row gap="12px">
-          <Profile profile={(post.author.profileImage as string) || (emoji_lion as string)} />
-          <Column gap="16px">
-            <Column gap="4px">
-              <UserName>{post.author.nickname ? post.author.nickname : "아기사자"}</UserName>
-              <UploadDate>{date}</UploadDate>
+        {isMobile ? (
+          <Column gap="20px">
+            <Row gap="12px">
+              <Profile profile={(post.author.profileImage as string) || (emoji_lion as string)} />
+              <Column gap="4px">
+                <UserName>{post.author.nickname ? post.author.nickname : "아기사자"}</UserName>
+                <UploadDate>{date}</UploadDate>
+              </Column>
+            </Row>
+            {post.thumbNailImage && (
+              <PostImg src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+            )}
+            <Column gap="12px">
+              <Title>{post.title}</Title>
+              <Body>{post.body}</Body>
             </Column>
-            <Title>{post.title}</Title>
-            <Body>{post.body}</Body>
             <Bottom>
               <Icon>
                 <HeartIcon />
@@ -42,15 +49,34 @@ export function PostItem(post: IPost) {
               </Icon>
             </Bottom>
           </Column>
-        </Row>
-        {isMobile && post.thumbNailImage && (
-          <img src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+        ) : (
+          <Row gap="12px">
+            <Profile profile={(post.author.profileImage as string) || (emoji_lion as string)} />
+            <Column gap="16px">
+              <Column gap="4px">
+                <UserName>{post.author.nickname ? post.author.nickname : "아기사자"}</UserName>
+                <UploadDate>{date}</UploadDate>
+              </Column>
+              <Title>{post.title}</Title>
+              <Body>{post.body}</Body>
+              <Bottom>
+                <Icon>
+                  <HeartIcon />
+                  <span>{post.likeCount}</span>
+                </Icon>
+                <Icon>
+                  <CommentIcon />
+                  <span>{post.commentCount}</span>
+                </Icon>
+              </Bottom>
+            </Column>
+          </Row>
         )}
       </Left>
       {!isMobile && post.thumbNailImage ? (
         <PostImg src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
       ) : (
-        <NoneImg />
+        !isMobile && <NoneImg />
       )}
     </Item>
   );
@@ -62,14 +88,8 @@ const Item = styled.div`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  img {
-    width: 140px;
-    height: 140px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
   @media all and (max-width: 767px) {
-    padding-bottom: 5.1282vw;
+    padding: 20px 0 23px;
     display: block;
   }
 `;
@@ -79,29 +99,21 @@ const PostImg = styled.img`
   height: 140px;
   border-radius: 12px;
   object-fit: cover;
-
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 100px;
     height: 100px;
     border-radius: 8px;
   }
   @media all and (max-width: 767px) {
-    width: 23.0769vw;
-    height: 23.0769vw;
-    margin-bottom: 5.1282vw;
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
   }
 `;
 
 const Left = styled.div`
   display: flex;
   flex-direction: column;
-  img {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    margin: 0;
-    object-fit: cover;
-  }
 `;
 
 const NoneImg = styled.div`
@@ -126,8 +138,8 @@ const UserName = styled.span`
   opacity: 0.98;
   @media all and (max-width: 767px) {
     font-weight: 600;
-    font-size: 4.1026vw;
-    line-height: 4.8718vw;
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 
@@ -138,6 +150,10 @@ const UploadDate = styled.span`
   letter-spacing: -0.32px;
   color: #d7d7d7;
   opacity: 0.98;
+  @media all and (max-width: 767px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
 
 const Title = styled.span`
@@ -152,11 +168,15 @@ const Title = styled.span`
   letter-spacing: -0.32px;
   color: ${WHITE_1};
   opacity: 0.98;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   @media all and (max-width: 767px) {
-    width: 100%;
-    height: auto;
-    font-size: 4.1vw;
-    line-height: 100%;
+    width: 85.9vw;
+    height: 48px;
+    font-size: 16px;
+    line-height: 24px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 68.5vw;
@@ -168,7 +188,7 @@ const Title = styled.span`
 const Body = styled.p`
   margin: 0;
   text-overflow: ellipsis;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 35.9896vw;
   height: 46px;
   font-weight: 400;
@@ -177,6 +197,15 @@ const Body = styled.p`
   letter-spacing: -0.32px;
   color: ${WHITE_1};
   opacity: 0.98;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  @media all and (max-width: 767px) {
+    width: 89vw;
+    font-size: 12px;
+    letter-spacing: -0.32px;
+  }
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 68.5vw;
     font-size: 14px;
@@ -190,8 +219,8 @@ const Bottom = styled.div`
   flex-direction: row;
   margin-top: 13px;
   @media all and (max-width: 767px) {
-    padding-left: 0.4vw;
-    gap: 3.8462vw;
+    padding-left: 2px;
+    gap: 15px;
   }
 `;
 
@@ -208,11 +237,11 @@ const Icon = styled.div`
     height: 20px;
   }
   @media all and (max-width: 767px) {
-    gap: 1.5385vw;
+    gap: 6px;
     svg {
-      width: 4.2744vw;
-      height: 4.2744vw;
+      width: 17px;
+      height: 17px;
     }
-    font-size: 3.0769vw;
+    font-size: 12px;
   }
 `;

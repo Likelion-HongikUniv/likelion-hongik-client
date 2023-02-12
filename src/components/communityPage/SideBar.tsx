@@ -122,8 +122,7 @@ const ProfileBoard = styled.div`
   gap: 12px;
   @media all and (max-width: 767px) {
     width: 100%;
-    gap: 3.0769vw;
-    margin-bottom: 10.2564vw;
+    gap: 12px;
   }
 `;
 
@@ -133,12 +132,6 @@ const ProfileImg = styled.div`
     height: 60px;
     object-fit: cover;
     border-radius: 100%;
-  }
-  @media all and (max-width: 767px) {
-    img {
-      width: 15.3846vw;
-      height: 15.3846vw;
-    }
   }
 `;
 
@@ -150,12 +143,6 @@ const ProfileDesc = styled.div`
     font-weight: 700;
     font-size: 18px;
     color: ${WHITE_1};
-  }
-  @media all and (max-width: 767px) {
-    font-size: 3.5897vw;
-    span {
-      font-size: 4.6154vw;
-    }
   }
 `;
 
@@ -193,22 +180,22 @@ const TagWrapper = styled.div`
 `;
 
 const SelectBox = styled.select`
-  padding: 3.0769vw;
+  padding: 12px;
   border: none;
   background-color: transparent;
   font-weight: 700;
-  font-size: 3.5897vw;
+  font-size: 14px;
   color: ${WHITE_1};
-  height: 10.5128vw;
+  height: 41px;
   cursor: pointer;
 `;
 
 const Option = styled.option`
   color: ${WHITE_1};
   background: #333333;
-  width: 19.2308vw;
-  height: 10.5128vw;
-  padding: 3.0769vw;
+  width: 75px;
+  height: 41px;
+  padding: 12px;
 `;
 
 const Accordian = styled.div`

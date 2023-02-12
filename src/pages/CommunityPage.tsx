@@ -98,8 +98,9 @@ const Wrapper = styled.div`
   @media all and (max-width: 767px) {
     flex-direction: column;
     width: 100vw;
-    padding: 0 5.1282vw;
-    gap: 6.1538vw;
+    padding: 0 20px;
+    gap: 30px;
+    margin-top: 45px;
   }
   @media all and (min-width: 768px) and (max-width: 1023px) {
     flex-direction: column;

@@ -100,6 +100,10 @@ const CategoryBox = styled.div`
       font-size: 18px;
       line-height: 22px;
       letter-spacing: -0.32px;
+      cursor: pointer;
+      &:hover {
+        color: #ed7f30;
+      }
     }
   }
   &:last-child {
