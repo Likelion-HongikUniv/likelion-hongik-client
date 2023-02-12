@@ -7,21 +7,18 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { useNavigate } from "react-router-dom";
+import { ReactHTMLElement, useEffect } from "react";
+import axios from "axios";
 
 export function SocialLogin() {
-  const navigate = useNavigate();
-  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("구글 로그인 클릭");
-    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
+  const googleLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
     // navigate('/ing');
   };
-  const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("네이버 로그인 클릭");
+  const naverLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
       "_self",
@@ -29,8 +26,7 @@ export function SocialLogin() {
     // navigate('/ing');
   };
 
-  const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("카카오 로그인 클릭");
+  const kakaoLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
       "_self",
