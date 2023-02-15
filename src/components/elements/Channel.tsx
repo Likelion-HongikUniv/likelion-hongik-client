@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Channel = () => {
   return (
     <Container>
-      <Logo />
+      <Logo type="pc" />
       <ChannelContainer>
         <ChannelImg onClick={() => window.open("https://www.instagram.com/likelion_hongik/?hl=fi", "_blank")}>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
