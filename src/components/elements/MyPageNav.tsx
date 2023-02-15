@@ -59,8 +59,6 @@ const LeftNav = styled.nav`
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
-  /* margin-left: 340px; */
-  /* 각 컨테이너에 margin-left: 8.33vw; 주고 justify-content 하면 가운데 정렬! */
   padding-top: 140px;
   letter-spacing: -0.32px;
 
@@ -100,4 +98,5 @@ const Team = styled.div`
   font-size: 14px;
   line-height: 16.94px;
   color: #b9b9b9;
+  width: 80px;
 `;

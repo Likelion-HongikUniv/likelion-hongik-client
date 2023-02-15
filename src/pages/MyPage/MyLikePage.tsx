@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../components/elements/Header";
-import { PostItem } from "../../components/myPostPage/PostItem";
+import { PostItem } from "../../components/myPage/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import { MyPageMobileNav } from "../../components/myPage/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
@@ -24,6 +24,7 @@ interface IPost {
 
 export function MyLikePage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
+  const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
@@ -63,7 +64,7 @@ export function MyLikePage() {
       <Header />
       <Section>
         <S.MyPostPageContainer>
-          {isMobile ? <MyPageMobileNav /> : <MyPageNav />}
+          {isTablet ? <MyPageMobileNav /> : <MyPageNav />}
           <S.MyPostBoxContainer>
             {isMobile ? "" : <S.Title>좋아요 누른 글</S.Title>}
             <S.PostItemContainer>

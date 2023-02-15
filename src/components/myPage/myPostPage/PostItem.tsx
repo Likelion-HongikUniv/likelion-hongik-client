@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { HeartIcon } from "../icons/HeartIcon";
-import { CommentIcon } from "../icons/CommentIcon";
+import { HeartIcon } from "../../icons/HeartIcon";
+import { CommentIcon } from "../../icons/CommentIcon";
 import { useNavigate } from "react-router-dom";
-import emoji_lion from "./../images/emoji_lion_24x24.png";
+import emoji_lion from "../../images/emoji_lion_24x24.png";
 
 interface IPostItem {
   title: string;
@@ -66,6 +66,9 @@ const Item = styled.div`
     border-bottom: none;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
   }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 688px;
+  }
 `;
 
 const Left = styled.div`
@@ -120,8 +123,11 @@ const Content = styled.div`
     margin-bottom: 0px;
     width: 100vw;
   }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 70vw;
+  }
   p {
-    display: inline-block;
+    display: flex;
     white-space: nowrap;
     width: 649px;
     height: 46px;
@@ -137,6 +143,9 @@ const Content = styled.div`
     @media (max-width: 768px) {
       width: 85.89vw;
       height: 60px;
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      width: 511px;
     }
   }
 `;

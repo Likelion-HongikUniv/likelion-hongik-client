@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import { BLACK_1, WHITE_1 } from "./../../styles/theme";
+import { BLACK_1, WHITE_1 } from "../../styles/theme";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { editState, profileImgState } from "./../../states/index";
-import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
+import { editState, profileImgState } from "../../states/index";
+import { NavSelectPartMobile } from "./NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const profileImg = useRecoilValue(profileImgState);
   const [info, setInfo] = useRecoilState(editState);
   const navigate = useNavigate();
@@ -54,8 +57,8 @@ export function MyPageMobileNav() {
           <Team>{info.major}</Team>
         </div>
       </Profile>
-      <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
-      <NavSelectPartMobile />
+      {isTablet ? '' : <EditBtn onClick={onNavigate}>정보 변경</EditBtn>}
+      {isTablet ? <MyPageSelectNav /> : <NavSelectPartMobile />}
     </MobileNavContainer>
   );
 }
@@ -116,4 +119,7 @@ const EditBtn = styled.button`
 const Profile = styled.div`
   display: flex;
   width: 350px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 688px;
+  }
 `;
