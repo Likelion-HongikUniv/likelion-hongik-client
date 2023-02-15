@@ -26,6 +26,7 @@ export function FileUploader() {
       const presignedUrl = async () => {
         await axios
           .get("http://13.125.72.138:8080/pre-signed-url/profileImage", {
+            //localhost
             headers: {
               JWT: token,
             },
@@ -95,18 +96,10 @@ const FileUploadContainer = styled.div`
   width: 105px;
   height: 105px;
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     width: 60px;
     height: 60px;
-  }
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;
 
@@ -123,7 +116,7 @@ const ProfileThumbnail = styled.img`
   cursor: pointer;
   object-fit: cover;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     width: 60px;
     height: 60px;

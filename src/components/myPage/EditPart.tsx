@@ -85,8 +85,7 @@ export function EditPart() {
           <PartEdit {...changePart} />
           <SaveBtn
             disabled={
-              (nickCheck === true || changeNickname.value === info.nickname) &&
-              mulNick === true &&
+              ((nickCheck === true && mulNick === true) || changeNickname.value === info.nickname) &&
               changeNickname.value?.length !== 0 &&
               changeMajor.value?.length !== 0
                 ? false
@@ -110,15 +109,17 @@ const EditPartDiv = styled.div`
   margin-left: 8.33vw;
   padding-top: 140px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     padding: 0 0;
     width: max-content;
     margin-left: 6vw;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    width: 500px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: max-content;
+    padding: 0 0;
+    margin-left: 2vw;
   }
 `;
 
@@ -130,12 +131,13 @@ const EditTitle = styled.div`
   margin-bottom: 40px;
   text-align: left;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     display: none;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-top: 40px;
   }
 `;
 
@@ -152,9 +154,10 @@ const Bar = styled.div`
     margin: 20px 0;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     width: 650px;
+    margin-top: 56px;
   }
 `;
 
@@ -170,7 +173,7 @@ const SaveBtn = styled.button`
   font-size: 18px;
   line-height: 21.78px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     margin-left: 0;
     width: 88vw;
@@ -179,10 +182,10 @@ const SaveBtn = styled.button`
     float: none;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     float: right;
-    margin-right: 40px;
+    margin-top: 44px;
   }
 
   &:disabled {
