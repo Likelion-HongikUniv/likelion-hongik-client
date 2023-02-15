@@ -6,9 +6,19 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
-export const userState = atom<string>({
+export const userState = atom<any>({
   key: "userState",
-  default: "",
+  default: {
+    major: "",
+    nickname: "",
+    part: "",
+    profileImageSrc: "",
+    role: "",
+    studentId: "",
+    team: null,
+    userId: 0,
+    username: "",
+  },
 });
 
 export const btnActiveState = atom<number>({

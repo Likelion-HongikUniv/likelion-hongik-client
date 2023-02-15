@@ -22,9 +22,7 @@ export function Header() {
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<string>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [isMenu, setMenu] = useState(false);
-  console.log(userInfo);
 
   const onClickMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

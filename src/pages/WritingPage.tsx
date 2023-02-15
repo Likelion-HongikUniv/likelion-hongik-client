@@ -7,14 +7,20 @@ import { InputBar } from "../components/writingPage/InputBar";
 import { TabBar } from "../components/writingPage/TabBar";
 import { TextEditor } from "../components/writingPage/TextEditor";
 import { ThumbnailUploadPopup } from "../components/writingPage/ThumbniailUploadPopup";
-import { isCancelButtonClickedState, isThumbnailSetButtonClickedState, postThumbnailUrlState } from "../states";
-import axios from "axios";
+import {
+  isCancelButtonClickedState,
+  isThumbnailSetButtonClickedState,
+  postThumbnailUrlState,
+  userState,
+} from "../states";
 import useInput from "../hooks/useInput";
 
 export function WritingPage() {
   const postThumbnailImage = useRecoilValue(postThumbnailUrlState);
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
   const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
+  const userInfo = useRecoilValue(userState);
+  console.log(userInfo);
 
   const [clickedCategory, setClickedCategory] = useState("공지사항");
   const title = useInput(""); // title.value가 값임
