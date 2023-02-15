@@ -68,6 +68,11 @@ export const isThumbnailSetButtonClickedState = atom<boolean>({
   default: false,
 });
 
+export const postThumbnailUrlState = atom<string>({
+  key: "postThumbnailUrlState",
+  default: "",
+});
+
 export const currPageState = atom<number>({
   key: "currPageState",
   default: 1,

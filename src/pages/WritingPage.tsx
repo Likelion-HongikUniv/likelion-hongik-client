@@ -7,20 +7,17 @@ import { InputBar } from "../components/writingPage/InputBar";
 import { TabBar } from "../components/writingPage/TabBar";
 import { TextEditor } from "../components/writingPage/TextEditor";
 import { ThumbnailUploadPopup } from "../components/writingPage/ThumbniailUploadPopup";
-import { isCancelButtonClickedState, isThumbnailSetButtonClickedState } from "../states";
+import { isCancelButtonClickedState, isThumbnailSetButtonClickedState, postThumbnailUrlState } from "../states";
 import axios from "axios";
+import useInput from "../hooks/useInput";
 
 export function WritingPage() {
+  const postThumbnailImage = useRecoilValue(postThumbnailUrlState);
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
   const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
-  const [clickedCategory, setClickedCategory] = useState("공지사항");
-  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    axios
-      .get("http://13.125.72.138:8080/pre-signed-url/thumbnailImage", { headers: { JWT: token } })
-      .then((res) => console.log(res));
-  }, []);
+  const [clickedCategory, setClickedCategory] = useState("공지사항");
+  const title = useInput(""); // title.value가 값임
 
   return (
     <>
@@ -39,8 +36,8 @@ export function WritingPage() {
             clickedCategory={clickedCategory}
             setClickedCategory={setClickedCategory}
           />
-          <InputBar style={{ marginTop: "60px" }} />
-          <TextEditor />
+          <InputBar style={{ marginTop: "60px" }} {...title} />
+          <TextEditor title={title.value} category={clickedCategory} />
           {isCancelButtonClicked && <ConfirmationPopup />}
           {isThumbnailSetButtonClicked && <ThumbnailUploadPopup />}
         </div>

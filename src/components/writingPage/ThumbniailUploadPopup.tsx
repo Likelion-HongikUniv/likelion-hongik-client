@@ -1,13 +1,37 @@
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { isThumbnailSetButtonClickedState } from "../../states";
+import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
+import { isThumbnailSetButtonClickedState, postThumbnailUrlState } from "../../states";
 import { Column, Row } from "../elements/Wrapper";
 import { ImageIcon } from "../icons/ImageIcon";
 
 export function ThumbnailUploadPopup() {
-  const SetIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
-  const navigate = useNavigate();
+  const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
+  const token: any = localStorage.getItem("token");
+  const [thumbnailUrl, setThumbnailUrl] = useRecoilState(postThumbnailUrlState);
+
+  const onUploadThumbnailImage = async (file: any) => {
+    // presigned url 받는 api.
+    const url = await getPresignedUrl({
+      path: "postImage",
+      token: token,
+    });
+    const slicedUrl = url.slice(0, url.indexOf("?x-amz"));
+
+    if (url) {
+      // presigned url에 파일 업로드 후 url 저장.
+      const statusCode = await uploadFile({
+        url: url,
+        file: file,
+      });
+      if (statusCode === 200) {
+        setThumbnailUrl(slicedUrl);
+      }
+    }
+  };
 
   return (
     <>
@@ -15,26 +39,41 @@ export function ThumbnailUploadPopup() {
         <Column gap="16px" justifyContent="flex-start">
           <div style={{ color: "white", fontSize: "24px", fontWeight: "700" }}>썸네일 업로드</div>
           <Column width="100%" marginTop="25px" alignItems="center">
-            {/* <img src="" width={209} height={209} /> */}
-            <ImageArea>
-              <ImageIcon />
-            </ImageArea>
+            {thumbnailUrl.length > 1 ? (
+              <img src={thumbnailUrl} width={209} height={209} />
+            ) : (
+              <div>
+                <input
+                  type="file"
+                  id="img-upload"
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    if (e.target.files) return onUploadThumbnailImage(e.target.files[0]);
+                  }}
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+                <ImageArea>
+                  <ImageIcon htmlFor="img-upload" />
+                </ImageArea>
+              </div>
+            )}
             <TextArea>썸네일 이미지 미설정 시 기본 이미지로 업로드됩니다.</TextArea>
             <Row gap="12px" style={{ height: "auto" }}>
               <CancelButton
                 onClick={() => {
-                  SetIsThumbnailSetButtonClicked(false);
+                  setIsThumbnailSetButtonClicked(false);
                 }}
               >
                 취소
               </CancelButton>
-              <LeaveButton
+              <UploadButton
                 onClick={() => {
-                  // 썸네일 업로드
+                  alert("업로드가 완료되었습니다.");
+                  setIsThumbnailSetButtonClicked(false);
                 }}
               >
                 등록
-              </LeaveButton>
+              </UploadButton>
             </Row>
           </Column>
         </Column>
@@ -73,7 +112,7 @@ const ConfirmationPopUpWrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const TextArea = styled.text`
+const TextArea = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 34px;
@@ -100,7 +139,7 @@ const CancelButton = styled.button`
   font-size: 20px;
 `;
 
-const LeaveButton = styled.button`
+const UploadButton = styled.button`
   width: 180px;
   height: 52px;
   background-color: #ed7f30;

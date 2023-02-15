@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { profileImgState } from "./../../states/index";
 import axios from "axios";
+import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
 
 export interface UploadImage {
   file: File;
@@ -13,49 +14,33 @@ export interface UploadImage {
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
-  const token = localStorage.getItem("token");
+  const token: any = localStorage.getItem("token");
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();
   };
 
-  const uploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileList = e.target.files;
-    if (fileList && fileList[0]) {
-      const presignedUrl = async () => {
-        await axios
-          .get(`http://13.125.72.138:8080/pre-signed-url/profileImage`, {
-            headers: {
-              JWT: token,
-            },
-          })
-          .then((response) => {
-            console.log("presigned url에서 get 해온 url은 ", response.data);
-            const presignedUrlResult = response.data;
-            uploadImageToS3(presignedUrlResult, fileList[0]);
-          })
-          .catch((error) => console.log(error));
-      };
-      presignedUrl();
+  const uploadProfile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList: any = e.target.files;
+    const file = fileList[0];
 
-      const uploadImageToS3 = async (url: string, file: File) => {
-        await axios
-          .put(url, file, {
-            headers: {
-              "Content-Type": file.type,
-            },
-          })
-          .then((response) => {
-            console.log(response);
-            let resultUrlParse = "";
-            if (url.includes("?")) {
-              resultUrlParse = url.slice(0, url.indexOf("?"));
-            }
-            console.log("url 파싱한 결과: ", resultUrlParse);
-            setProfileImg(resultUrlParse);
-          })
-          .catch((error) => console.error(error));
-      };
+    if (file) {
+      const url = await getPresignedUrl({
+        path: "profileImage",
+        token: token,
+      });
+      const slicedUrl = url.slice(0, url.indexOf("?x-amz"));
+
+      if (url) {
+        // presigned url에 파일 업로드 후 url 저장.
+        const statusCode = await uploadFile({
+          url: url,
+          file: file,
+        });
+        if (statusCode === 200) {
+          setProfileImg(slicedUrl);
+        }
+      }
     }
   };
 

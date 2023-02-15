@@ -32,7 +32,7 @@ export function ConfirmationPopup() {
               </CancelButton>
               <LeaveButton
                 onClick={() => {
-                  navigate("/community");
+                  navigate("/community/Q&A");
                 }}
               >
                 나가기

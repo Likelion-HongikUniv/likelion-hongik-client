@@ -1,28 +1,61 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Editor, Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import styled from "styled-components";
 import { Column, Row } from "../elements/Wrapper";
-import { useSetRecoilState } from "recoil";
-import { isCancelButtonClickedState, isThumbnailSetButtonClickedState } from "../../states/index";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  isCancelButtonClickedState,
+  isThumbnailSetButtonClickedState,
+  postThumbnailUrlState,
+} from "../../states/index";
+import axios from "axios";
 
+interface EditorProps {
+  category?: string;
+  title?: string;
+}
 type HookCallback = (url: string, text?: string) => void;
 
-export function TextEditor() {
+export function TextEditor({ category, title }: EditorProps) {
   const editorRef = useRef<Editor>(null);
   const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
   const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
+  const thumbnailImageUrl = useRecoilValue(postThumbnailUrlState);
+  const token = localStorage.getItem("token");
+  const [imageUrl, setImageUrl] = useState("");
 
-  const onUploadImage = async (blob: Blob | File, callback: HookCallback) => {
-    console.log(blob);
-    // const url = await uploadImage(blob)
-    // callback(url, '첨부 이미지');
-    // return false;
+  const onUploadImage = async (file: any, callback: HookCallback) => {
+    const url = await axios
+      .get("http://13.125.72.138:8080/pre-signed-url/postImage", { headers: { JWT: token } })
+      .then((res) => {
+        return res.data;
+      });
+    const slicedUrl = url.slice(0, url.indexOf("?x-amz"));
+
+    if (url) {
+      const statusCode = await axios.put(url, file).then((res) => {
+        return res.status;
+      });
+      if (statusCode === 200) {
+        setImageUrl(slicedUrl);
+        callback(slicedUrl, "이미지");
+      }
+    }
   };
 
-  const onClickRegisterButton = () => {
-    console.log(editorRef.current?.getInstance().getHTML());
+  const onClickRegisterButton = async () => {
+    const editorContent = editorRef.current?.getInstance().getHTML();
+    console.log(editorContent);
+    console.log(`http://13.124.126.164:8080/community/posts/BOARD/${category}`);
+
+    const res = await axios.post(
+      `http://13.124.126.164:8080/community/posts/BOARD/NOTICE`,
+      { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+      { headers: { JWT: token } },
+    );
+    console.log(res);
   };
 
   const onClickCancelButton = () => {
@@ -32,14 +65,6 @@ export function TextEditor() {
   const onClickThumbnailSetButton = () => {
     setIsThumbnailSetButtonClicked(true);
   };
-
-  // useEffect(() => {
-  //   const test = localStorage.getItem("test");
-  //   console.dir(test);
-  // if (test) {
-  //   editorRef.current.getInstance().setMarkdown(test);
-  // }
-  // }, []);
 
   return (
     <Column width="80vw" justifyContent="center" alignItems="center" style={{ paddingBottom: "100px" }}>
@@ -61,11 +86,9 @@ export function TextEditor() {
           autofocus
           theme={"dark"}
           hideModeSwitch={true}
-          hooks={
-            {
-              // addImageBlobHook: onUploadImage,
-            }
-          }
+          hooks={{
+            addImageBlobHook: onUploadImage,
+          }}
         />
       </EditorWrapper>
       <Row marginTop="24px" width="100%" justifyContent="space-between">
