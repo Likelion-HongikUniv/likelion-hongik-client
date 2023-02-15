@@ -3,6 +3,9 @@ import main_recruiting from "../images/main_recruiting.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import main_recruiting_tablet from "../images/main_recruiting_tablet.png";
+import main_recruiting_mobile from "../images/main_recruiting_mobile.png";
+
 
 const Recruiting = () => {
   const onClickBtn = () => {
@@ -34,6 +37,7 @@ const BoxContainer = styled.div`
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: overlay;
+  background-position: center;
   width: 1040px;
   height: 337px;
   border-radius: 20px;
@@ -45,10 +49,12 @@ const BoxContainer = styled.div`
     width: 350px;
     height: 297px;
     padding: 30px 20px;
+    background-image: url(${main_recruiting_mobile});
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 769px) and (max-width: 1024px) {
     width: 688px;
     height: 350px;
+    background-image: url(${main_recruiting_tablet});
   }
 `;
 

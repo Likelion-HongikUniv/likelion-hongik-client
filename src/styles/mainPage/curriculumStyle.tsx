@@ -23,14 +23,13 @@ export const PartName = styled.h2`
   color: white;
   font-size: 28px;
   margin-bottom: 40px;
-  text-align: center;
+  text-align: left;
   width: 250px;
   @media (max-width: 768px) {
     margin-left: 20px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 100vw;
-    text-align: left;
   }
 `;
 

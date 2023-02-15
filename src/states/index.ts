@@ -78,9 +78,3 @@ export const mulBtnState = atom<boolean>({
   key: "mulBtnState",
   default: false,
 });
-
-export const selectActiveState = atom<string>({
-  key: "selectActiveState",
-  default: '내가 쓴 글',
-  effects_UNSTABLE: [persistAtom],
-});
