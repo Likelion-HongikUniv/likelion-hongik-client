@@ -2,23 +2,26 @@ import styled from "styled-components";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { selectActiveState } from "./../../states/index";
+import { btnActiveState } from "./../../states/index";
 
 const MyPageSelectNav = () => {
   const navigate = useNavigate();
-  const [index, setIndex] = useRecoilState(selectActiveState);
+  const [isBtnActive, SetIsBtnActive] = useRecoilState(btnActiveState);
   const moveToURL = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setIndex(event.target.value);
-    navigate(`/myPage/${event.target.value}`);
+    SetIsBtnActive(Number(event.target.value));
+    if (event.target.value === "1") navigate(`/myPage/post`);
+    else if (event.target.value === "2") navigate(`/myPage/reply`);
+    else if (event.target.value === "3") navigate(`/myPage/like`);
+    else if (event.target.value === "4") navigate(`/myPage/edit`);
   };
 
   return (
     <SelectBox>
-      <Select onChange={moveToURL} value={index}>
-        <Option value="post">내가 쓴 글</Option>
-        <Option value="reply">내가 쓴 댓글</Option>
-        <Option value="like">좋아요 누른 글</Option>
-        <Option value="edit">정보 변경</Option>
+      <Select onChange={moveToURL} value={isBtnActive}>
+        <Option value="1">내가 쓴 글</Option>
+        <Option value="2">내가 쓴 댓글</Option>
+        <Option value="3">좋아요 누른 글</Option>
+        <Option value="4">정보 변경</Option>
       </Select>
       <Arrow />
     </SelectBox>
