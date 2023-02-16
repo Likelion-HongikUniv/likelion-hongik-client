@@ -52,7 +52,7 @@ export function Replies(props: IReplyProps) {
             {}
           </Row>
           {props.reply.deleted === false && props.reply.author?.isAuthor && (
-            <MoreButton cid={props.reply?.replyId} isBoard={false} isComment={false} />
+            <MoreButton id={props.reply?.replyId} isBoard={false} isComment={false} />
           )}
         </Wrapper>
       </Row>

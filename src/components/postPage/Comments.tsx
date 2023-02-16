@@ -49,7 +49,7 @@ export function Comments(props: IComment) {
               )}
             </Column>
             {props.author?.isAuthor && props.isDeleted === false && (
-              <MoreButton cid={props.commentId} isBoard={false} isComment={true} />
+              <MoreButton id={props.commentId} isBoard={false} isComment={true} />
             )}
           </Row>
           {props.replies
@@ -70,7 +70,7 @@ export function Comments(props: IComment) {
               <Date fontSize={12}>{date}</Date>
             </Column>
             {props.author?.isAuthor && props.isDeleted === false && (
-              <MoreButton cid={props.commentId} isBoard={false} isComment={true} />
+              <MoreButton id={props.commentId} isBoard={false} isComment={true} />
             )}
           </Row>
           <Column gap="20px">
