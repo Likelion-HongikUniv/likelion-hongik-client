@@ -21,7 +21,7 @@ export function PostPage() {
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
   const { id } = useParams<{ id?: string }>();
-
+  console.log(board, comments);
   function GetPostDetail(postId: number) {
     const token = localStorage.getItem("token");
     axios
