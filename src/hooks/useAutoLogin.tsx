@@ -38,8 +38,10 @@ export default function useAutoLogin() {
             username: data.username,
           });
         } else {
-          setIsLoggedIn(false);
-          navigate("/");
+          alert("시간이 지나 로그인이 만료되었습니다.");
+          // localStorage.removeItem("token");
+          // setIsLoggedIn(false);
+          // navigate("/");
         }
       });
     } else if (!token) {

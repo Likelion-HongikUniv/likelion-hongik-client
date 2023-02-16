@@ -11,6 +11,8 @@ import {
   postThumbnailUrlState,
 } from "../../states/index";
 import axios from "axios";
+import { postPost } from "../../api/post";
+import { useNavigate } from "react-router-dom";
 
 interface EditorProps {
   category?: string;
@@ -25,6 +27,7 @@ export function TextEditor({ category, title }: EditorProps) {
   const thumbnailImageUrl = useRecoilValue(postThumbnailUrlState);
   const token = localStorage.getItem("token");
   const [imageUrl, setImageUrl] = useState("");
+  const navigate = useNavigate();
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
@@ -48,14 +51,26 @@ export function TextEditor({ category, title }: EditorProps) {
   const onClickRegisterButton = async () => {
     const editorContent = editorRef.current?.getInstance().getHTML();
     console.log(editorContent);
-    console.log(`http://13.124.126.164:8080/community/posts/BOARD/${category}`);
+    console.log(title);
 
-    const res = await axios.post(
-      `http://13.124.126.164:8080/community/posts/BOARD/NOTICE`,
-      { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
-      { headers: { JWT: token } },
-    );
-    console.log(res);
+    //TODO 여기 api 이상함
+    if (token && title && editorContent) {
+      await axios
+        .post(
+          `http://13.125.72.138:8080/community/posts/BOARD/NOTICE`,
+          { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+          { headers: { JWT: token } },
+        )
+        .then((res) => {
+          navigate(`/community/post/${res.data.id}`);
+        });
+      // const res = await postPost(token, {
+      //   title: title,
+      //   editorContent: editorContent,
+      //   thumbnailImageUrl: thumbnailImageUrl,
+      // });
+      // console.log(res);
+    }
   };
 
   const onClickCancelButton = () => {

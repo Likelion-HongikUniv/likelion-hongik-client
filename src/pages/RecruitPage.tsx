@@ -40,8 +40,8 @@ export function RecruitPage() {
         </Section>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
-          <Footer style={{ marginTop: "70px" }} />
         </div>
+        <Footer />
       </Section>
     </>
   );

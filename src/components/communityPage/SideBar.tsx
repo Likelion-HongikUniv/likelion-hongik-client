@@ -7,6 +7,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
 import { profileImgState } from "../../states";
 import { editState } from "../../states/index";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function SideBar(categoryName: ICommunityParam) {
   const profileImg = useRecoilValue(profileImgState);
@@ -47,7 +48,7 @@ export function SideBar(categoryName: ICommunityParam) {
         ) : (
           <ProfileBoard>
             <ProfileImg>
-              <img alt="profile-img" src={profileImg ? (profileImg as string) : ""} />
+              <img alt="profile-img" src={profileImg ? (profileImg as string) : emoji_lion} />
             </ProfileImg>
             <ProfileDesc>
               <span>{info.nickname}</span>
