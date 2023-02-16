@@ -25,8 +25,7 @@ export function FileUploader() {
     if (fileList && fileList[0]) {
       const presignedUrl = async () => {
         await axios
-          .get("http://13.125.72.138:8080/pre-signed-url/profileImage", {
-            //localhost
+          .get(`http://13.125.72.138:8080/pre-signed-url/profileImage`, {
             headers: {
               JWT: token,
             },

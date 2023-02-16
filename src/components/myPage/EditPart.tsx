@@ -32,7 +32,6 @@ export function EditPart() {
   const changeNickname = useNickInput(info.nickname);
   const changeMajor = useInput(info.major);
   const changePart = useSelect(info.part);
-  // const changeTeam = useSelect(info.team);
 
   const data = {
     nickname: changeNickname.value,
@@ -47,23 +46,17 @@ export function EditPart() {
       major: changeMajor.value,
       nickname: changeNickname.value,
       part: changePart.value,
-      // team: changeTeam.value,
     };
     setInfo(infoHandler);
     console.log(info);
 
     axios
-      .patch(
-        "http://13.125.72.138:8080/mypage/edit",
-        JSON.stringify(data),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${jwt}`,
-          },
+      .put("http://13.125.72.138:8080/mypage/edit", JSON.stringify(data), {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: `${jwt}`,
         },
-      )
+      })
       .then((response) => {
         console.log(response);
         window.location.reload(); //새로고침되게
