@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { BLACK_1, WHITE_1 } from "../../styles/theme";
+import { BLACK_1, WHITE_1 } from "../../../styles/theme";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { editState, profileImgState } from "../../states/index";
+import { editState, profileImgState } from "../../../states/index";
 import { NavSelectPartMobile } from "./NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import emoji_lion from "./../images/emoji_lion_24x24.png";
-import useMediaQuery from "../../hooks/useMediaQuery";
+import { useEffect } from "react";
+import emoji_lion from "../../images/emoji_lion_24x24.png";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {

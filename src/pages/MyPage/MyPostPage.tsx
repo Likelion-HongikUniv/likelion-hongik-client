@@ -5,7 +5,7 @@ import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MyPageMobileNav } from "../../components/myPage/MyPageMobileNav";
+import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
 import { currPageState, profileImgState } from "../../states/index";

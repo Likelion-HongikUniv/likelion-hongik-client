@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { btnActiveState } from "./../../states/index";
+import { btnActiveState } from "../../../states/index";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function NavSelectPartMobile() {
   const [isBtnActive, SetIsBtnActive] = useRecoilState(btnActiveState);
   const navigate = useNavigate();
+  useEffect(() => {
+    const path = window.location.pathname.split("/")[2];
+    if (path === "post") SetIsBtnActive(1);
+    else if (path === "reply") SetIsBtnActive(2);
+    else if (path === "like") SetIsBtnActive(3);
+    else if (path === "edit") SetIsBtnActive(4);
+  }, []);
+
   return (
     <MyPagePart>
       <SelectPart

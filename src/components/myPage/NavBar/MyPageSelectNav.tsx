@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { btnActiveState } from "./../../states/index";
+import { btnActiveState } from "../../../states/index";
+import { useEffect } from "react";
 
 const MyPageSelectNav = () => {
   const navigate = useNavigate();
@@ -14,6 +15,14 @@ const MyPageSelectNav = () => {
     else if (event.target.value === '3') navigate(`/myPage/like`);
     else if (event.target.value === '4') navigate(`/myPage/edit`);
   };
+
+  useEffect(() => {
+    const path = window.location.pathname.split("/")[2];
+    if (path === "post") SetIsBtnActive(1);
+    else if (path === "reply") SetIsBtnActive(2);
+    else if (path === "like") SetIsBtnActive(3);
+    else if (path === "edit") SetIsBtnActive(4);
+  }, []);
 
   return (
     <SelectBox>

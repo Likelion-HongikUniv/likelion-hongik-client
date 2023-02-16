@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { profileImgState, teamState, editState } from "./../../states/index";
-import { NavSelectPart } from "../myPage/NavSelectPart";
+import { NavSelectPart } from "../myPage/NavBar/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 

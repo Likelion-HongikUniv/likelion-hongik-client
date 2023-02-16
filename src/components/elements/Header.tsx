@@ -77,7 +77,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
-            <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/edit">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/post">
               마이페이지
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">
