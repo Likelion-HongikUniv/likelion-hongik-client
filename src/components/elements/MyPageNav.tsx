@@ -5,6 +5,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { profileImgState, teamState, editState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
   const profileImg = useRecoilValue(profileImgState);
@@ -42,7 +43,7 @@ export function MyPageNav() {
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
-        <ProfileCopy src={profileImg as string} />
+        <ProfileCopy src={profileImg || emoji_lion} />
         <div style={{ width: "88px" }}>
           <Name>{info.nickname}</Name>
           <Team>{team} 팀</Team>

@@ -62,7 +62,7 @@ export function CommentsList(commentList: IComment[]) {
             replies: [],
           };
 
-          let newList = [...comments, tempObj];
+          let newList: any = [...comments, tempObj];
           setCommentsList(newList);
           commentInput.setValue("");
         }
@@ -118,7 +118,7 @@ const InputForm = styled.form<{ isPC: boolean }>`
   justify-content: center;
   align-items: center;
   padding: ${(props) => (props.isPC ? "none" : "0px")};
-  position: ${(props) => (props.isPC ? "relative" : "fixed")};
+  /* position: ${(props) => (props.isPC ? "relative" : "fixed")}; */
   /* bottom: ${(props) => (props.isPC ? "none" : "0px")}; */
   background-color: ${(props) => (props.isPC ? "none" : BLACK_1)};
 `;
