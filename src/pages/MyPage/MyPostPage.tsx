@@ -9,7 +9,7 @@ import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav"
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
-import { currPageState, profileImgState } from "../../states/index";
+import { currPageState, userState } from "../../states/index";
 // import { useQuery } from "@tanstack/react-query";
 
 interface IPost {
@@ -32,7 +32,6 @@ export function MyPostPage() {
   const userInfo = useRecoilValue(userState);
   const profileImg = userInfo.profileImageSrc;
   const token = userInfo.accessToken;
-  const [navSelect, setNavSelect] = useRecoilState(btnActiveState);
 
 
   useEffect(() => {
