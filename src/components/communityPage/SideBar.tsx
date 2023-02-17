@@ -6,12 +6,12 @@ import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
 import { profileImgState } from "../../states";
-import { editState } from "../../states/index";
+import { userState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function SideBar(categoryName: ICommunityParam) {
   const profileImg = useRecoilValue(profileImgState);
-  const info = useRecoilValue(editState);
+  const info = useRecoilValue(userState);
   const isMobile = useMediaQuery("( max-width: 767px )");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
