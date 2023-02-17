@@ -197,7 +197,6 @@ const StyledSlider = styled(Slider)`
 const Next = styled.div`
   font-size: 25px;
   position: absolute;
-  /* top: 280px; */
   z-index: 10;
   left: 780px;
   &:hover {
@@ -208,7 +207,6 @@ const Next = styled.div`
 const Prev = styled.div`
   font-size: 25px;
   position: absolute;
-  /* top: 280px; */
   z-index: 10;
   right: 780px;
   &:hover {

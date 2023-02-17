@@ -42,7 +42,11 @@ export function SearchPostList(params: any) {
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.status === 500) {
-          alert("로그인 후 이용해주세요🦁");
+          if (category === "PROJECT") {
+            alert("팀 빌딩 후 이용 가능합니다🦁");
+          } else {
+            alert("로그인 후 이용해주세요🦁");
+          }
         }
         if (err.response.status === 404) {
           alert("게시글을 찾을 수 없습니다.");

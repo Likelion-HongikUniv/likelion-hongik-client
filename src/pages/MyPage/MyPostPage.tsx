@@ -9,7 +9,8 @@ import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav"
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
-import { btnActiveState, currPageState, userState } from "../../states/index";
+import { currPageState, profileImgState } from "../../states/index";
+// import { useQuery } from "@tanstack/react-query";
 
 interface IPost {
   title: string;
@@ -33,10 +34,6 @@ export function MyPostPage() {
   const token = userInfo.accessToken;
   const [navSelect, setNavSelect] = useRecoilState(btnActiveState);
 
-  useEffect(() => {
-    setNavSelect(1); //nav 오류 방지를 위해 마이페이지 접속시에 btnActiveState 1로 초기화
-    console.log(navSelect);
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

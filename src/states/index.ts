@@ -20,6 +20,7 @@ export const userState = atom<any>({
     username: "",
     accessToken: "",
   },
+  // effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({

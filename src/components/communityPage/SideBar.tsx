@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { nowTagState, tagListState, selectModalState } from "../../states/atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { nowTagState, tagListState, pageState } from "../../states/atoms";
 import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -9,17 +9,16 @@ import { editState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 import { SelectArrowDown } from "../icons/SelectArrowDown";
 import { SelectModal } from "./SelectModal";
-import { userState } from "../../states";
+import { userState } from "../../states/index";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const [isModal, setIsModal] = useRecoilState(selectModalState);
-  const [userInfo, setUserInfo] = useRecoilState(userState);
-  const info = useRecoilValue(editState);
+  const info = useRecoilValue(userState);
   const isMobile = useMediaQuery("( max-width: 767px )");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
   const profileImg = userInfo.profileImageSrc;
+  const setPage = useSetRecoilState<number>(pageState);
   const navigate = useNavigate();
   const activeStyle = {
     fontWeight: "700",
@@ -27,6 +26,7 @@ export function SideBar(categoryName: ICommunityParam) {
   };
   const onTagClickHandler = (category: string, tag: ITag) => {
     setNowTag(tag);
+    setPage(1);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -36,6 +36,7 @@ export function SideBar(categoryName: ICommunityParam) {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
+    setPage(1);
     if (category === "BOARD") {
       setNowTag({ key: "NOTICE", text: "공지사항" });
     } else if (category === "HOMEWORK") {
@@ -52,7 +53,7 @@ export function SideBar(categoryName: ICommunityParam) {
       ) : (
         <ProfileBoard>
           <ProfileImg>
-            <img alt="profile-img" src={profileImg || emoji_lion} />
+            <img alt="profile-img" src={info.profileImageSrc || emoji_lion} />
           </ProfileImg>
           <ProfileDesc>
             <span>{info.nickname}</span>
@@ -60,7 +61,7 @@ export function SideBar(categoryName: ICommunityParam) {
           </ProfileDesc>
         </ProfileBoard>
       )}
-      {isMobile ? (
+      {isMobile || isTablet ? (
         <SelectBox onChange={onChangeHandler}>
           {tagList.map((category: ICategory) => (
             <Option value={category.key} key={category.key}>
@@ -68,11 +69,6 @@ export function SideBar(categoryName: ICommunityParam) {
             </Option>
           ))}
         </SelectBox>
-      ) : isTablet ? (
-        <Accordian onClick={() => setIsModal(true)}>
-          <div>{nowTag.text}</div>
-          <SelectArrowDown />
-        </Accordian>
       ) : (
         tagList.map((category: ICategory) => (
           <TagWrapper key={category.key}>
@@ -90,11 +86,6 @@ export function SideBar(categoryName: ICommunityParam) {
             </div>
           </TagWrapper>
         ))
-      )}
-      {isModal && (
-        <ModalWrapper>
-          <SelectModal categoryName={categoryName.categoryName} />
-        </ModalWrapper>
       )}
     </SideBarWrapper>
   );
@@ -198,29 +189,4 @@ const Option = styled.option`
   width: 75px;
   height: 41px;
   padding: 12px;
-`;
-
-const Accordian = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background: rgba(51, 51, 51, 0.6);
-  border-radius: 12px;
-  padding: 27.5px 24px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 25px;
-  letter-spacing: -0.32px;
-  color: #ed7f30;
-`;
-
-const ModalWrapper = styled.div`
-  z-index: 999;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.7);
 `;
