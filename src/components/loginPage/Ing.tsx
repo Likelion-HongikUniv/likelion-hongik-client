@@ -4,7 +4,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
 import { profileImgState } from "./../../states/index";
-import BeatLoader from "react-spinners/BeatLoader";
+// import BeatLoader from "react-spinners/BeatLoader";
+
 const Ing = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useRecoilState(userState);
@@ -14,7 +15,7 @@ const Ing = () => {
 
   const getProfile = async () => {
     await axios
-      .get(`http://ec2-13-124-126-164.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
+      .get(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/profile`, {
         // withCredentials: true,
         headers: {
           "Content-Type": `application/json`,
@@ -60,7 +61,7 @@ const Ing = () => {
         alignItems: "center",
       }}
     >
-      <BeatLoader color="#ED7F30" size={50} />
+      {/* <BeatLoader color="#ED7F30" size={50} /> */}
     </div>
   );
 };
