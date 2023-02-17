@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
-import { editState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 import { SelectArrowDown } from "../icons/SelectArrowDown";
 // import { SelectModal } from "./SelectModal";
