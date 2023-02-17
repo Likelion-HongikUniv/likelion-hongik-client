@@ -19,12 +19,11 @@ import { ITag } from "../../interfaces/category";
 export function Header() {
   useAutoLogin();
   const isPC = useMediaQuery("(min-width: 992px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<ITag>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [isMenu, setMenu] = useState(false);
-  // console.log(userInfo);
 
   const onClickMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -43,8 +42,27 @@ export function Header() {
     return (
       <>
         <Wrapper>
-          <Logo />
+          <Logo type="pc" />
           <Row style={{ position: "relative" }} gap="60px" alignItems="center" justifyContent="center">
+            <HeaderButton onClick={onClickHeaderButton} name="recruit">
+              지원하기
+            </HeaderButton>
+            <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
+              커뮤니티
+            </HeaderButton>
+            <ProfileButton />
+          </Row>
+        </Wrapper>
+      </>
+    );
+  };
+
+  const NavTablet = () => {
+    return (
+      <>
+        <Wrapper>
+          <Logo type="tablet" />
+          <Row gap="60px" alignItems="center" justifyContent="center">
             <HeaderButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderButton>
@@ -62,7 +80,7 @@ export function Header() {
     return (
       <>
         <MobileWrapper isMenu={isMenu}>
-          <LogoMobile />
+          <Logo type="mobile" />
           <Row alignItems="center">
             {!isMenu && <ProfileButton />}
             <MenuButton onClick={onClickMenu}>{isMenu ? <MenuClose /> : <Menu />}</MenuButton>
@@ -91,7 +109,7 @@ export function Header() {
     );
   };
 
-  return <div>{isPC ? <NavPC /> : <NavMobile />}</div>;
+  return <>{isPC ? <NavPC /> : isTablet ? <NavTablet /> : <NavMobile />}</>;
 }
 
 const Wrapper = styled.div`
@@ -100,20 +118,39 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 340px;
+  padding: 0px 21.25em;
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};
-  @media (max-width: 391px) {
-    width: 390px;
+  /* background-color: aqua; */
+  /* @media (min-width: 391px) {
+    width: 100%;
     justify-content: left;
     align-items: baseline;
+  } */
+  @media (min-width: 768px) {
+    width: 100%;
+    padding: 0px 40px;
+    height: 60px !important;
+    justify-content: space-between;
+  }
+  @media (min-width: 992px) {
+    width: 100%;
+    padding: 0px 340px;
+    height: 90px !important;
+    justify-content: space-between;
   }
 `;
 
 const HeaderButton = styled.button`
-  font-size: 1.25rem;
-  color: white;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    color: white;
+  }
+  @media (min-width: 992px) {
+    font-size: 20px;
+    color: white;
+  }
 `;
 
 const MobileWrapper = styled.div<{ isMenu: boolean }>`

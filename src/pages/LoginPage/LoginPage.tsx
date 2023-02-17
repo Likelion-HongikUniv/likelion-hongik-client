@@ -11,7 +11,7 @@ export function LoginPage() {
       <Container>
         <SocialLogin />
       </Container>
-      <Footer style={{ marginTop: "333px" }} />
+      <Footer style={{ position: "absolute" }} />
     </>
   );
 }

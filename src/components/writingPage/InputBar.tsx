@@ -2,10 +2,12 @@ import styled, { CSSProperties } from "styled-components";
 
 interface InputBarProps {
   style?: CSSProperties;
+  value?: string;
+  setValue?: Function;
 }
 
-export function InputBar({ style }: InputBarProps) {
-  return <Wrapper placeholder="제목을 입력하시오." style={style} />;
+export function InputBar(props: InputBarProps) {
+  return <Wrapper placeholder="제목을 입력하시오." style={props.style} {...props} />;
 }
 
 const Wrapper = styled.input`

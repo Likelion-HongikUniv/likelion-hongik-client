@@ -36,8 +36,8 @@ export function CommunityPage() {
             <PageMove />
           </Container>
         </Wrapper>
+        <Footer style={{ position: "absolute" }} />
       </Section>
-      <Footer />
     </>
   );
 }

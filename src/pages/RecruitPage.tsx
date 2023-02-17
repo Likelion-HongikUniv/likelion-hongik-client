@@ -40,8 +40,8 @@ export function RecruitPage() {
         </Section>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
-          <Footer style={{ marginTop: "70px" }} />
         </div>
+        <Footer />
       </Section>
     </>
   );
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
     background-image: url(${main_recruiting_mobile});
     background-size: cover;
   }
-  @media all and (min-width: 768px and max-width: 1200px) {
+  @media all and (min-width: 768px) and (max-width: 1200px) {
     background-image: url(${main_recruiting_tablet});
     background-size: cover;
   }

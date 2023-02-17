@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { profileImgState, teamState, editState } from "./../../states/index";
+import { profileImgState, teamState, editState, userState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavBar/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
-  const profileImg = useRecoilValue(profileImgState);
+  const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
   const team = useRecoilValue(teamState);
 
@@ -44,10 +44,10 @@ export function MyPageNav() {
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
-        <ProfileCopy src={profileImg || emoji_lion} />
+        <ProfileCopy src={userInfo.profileImageSrc || emoji_lion} />
         <div style={{ width: "88px" }}>
-          <Name>{info.nickname}</Name>
-          <Team>{team} 팀</Team>
+          <Name>{userInfo.nickname}</Name>
+          <Team>{userInfo.team ? `${userInfo.team}팀` : "건빵팀"}</Team>
         </div>
       </div>
       <NavSelectPart />

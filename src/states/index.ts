@@ -6,10 +6,19 @@ import { UploadImage } from "../components/myPage/FileUploader";
 
 const { persistAtom } = recoilPersist();
 
-export const userState = atom<string>({
+export const userState = atom<any>({
   key: "userState",
-  default: "",
-  effects_UNSTABLE: [persistAtom],
+  default: {
+    major: "",
+    nickname: "",
+    part: "",
+    profileImageSrc: "",
+    role: "",
+    studentId: "",
+    team: null,
+    userId: 0,
+    username: "",
+  },
 });
 
 export const btnActiveState = atom<number>({
@@ -63,6 +72,16 @@ export const isLoggedInState = atom<boolean>({
 export const isCancelButtonClickedState = atom<boolean>({
   key: " isCancelButtonClickedState",
   default: false,
+});
+
+export const isThumbnailSetButtonClickedState = atom<boolean>({
+  key: "isThumbnailSetButtonClickedState",
+  default: false,
+});
+
+export const postThumbnailUrlState = atom<string>({
+  key: "postThumbnailUrlState",
+  default: "",
 });
 
 export const currPageState = atom<number>({
