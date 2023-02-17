@@ -116,6 +116,7 @@ const SideBarWrapper = styled.div`
 `;
 
 const ProfileBoard = styled.div`
+  align-self: flex-start;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

@@ -11,7 +11,14 @@ import { TopBoard } from "../components/communityPage/TopBoard";
 import { ProjectInfo } from "../components/communityPage/ProjectInfo";
 import Footer from "../components/elements/Footer";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
-import { nowTagState, postsListState, pageState, paginationState, selectModalState } from "../states/atoms";
+import {
+  nowTagState,
+  postsListState,
+  pageState,
+  paginationState,
+  selectModalState,
+  searchState,
+} from "../states/atoms";
 import { IPost, IPagination } from "../interfaces/post";
 import useMediaQuery from "../hooks/useMediaQuery";
 import axios from "axios";
@@ -29,13 +36,15 @@ export function CommunityPage() {
   const isModal = useRecoilValue<boolean>(selectModalState);
 
   function GetPostList(category: string, tag: string, page: number) {
+    const params = { page: page };
     const token = localStorage.getItem("token");
     axios
-      .get(`${baseURL}/community/posts/${category}/${tag}/?page=${page}`, {
+      .get(`${baseURL}/community/posts/${category}/${tag}/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
         },
+        params,
       })
       .then((response) => {
         if (response.status === 200) {
@@ -54,7 +63,7 @@ export function CommunityPage() {
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+          alert("로그인 후 이용해주세요🦁");
         }
         if (err.response.status === 404) {
           alert("게시글을 찾을 수 없습니다.");

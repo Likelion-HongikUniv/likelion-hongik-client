@@ -314,3 +314,8 @@ export const selectModalState = atom<boolean>({
   key: "selectModalState",
   default: false,
 });
+
+export const searchState = atom<string>({
+  key: "searchState",
+  default: "",
+});

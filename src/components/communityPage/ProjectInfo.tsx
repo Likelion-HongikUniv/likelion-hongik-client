@@ -28,7 +28,7 @@ export function ProjectInfo() {
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+          alert("팀 빌딩 후 이용 가능합니다🦁");
         }
         if (err.response.status === 404) {
           alert("게시글을 찾을 수 없습니다.");

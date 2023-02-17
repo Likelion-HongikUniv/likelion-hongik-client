@@ -10,7 +10,7 @@ export function TopBoard(categoryName: ICommunityParam) {
 
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchBar categoryName={categoryName.categoryName} />
       <Table>
         <div>
           <span style={{ color: "#ED7F30" }}>•</span>
