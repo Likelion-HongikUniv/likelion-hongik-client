@@ -48,10 +48,9 @@ export function CommentsList(commentList: IComment[]) {
           const tempObj = {
             commentId: comments.length + 1,
             author: {
-              authorId: userInfo.userId,
-              // nickname과 이미지 모두 가져온 유저 state 기반으로 수정해야함
-              nickname: localStorage.getItem("username"),
-              profileImage: userInfo.profileImageSrc,
+              // authorId: userState.userId,
+              // profileImage: userState.nickname,
+              // profileImage: userState.profileImageSrc,
               isAuthor: true,
             },
             body: commentInput.value,
@@ -72,7 +71,7 @@ export function CommentsList(commentList: IComment[]) {
           alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
         }
         if (err.response.status === 404) {
-          alert("삭제 대상을 찾을 수 없습니다.");
+          alert("대상을 찾을 수 없습니다.");
         }
         window.location.reload();
         throw err;
@@ -100,6 +99,7 @@ export function CommentsList(commentList: IComment[]) {
               return <Comments key={id} {...value} />;
             })}
           </Column>
+          {isPC ? null : <div style={{ height: "80px" }}></div>}
           <InputForm onSubmit={onClickSubmit} isPC={isPC}>
             <InputContainer type="commentInput" placeholder="답변을 남겨보세요!" {...commentInput} />
             <InputButton type="submit">작성</InputButton>
@@ -117,10 +117,13 @@ const InputForm = styled.form<{ isPC: boolean }>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${(props) => (props.isPC ? "none" : "0px")};
-  /* position: ${(props) => (props.isPC ? "relative" : "fixed")}; */
-  /* bottom: ${(props) => (props.isPC ? "none" : "0px")}; */
+  position: ${(props) => (props.isPC ? "relative" : "fixed")};
+  padding: ${(props) => (props.isPC ? "none" : "0 20px")};
+  bottom: ${(props) => (props.isPC ? "none" : "0px")};
+  left: ${(props) => (props.isPC ? "none" : "0px")};
+  z-index: 10;
   background-color: ${(props) => (props.isPC ? "none" : BLACK_1)};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const InputContainer = styled.input`

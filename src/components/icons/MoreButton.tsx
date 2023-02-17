@@ -1,17 +1,20 @@
 import styled from "styled-components";
-import { BLACK_1 } from "../../styles/theme";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { boardState } from "../../states/atoms";
+import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import axios from "axios";
 
 interface MoreButtonProps {
-  cid: number;
+  id: number;
   isBoard: boolean;
   isComment: boolean;
 }
 
-export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
+export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
+  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const accessToken = localStorage.getItem("token");
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);
@@ -23,33 +26,21 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
     setMore(!isMore);
   };
 
-  // const onClickPatch = () => {
-  //   axios
-  //     .patch(
-  //       `http://13.125.72.138:8080/community/comment/${cid}/like`,
-  //       { body: null }, // body null이라도 있어야 이 문법에서 돌아감
-  //       {
-  //         headers: {
-  //           "Content-Type": `application/json`,
-  //           JWT: `${accessToken}`,
-  //         },
-  //       },
-  //     )
-  //     .catch((err) => {
-  //       throw err;
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //     });
-  // };
+  const onClickEdit = () => {
+    navigate(`community/post/edit/${id}`, { state: board.body });
+    // useLocation으로 edit에 전달한 body를 받으려함
+    // const { state } = useLocation();
+    // console.log(state);
+    // ( state !== undefined) ? initialValue = board.body : null;
+  };
 
   const onClickDelete = () => {
     if (isBoard) {
-      targetURL = `http://13.125.72.138:8080/community/post/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/post/${id}`;
     } else if (isComment) {
-      targetURL = `http://13.125.72.138:8080/community/comment/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/comment/${id}`;
     } else {
-      targetURL = `http://13.125.72.138:8080/community/reply/${cid}`;
+      targetURL = `http://13.125.72.138:8080/community/reply/${id}`;
     }
     axios
       .delete(targetURL, {
@@ -105,6 +96,7 @@ export function MoreButton({ cid, isBoard, isComment }: MoreButtonProps) {
       </button>
       {isMore ? (
         <MoreSection>
+          {isBoard ? <EditButton onClick={onClickEdit}>수정하기</EditButton> : null}
           <EditButton onClick={onClickDelete}>삭제하기</EditButton>
         </MoreSection>
       ) : null}
