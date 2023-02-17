@@ -10,7 +10,6 @@ import { userState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function SideBar(categoryName: ICommunityParam) {
-  const profileImg = useRecoilValue(profileImgState);
   const info = useRecoilValue(userState);
   const isMobile = useMediaQuery("( max-width: 767px )");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
@@ -51,7 +50,7 @@ export function SideBar(categoryName: ICommunityParam) {
       ) : (
         <ProfileBoard>
           <ProfileImg>
-            <img alt="profile-img" src={profileImg || emoji_lion} />
+            <img alt="profile-img" src={info.profileImageSrc || emoji_lion} />
           </ProfileImg>
           <ProfileDesc>
             <span>{info.nickname}</span>
