@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = '우리 api 주소';
+const baseURL = "http://13.125.72.138:8080";
 
 const client = axios.create({
   baseURL,
-  // withCredentials: true, -- 필요하면
+  // withCredentials: true,
 });
 
 export default client;

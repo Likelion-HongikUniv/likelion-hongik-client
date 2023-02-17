@@ -1,0 +1,167 @@
+{
+  "postId": 17,
+  "author": {
+    "authorId": 1,
+    "nickname": "김스르으응ㄹ기",
+    "profileImage": null,
+    "isAuthor": true
+  },
+  "title": "게시문 5번쨰",
+  "body": "게시물 5번쨰",
+  "createdTime": "2023-01-17T04:14:10.997966",
+  "isLiked": true,
+  "likeCount": 1,
+  "comments": [
+    {
+      "commentId": 23,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "댓글 1번쨰",
+      "isDeleted": false,
+      "createdTime": "2023-01-17T17:32:54.597232",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 24,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "댓글 2번쨰",
+      "isDeleted": false,
+      "createdTime": "2023-01-17T17:40:41.041311",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": [
+        {
+          "replyId": 25,
+          "author": {
+            "authorId": 1,
+            "nickname": "김스르으응ㄹ기",
+            "profileImage": null,
+            "isAuthor": true
+          },
+          "body": "대댓글 1번쨰",
+          "createdTime": "2023-01-17T17:41:04.001386",
+          "isLiked": false,
+          "likeCount": 0,
+          "deleted": false
+        }
+      ]
+    },
+    {
+      "commentId": 26,
+      "author": {
+        "authorId": 1,
+        "nickname": "김스르으응ㄹ기",
+        "profileImage": null,
+        "isAuthor": true
+      },
+      "body": "대댓글 1번쨰",
+      "isDeleted": true,
+      "createdTime": "2023-01-17T17:41:23.343214",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 27,
+      "author": {
+        "authorId": 2,
+        "nickname": "꽃게",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "으쌰으쌰",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 28,
+      "author": {
+        "authorId": 2,
+        "nickname": "꽃게",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "구글폼 미쳤다",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 29,
+      "author": {
+        "authorId": 3,
+        "nickname": "지직직직지지직",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "싸늘하다.. 가슴에 비수가 날아와 꽂힌다",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 30,
+      "author": {
+        "authorId": 3,
+        "nickname": "지직직직지지직",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "아귀한텐 밑에서 한텐 밑에서 한장",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 32,
+      "author": {
+        "authorId": 3,
+        "nickname": "지직직직지지직",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "동작 그만 밑장빼기냐?",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    },
+    {
+      "commentId": 34,
+      "author": {
+        "authorId": 4,
+        "nickname": "꽃게",
+        "profileImage": "1",
+        "isAuthor": false
+      },
+      "body": "사쿠라네? 사쿠라야?",
+      "isDeleted": false,
+      "createdTime": "2023-01-18T00:00:00",
+      "isLiked": null,
+      "likeCount": 0,
+      "replies": []
+    }
+  ],
+  "imageUrls": []
+}
