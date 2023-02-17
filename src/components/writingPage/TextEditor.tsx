@@ -53,7 +53,6 @@ export function TextEditor({ category, title }: EditorProps) {
     console.log(editorContent);
     console.log(title);
 
-    //TODO 여기 api 이상함
     if (token && title && editorContent) {
       await axios
         .post(
@@ -62,6 +61,8 @@ export function TextEditor({ category, title }: EditorProps) {
           { headers: { JWT: token } },
         )
         .then((res) => {
+          console.log(res);
+
           navigate(`/community/post/${res.data.id}`);
         });
       // const res = await postPost(token, {
