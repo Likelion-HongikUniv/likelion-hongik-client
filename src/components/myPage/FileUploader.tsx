@@ -5,6 +5,7 @@ import { profileImgState, userState } from "./../../states/index";
 import axios from "axios";
 import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
+import { editProfileImage } from "../../api/edit";
 
 export interface UploadImage {
   file: File;
@@ -40,9 +41,12 @@ export function FileUploader() {
           file: file,
         });
         if (statusCode === 200) {
-          // setProfileImg(slicedUrl);
           setUserInfo({ ...userInfo, profileImageSrc: slicedUrl });
-          console.log(userInfo.profileImageSrc);
+          editProfileImage({
+            token: token,
+            slicedUrl: slicedUrl,
+          });
+
           return;
         }
       }
@@ -51,7 +55,7 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg || emoji_lion} onClick={handleClickFileInput} />
+      <ProfileThumbnail src={userInfo.profileImageSrc || emoji_lion} onClick={handleClickFileInput} />
       <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>

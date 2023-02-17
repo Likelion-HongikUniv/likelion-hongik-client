@@ -19,6 +19,7 @@ export const userState = atom<any>({
     userId: 0,
     username: "",
   },
+  // effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({
