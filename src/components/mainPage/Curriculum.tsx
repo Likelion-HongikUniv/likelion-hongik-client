@@ -43,13 +43,13 @@ const Curriculum = () => {
         <PartBtn id="1" onClick={handleClickButton}>
           <PartName id="1">기획·디자인</PartName>
           <PartText id="1">
-            고객 중심 사고를 바탕으로 서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
+            고객 중심 사고를 바탕으로<br />서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
           </PartText>
         </PartBtn>
         <PartBtn id="2" onClick={handleClickButton}>
           <PartName id="2">프론트엔드</PartName>
           <PartText id="2">
-            API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자 인터페이스에 대한 작업을 수행합니다.
+            모바일 앱과 웹 서비스 개발을 위한 이론을 배우고 실습합니다. 안드로이드/iOS/웹 파트로 나뉩니다.
           </PartText>
         </PartBtn>
         <PartBtn id="3" onClick={handleClickButton}>
@@ -108,7 +108,7 @@ const PartText = styled.p`
   margin-right: 40px;
   word-break: keep-all;
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 23px;
     margin-left: 20px;
     margin-top: 0px;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
 
@@ -50,7 +50,7 @@ const Button = styled.button<any>`
   border: 1px solid #ffffff;
   border-radius: 4px;
   color: #ffffff;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 28px;
     height: 28px;
   }
