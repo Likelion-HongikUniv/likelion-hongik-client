@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "../states";
 
 export default function useAutoLogin() {
+  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const pathname = window.location.href;

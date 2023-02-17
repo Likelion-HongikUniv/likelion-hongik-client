@@ -20,6 +20,7 @@ export function MyPageNav() {
     const token = localStorage.getItem("token");
     await axios
       .get(`http://13.125.72.138:8080/mypage`, {
+        // .get(`http://localhost:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -69,10 +70,10 @@ const LeftNav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    overflow: hidden;
-    width: max-content;
-    padding-left: 40px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* overflow: hidden;
+    width: max-content; */
+    display: none;
   }
 `;
 

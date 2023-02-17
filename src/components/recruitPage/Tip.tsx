@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
 import { BLACK_1 } from "./../../styles/theme";
+import { useState } from "react";
 
 export function Tip() {
+  const [regDate, setRegDate] = useState(false);
+
+  const gotoReg = () => {
+    if (regDate === false) {
+      alert("지원 기간이 아닙니다!");
+    } else {
+      window.open("https://forms.gle/KE1tRsetSke2u9za7");
+    }
+  };
+
   return (
     <ForDiv>
       <div>
@@ -31,7 +42,7 @@ export function Tip() {
           </Tips>
         </TipGrid>
         <div style={{ textAlign: "center" }}>
-          <RegBtn>지원 바로가기</RegBtn>
+          <RegBtn onClick={gotoReg}>지원 바로가기</RegBtn>
         </div>
       </div>
     </ForDiv>
