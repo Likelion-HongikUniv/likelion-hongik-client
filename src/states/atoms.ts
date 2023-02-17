@@ -2,9 +2,10 @@
 
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { IBoard, IComment } from "../interfaces/comments";
-import { ICategory } from "../interfaces/category";
+import { ICategory, ITag } from "../interfaces/category";
 import { IPost } from "../interfaces/post";
 import { IPagination } from "../interfaces/post";
+import { IProjectTeam } from "../interfaces/team";
 
 export const commentsListState = atom<IComment[]>({
   key: "commentsState",
@@ -20,7 +21,7 @@ export const commentsListState = atom<IComment[]>({
       body: "댓글 1번쨰",
       isDeleted: false,
       createdTime: "2023-01-17T17:32:54.597232",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -35,11 +36,10 @@ export const commentsListState = atom<IComment[]>({
       body: "댓글 2번쨰",
       isDeleted: false,
       createdTime: "2023-01-17T17:40:41.041311",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [
         {
-          commentId: 24,
           replyId: 25,
           author: {
             authorId: 1,
@@ -66,7 +66,7 @@ export const commentsListState = atom<IComment[]>({
       body: "대댓글 1번쨰",
       isDeleted: true,
       createdTime: "2023-01-17T17:41:23.343214",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -81,7 +81,7 @@ export const commentsListState = atom<IComment[]>({
       body: "으쌰으쌰",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -96,7 +96,7 @@ export const commentsListState = atom<IComment[]>({
       body: "구글폼 미쳤다",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -111,7 +111,7 @@ export const commentsListState = atom<IComment[]>({
       body: "싸늘하다.. 가슴에 비수가 날아와 꽂힌다",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -126,7 +126,7 @@ export const commentsListState = atom<IComment[]>({
       body: "아귀한텐 밑에서 한텐 밑에서 한장",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -141,7 +141,7 @@ export const commentsListState = atom<IComment[]>({
       body: "동작 그만 밑장빼기냐?",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -156,7 +156,7 @@ export const commentsListState = atom<IComment[]>({
       body: "사쿠라네? 사쿠라야?",
       isDeleted: false,
       createdTime: "2023-01-18T00:00:00",
-      isLiked: null,
+      isLiked: false,
       likeCount: 0,
       replies: [],
     },
@@ -169,8 +169,8 @@ export const boardState = atom<IBoard>({
     postId: 1,
     author: {
       authorId: 1,
-      nickname: null,
-      profileImage: null,
+      nickname: "",
+      profileImage: "",
       isAuthor: true,
     },
     title: "",
@@ -252,9 +252,9 @@ export const tagListState = atom<ICategory[]>({
   ],
 });
 
-export const nowTagState = atom<string>({
+export const nowTagState = atom<ITag>({
   key: "nowTagState",
-  default: "NOTICE",
+  default: { key: "NOTICE", text: "공지사항" },
 });
 
 export const tagListSelector = selectorFamily({
@@ -292,4 +292,30 @@ export const pageState = atom<number>({
 export const curPageIndexState = atom<number>({
   key: "curPageIndexState",
   default: 0,
+});
+
+export const projectTeamState = atom<IProjectTeam>({
+  key: "projectTeamState",
+  default: {
+    teamId: 2,
+    teamName: "낙타",
+    memberCount: 5,
+    members: [
+      {
+        userId: 39,
+        userName: "이지민",
+        profileImage: "https://lh3.googleusercontent.com/a/AEdFTp69-b0CJAMsVpp7Qy3awOPqG8gvK2xT6ysPZaKVXw=s96-c",
+      },
+    ],
+  },
+});
+
+export const selectModalState = atom<boolean>({
+  key: "selectModalState",
+  default: false,
+});
+
+export const searchState = atom<string>({
+  key: "searchState",
+  default: "",
 });

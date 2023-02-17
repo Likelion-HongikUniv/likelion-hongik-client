@@ -2,8 +2,7 @@ import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 
 interface TabBarProps {
-  // clickedCategory?: string;
-  // isClicked?: boolean;
+  type?: "BOARD" | "HOMEWORK" | "PROJECT";
   clickedCategory: string;
   setClickedCategory: Function;
   style?: CSSProperties;
@@ -13,21 +12,23 @@ interface ButtonProps {
   isClicked?: boolean;
 }
 
-export function TabBar({ clickedCategory, setClickedCategory, style }: TabBarProps) {
+export function TabBar({ type, clickedCategory, setClickedCategory, style }: TabBarProps) {
   // const [clickedCategory, setClickedCategory] = useState("");
+  // const subCategory = ['NOTICE', 'QNA', 'FREEBOARD']
   const onClick = (e: any) => {
     const category = e.target.name;
     setClickedCategory(category);
   };
+
   return (
     <Wrapper style={style}>
-      <CategoryButton onClick={onClick} isClicked={clickedCategory === "공지사항"} name="공지사항">
+      <CategoryButton onClick={onClick} isClicked={clickedCategory === "NOTICE"} name="NOTICE">
         공지사항
       </CategoryButton>
-      <CategoryButton onClick={onClick} isClicked={clickedCategory === "Q&A"} name="Q&A">
+      <CategoryButton onClick={onClick} isClicked={clickedCategory === "QNA"} name="QNA">
         Q&A
       </CategoryButton>
-      <CategoryButton onClick={onClick} isClicked={clickedCategory === "자유게시판"} name="자유게시판">
+      <CategoryButton onClick={onClick} isClicked={clickedCategory === "FREEBOARD"} name="FREEBOARD">
         자유게시판
       </CategoryButton>
     </Wrapper>

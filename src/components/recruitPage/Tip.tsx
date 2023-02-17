@@ -1,13 +1,24 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
 import { BLACK_1 } from "./../../styles/theme";
+import { useState } from "react";
 
 export function Tip() {
+  const [regDate, setRegDate] = useState(false);
+
+  const gotoReg = () => {
+    if (regDate === false) {
+      alert("지원 기간이 아닙니다!");
+    } else {
+      window.open("https://forms.gle/KE1tRsetSke2u9za7");
+    }
+  };
+
   return (
     <ForDiv>
       <div>
         <TitleText>서류·면접 합격 꿀팁!</TitleText>
-        <DetailText>멋쟁이 사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
+        <DetailText>멋쟁이사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
         <TipGrid>
           <Tips>
             2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
@@ -31,7 +42,7 @@ export function Tip() {
           </Tips>
         </TipGrid>
         <div style={{ textAlign: "center" }}>
-          <RegBtn>지원 바로가기</RegBtn>
+          <RegBtn onClick={gotoReg}>지원 바로가기</RegBtn>
         </div>
       </div>
     </ForDiv>

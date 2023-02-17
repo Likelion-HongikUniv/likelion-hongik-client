@@ -29,56 +29,60 @@ export function Input({ cid, username }: InputProps) {
     const curTarget = parentComment[0];
     const targetIdx = commentsList.indexOf(curTarget);
 
-    console.log(parentComment, parentReplies, curTarget, targetIdx);
-
     let body = {
       body: commentInput.value,
     };
 
-    // axios
-    //   .post(
-    //     `http://13.124.126.164:8080/community/comment/${curTarget.commentId}`,
-    //     JSON.stringify(body),
-    //     // { withCredentials: true },
-    //     {
-    //       headers: {
-    //         "Content-Type": `application/json`,
-    //         JWT: `${accessToken}`,
-    //       },
-    //     },
-    //   )
-    //   .catch((err) => {
-    //     throw err;
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-
-    //     const tempObj = {
-    //       replyId: curTarget.commentId + 1,
-    //       author: {
-    //         authorId: userInfo.userId,
-    //         nickname: userInfo.username,
-    //         profileImage: userInfo.profileImageSrc,
-    //         isAuthor: false,
-    //       },
-    //       body: commentInput.value,
-    //       createdTime: formatTime,
-    //       likeCount: 0,
-    //     };
-    //     if (parentReplies) {
-    //       parentReplies = [...parentReplies, tempObj];
-    //     } else {
-    //       parentReplies = [tempObj];
-    //     }
-
-    //     let newComment = { ...curTarget, replies: parentReplies };
-    //     let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
-
-    //     setCommentsList(() => {
-    //       return newList;
-    //     });
-    //   });
-    // commentInput.setValue("");
+    axios
+      .post(
+        `http://13.125.72.138:8080/community/comment/${curTarget.commentId}`,
+        JSON.stringify(body),
+        // { withCredentials: true },
+        {
+          headers: {
+            "Content-Type": `application/json`,
+            JWT: `${accessToken}`,
+          },
+        },
+      )
+      .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 500) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (err.response.status === 404) {
+          alert("대상을 찾을 수 없습니다.");
+        }
+        window.location.reload();
+        throw err;
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          const tempObj = {
+            replyId: curTarget.commentId + 1,
+            author: {
+              authorId: userInfo.userId,
+              // nickname과 이미지 모두 가져온 유저 state 기반으로 수정해야함
+              nickname: userInfo.username,
+              profileImage: userInfo.profileImageSrc,
+              isAuthor: true,
+            },
+            body: commentInput.value,
+            createdTime: formatTime,
+            likeCount: 0,
+          };
+          if (parentReplies) {
+            parentReplies = [...parentReplies, tempObj];
+          } else {
+            parentReplies = [tempObj];
+          }
+          let newComment = { ...curTarget, replies: parentReplies };
+          let newList = [...commentsList.slice(0, targetIdx), newComment, ...commentsList.slice(targetIdx + 1)];
+          setCommentsList(() => {
+            return newList;
+          });
+        }
+      });
+    commentInput.setValue("");
   };
 
   return (

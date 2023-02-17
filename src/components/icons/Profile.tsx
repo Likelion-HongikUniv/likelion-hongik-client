@@ -1,25 +1,21 @@
-import { userInfoState } from "../../states/user";
-import { useRecoilValue } from "recoil";
-export function Profile() {
-  const userImg = useRecoilValue(userInfoState);
+import styled from "styled-components";
 
-  return (
-    <>
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 30 30"
-        fill="none"
-        xmlns={userImg.profileImageSrc}
-        // xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <circle cx="15" cy="15" r="15" fill="#FEFEFE" />
-        <path opacity="0.98" d="M4 26H26V4H4V26Z" fill="url(#pattern0)" />
-        <defs>
-          <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1"></pattern>
-          <image id="image0_279_779" width="160" height="160"></image>
-        </defs>
-      </svg>
-    </>
-  );
+interface ProfileProps {
+  profile: string;
 }
+
+export function Profile({ profile }: ProfileProps) {
+  const userImg = JSON.stringify(profile);
+  return <Wrapper profile={userImg} />;
+}
+
+const Wrapper = styled.div<{ profile: string }>`
+  background-color: white;
+  background-image: ${(props) => `url(${props.profile})`};
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+`;

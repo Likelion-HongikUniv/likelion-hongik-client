@@ -1,19 +1,30 @@
 import styled from "styled-components";
 import { WHITE_1, BLACK_1 } from "../../styles/theme";
+import { useState } from "react";
 
 export function RecruitInfo() {
+  const [regDate, setRegDate] = useState(false);
+
+  const gotoReg = () => {
+    if (regDate === false) {
+      alert("지원 기간이 아닙니다!");
+    } else {
+      window.open("https://forms.gle/KE1tRsetSke2u9za7");
+    }
+  };
+
   return (
     <BasicInfo>
       <Diving>
         <Now>NOW</Now>
-        <BigText>멋쟁이 사자처럼 11기</BigText>
-        <SmallText>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</SmallText>
+        <BigText>멋쟁이사자처럼 11기</BigText>
+        <SmallText>멋쟁이사자처럼 지원에 관련된 것들을 소개합니다.</SmallText>
         <ForDiv />
-        <BasicText>지원 기간 : 2022.02.23 ~ 2022.03.13</BasicText>
-        <BasicText>모집 인원 : 기획·디자인 n명 / 프론트엔드 n명 / 백엔드 n명</BasicText>
+        <BasicText>지원 기간: 2023.02.20 ~ 2023.03.10</BasicText>
+        <BasicText>모집 인원: 총 30명 내외 선발 예정</BasicText>
       </Diving>
       <Divs>
-        <RegBtn>지원 폼 작성하기</RegBtn>
+        <RegBtn onClick={gotoReg}>지원 폼 작성하기</RegBtn>
       </Divs>
     </BasicInfo>
   );

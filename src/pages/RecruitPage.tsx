@@ -2,7 +2,9 @@ import { Header } from "./../components/elements/Header";
 import styled from "styled-components";
 import { BLACK_1 } from "./../styles/theme";
 import { WHITE_1 } from "./../styles/theme";
-import recruitBackImg from "./../components/images/recruitBackImg.svg";
+import main_recruiting from "./../components/images/main_recruiting.png";
+import main_recruiting_mobile from "./../components/images/main_recruiting_mobile.png";
+import main_recruiting_tablet from "./../components/images/main_recruiting_tablet.png";
 import Footer from "../components/elements/Footer";
 import { RecruitInfo } from "../components/recruitPage/RecruitInfo";
 import { Curriculum } from "../components/recruitPage/Curriculum";
@@ -17,10 +19,10 @@ export function RecruitPage() {
   return (
     <>
       <Header />
-      <Section style={{overflow:"hidden"}}>
+      <Section style={{ overflow: "hidden" }}>
         <Column justifyContent="center" alignItems="center">
           <Section style={{ paddingTop: "0" }}>
-            <Wrapper style={{ backgroundImage: `url(${recruitBackImg})` }}>
+            <Wrapper style={{}}>
               <RecruitInfo />
             </Wrapper>
           </Section>
@@ -38,8 +40,8 @@ export function RecruitPage() {
         </Section>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
-          <Footer style={{ marginTop: "70px" }} />
         </div>
+        <Footer />
       </Section>
     </>
   );
@@ -55,12 +57,25 @@ const Wrapper = styled.div`
   color: ${WHITE_1};
   display: flex;
   justify-content: center;
+  background-image: url(${main_recruiting});
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: overlay;
+  background-size: cover;
+  @media all and (max-width: 768px) {
+    background-image: url(${main_recruiting_mobile});
+    background-size: cover;
+  }
+  @media all and (min-width: 768px) and (max-width: 1200px) {
+    background-image: url(${main_recruiting_tablet});
+    background-size: cover;
+  }
 `;
 
 const Wrappers = styled.div`
   width: 100vw;
   height: 100%;
   background-color: ${BLACK_1};
+  background-size: cover;
   z-index: 1;
   color: ${WHITE_1};
   display: flex;

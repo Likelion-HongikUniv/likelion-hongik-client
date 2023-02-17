@@ -4,69 +4,48 @@ import { Column } from "../elements/Wrapper";
 import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { IComment } from "../../interfaces/comments";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../states/user";
+import { userState } from "../../states/index";
 import { commentsListState } from "../../states/atoms";
 import moment from "moment";
 import useInput from "../../hooks/useInput";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { postComment } from "../../api/postComment";
 
 export function CommentsList(commentList: IComment[]) {
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrollActive, setScrollActive] = useState(false);
-
-  const [commentsList, setCommentsList] = useRecoilState(commentsListState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-
+  const { data, isLoading, mutate, mutateAsync } = useMutation(postComment);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const comments = Object.values(commentList).map((comments: IComment) => comments);
-  const accessToken = localStorage.getItem("token");
   const commentInput = useInput("");
-  const isPC = useMediaQuery("(min-width: 992px)");
+  const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id?: string }>();
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     let curTime = new Date().toString();
     let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
-
-    let body = {
+    const props = {
+      commentId: comments.length + 1,
+      author: {
+        authorId: userInfo.userId,
+        nickname: userInfo.nickname,
+        profileImage: userInfo.profileImageSrc,
+        isAuthor: true,
+      },
       body: commentInput.value,
+      isDeleted: false,
+      isLiked: false,
+      createdTime: formatTime,
+      likeCount: 0,
+      replies: [],
     };
-
-    axios
-      .post(
-        `http://13.124.126.164:8080/community/post/${id}`,
-        JSON.stringify(body),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${accessToken}`,
-          },
-        },
-      )
-      .then((response) => {
-        console.log(response);
-
-        const tempObj = {
-          commentId: comments.length + 1,
-          author: {
-            authorId: userInfo.userId,
-            nickname: userInfo.username,
-            profileImage: userInfo.profileImageSrc,
-            isAuthor: false,
-          },
-          body: commentInput.value,
-          createdTime: formatTime,
-          likeCount: 0,
-        };
-
-        let newList = [...comments, tempObj];
-        setCommentsList(newList);
-        commentInput.setValue("");
-      });
+    let pid = Number(id);
+    if (!isLoading) {
+      mutate({ pid, props });
+      commentInput.value = "";
+    }
   };
 
   return (
@@ -85,11 +64,12 @@ export function CommentsList(commentList: IComment[]) {
         </Column>
       ) : (
         <Column>
-          <Column style={{ overflowY: "scroll" }} gap="20px">
+          <Column gap="20px">
             {comments.map((value, id) => {
               return <Comments key={id} {...value} />;
             })}
           </Column>
+          {isPC ? null : <div style={{ height: "80px" }}></div>}
           <InputForm onSubmit={onClickSubmit} isPC={isPC}>
             <InputContainer type="commentInput" placeholder="답변을 남겨보세요!" {...commentInput} />
             <InputButton type="submit">작성</InputButton>
@@ -107,10 +87,13 @@ const InputForm = styled.form<{ isPC: boolean }>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${(props) => (props.isPC ? "none" : "0px")};
-  /* position: ${(props) => (props.isPC ? "relative" : "fixed")}; */
-  /* bottom: ${(props) => (props.isPC ? "none" : "0px")}; */
+  position: ${(props) => (props.isPC ? "relative" : "fixed")};
+  padding: ${(props) => (props.isPC ? "none" : "0 20px")};
+  bottom: ${(props) => (props.isPC ? "none" : "0px")};
+  left: ${(props) => (props.isPC ? "none" : "0px")};
+  z-index: 10;
   background-color: ${(props) => (props.isPC ? "none" : BLACK_1)};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const InputContainer = styled.input`

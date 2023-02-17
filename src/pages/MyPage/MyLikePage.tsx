@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Header } from "../../components/elements/Header";
-import { PostItem } from "../../components/myPostPage/PostItem";
+import { PostItem } from "../../components/myPage/myPostPage/PostItem";
 import { Section } from "../../components/elements/Wrapper";
 import { MyPageNav } from "../../components/elements/MyPageNav";
 import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MyPageMobileNav } from "../../components/elements/MyPageMobileNav";
+import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
+import * as S from "../../styles/myPages/myPageStyle";
 
 interface IPost {
   title: string;
   author: string;
-  profileImage?: string;
+  authorImage?: string;
   body: string;
   time: string;
   likes: number;
@@ -24,10 +24,11 @@ interface IPost {
 
 export function MyLikePage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
+  const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
-  const [totalPosts, setTotalPosts] = useState(25);
+  const [totalPages, setTotalPages] = useState(5);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,7 +36,7 @@ export function MyLikePage() {
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.124.126.164:8080/mypage/like/`, {
+      .get(`http://13.125.72.138:8080/mypage/likes/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -48,25 +49,25 @@ export function MyLikePage() {
       .then((response) => {
         console.log(response);
         setPostList(response.data.content);
-        setTotalPosts(response.data.totalElements);
+        setTotalPages(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
   useEffect(() => {
-    getMyLikeAPI(); 
-  }, [currPage]); 
+    getMyLikeAPI();
+  }, [currPage]);
 
   return (
     <>
       <Header />
       <Section>
-        <MyPostPageContainer>
-          {isMobile ? <MyPageMobileNav /> : <MyPageNav />}
-          <MyPostBoxContainer>
-            {isMobile ? "" : <Title>좋아요 누른 글</Title>}
-            <PostItemContainer>
+        <S.MyPostPageContainer>
+          {isTablet ? <MyPageMobileNav /> : <MyPageNav />}
+          <S.MyPostBoxContainer>
+            {isMobile ? "" : <S.Title>좋아요 누른 글</S.Title>}
+            <S.PostItemContainer>
               {postList.map((post: IPost, index: number) => (
                 <PostItem
                   key={index}
@@ -77,58 +78,14 @@ export function MyLikePage() {
                   likes={post.likes}
                   reply={post.reply}
                   time={post.time}
-                  profileImage={post.profileImage}
+                  profileImg={post.authorImage}
                 />
               ))}
-            </PostItemContainer>
-            <MyPagination totalPosts={totalPosts} />
-          </MyPostBoxContainer>
-        </MyPostPageContainer>
+            </S.PostItemContainer>
+            <MyPagination totalPages={totalPages} />
+          </S.MyPostBoxContainer>
+        </S.MyPostPageContainer>
       </Section>
     </>
   );
 }
-
-const MyPostPageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 200px;
-  @media (max-width: 768px) {
-    width: 100vw;
-    flex-direction: column;
-    overflow: hidden;
-  }
-`;
-
-const MyPostBoxContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 140px;
-  margin-left: 8.33vw;
-  @media (max-width: 768px) {
-    width: 100vw;
-    margin-top: 0px;
-    margin-left: 0px;
-  }
-`;
-
-const Title = styled.div`
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 34px;
-  letter-spacing: -0.32px;
-  color: #ffffff;
-  opacity: 0.98;
-  width: 691px;
-`;
-
-const PostItemContainer = styled.div`
-  /* width: 800px; */
-
-  height: 1330px;
-  @media (max-width: 768px) {
-    margin-bottom: 50px;
-    width: 100vw;
-  }
-`;

@@ -5,23 +5,23 @@ export function Curriculum() {
     <Box>
       <div>
         <PartName>모집 요강</PartName>
-        <PartText>멋쟁이 사자처럼의 파트별 커리큘럼을 소개합니다.</PartText>
+        <PartText>멋쟁이사자처럼 11기의 지원 일정은 다음과 같습니다.</PartText>
         <BarContainer>
           <div>
             <Dot1>
-              <Date>2022.02.23 ~ 03.13</Date>
+              <Date>2023.02.20 ~ 03.10</Date>
               <Text>지원서 제출기간</Text>
             </Dot1>
             <Dot2>
-              <Date>2022.03.15</Date>
-              <Text>1차 합격 발표</Text>
+              <Date>2023.03.12</Date>
+              <Text>서류 합격 발표</Text>
             </Dot2>
             <Dot3>
-              <Date>2022.03.16 ~ 03.18</Date>
+              <Date>2023.03.13 ~ 03.17</Date>
               <Text>면접</Text>
             </Dot3>
             <Dot4>
-              <Date>2022.03.20</Date>
+              <Date>2022.03.19</Date>
               <Text>최종 합격 발표</Text>
             </Dot4>
           </div>
@@ -30,6 +30,7 @@ export function Curriculum() {
     </Box>
   );
 }
+
 const Box = styled.div`
   height: 330px;
   margin-top: 50px;

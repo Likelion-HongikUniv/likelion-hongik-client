@@ -1,20 +1,29 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-
 import { LionIcon } from "./../icons/LionIcon";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isLoggedInState } from "../../states";
 
 export function Complete() {
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const navigate = useNavigate();
+
+  const gotoMain = () => {
+    window.location.replace("/"); //홈화면으로 이동
+  };
+
   return (
     <div>
       <Title>회원가입 완료!</Title>
       <SmallText>
         이제 커뮤니티 게시판을 이용할 수 있습니다.
         <br />
-        확인 버튼을 누르면 로그인 페이지로 돌아갑니다.
+        확인 버튼을 누르면 메인 화면으로 이동합니다.
       </SmallText>
       <LionIcon />
       <div>
-        <OkBtn>로그인</OkBtn>
+        <OkBtn onClick={gotoMain}>메인으로</OkBtn>
       </div>
     </div>
   );

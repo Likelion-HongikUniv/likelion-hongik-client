@@ -1,41 +1,23 @@
 import styled from "styled-components";
 import { HeartUnfilled } from "../icons/HeartUnfilled";
 import { HeartFilled } from "../icons/HeartFilled";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { IBoard } from "../../interfaces/comments";
-import { commentsListState, boardState } from "../../states/atoms";
+import { boardState } from "../../states/atoms";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import axios from "axios";
 
-interface HeartButtonProps {
-  likes: number;
-}
-
-export function HeartButton({ likes }: HeartButtonProps) {
+export function HeartButton() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const [isLike, setLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(likes);
   const { id } = useParams<{ id?: string }>();
+  const isPC = useMediaQuery("(min-width: 1024px)");
   const accessToken = localStorage.getItem("token");
-
-  // const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   setLike(!isLike);
-  //   if (!isLike) {
-  //     var count = likeCount + 1;
-  //     setLikeCount(count);
-  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-  //   } else {
-  //     var count = likeCount - 1;
-  //     setLikeCount(count);
-  //     setBoardData({ ...board, isLiked: !isLike, likeCount: count });
-  //   }
-  // };
 
   const onClickLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     axios
       .post(
-        `http://13.124.126.164:8080/community/post/${id}/like`,
+        `http://13.125.72.138:8080/community/post/${id}/like`,
         { body: null }, // body null이라도 있어야 이 문법에서 돌아감
         {
           headers: {
@@ -45,42 +27,42 @@ export function HeartButton({ likes }: HeartButtonProps) {
         },
       )
       .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 500) {
+          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        }
+        if (err.response.status === 404) {
+          alert("좋아요 대상을 찾을 수 없습니다.");
+        }
+        window.location.href = "/community/board";
         throw err;
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
-          setLike(!isLike);
-          console.log("accessed 200");
-          console.log(isLike);
-          if (!isLike) {
-            var count = likeCount + 1;
-            setLikeCount(count);
-            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+          if (!board.isLiked) {
+            setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount + 1 });
           } else {
-            var count = likeCount - 1;
-            setLikeCount(count);
-            setBoardData({ ...board, isLiked: !isLike, likeCount: count });
+            setBoardData({ ...board, isLiked: !board.isLiked, likeCount: board.likeCount - 1 });
           }
         }
       });
   };
 
   return (
-    <ButtonWrapper onClick={onClickLike}>
-      {isLike ? <HeartFilled /> : <HeartUnfilled />}
-      {likeCount}
+    <ButtonWrapper isPC={isPC} onClick={onClickLike}>
+      {board.isLiked ? <HeartFilled /> : <HeartUnfilled />}
+      {board.likeCount}
     </ButtonWrapper>
   );
 }
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.button<{ isPC: boolean }>`
   box-sizing: border-box;
   min-width: 80px;
   font-size: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-self: ${(props) => (props.isPC ? "none" : "center")};
   padding: 12px 20px;
   gap: 4px;
 

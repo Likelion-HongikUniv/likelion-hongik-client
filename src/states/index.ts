@@ -1,24 +1,36 @@
 // 상태 관리
 
-import { atom } from "recoil";
-import { UploadImage } from "../components/myPage/FileUploader";
+import { atom, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { UploadImage } from "../components/myPage/FileUploader";
 
 const { persistAtom } = recoilPersist();
 
-export const userState = atom<string>({
+export const userState = atom<any>({
   key: "userState",
-  default: "",
+  default: {
+    major: "",
+    nickname: "",
+    part: "",
+    profileImageSrc: "",
+    role: "",
+    studentId: "",
+    team: null,
+    userId: 0,
+    username: "",
+  },
 });
 
 export const btnActiveState = atom<number>({
   key: "btnActiveState",
   default: 1,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const profileImgState = atom<string>({
@@ -62,8 +74,28 @@ export const isCancelButtonClickedState = atom<boolean>({
   default: false,
 });
 
+export const isThumbnailSetButtonClickedState = atom<boolean>({
+  key: "isThumbnailSetButtonClickedState",
+  default: false,
+});
+
+export const postThumbnailUrlState = atom<string>({
+  key: "postThumbnailUrlState",
+  default: "",
+});
+
 export const currPageState = atom<number>({
   key: "currPageState",
   default: 1,
   effects_UNSTABLE: [persistAtom],
+});
+
+export const NickMulState = atom<boolean>({
+  key: "nickCheck",
+  default: false,
+});
+
+export const mulBtnState = atom<boolean>({
+  key: "mulBtnState",
+  default: false,
 });

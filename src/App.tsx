@@ -40,6 +40,7 @@ function App() {
             <Route path="/myPage/like" element={<MyLikePage />} />
             <Route path="/myPage/edit" element={<InfoEditPage />} />
             <Route path="/write/" element={<WritingPage />} />
+            <Route path="/community/post/edit/:id" element={<WritingPage />} />
             <Route path="/ing" element={<Ing />} />
           </Routes>
         </RecoilRoot>

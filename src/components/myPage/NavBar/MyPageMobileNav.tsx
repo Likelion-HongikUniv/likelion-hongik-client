@@ -1,24 +1,32 @@
 import styled from "styled-components";
-import { BLACK_1, WHITE_1 } from "./../../styles/theme";
-import { useRecoilValue } from "recoil";
-import { editState, profileState } from "./../../states/index";
-import { NavSelectPartMobile } from "../myPage/NavSelectPartMobile";
+import { BLACK_1, WHITE_1 } from "../../../styles/theme";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { editState, profileImgState } from "../../../states/index";
+import { NavSelectPartMobile } from "./NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import emoji_lion from "../../images/emoji_lion_24x24.png";
+import useMediaQuery from "../../../hooks/useMediaQuery";
+import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {
-  const profileImg = useRecoilValue(profileState);
-  const [nickname, setNickname] = useState("닉네임");
-  const [major, setMajor] = useState("학과");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
+  const profileImg = useRecoilValue(profileImgState);
+  const [info, setInfo] = useRecoilState(editState);
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPage/edit");
   };
+
+  useEffect(() => {
+    getUserInfoAPI();
+  }, []);
+
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.124.126.164:8080/mypage`, {
+      .get(`http://13.125.72.138:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -26,28 +34,31 @@ export function MyPageMobileNav() {
       })
       .then((response) => {
         console.log(response);
-        setNickname(response.data.nickname);
-        setMajor(response.data.major);
+        const infoHandler = {
+          ...info,
+          major: response.data.major,
+          nickname: response.data.nickname,
+          part: response.data.part,
+          // team: changeTeam.value,
+        };
+        setInfo(infoHandler);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  useEffect(() => {
-    getUserInfoAPI();
-  }, []);
 
   return (
     <MobileNavContainer>
       <Profile>
-        <ProImg src={profileImg?.thumbnail} />
+        <ProImg src={profileImg || emoji_lion} />
         <div style={{ width: "88px" }}>
-          <Name>{nickname}</Name>
-          <Team>{major}</Team>
+          <Name>{info.nickname}</Name>
+          <Team>{info.major}</Team>
         </div>
       </Profile>
-      <EditBtn onClick={onNavigate}>정보 변경</EditBtn>
-      <NavSelectPartMobile />
+      {isTablet ? '' : <EditBtn onClick={onNavigate}>정보 변경</EditBtn>}
+      {isTablet ? <MyPageSelectNav /> : <NavSelectPartMobile />}
     </MobileNavContainer>
   );
 }
@@ -108,4 +119,7 @@ const EditBtn = styled.button`
 const Profile = styled.div`
   display: flex;
   width: 350px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 688px;
+  }
 `;
