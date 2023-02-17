@@ -4,9 +4,11 @@ import { ICommunityParam } from "../../interfaces/category";
 import { WriteIcon } from "../icons/WriteIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { BLACK_1 } from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
 
 export function TopBoard(categoryName: ICommunityParam) {
   const isMobile = useMediaQuery("( max-width: 767px )");
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
@@ -17,7 +19,11 @@ export function TopBoard(categoryName: ICommunityParam) {
           <span>최신순</span>
         </div>
         {categoryName.categoryName === "BOARD" ? (
-          <button>
+          <button
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
             <WriteIcon />
             {!isMobile && <span>글쓰기</span>}
           </button>
