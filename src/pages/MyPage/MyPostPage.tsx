@@ -33,7 +33,6 @@ export function MyPostPage() {
   const profileImg = userInfo.profileImageSrc;
   const token = userInfo.accessToken;
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currPage]);
