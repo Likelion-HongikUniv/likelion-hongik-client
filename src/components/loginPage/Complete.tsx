@@ -9,11 +9,6 @@ export function Complete() {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const navigate = useNavigate();
 
-  const onClickConfirmButton = () => {
-    setIsLoggedIn(true);
-    navigate("/login");
-  };
-
   const gotoMain = () => {
     window.location.replace("/"); //홈화면으로 이동
   };
@@ -28,7 +23,6 @@ export function Complete() {
       </SmallText>
       <LionIcon />
       <div>
-        <OkBtn onClick={onClickConfirmButton}>로그인</OkBtn>
         <OkBtn onClick={gotoMain}>메인으로</OkBtn>
       </div>
     </div>

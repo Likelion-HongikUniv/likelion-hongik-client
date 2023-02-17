@@ -11,7 +11,7 @@ import axios from "axios";
 // import { isLoggedInState } from "../../states";
 
 interface LikeButtonProps {
-  cid?: number;
+  cid: number;
   rid?: number;
   isAuthor: boolean;
   isLiked: boolean;
@@ -20,9 +20,19 @@ interface LikeButtonProps {
 }
 
 export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: LikeButtonProps) {
+  const accessToken = localStorage.getItem("token");
   const [isLikeActive, setIsLikeActive] = useState(isLiked);
   const [likeCount, setLikeCount] = useState(likes);
-  const accessToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    // reply는 괜찮은데 comment는 api로 받아온 값과 state가 차이나서 새로 세팅
+    if (isLikeActive !== isLiked) {
+      setIsLikeActive((prev) => !prev);
+    }
+    if (likes !== likeCount) {
+      setLikeCount(likes);
+    }
+  }, [isLiked, likes]);
 
   const onClickLikeComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (isAuthor === false) {
@@ -44,18 +54,15 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
           if (err.response.status === 404) {
             alert("좋아요 대상을 찾을 수 없습니다.");
           }
-          window.location.reload();
+          // window.location.reload();
           throw err;
         })
         .then((response) => {
           if (response.status === 200) {
-            if (!isLikeActive) {
-              setLikeCount(likeCount + 1);
-              setIsLikeActive(!isLikeActive);
-            } else {
-              setLikeCount(likeCount - 1);
-              setIsLikeActive(!isLikeActive);
+            {
+              isLikeActive ? setLikeCount((prev) => prev - 1) : setLikeCount((prev) => prev + 1);
             }
+            setIsLikeActive((isLikeActive) => !isLikeActive);
           }
         });
     } else {
@@ -88,13 +95,10 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
         })
         .then((response) => {
           if (response.status === 200) {
-            if (!isLikeActive) {
-              setLikeCount(likeCount + 1);
-              setIsLikeActive(!isLikeActive);
-            } else {
-              setLikeCount(likeCount - 1);
-              setIsLikeActive(!isLikeActive);
+            {
+              isLikeActive ? setLikeCount((prev) => prev - 1) : setLikeCount((prev) => prev + 1);
             }
+            setIsLikeActive((isLikeActive) => !isLikeActive);
           }
         });
     } else {

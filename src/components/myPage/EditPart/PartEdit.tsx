@@ -24,12 +24,8 @@ const Div = styled.div`
     display: inline-block;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: flex;
   }
 `;
 
@@ -40,19 +36,15 @@ const PartTitle = styled.div`
   display: flex;
   margin-top: 15px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     font-size: 16px;
     line-height: 19.2px;
     margin-top: 0;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 20px;
   }
 `;
 
@@ -74,7 +66,7 @@ const PartSelect = styled.select`
   -moz-appearance: none;
   appearance: none; */
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     width: 88vw;
     height: 48px;
@@ -83,12 +75,9 @@ const PartSelect = styled.select`
     padding: 12px 14px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 56vw;
+    margin-left: 50px;
   }
 `;
 

@@ -2,7 +2,7 @@
 
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { IBoard, IComment } from "../interfaces/comments";
-import { ICategory } from "../interfaces/category";
+import { ICategory, ITag } from "../interfaces/category";
 import { IPost } from "../interfaces/post";
 import { IPagination } from "../interfaces/post";
 import { IProjectTeam } from "../interfaces/team";
@@ -252,9 +252,9 @@ export const tagListState = atom<ICategory[]>({
   ],
 });
 
-export const nowTagState = atom<string>({
+export const nowTagState = atom<ITag>({
   key: "nowTagState",
-  default: "NOTICE",
+  default: { key: "NOTICE", text: "공지사항" },
 });
 
 export const tagListSelector = selectorFamily({
@@ -308,4 +308,14 @@ export const projectTeamState = atom<IProjectTeam>({
       },
     ],
   },
+});
+
+export const selectModalState = atom<boolean>({
+  key: "selectModalState",
+  default: false,
+});
+
+export const searchState = atom<string>({
+  key: "searchState",
+  default: "",
 });

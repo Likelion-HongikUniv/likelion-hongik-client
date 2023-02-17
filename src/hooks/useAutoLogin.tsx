@@ -5,6 +5,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { isLoggedInState, userState } from "../states";
 
 export default function useAutoLogin() {
+  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const [userInfo, setUserInfo] = useRecoilState(userState);

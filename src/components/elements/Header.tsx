@@ -8,19 +8,20 @@ import { ProfileButton } from "./ProfileButton";
 import { Column, Row } from "./Wrapper";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { nowTagState } from "../../states/atoms";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { userInfoState } from "../../states/user";
 import useAutoLogin from "../../hooks/useAutoLogin";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { isLoggedInState } from "../../states";
 import { MenuClose } from "../icons/MenuClose";
+import { ITag } from "../../interfaces/category";
 
 export function Header() {
   useAutoLogin();
   const isPC = useMediaQuery("(min-width: 992px)");
   const isTablet = useMediaQuery("(min-width: 768px)");
   const navigate = useNavigate();
-  const setNowTag = useSetRecoilState<string>(nowTagState);
+  const setNowTag = useSetRecoilState<ITag>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const [isMenu, setMenu] = useState(false);
 
@@ -32,7 +33,7 @@ export function Header() {
   const onClickHeaderButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = e.currentTarget.name;
     if (page === "community/BOARD") {
-      setNowTag("NOTICE");
+      setNowTag({ key: "NOTICE", text: "공지사항" });
     }
     window.location.replace(`/${page}`);
   };
@@ -96,7 +97,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
-            <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/edit">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/post">
               마이페이지
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">

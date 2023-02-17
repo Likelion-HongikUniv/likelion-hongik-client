@@ -11,6 +11,7 @@ export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 1024px)");
   const curDate = boardData.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+
   return (
     <>
       {isPC ? (
@@ -21,7 +22,7 @@ export function Board(boardData: IBoard) {
               {boardData.author?.nickname}
               <Date>{date}</Date>
             </Row>
-            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
+            {boardData.author?.isAuthor ? <MoreButton id={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
           <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
@@ -36,7 +37,7 @@ export function Board(boardData: IBoard) {
               <div className="author">{boardData.author?.nickname}</div>
               <Date>{date}</Date>
             </AuthorDiv>
-            {boardData.author?.isAuthor ? <MoreButton cid={boardData.postId} isBoard={true} isComment={false} /> : null}
+            {boardData.author?.isAuthor ? <MoreButton id={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
           {boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}

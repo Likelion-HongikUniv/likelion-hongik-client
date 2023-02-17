@@ -103,7 +103,8 @@ const NicknamePart = styled.div`
     display: inline-block;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: flex;
   }
 `;
 
@@ -119,7 +120,8 @@ const NickTitle = styled.div`
     text-align: left;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 20px;
   }
 `;
 
@@ -151,7 +153,9 @@ const NickInput = styled.input`
     background-color: #222222;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-left: 25px;
+    width: 50vw;
   }
 `;
 
@@ -175,8 +179,8 @@ const MulCheck = styled.button`
     height: 48px;
   }
 
-  @media (min-width: 600px) and (max-width: 768px) {
-    width: 15vw;
+  @media (min-width: 600px) and (max-width: 767px) {
+    width: 12vw;
     margin-top: 12px;
     font-weight: 500;
     font-size: 16px;
@@ -188,7 +192,7 @@ const IsMulText = styled.div`
   margin-top: 12px;
   font-size: 14px;
 
-  @media (min-width: 769px) {
+  @media (min-width: 767px) {
     padding-left: 120px;
   }
 `;

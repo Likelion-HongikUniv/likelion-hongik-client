@@ -73,7 +73,7 @@ const Project = () => {
     speed: 1000,
     dots: true,
     slidesToScroll: 1,
-    autoplay: true, //어지러워서 고민 ...
+    autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
@@ -148,6 +148,9 @@ const ProjectBox = styled.div<{ title: string }>`
   align-items: center;
   transition: all 0.2s linear;
   margin-left: 50px;
+  @media (max-width: 768px) {
+    margin-left: 40px;
+  }
 `;
 
 const Hover = styled.div`

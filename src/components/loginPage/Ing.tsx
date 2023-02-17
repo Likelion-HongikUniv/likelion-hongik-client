@@ -1,3 +1,5 @@
+//Ing.tsx
+
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -17,12 +19,17 @@ const Ing = () => {
   const UID = searchParams.get("UID");
 
   const getProfile = async () => {
-    await axios
-      .post(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, UID, {
-        headers: {
-          "Content-Type": `application/json`,
+    axios
+      .post(
+        // `http://localhost:8080/v1/token`,
+        `http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`,
+        UID,
+        {
+          headers: {
+            "Content-Type": `application/json`,
+          },
         },
-      })
+      )
       .then((response) => {
         console.log(response);
         const token = response.data.JWT;
@@ -39,9 +46,9 @@ const Ing = () => {
         }
         setUsername(response.data.name);
 
-        if (response.data.isJoined === false) {
-          setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
-        }
+        // if (response.data.isJoined === false) {
+        setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
+        // }
 
         localStorage.setItem("username", response.data.name); //혹시 몰라서 로컬스토리지에도 이름 저장
         localStorage.setItem("token", response.data.JWT);

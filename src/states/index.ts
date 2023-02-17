@@ -1,8 +1,8 @@
 // 상태 관리
 
-import { atom } from "recoil";
-import { UploadImage } from "../components/myPage/FileUploader";
+import { atom, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { UploadImage } from "../components/myPage/FileUploader";
 
 const { persistAtom } = recoilPersist();
 
@@ -30,6 +30,7 @@ export const btnActiveState = atom<number>({
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const profileImgState = atom<string>({
