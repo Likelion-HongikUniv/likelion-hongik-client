@@ -11,10 +11,10 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 const Ing = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useRecoilState(userState);
+  // const [username, setUsername] = useRecoilState(userState);
   const [searchParams, setSearchParams] = useSearchParams();
   const [profileImg, setProfileImg] = useRecoilState(profileImgState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const UID = searchParams.get("UID");
 
@@ -35,16 +35,16 @@ const Ing = () => {
         const token = response.data.JWT;
         if (response.data && token) {
           localStorage.setItem("token", token);
-          setUserInfo({
-            userId: response.data.id,
-            isJoined: response.data.isJoined,
-            username: response.data.name,
-            profileImageSrc: response.data.profileImage,
-            role: response.data.role,
-            accessToken: token,
-          });
+          // setUserInfo({
+          //   userId: response.data.id,
+          //   isJoined: response.data.isJoined,
+          //   username: response.data.name,
+          //   profileImageSrc: response.data.profileImage,
+          //   role: response.data.role,
+          //   accessToken: token,
+          // });
         }
-        setUsername(response.data.name);
+        // setUsername(response.data.name);
 
         // if (response.data.isJoined === false) {
         setProfileImg(response.data.profileImage); //회원가입 시에만 소셜프로필사진 저장
