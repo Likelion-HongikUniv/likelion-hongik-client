@@ -7,7 +7,7 @@ import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
 import { currPageState, profileImgState } from "../../states/index";
 // import { useQuery } from "@tanstack/react-query";
@@ -27,10 +27,13 @@ export function MyPostPage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
   const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
-  const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  const [profileImg] = useRecoilState(profileImgState);
+  const userInfo = useRecoilValue(userState);
+  const profileImg = userInfo.profileImageSrc;
+  const token = userInfo.accessToken;
+  const [navSelect, setNavSelect] = useRecoilState(btnActiveState);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);

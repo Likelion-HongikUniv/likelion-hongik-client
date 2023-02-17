@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { profileImgState, userState } from "./../../states/index";
+import { userState } from "./../../states/index";
 import axios from "axios";
 import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
@@ -17,7 +17,7 @@ export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const profileImg = userInfo.profileImageSrc;
-  const token: any = localStorage.getItem("token");
+  const token = userInfo.accessToken;
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();
@@ -46,7 +46,6 @@ export function FileUploader() {
             token: token,
             slicedUrl: slicedUrl,
           });
-
           return;
         }
       }

@@ -1,6 +1,9 @@
 import client from "./client";
+import { userState } from "../states";
+import { useRecoilValue } from "recoil";
 
 export async function getPostDetail(postId: number) {
+  // const userInfo = useRecoilValue(userState)
   const token = localStorage.getItem("token");
   return await client
     .get(`/community/post/${postId}`, {
