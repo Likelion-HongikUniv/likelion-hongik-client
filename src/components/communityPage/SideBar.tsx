@@ -5,20 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
-import { profileImgState } from "../../states";
 import { editState } from "../../states/index";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 import { SelectArrowDown } from "../icons/SelectArrowDown";
 import { SelectModal } from "./SelectModal";
+import { userState } from "../../states";
 
 export function SideBar(categoryName: ICommunityParam) {
   const [isModal, setIsModal] = useRecoilState(selectModalState);
-  const profileImg = useRecoilValue(profileImgState);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const info = useRecoilValue(editState);
   const isMobile = useMediaQuery("( max-width: 767px )");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
+  const profileImg = userInfo.profileImageSrc;
   const navigate = useNavigate();
   const activeStyle = {
     fontWeight: "700",

@@ -22,7 +22,6 @@ export default function useAutoLogin() {
     if (token) {
       axios.get(`http://13.125.72.138:8080/userinfo`, { headers: { JWT: token } }).then((res) => {
         console.log(res);
-
         const data = res.data;
         if (res.status === 200) {
           setIsLoggedIn(true);
@@ -37,6 +36,7 @@ export default function useAutoLogin() {
             team: data.team,
             userId: data.userId,
             username: data.username,
+            accessToken: token,
           });
         } else {
           alert("시간이 지나 로그인이 만료되었습니다.");

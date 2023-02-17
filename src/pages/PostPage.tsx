@@ -13,6 +13,7 @@ import axios from "axios";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { getPostDetail } from "../api/getPostDetail";
 import { useQuery } from "@tanstack/react-query";
+import { userState } from "../states";
 
 const baseURL = "http://13.125.72.138:8080";
 
@@ -23,6 +24,7 @@ export function PostPage() {
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
   const { id } = useParams<{ id?: string }>();
+
   const postIdToNumber = Number(id);
   const { isLoading: isPostDataLoading, data: postData } = useQuery(
     ["post-detail", postIdToNumber],

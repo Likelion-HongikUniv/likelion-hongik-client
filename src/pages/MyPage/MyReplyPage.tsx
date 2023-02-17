@@ -7,8 +7,8 @@ import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
-import { useRecoilState } from "recoil";
-import { currPageState } from "../../states/index";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { currPageState, userState } from "../../states/index";
 import * as S from "../../styles/myPages/myPageStyle";
 
 interface IPost {
@@ -26,7 +26,8 @@ export function MyReplyPage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
   const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
-  const token = localStorage.getItem("token");
+  const userInfo = useRecoilValue(userState);
+  const token = userInfo.accessToken;
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
 

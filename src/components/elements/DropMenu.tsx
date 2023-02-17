@@ -1,10 +1,28 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { isLoggedInState, userState } from "../../states";
+
 interface DropMenuProps {
   isActive: boolean;
 }
 
 export function DropMenu(isActive: DropMenuProps) {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const navigate = useNavigate();
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+      setUserInfo("");
+      localStorage.removeItem("token");
+      // localStorage.removeItem("username");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <DropWrapper>
       <DropButton
@@ -14,7 +32,7 @@ export function DropMenu(isActive: DropMenuProps) {
       >
         마이페이지
       </DropButton>
-      <DropButton>로그아웃</DropButton>
+      <DropButton onClick={onClick}>로그아웃</DropButton>
     </DropWrapper>
   );
 }
