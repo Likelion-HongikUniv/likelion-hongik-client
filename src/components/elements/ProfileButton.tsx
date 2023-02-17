@@ -45,7 +45,7 @@ export function ProfileButton() {
         <PersonIcon url={profileImg} />
         {isLoggedIn ? name : "로그인"}
       </Wrapper>
-      {isPC && isDropDown && <DropMenu isActive={isDropDown} />}
+      {isPC && isLoggedIn && isDropDown && <DropMenu isActive={isDropDown} />}
     </div>
   );
 }
