@@ -21,15 +21,27 @@ export function TopBoard(categoryName: ICommunityParam) {
         {categoryName.categoryName === "BOARD" ? (
           <button
             onClick={() => {
-              navigate("/write");
+              navigate("/write", { state: { category: "BOARD" } });
             }}
           >
             <WriteIcon />
             {!isMobile && <span>글쓰기</span>}
           </button>
-        ) : (
-          <button>
+        ) : categoryName.categoryName === "HOMEWORK" ? (
+          <button
+            onClick={() => {
+              navigate("/write", { state: { category: "HOMEWORK" } });
+            }}
+          >
             <span>과제 업로드</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              navigate("/write", { state: { category: "PROJECT" } });
+            }}
+          >
+            <span>과제업로드</span>
           </button>
         )}
       </Table>

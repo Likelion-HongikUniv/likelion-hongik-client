@@ -27,12 +27,12 @@ export function ProjectInfo() {
         }
       })
       .catch((err) => {
-        if (err.response.status === 401 || err.response.status === 500) {
-          alert("팀 빌딩 후 이용 가능합니다🦁");
-        }
-        if (err.response.status === 404) {
-          alert("게시글을 찾을 수 없습니다.");
-        }
+        // if (err.response.status === 401 || err.response.status === 500) {
+        //   alert("팀 빌딩 후 이용 가능합니다🦁");
+        // }
+        // if (err.response.status === 404) {
+        //   alert("게시글을 찾을 수 없습니다.");
+        // }
         window.location.href = "/";
         throw err;
       });
