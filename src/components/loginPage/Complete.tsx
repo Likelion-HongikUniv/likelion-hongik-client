@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { WHITE_1 } from "../../styles/theme";
-
 import { LionIcon } from "./../icons/LionIcon";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isLoggedInState } from "../../states";
 
 export function Complete() {
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const navigate = useNavigate();
+
   const gotoMain = () => {
     window.location.replace("/"); //홈화면으로 이동
   };

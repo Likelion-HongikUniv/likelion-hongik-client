@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { profileImgState } from "./../../states/index";
 import axios from "axios";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export interface UploadImage {
   file: File;
@@ -53,6 +54,27 @@ export function FileUploader() {
             }
             console.log("url 파싱한 결과: ", resultUrlParse);
             setProfileImg(resultUrlParse);
+
+            const data = {
+              url: resultUrlParse,
+            };
+            axios
+              .post(
+                `http://13.125.72.138:8080/mypage/edit/profileImage`,
+                // `http://localhost:8080/mypage/edit/profileImage`,
+                JSON.stringify(data),
+                // resultUrlParse,
+                {
+                  headers: {
+                    JWT: token,
+                    "Content-Type": `application/json`,
+                  },
+                },
+              )
+              .then((response) => {
+                console.log(response.status);
+              })
+              .catch((error) => console.error(error));
           })
           .catch((error) => console.error(error));
       };
@@ -61,7 +83,7 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg} onClick={handleClickFileInput} />
+      <ProfileThumbnail src={profileImg || emoji_lion} onClick={handleClickFileInput} />
       <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>
@@ -73,18 +95,10 @@ const FileUploadContainer = styled.div`
   width: 105px;
   height: 105px;
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     width: 60px;
     height: 60px;
-  }
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;
 
@@ -101,7 +115,7 @@ const ProfileThumbnail = styled.img`
   cursor: pointer;
   object-fit: cover;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     width: 60px;
     height: 60px;

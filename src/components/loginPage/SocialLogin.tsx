@@ -3,35 +3,40 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Footer from "../elements/Footer";
 import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
 import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export function SocialLogin() {
-  const navigate = useNavigate();
-  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const googleLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
+    // navigate('/ing');
   };
-  const naverLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("네이버 로그인 클릭");
+  const naverLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
       "_self",
     );
+    // navigate('/ing');
   };
 
-  const kakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("카카오 로그인 클릭");
+  const kakaoLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
+      "_self",
+    );
+  };
+
+  const githubLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("깃허브 로그인 클릭");
+    window.open(
+      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/github",
       "_self",
     );
   };
@@ -44,7 +49,7 @@ export function SocialLogin() {
         오신 걸 환영합니다
       </WelcomeText>
       <SmallText>로그인 후 이용할 수 있어요.</SmallText>
-      <SocialBtn style={{ marginTop: "60px" }}>
+      <SocialBtn style={{ marginTop: "60px" }} onClick={githubLogin}>
         <FontAwesomeIcon icon={faGithub} />
         <Social>Github으로 계속하기</Social>
       </SocialBtn>

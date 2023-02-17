@@ -3,18 +3,18 @@ import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListSelector } from "../../states/atoms";
 import { ICategory, ITag, ICommunityParam } from "../../interfaces/category";
-import { BLACK_1, WHITE_1 } from "../../styles/theme";
+import { WHITE_1 } from "../../styles/theme";
 
 export function CategoryTab(categoryName: ICommunityParam) {
   const tagList = useRecoilValue<ICategory[]>(tagListSelector(categoryName.categoryName));
-  const [nowTag, setNowTag] = useRecoilState<string>(nowTagState);
+  const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
   const navigate = useNavigate();
   const activeStyle = {
-    borderBottom: `2px solid %{WHITE_1}`,
+    borderBottom: `2px solid #fff`,
   };
 
   const onClickTagHandler = (tag: ITag) => {
-    setNowTag(tag.key);
+    setNowTag({ key: tag.key, text: tag.text });
     navigate(`/community/${categoryName.categoryName}`);
   };
 
@@ -23,7 +23,7 @@ export function CategoryTab(categoryName: ICommunityParam) {
       {tagList[0]?.tags?.map((tag: ITag) => (
         <CategoryItem
           key={tag.key}
-          style={tag.key === nowTag ? activeStyle : {}}
+          style={tag.key === nowTag.key ? activeStyle : {}}
           onClick={() => onClickTagHandler(tag)}
         >
           {tag.text}
@@ -51,15 +51,16 @@ const CategoryItem = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 0.9375vw;
-  line-height: 1.1458vw;
-  padding: 1.0417vw;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 20px;
+  padding-top: 0;
   cursor: pointer;
 
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-weight: 500;
-    font-size: 3.0769vw;
-    line-height: 3.8462vw;
-    padding: 3.0769vw;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 12px;
   }
 `;

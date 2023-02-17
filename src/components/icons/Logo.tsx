@@ -1,13 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
 export function Logo() {
-  const navigate = useNavigate();
-
   return (
     <button
       onClick={() => {
-        navigate("/");
+        window.location.replace("/");
       }}
     >
       <svg width="190" height="22" viewBox="0 0 190 22" fill="none" xmlns="http://www.w3.org/2000/svg">

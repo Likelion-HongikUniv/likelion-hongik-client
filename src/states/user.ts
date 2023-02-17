@@ -1,21 +1,26 @@
 import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
-const { persistAtom } = recoilPersist();
 export interface IUserInfoState {
-  userId: number;
-  profileImageSrc: string;
-  username: string;
-  accessToken: string | null;
+  userId?: number;
+  isJoined?: boolean;
+  joined?: boolean;
+  username?: string;
+  profileImageSrc?: string;
+  role?: string;
+  accessToken?: string;
+  refreshToken?: string;
 }
 
 export const userInfoState = atom<IUserInfoState>({
   key: "userInfo",
   default: {
     userId: 0,
-    profileImageSrc: "",
+    isJoined: false,
+    joined: false,
     username: "",
+    profileImageSrc: "",
+    role: "",
     accessToken: "",
+    refreshToken: "",
   },
-
 });

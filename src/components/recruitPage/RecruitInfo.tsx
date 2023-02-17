@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { WHITE_1, BLACK_1 } from "../../styles/theme";
+import { useState } from "react";
 
 export function RecruitInfo() {
+  const [regDate, setRegDate] = useState(false);
+
+  const gotoReg = () => {
+    if (regDate === false) {
+      alert("지원 기간이 아닙니다!");
+    } else {
+      window.open("https://forms.gle/KE1tRsetSke2u9za7");
+    }
+  };
+
   return (
     <BasicInfo>
       <Diving>
@@ -13,7 +24,7 @@ export function RecruitInfo() {
         <BasicText>모집 인원: 총 30명 내외 선발 예정</BasicText>
       </Diving>
       <Divs>
-        <RegBtn>지원 폼 작성하기</RegBtn>
+        <RegBtn onClick={gotoReg}>지원 폼 작성하기</RegBtn>
       </Divs>
     </BasicInfo>
   );

@@ -6,11 +6,11 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { BLACK_1 } from "../../styles/theme";
 
 export function TopBoard(categoryName: ICommunityParam) {
-  const isMobile = useMediaQuery("( max-width: 768px )");
+  const isMobile = useMediaQuery("( max-width: 767px )");
 
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchBar categoryName={categoryName.categoryName} />
       <Table>
         <div>
           <span style={{ color: "#ED7F30" }}>•</span>
@@ -40,54 +40,55 @@ const Table = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 0.8333vw;
-  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.4);
-  margin-top: 1vw;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  margin-top: 40px;
   div {
     display: flex;
-    gap: 0.3125vw;
+    gap: 6px;
     align-items: center;
     font-weight: 600;
-    font-size: 0.8333vw;
+    font-size: 16px;
   }
-  @media all and (max-width: 768px) {
-    margin-top: 6.1538vw;
+  @media all and (max-width: 767px) {
+    margin-top: 24px;
     div {
-      font-size: 4.1026vw;
+      font-size: 16px;
     }
   }
   button {
-    width: 6.1979vw;
-    height: 2.7083vw;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    padding: 0.651vw;
     background: #ed7f30;
-    border-radius: 0.4167vw;
-    img {
-      width: 0.3vw;
-      height: 0.3vw;
+    width: 119px;
+    height: 52px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    svg {
+      width: 18px;
+      height: 18px;
     }
     span {
       font-weight: 600;
-      font-size: 1.0417vw;
+      font-size: 20px;
+      line-height: 24px;
       text-align: center;
+      letter-spacing: -0.32px;
       color: ${BLACK_1};
     }
-    @media all and (max-width: 768px) {
+    @media all and (max-width: 767px) {
       width: auto;
       height: auto;
-      padding: 3.2051vw;
-      border-radius: 2.0513vw;
+      padding: 12px;
+      border-radius: 8px;
       img {
-        width: 3.8462vw;
-        height: 3.8462vw;
+        width: 15px;
+        height: 15px;
       }
       span {
-        font-size: 4.1026vw;
-        line-height: 4.8718vw;
-        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
       }
     }
   }

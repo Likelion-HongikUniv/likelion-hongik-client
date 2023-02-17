@@ -37,6 +37,7 @@ export function LoginDetailInfo() {
     studentId: studentId.value,
     part: part.value,
   };
+  // console.log(JSON.stringify(data));
 
   const nick = {
     nickname: nickname.value,
@@ -70,15 +71,25 @@ export function LoginDetailInfo() {
 
   const onClickSave = () => {
     //저장 버튼 클릭 시 정보 넘겨주기
-
-    const infoHandler = {
-      ...info,
-      major: major.value,
+    console.log(studentId.value);
+    if (studentId.value) {
+      console.log("if 속!");
+      const infoHandler = {
+        ...info,
+        major: major.value,
+        nickname: nickname.value,
+        part: part.value,
+        studentId: studentId.value,
+      };
+      setInfo(infoHandler);
+      console.log(info);
+    }
+    const data = {
       nickname: nickname.value,
-      part: part.value,
+      major: major.value,
       studentId: studentId.value,
+      part: part.value,
     };
-    setInfo(infoHandler);
 
     axios
       .post(
@@ -100,7 +111,6 @@ export function LoginDetailInfo() {
         console.log(err);
       });
   };
-
   return (
     <div style={{ textAlign: "center" }}>
       <Title>추가 정보 입력하기</Title>

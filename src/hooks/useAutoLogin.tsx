@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "../states";
 
 export default function useAutoLogin() {
+  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const pathname = window.location.href;
@@ -18,8 +19,8 @@ export default function useAutoLogin() {
   useEffect(() => {
     if (accessToken) {
       setIsLoggedIn(true);
-    } else if (!accessToken && privatePage) {
-      navigate("/");
+    } else if (!accessToken) {
+      // navigate("/");
     }
   }, [accessToken]);
 }

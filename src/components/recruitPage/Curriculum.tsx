@@ -13,8 +13,8 @@ export function Curriculum() {
               <Text>지원서 제출기간</Text>
             </Dot1>
             <Dot2>
-              <Date>2023.03.11</Date>
-              <Text>1차 합격 발표</Text>
+              <Date>2023.03.12</Date>
+              <Text>서류 합격 발표</Text>
             </Dot2>
             <Dot3>
               <Date>2023.03.13 ~ 03.17</Date>
