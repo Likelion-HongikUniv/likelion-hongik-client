@@ -8,7 +8,7 @@ const Part1 = () => {
       <S.BarContainer>
         <S.Dot1>
           <S.Date>1차 세션</S.Date>
-          <S.Text>github 교육</S.Text>
+          <S.Text>Github 교육</S.Text>
         </S.Dot1>
         <S.Dot2>
           <S.Date>2차 세션</S.Date>
