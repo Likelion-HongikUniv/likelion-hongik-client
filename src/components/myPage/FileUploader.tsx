@@ -14,8 +14,8 @@ export interface UploadImage {
 
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
-  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
   const [userInfo, setUserInfo] = useRecoilState(userState);
+  const profileImg = userInfo.profileImageSrc;
   const token: any = localStorage.getItem("token");
 
   const handleClickFileInput = () => {
@@ -40,8 +40,9 @@ export function FileUploader() {
           file: file,
         });
         if (statusCode === 200) {
-          setProfileImg(slicedUrl);
-          setUserInfo({ ...userInfo, profileImgSrc: slicedUrl });
+          // setProfileImg(slicedUrl);
+          setUserInfo({ ...userInfo, profileImageSrc: slicedUrl });
+          console.log(userInfo.profileImageSrc);
           return;
         }
       }
