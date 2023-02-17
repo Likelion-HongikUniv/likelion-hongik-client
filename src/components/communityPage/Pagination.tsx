@@ -32,6 +32,9 @@ export function Pagination() {
           onClick={() => {
             setCurPageIndex(curPageIndex - 1);
             setPage(curPageIndex * PAGE_MAX);
+            window.scrollTo({
+              top: 0,
+            });
           }}
         >
           ...
@@ -42,7 +45,12 @@ export function Pagination() {
           key={pageNum}
           type="button"
           style={pageNum === pagination?.currentPage ? activeButton : {}}
-          onClick={() => setPage(pageNum)}
+          onClick={() => {
+            setPage(pageNum);
+            window.scrollTo({
+              top: 0,
+            });
+          }}
         >
           {pageNum}
         </PageBtn>
@@ -53,6 +61,9 @@ export function Pagination() {
           onClick={() => {
             setCurPageIndex(curPageIndex + 1);
             setPage((curPageIndex + 1) * PAGE_MAX + 1);
+            window.scrollTo({
+              top: 0,
+            });
           }}
         >
           ...
@@ -65,18 +76,18 @@ export function Pagination() {
 const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 0.4167vw;
+  gap: 8px;
 `;
 
 const PageBtn = styled.button`
-  width: 1.7188vw;
-  height: 1.7188vw;
-  border: 0.0521vw solid ${WHITE_1};
-  border-radius: 0.2083vw;
+  width: 33px;
+  height: 33px;
+  border: 1px solid ${WHITE_1};
+  border-radius: 4px;
   color: ${WHITE_1};
-  @media all and (max-width: 768px) {
-    width: 7.1795vw;
-    height: 7.1795vw;
-    border-radius: 0.7vw;
+  @media all and (max-width: 767px) {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
   }
 `;

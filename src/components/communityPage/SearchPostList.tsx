@@ -3,21 +3,22 @@ import { PostItem } from "./PostItem";
 import { IPost } from "../../interfaces/post";
 import axios from "axios";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { paginationState, postsListState, pageState } from "../../states/atoms";
+import { paginationState, postsListState, pageState, searchState } from "../../states/atoms";
 import { IPagination } from "../../interfaces/post";
 import { useEffect } from "react";
 
 const baseURL = "http://13.125.72.138:8080";
 
-export function PostList(params: any) {
+export function SearchPostList(params: any) {
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const setPagination = useSetRecoilState<IPagination>(paginationState);
   const page = useRecoilValue<number>(pageState);
-  function GetPostList(category: string, tag: string, page: number) {
-    const params = { page: page };
+  const search = useRecoilValue<string>(searchState);
+  function GetSearchPostList(category: string, tag: string, page: number, search: string) {
+    const params = { search: search, page: page };
     const token = localStorage.getItem("token");
     axios
-      .get(`${baseURL}/community/posts/${category}/${tag}/`, {
+      .get(`${baseURL}/community/posts/${category}/${tag}/search/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -52,7 +53,7 @@ export function PostList(params: any) {
   }
 
   useEffect(() => {
-    GetPostList(params.categoryName, params.tag.key, page);
+    GetSearchPostList(params.categoryName, params.tag.key, page, search);
   }, [params.categoryName, params.tag.key, page]);
   const posts = Object.values(postsData).map((posts: IPost) => posts);
   return (
