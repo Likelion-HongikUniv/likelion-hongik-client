@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 50px;
   font-size: 15px;
-  position: static;
+  position: static !important;
   bottom: 0;
   font-weight: 300;
   text-align: center;

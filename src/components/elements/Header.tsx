@@ -128,7 +128,7 @@ const Wrapper = styled.div`
     justify-content: left;
     align-items: baseline;
   } */
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     width: 100%;
     padding: 0px 40px;
     height: 60px !important;
@@ -143,7 +143,7 @@ const Wrapper = styled.div`
 `;
 
 const HeaderButton = styled.button`
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     font-size: 16px;
     color: white;
   }

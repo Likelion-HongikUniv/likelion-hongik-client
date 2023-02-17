@@ -123,6 +123,13 @@ const EditorWrapper = styled.div`
   background-color: black;
   border-radius: 4px;
 
+  .toastui-editor-contents {
+    font-size: 15px;
+  }
+  .ProseMirror {
+    font-size: 15px;
+  }
+
   .toastui-editor-toolbar {
     height: 45px;
   }
