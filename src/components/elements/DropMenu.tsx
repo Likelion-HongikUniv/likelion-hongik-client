@@ -18,6 +18,7 @@ export function DropMenu(isActive: DropMenuProps) {
       setUserInfo("");
       localStorage.removeItem("token");
       // localStorage.removeItem("username");
+      navigate("/login"); //커뮤니티나 마이페이지에서 헤더 로그아웃 누를 때 대비
     } else {
       navigate("/login");
     }

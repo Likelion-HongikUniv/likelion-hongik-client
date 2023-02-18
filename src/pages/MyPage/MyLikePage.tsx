@@ -10,6 +10,7 @@ import MyPagination from "../MyPage/MyPagination";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currPageState, userState } from "../../states/index";
 import * as S from "../../styles/myPages/myPageStyle";
+import { useNavigate } from "react-router-dom";
 
 interface IPost {
   title: string;
@@ -29,15 +30,19 @@ export function MyLikePage() {
   const userInfo = useRecoilValue(userState);
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  const token = userInfo.accessToken;
+  // const token = userInfo.accessToken;
+  const token = localStorage.getItem("token");
+  const baseURL = "https://www.hongiklikelion.click";
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getMyLikeAPI();
   }, [currPage]);
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/likes/`, {
+      .get(`${baseURL}/mypage/likes/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -54,11 +59,10 @@ export function MyLikePage() {
       })
       .catch(function (error) {
         console.log(error);
+         alert("로그인이 필요한 기능입니다.");
+         navigate("/login");
       });
   };
-  useEffect(() => {
-    getMyLikeAPI();
-  }, [currPage]);
 
   return (
     <>
