@@ -12,11 +12,11 @@ export default function useAutoLogin() {
   const pathname = window.location.href;
   const token = localStorage.getItem("token");
 
-  const privatePage = "";
-  pathname.includes("myPage") ||
+  const privatePage =
+    pathname.includes("myPage") ||
     pathname.includes("post") ||
-    pathname.includes("community") ||
-    pathname.includes("post"); // 로그인 해야만 접근 가능한 페이지명
+    pathname.includes("write") ||
+    pathname.includes("community"); // 로그인 해야만 접근 가능한 페이지명
 
   useEffect(() => {
     if (token) {
@@ -45,8 +45,9 @@ export default function useAutoLogin() {
           // navigate("/");
         }
       });
-    } else if (!token) {
-      // navigate("/");
+    } else if (!token && privatePage) {
+      alert("로그인 후 이용해주세요🦁");
+      navigate("/");
     }
   }, [pathname, token]);
 }

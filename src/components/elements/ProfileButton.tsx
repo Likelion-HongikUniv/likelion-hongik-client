@@ -45,8 +45,9 @@ export function ProfileButton() {
 const PersonIcon = styled.div<{ url: string }>`
   width: 24px;
   height: 24px;
-  background-image: url(${emoji_lion_24x24});
-  /* background-image: ${(props) => (props.url !== undefined ? props.url : emoji_lion_24x24)} */
+  /* background-image: url(${emoji_lion_24x24}); */
+  background-image: url(${(props) => (props.url ? props.url : emoji_lion_24x24)});
+  border-radius: 50%;
   background-position: center;
   background-size: cover;
 `;
