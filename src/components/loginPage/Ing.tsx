@@ -15,7 +15,7 @@ const Ing = () => {
   const UID = searchParams.get("UID");
   const getProfile = async () => {
     axios
-      .post(`http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/v1/token`, UID, {
+      .post(`https://www.hongiklikelion.click/v1/token`, UID, {
         headers: {
           "Content-Type": `application/json`,
         },
