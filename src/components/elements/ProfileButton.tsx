@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { isLoggedInState, profileImgState } from "../../states";
+import { isLoggedInState, userState } from "../../states";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { DropMenu } from "./DropMenu";
 import emoji_lion_24x24 from "./../images/emoji_lion_24x24.png";
@@ -10,27 +10,19 @@ import emoji_lion_24x24 from "./../images/emoji_lion_24x24.png";
 export function ProfileButton() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const [isMenu, setMenu] = useState(false);
   const [isDropDown, setDropDown] = useState(false);
   const isPC = useMediaQuery("(min-width: 1024px)");
-  const name = localStorage.getItem("username");
-  const profileImg = useRecoilValue(profileImgState);
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
+  const name = userInfo.nickname;
+  const profileImg = userInfo.profileImageSrc;
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setMenu(!isMenu);
-    // const loggedInState = e.currentTarget.name;
-    // if (loggedInState === "로그인") {
-    //   navigate("/login");
-    // }
-    if (isLoggedIn) {
-      setIsLoggedIn(false);
-      localStorage.removeItem("token");
-      localStorage.removeItem("username");
-    } else {
+    if (!isLoggedIn) {
       navigate("/login");
     }
-    console.log(isLoggedIn);
   };
 
   return (
@@ -45,7 +37,7 @@ export function ProfileButton() {
         <PersonIcon url={profileImg} />
         {isLoggedIn ? name : "로그인"}
       </Wrapper>
-      {isPC && isDropDown && <DropMenu isActive={isDropDown} />}
+      {isLoggedIn && isDropDown && <DropMenu isActive={isDropDown} />}
     </div>
   );
 }
@@ -71,4 +63,11 @@ const Wrapper = styled.button<{ isPC: boolean }>`
   gap: ${(props) => (props.isPC ? "8px" : "4px")};
 
   background-color: #1e1e1e;
+
+  @media (min-width: 769px) {
+    font-size: 16px;
+  }
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
 `;

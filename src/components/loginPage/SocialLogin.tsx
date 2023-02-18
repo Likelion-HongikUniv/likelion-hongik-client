@@ -3,7 +3,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Footer from "../elements/Footer";
 import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
@@ -17,12 +16,14 @@ export function SocialLogin() {
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
+    // navigate('/ing');
   };
   const naverLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
       "_self",
     );
+    // navigate('/ing');
   };
 
   const kakaoLogin = () => {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React,{useEffect} from "react";
 import { useRecoilState } from "recoil";
 import { currPageState } from "../../states/index";
 
@@ -24,6 +24,10 @@ const MyPagination = ({ totalPages }: ItotalPage) => {
     if (currPage === totalPages) setCurrPage(totalPages);
     else setCurrPage(currPage + 1);
   };
+
+  useEffect(() => {
+    setCurrPage(1);
+  }, [window.location.pathname.split("/")[2]]);
 
   return (
     <PageSection>
@@ -50,7 +54,7 @@ const Button = styled.button<any>`
   border: 1px solid #ffffff;
   border-radius: 4px;
   color: #ffffff;
-  @media (max-width: 390px) {
+  @media (max-width: 768px) {
     width: 28px;
     height: 28px;
   }

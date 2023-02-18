@@ -43,7 +43,9 @@ const Curriculum = () => {
         <PartBtn id="1" onClick={handleClickButton}>
           <PartName id="1">기획·디자인</PartName>
           <PartText id="1">
-            고객 중심 사고를 바탕으로 서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
+            고객 중심 사고를 바탕으로
+            <br />
+            서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
           </PartText>
         </PartBtn>
         <PartBtn id="2" onClick={handleClickButton}>
@@ -108,7 +110,7 @@ const PartText = styled.p`
   margin-right: 40px;
   word-break: keep-all;
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 23px;
     margin-left: 20px;
     margin-top: 0px;

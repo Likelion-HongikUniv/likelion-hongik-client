@@ -1,14 +1,26 @@
 // 상태 관리
 
-import { atom } from "recoil";
-import { UploadImage } from "../components/myPage/FileUploader";
+import { atom, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { UploadImage } from "../components/myPage/FileUploader";
 
 const { persistAtom } = recoilPersist();
 
-export const userState = atom<string>({
+export const userState = atom<any>({
   key: "userState",
-  default: "",
+  default: {
+    major: "",
+    nickname: "",
+    part: "",
+    profileImageSrc: "",
+    role: "",
+    studentId: "",
+    team: null,
+    userId: 0,
+    username: "",
+    accessToken: "",
+  },
+  // effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({
@@ -20,13 +32,9 @@ export const btnActiveState = atom<number>({
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
-});
-
-export const profileImgState = atom<string>({
-  key: "profileImgState",
-  default: "",
   effects_UNSTABLE: [persistAtom],
 });
+
 
 interface IEdit {
   key?: string;
@@ -61,6 +69,16 @@ export const isLoggedInState = atom<boolean>({
 export const isCancelButtonClickedState = atom<boolean>({
   key: " isCancelButtonClickedState",
   default: false,
+});
+
+export const isThumbnailSetButtonClickedState = atom<boolean>({
+  key: "isThumbnailSetButtonClickedState",
+  default: false,
+});
+
+export const postThumbnailUrlState = atom<string>({
+  key: "postThumbnailUrlState",
+  default: "",
 });
 
 export const currPageState = atom<number>({

@@ -2,16 +2,15 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { profileImgState, teamState, editState } from "./../../states/index";
-import { NavSelectPart } from "../myPage/NavSelectPart";
+import { userState, teamState, editState } from "./../../states/index";
+import { NavSelectPart } from "../myPage/NavBar/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
-  const profileImg = useRecoilValue(profileImgState);
+  const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
   const team = useRecoilValue(teamState);
-
   useEffect(() => {
     getUserInfoAPI();
   }, []);
@@ -20,6 +19,7 @@ export function MyPageNav() {
     const token = localStorage.getItem("token");
     await axios
       .get(`http://13.125.72.138:8080/mypage`, {
+        // .get(`http://localhost:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -43,10 +43,10 @@ export function MyPageNav() {
   return (
     <LeftNav>
       <div style={{ display: "flex" }}>
-        <ProfileCopy src={profileImg || emoji_lion} />
+        <ProfileCopy src={userInfo.profileImageSrc || emoji_lion} />
         <div style={{ width: "88px" }}>
-          <Name>{info.nickname}</Name>
-          <Team>{team} 팀</Team>
+          <Name>{userInfo.nickname}</Name>
+          <Team>{userInfo.team ? `${userInfo.team}팀` : "건빵팀"}</Team>
         </div>
       </div>
       <NavSelectPart />
@@ -59,8 +59,6 @@ const LeftNav = styled.nav`
   height: 100%;
   background-color: ${BLACK_1};
   color: ${WHITE_1};
-  /* margin-left: 340px; */
-  /* 각 컨테이너에 margin-left: 8.33vw; 주고 justify-content 하면 가운데 정렬! */
   padding-top: 140px;
   letter-spacing: -0.32px;
 
@@ -69,10 +67,10 @@ const LeftNav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    overflow: hidden;
-    width: max-content;
-    padding-left: 40px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* overflow: hidden;
+    width: max-content; */
+    display: none;
   }
 `;
 
@@ -100,4 +98,5 @@ const Team = styled.div`
   font-size: 14px;
   line-height: 16.94px;
   color: #b9b9b9;
+  width: 80px;
 `;

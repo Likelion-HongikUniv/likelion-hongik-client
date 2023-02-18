@@ -1,179 +1,34 @@
 import React from "react";
-import styled from "styled-components";
+import * as S from "../../../styles/mainPage/curriculumStyle";
 
 const Part2 = () => {
   return (
-    <Box>
-      <PartName>프론트엔드 타임라인</PartName>
-      <BarContainer>
-        <Dot1>
-          <Date>2022.02.21 - 03.02</Date>
-          <Text>멋사 11기 지원 기간</Text>
-        </Dot1>
-        <Dot2>
-          <Date>2022.02.21 - 03.02</Date>
-          <Text>프론트엔드</Text>
-        </Dot2>
-        <Dot3>
-          <Date>2022.02.21 - 03.02</Date>
-          <Text>프론트엔드</Text>
-        </Dot3>
-        <Dot4>
-          <Date>2022.02.21 - 03.02</Date>
-          <Text>프론트엔드</Text>
-        </Dot4>
-        <Dot5>
-          <Date>2022.02.21 - 03.02</Date>
-          <Text>프론트엔드</Text>
-        </Dot5>
-      </BarContainer>
-    </Box>
+    <S.Box>
+      <S.PartName>프론트엔드 타임라인</S.PartName>
+      <S.BarContainer>
+        <S.Dot1>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>Github 교육</S.Text>
+        </S.Dot1>
+        <S.Dot2>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>HTML/CSS 교육</S.Text>
+        </S.Dot2>
+        <S.Dot3>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>Javascript 교육(1)</S.Text>
+        </S.Dot3>
+        <S.Dot4>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>Javascript 교육(2)</S.Text>
+        </S.Dot4>
+        <S.Dot5>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>REACT</S.Text>
+        </S.Dot5>
+      </S.BarContainer>
+    </S.Box>
   );
 };
-
-const Box = styled.div`
-  height: 330px;
-  width: 80vw;
-  margin-top: 50px;
-  @media (max-width: 768px) {
-    height: 500px;
-    width: 70vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    margin: auto;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 688px;
-    margin: 40px auto;
-  }
-`;
-
-const PartName = styled.h2`
-  color: white;
-  font-size: 28px;
-  margin-bottom: 40px;
-  text-align: center;
-  width: 250px;
-  @media (max-width: 768px) {
-    margin-left: 20px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 100vw;
-    text-align: left;
-  }
-`;
-
-const BarContainer = styled.div`
-  width: 1240px;
-  height: 20px;
-  background: rgba(51, 51, 51, 0.8);
-  border-radius: 30px;
-  position: relative;
-  @media (max-width: 768px) {
-    width: 20px;
-    height: 326px;
-    margin-left: 50px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 688px;
-    height: 20px;
-  }
-`;
-
-const Dot1 = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 0px;
-  border-radius: 50px;
-  background: #d9d9d9;
-`;
-
-const Dot2 = styled(Dot1)`
-  position: absolute;
-  left: 250px;
-  @media (max-width: 768px) {
-    top: 70px;
-    left: 0px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    left: 150px;
-  }
-`;
-
-const Dot3 = styled(Dot2)`
-  position: absolute;
-  left: 500px;
-  @media (max-width: 768px) {
-    top: 140px;
-    left: 0px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    left: 300px;
-  }
-`;
-
-const Dot4 = styled(Dot3)`
-  position: absolute;
-  left: 750px;
-  @media (max-width: 768px) {
-    top: 210px;
-    left: 0px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    left: 430px;
-  }
-`;
-
-const Dot5 = styled(Dot4)`
-  position: absolute;
-  left: 1000px;
-  @media (max-width: 768px) {
-    top: 280px;
-    left: 0px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    left: 570px;
-  }
-`;
-
-const Date = styled.div`
-  margin-top: 40px;
-  width: 149px;
-  height: 19px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  @media (max-width: 768px) {
-    margin-top: 0px;
-    margin-left: 40px;
-    font-size: 12px;
-    line-height: 14px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 12px;
-  }
-`;
-
-const Text = styled.div`
-  width: 182.68px;
-  height: 29px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  margin-top: 16px;
-  @media (max-width: 768px) {
-    margin-top: 4px;
-    margin-left: 40px;
-    font-size: 20px;
-    line-height: 24px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 14px;
-    margin-top: 4px;
-  }
-`;
 
 export default Part2;

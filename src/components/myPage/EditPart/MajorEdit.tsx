@@ -18,17 +18,9 @@ const MajorPart = styled.div`
   margin-top: 24px;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     display: inline-block;
-  }
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
   }
 `;
 
@@ -37,7 +29,7 @@ const MajorTitle = styled.div`
   font-size: 20px;
   line-height: 24.96px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     //모바일
     font-size: 16px;
     line-height: 19.2px;
@@ -45,12 +37,7 @@ const MajorTitle = styled.div`
     display: flex;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 768px) and (max-width: 1023px) {
   }
 `;
 
@@ -81,11 +68,8 @@ const MajorInput = styled.input`
     background-color: #222222;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    // 테블릿 세로
-  }
-
-  @media (min-width: 992px) and (max-width: 1200px) {
-    // 테블릿 가로
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 50vw;
+    margin-left: 43px;
   }
 `;

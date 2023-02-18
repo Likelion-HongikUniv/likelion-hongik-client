@@ -1,22 +1,32 @@
-import axios from "axios";
+import client from "./client";
+import { userState } from "../states";
+import { useRecoilValue } from "recoil";
 
-const baseURL = "http://13.125.72.138:8080/";
-
-function GetPostDetail(postId: number) {
+export async function getPostDetail(postId: number) {
+  // const userInfo = useRecoilValue(userState)
   const token = localStorage.getItem("token");
-  axios
-    .get(`${baseURL}/community/post/${postId}`, {
+  return await client
+    .get(`/community/post/${postId}`, {
       headers: {
         "Content-Type": `application/json`,
         JWT: token,
       },
     })
     .then((response) => {
-      return response.data;
+      if (response.status === 200) {
+        // setBoardData(response.data);
+        // setCommentsData(response.data.comments);
+        return response.data;
+      }
     })
     .catch((err) => {
+      if (err.response.status === 401 || err.response.status === 500) {
+        alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+      }
+      if (err.response.status === 404) {
+        alert("게시글을 찾을 수 없습니다.");
+      }
+      window.location.href = "/";
       throw err;
     });
 }
-
-export default GetPostDetail;

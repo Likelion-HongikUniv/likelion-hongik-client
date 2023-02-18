@@ -11,10 +11,10 @@ import { Column, Row } from "../elements/Wrapper";
 // }
 
 export function ConfirmationPopup() {
-  const setIsancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
+  const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
   const navigate = useNavigate();
   return (
-    <Wrapper>
+    <>
       <ConfirmationPopUpWrapper>
         <Column gap="16px">
           <div style={{ color: "white", fontSize: "24px", fontWeight: "700" }}>작성 취소</div>
@@ -25,14 +25,14 @@ export function ConfirmationPopup() {
             <Row gap="12px">
               <CancelButton
                 onClick={() => {
-                  setIsancelButtonClicked(false);
+                  setIsCancelButtonClicked(false);
                 }}
               >
                 취소
               </CancelButton>
               <LeaveButton
                 onClick={() => {
-                  navigate("/community");
+                  navigate("/community/Q&A");
                 }}
               >
                 나가기
@@ -42,46 +42,47 @@ export function ConfirmationPopup() {
         </Column>
       </ConfirmationPopUpWrapper>
       <BackDrop />
-    </Wrapper>
+    </>
   );
 }
 
-const Wrapper = styled.div`
-  position: fixed;
-  top: 35%;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const BackDrop = styled.div`
-  z-index: 9999;
+  z-index: 15000;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   position: fixed;
-  top: 0;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   background-color: rgba(14, 14, 14, 0.5);
 `;
 
 const ConfirmationPopUpWrapper = styled.div`
-  z-index: 10000;
+  z-index: 16000;
 
   background-color: #222222;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   padding: 32px 24px;
-  border-radius: 12px;
+  border-radius: 20px;
 
   width: 420px;
   height: 238px;
+
+  position: fixed;
+  margin: 0 auto;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const CancelButton = styled.button`

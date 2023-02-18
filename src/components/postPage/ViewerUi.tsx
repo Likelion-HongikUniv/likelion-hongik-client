@@ -17,7 +17,7 @@ export function ViewerUi({ body }: ViewerUiProps) {
 }
 
 const Wrapper = styled.div`
-  & .toastui-editor-contents > * {
+  & .toastui-editor-contents * {
     color: white !important;
     font-size: 15px;
   }

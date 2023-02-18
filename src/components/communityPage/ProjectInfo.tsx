@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { projectTeamState } from "../../states/atoms";
 import { IMember, IProjectTeam } from "../../interfaces/team";
+import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 const baseURL = "http://13.125.72.138:8080";
 
@@ -26,12 +27,12 @@ export function ProjectInfo() {
         }
       })
       .catch((err) => {
-        if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
-        }
-        if (err.response.status === 404) {
-          alert("게시글을 찾을 수 없습니다.");
-        }
+        // if (err.response.status === 401 || err.response.status === 500) {
+        //   alert("팀 빌딩 후 이용 가능합니다🦁");
+        // }
+        // if (err.response.status === 404) {
+        //   alert("게시글을 찾을 수 없습니다.");
+        // }
         window.location.href = "/";
         throw err;
       });
@@ -49,7 +50,7 @@ export function ProjectInfo() {
           {projectInfo?.members.map((member: IMember, index) => (
             <ImgBox key={member.userId}>
               <img
-                src={member.profileImage}
+                src={member.profileImage || emoji_lion}
                 alt="team-profile-img"
                 style={{ opacity: (projectInfo.memberCount - (index - 0.3)) / projectInfo.memberCount }}
               />
@@ -65,23 +66,24 @@ export function ProjectInfo() {
 const TeamWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.0417vw;
+  gap: 20px;
+  margin-bottom: 44px;
   div {
     display: flex;
     align-items: center;
     span {
       font-weight: 500;
-      margin-left: 0.7813vw;
-      font-size: 0.8333vw;
+      margin-left: 15px;
+      font-size: 16px;
       color: #c6c6c6;
     }
   }
-  @media all and (max-width: 768px) {
-    gap: 4.1026vw;
+  @media all and (max-width: 767px) {
+    gap: 16px;
     div {
       span {
-        font-size: 3.5897vw;
-        margin-left: 6vw;
+        font-size: 14px;
+        margin-left: 23px;
       }
     }
   }
@@ -89,29 +91,25 @@ const TeamWrapper = styled.div`
 
 const TeamName = styled.h1`
   font-weight: 700;
-  font-size: 1.25vw;
+  font-size: 24px;
   margin: 0;
-  @media all and (max-width: 768px) {
-    font-size: 5.1282vw;
+  @media all and (max-width: 767px) {
+    font-size: 20px;
   }
 `;
 
 const ImgBox = styled.div`
-  width: 1.3021vw;
-  height: 1.6667vw;
+  width: 25px;
+  height: 32px;
   overflow-x: visible;
   img {
     position: absolute;
-    width: 1.6667vw;
-    height: 1.6667vw;
+    width: 32px;
+    height: 32px;
     border-radius: 100%;
   }
-  @media all and (max-width: 768px) {
-    width: 6vw;
-    height: 8.2051vw;
-    img {
-      width: 8.2051vw;
-      height: 8.2051vw;
-    }
+  @media all and (max-width: 767px) {
+    width: 23px;
+    height: 32px;
   }
 `;

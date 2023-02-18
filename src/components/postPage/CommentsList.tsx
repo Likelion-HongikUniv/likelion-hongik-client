@@ -4,21 +4,20 @@ import { Column } from "../elements/Wrapper";
 import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { IComment } from "../../interfaces/comments";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../states/user";
+import { userState } from "../../states/index";
 import { commentsListState } from "../../states/atoms";
 import moment from "moment";
 import useInput from "../../hooks/useInput";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { postComment } from "../../api/postComment";
 
 export function CommentsList(commentList: IComment[]) {
-  const [commentsList, setCommentsList] = useRecoilState(commentsListState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-
+  const { data, isLoading, mutate, mutateAsync } = useMutation(postComment);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const comments = Object.values(commentList).map((comments: IComment) => comments);
-  const accessToken = localStorage.getItem("token");
   const commentInput = useInput("");
   const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id?: string }>();
@@ -27,55 +26,72 @@ export function CommentsList(commentList: IComment[]) {
     e.preventDefault();
     let curTime = new Date().toString();
     let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
-    let body = {
+    const props = {
+      commentId: comments.length + 1,
+      author: {
+        authorId: userInfo.userId,
+        nickname: userInfo.nickname,
+        profileImage: userInfo.profileImageSrc,
+        isAuthor: true,
+      },
       body: commentInput.value,
+      isDeleted: false,
+      isLiked: false,
+      createdTime: formatTime,
+      likeCount: 0,
+      replies: [],
     };
 
-    axios
-      .post(
-        `http://13.125.72.138:8080/community/post/${id}`,
-        JSON.stringify(body),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${accessToken}`,
-          },
-        },
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          const tempObj = {
-            commentId: comments.length + 1,
-            author: {
-              // authorId: userState.userId,
-              // profileImage: userState.nickname,
-              // profileImage: userState.profileImageSrc,
-              isAuthor: true,
-            },
-            body: commentInput.value,
-            isDeleted: false,
-            isLiked: false,
-            createdTime: formatTime,
-            likeCount: 0,
-            replies: [],
-          };
+    // axios
+    //   .post(
+    //     `http://13.125.72.138:8080/community/post/${id}`,
+    //     JSON.stringify(body),
+    //     // { withCredentials: true },
+    //     {
+    //       headers: {
+    //         "Content-Type": `application/json`,
+    //         JWT: `${accessToken}`,
+    //       },
+    //     },
+    //   )
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       const tempObj = {
+    //         commentId: comments.length + 1,
+    //         author: {
+    //           // authorId: userState.userId,
+    //           // profileImage: userState.nickname,
+    //           // profileImage: userState.profileImageSrc,
+    //           isAuthor: true,
+    //         },
+    //         body: commentInput.value,
+    //         isDeleted: false,
+    //         isLiked: false,
+    //         createdTime: formatTime,
+    //         likeCount: 0,
+    //         replies: [],
+    //       };
 
-          let newList: any = [...comments, tempObj];
-          setCommentsList(newList);
-          commentInput.setValue("");
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
-        }
-        if (err.response.status === 404) {
-          alert("대상을 찾을 수 없습니다.");
-        }
-        window.location.reload();
-        throw err;
-      });
+    //       let newList: any = [...comments, tempObj];
+    //       setCommentsList(newList);
+    //       commentInput.setValue("");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.status === 401 || err.response.status === 500) {
+    //       alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+    //     }
+    //     if (err.response.status === 404) {
+    //       alert("대상을 찾을 수 없습니다.");
+    //     }
+    //     window.location.reload();
+    //     throw err;
+    //   });
+    let pid = Number(id);
+    if (!isLoading) {
+      mutate({ pid, props });
+      commentInput.value = "";
+    }
   };
 
   return (

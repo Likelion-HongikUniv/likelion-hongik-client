@@ -11,7 +11,9 @@ export function LoginPage() {
       <Container>
         <SocialLogin />
       </Container>
-      <Footer style={{ marginTop: "333px" }} />
+      <Diving>
+        <Footer />
+      </Diving>
     </>
   );
 }
@@ -22,4 +24,17 @@ const Container = styled.div`
   color: ${WHITE_1};
   display: flex;
   justify-content: center;
+`;
+
+const Diving = styled.div`
+  margin-top: 333px;
+  @media (max-width: 768px) {
+    //모바일
+    margin-top: 35vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    // 테블릿 세로
+    margin-top: 369px;
+  }
 `;
