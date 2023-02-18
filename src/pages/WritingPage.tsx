@@ -14,15 +14,18 @@ import {
   userState,
 } from "../states";
 import useInput from "../hooks/useInput";
+import { useLocation } from "react-router-dom";
+import { nowTagState } from "../states/atoms";
 
 export function WritingPage() {
-  const postThumbnailImage = useRecoilValue(postThumbnailUrlState);
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
   const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
+  const selectedSubCategory = useRecoilValue(nowTagState);
   const userInfo = useRecoilValue(userState);
-  console.log(userInfo);
-
-  const [clickedCategory, setClickedCategory] = useState("공지사항");
+  const { state } = useLocation();
+  const selectedMainCategory = state.category;
+  const [clickedMainCategory, setClickedMainCategory] = useState(selectedMainCategory);
+  const [clickedSubCategory, setClickedSubCategory] = useState(selectedSubCategory.key);
   const title = useInput(""); // title.value가 값임
 
   return (
@@ -38,12 +41,13 @@ export function WritingPage() {
       >
         <div style={{ width: "80vw", justifyContent: "center", alignContent: "center" }}>
           <TabBar
-            style={{ marginTop: "20px" }}
-            clickedCategory={clickedCategory}
-            setClickedCategory={setClickedCategory}
+            clickedMainCategory={clickedMainCategory}
+            setClickedMainCategory={setClickedMainCategory}
+            clickedSubCategory={clickedSubCategory}
+            setClickedSubCategory={setClickedSubCategory}
           />
           <InputBar style={{ marginTop: "60px" }} {...title} />
-          <TextEditor title={title.value} category={clickedCategory} />
+          <TextEditor title={title.value} category={clickedSubCategory} />
           {isCancelButtonClicked && <ConfirmationPopup />}
           {isThumbnailSetButtonClicked && <ThumbnailUploadPopup />}
         </div>
