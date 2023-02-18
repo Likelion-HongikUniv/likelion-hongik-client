@@ -26,6 +26,10 @@ const Part3 = () => {
           <S.Date>2022.02.21 - 03.02</S.Date>
           <S.Text>DJango 교육 2</S.Text>
         </S.Dot5>
+        <S.Dot6>
+          <S.Date>2022.02.21 - 03.02</S.Date>
+          <S.Text>세션</S.Text>
+        </S.Dot6>
       </S.BarContainer>
     </S.Box>
   );
