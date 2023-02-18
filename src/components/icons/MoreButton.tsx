@@ -27,20 +27,16 @@ export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
   };
 
   const onClickEdit = () => {
-    navigate(`community/post/edit/${id}`, { state: board.body });
-    // useLocation으로 edit에 전달한 body를 받으려함
-    // const { state } = useLocation();
-    // console.log(state);
-    // ( state !== undefined) ? initialValue = board.body : null;
+    navigate("/write", { state: { id: board.postId, title: board.title, body: board.body } });
   };
 
   const onClickDelete = () => {
     if (isBoard) {
-      targetURL = `http://13.125.72.138:8080/community/post/${id}`;
+      targetURL = `https://www.hongiklikelion.click/community/post/${id}`;
     } else if (isComment) {
-      targetURL = `http://13.125.72.138:8080/community/comment/${id}`;
+      targetURL = `https://www.hongiklikelion.click/community/comment/${id}`;
     } else {
-      targetURL = `http://13.125.72.138:8080/community/reply/${id}`;
+      targetURL = `https://www.hongiklikelion.click/community/reply/${id}`;
     }
     axios
       .delete(targetURL, {

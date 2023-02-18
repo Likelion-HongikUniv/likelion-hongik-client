@@ -77,6 +77,5 @@
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/react-slick": "^0.23.10"
-  },
-  "proxy": "http://localhost:8080/"
+  }
 }

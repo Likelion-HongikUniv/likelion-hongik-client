@@ -35,7 +35,7 @@ export function Input({ cid, username }: InputProps) {
 
     axios
       .post(
-        `http://13.125.72.138:8080/community/comment/${curTarget.commentId}`,
+        `https://www.hongiklikelion.click/community/comment/${curTarget.commentId}`,
         JSON.stringify(body),
         // { withCredentials: true },
         {

@@ -27,7 +27,7 @@ export function RecruitPage() {
             </Wrapper>
           </Section>
         </Column>
-        <Section>
+        <Column>
           <Wrappers>
             <ForDiv>
               <Curriculum />
@@ -37,7 +37,7 @@ export function RecruitPage() {
               <Tip />
             </ForDiv>
           </Wrappers>
-        </Section>
+        </Column>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
         </div>

@@ -36,6 +36,7 @@ const Box = styled.div`
   margin-top: 50px;
   margin-left: 340px;
   @media (max-width: 391px) {
+    margin-top: 0;
     margin-left: 0px;
   }
   @media (min-width: 391px) and (max-width: 767px) {
@@ -49,6 +50,7 @@ const Box = styled.div`
 
   @media (min-width: 769px) and (max-width: 1023px) {
     // 테블릿 세로
+    margin-top: 0;
     margin-left: 0px;
   }
   @media (min-width: 1024px) and (max-width: 1200px) {

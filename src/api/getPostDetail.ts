@@ -14,8 +14,6 @@ export async function getPostDetail(postId: number) {
     })
     .then((response) => {
       if (response.status === 200) {
-        // setBoardData(response.data);
-        // setCommentsData(response.data.comments);
         return response.data;
       }
     })

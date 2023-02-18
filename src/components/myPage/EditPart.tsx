@@ -51,7 +51,7 @@ export function EditPart() {
     console.log(info);
 
     axios
-      .put("http://13.125.72.138:8080/mypage/edit", JSON.stringify(data), {
+      .put("https://www.hongiklikelion.click/mypage/edit", JSON.stringify(data), {
         headers: {
           "Content-Type": `application/json`,
           JWT: `${jwt}`,

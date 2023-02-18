@@ -37,7 +37,7 @@ export function MyReplyPage() {
 
   const getMyReplyAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/comments/`, {
+      .get(`https://www.hongiklikelion.click/mypage/comments/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

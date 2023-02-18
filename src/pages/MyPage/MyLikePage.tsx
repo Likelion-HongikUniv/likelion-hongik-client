@@ -37,7 +37,7 @@ export function MyLikePage() {
 
   const getMyLikeAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/likes/`, {
+      .get(`https://www.hongiklikelion.click/mypage/likes/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

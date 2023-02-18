@@ -45,7 +45,7 @@ export function LoginDetailInfo() {
 
   const nickMulCheck = async () => {
     await axios
-      .post(`http://13.125.72.138:8080/nickname`, JSON.stringify(nick), {
+      .post(`https://www.hongiklikelion.click/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: jwt,
@@ -93,7 +93,7 @@ export function LoginDetailInfo() {
 
     axios
       .post(
-        "http://13.125.72.138:8080/accounts/detail_info/",
+        "https://www.hongiklikelion.click/accounts/detail_info/",
         JSON.stringify(data),
         // { withCredentials: true },
         {

@@ -17,7 +17,7 @@ export function NickEdit(props: any) {
   const checkNickname = async () => {
     console.log(props.value);
     await axios
-      .post(`http://13.125.72.138:8080/nickname`, JSON.stringify(nick), {
+      .post(`https://www.hongiklikelion.click/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
