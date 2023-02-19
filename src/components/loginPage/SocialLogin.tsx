@@ -11,19 +11,11 @@ import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
 
 export function SocialLogin() {
-<<<<<<< HEAD
   const googleLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
-=======
-  const navigate = useNavigate();
-  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("구글 로그인 클릭");
-    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
-    window.open("http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
->>>>>>> 482f0d41b16444181279af54bd17a3a6d65cfa3b
     // navigate('/ing');
   };
   const naverLogin = () => {
