@@ -11,43 +11,26 @@ import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
 
 export function SocialLogin() {
-<<<<<<< HEAD
   const googleLogin = () => {
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
-      "_self",
-    );
-=======
-  const navigate = useNavigate();
-  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("구글 로그인 클릭");
-    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
-    window.open("http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
->>>>>>> 482f0d41b16444181279af54bd17a3a6d65cfa3b
+    window.open("https://www.hongiklikelion.click/oauth2/authorization/google", "_self");
     // navigate('/ing');
   };
   const naverLogin = () => {
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
-      "_self",
-    );
+    window.open("https://www.hongiklikelion.click/oauth2/authorization/naver", "_self");
     // navigate('/ing');
   };
 
   const kakaoLogin = () => {
     window.open(
       // "http://localhost:8080/oauth2/authorization/kakao",
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
+      "https://www.hongiklikelion.click/oauth2/authorization/kakao",
       "_self",
     );
   };
 
   const githubLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("깃허브 로그인 클릭");
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/github",
-      "_self",
-    );
+    window.open("https://www.hongiklikelion.click/oauth2/authorization/github", "_self");
   };
 
   return (

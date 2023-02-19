@@ -38,7 +38,7 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
     if (isAuthor === false) {
       axios
         .post(
-          `http://13.125.72.138:8080/community/comment/${cid}/like`,
+          `https://www.hongiklikelion.click/community/comment/${cid}/like`,
           { body: null }, // body null이라도 있어야 이 문법에서 돌아감
           {
             headers: {
@@ -74,7 +74,7 @@ export function LikeButton({ cid, rid, isLiked, isAuthor, isComment, likes }: Li
     if (isAuthor === false) {
       axios
         .post(
-          `http://13.125.72.138:8080/community/reply/${rid}/like`,
+          `https://www.hongiklikelion.click/community/reply/${rid}/like`,
           { body: null }, // body null이라도 있어야 이 문법에서 돌아감
           {
             headers: {

@@ -15,8 +15,6 @@ import { getPostDetail } from "../api/getPostDetail";
 import { useQuery } from "@tanstack/react-query";
 import { userState } from "../states";
 
-const baseURL = "http://13.125.72.138:8080";
-
 export function PostPage() {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
   const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);

@@ -6,7 +6,7 @@ import { projectTeamState } from "../../states/atoms";
 import { IMember, IProjectTeam } from "../../interfaces/team";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://www.hongiklikelion.click";
 
 export function ProjectInfo() {
   const [projectInfo, setProjectInfo] = useRecoilState<IProjectTeam>(projectTeamState);

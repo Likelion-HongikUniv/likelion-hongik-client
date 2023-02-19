@@ -1,4 +1,3 @@
-import axios from "axios";
 import client from "./client";
 
 interface postProps {
@@ -8,9 +7,9 @@ interface postProps {
 }
 
 export async function postPost(token: string, props: postProps) {
-  await axios
+  await client
     .post(
-      `http://13.124.126.164:8080/community/posts/BOARD/NOTICE`,
+      `/community/posts/BOARD/NOTICE`,
       { title: props.title, body: props.editorContent, thumbnailImageUrl: props.thumbnailImageUrl },
       { headers: { JWT: token } },
     )

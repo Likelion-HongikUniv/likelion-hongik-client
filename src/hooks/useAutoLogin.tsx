@@ -20,7 +20,7 @@ export default function useAutoLogin() {
 
   useEffect(() => {
     if (token) {
-      axios.get(`http://13.125.72.138:8080/userinfo`, { headers: { JWT: token } }).then((res) => {
+      axios.get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } }).then((res) => {
         console.log(res);
         const data = res.data;
         if (res.status === 200) {

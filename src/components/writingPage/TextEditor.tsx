@@ -31,7 +31,7 @@ export function TextEditor({ category, title }: EditorProps) {
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
-      .get("http://13.125.72.138:8080/pre-signed-url/postImage", { headers: { JWT: token } })
+      .get("https://www.hongiklikelion.click/pre-signed-url/postImage", { headers: { JWT: token } })
       .then((res) => {
         return res.data;
       });
@@ -56,7 +56,7 @@ export function TextEditor({ category, title }: EditorProps) {
     if (token && title && editorContent) {
       await axios
         .post(
-          `http://13.125.72.138:8080/community/posts/BOARD/NOTICE`,
+          `https://www.hongiklikelion.click/community/posts/BOARD/NOTICE`,
           { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
           { headers: { JWT: token } },
         )

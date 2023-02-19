@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 export function TopBoard(categoryName: ICommunityParam) {
   const isMobile = useMediaQuery("( max-width: 767px )");
   const navigate = useNavigate();
-  console.log(categoryName);
 
   return (
     <Wrapper>

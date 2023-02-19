@@ -18,7 +18,7 @@ export function MyPageNav() {
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.125.72.138:8080/mypage`, {
+      .get(`https://www.hongiklikelion.click/mypage`, {
         // .get(`http://localhost:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
