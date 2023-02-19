@@ -14,37 +14,47 @@ const Ing = () => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const UID = searchParams.get("UID");
   const getProfile = async () => {
-    axios
-      .post(`https://www.hongiklikelion.click/v1/token`, UID, {
-        headers: {
-          "Content-Type": `application/json`,
-        },
-      })
-      .then((response) => {
-        const token = response.data.JWT;
-        if (response.data && token) {
-          localStorage.setItem("token", token);
-          setUserInfo({
-            ...userInfo,
-            accessToken: token,
-          });
-        }
-        if (response.data.isJoined === false && response.data.role === "GUEST") {
-          // 멋사회원도 아니고 그냥 소셜로그인 한 사람
-          console.log("멋사 회원이 아니에요!");
-          navigate("/");
-        } else if (response.data.isJoined === false && response.data.role === "USER") {
-          console.log("멋사 회원 + 회원가입");
-          navigate("/login/detail");
-        } else {
-          console.log("멋사 회원 + 로그인");
-          setIsLoggedIn(true);
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    if (UID === "-1") {
+      alert("이미 이 이메일의 계정이 있습니다. 다른 소셜로그인으로 로그인해주세요!");
+      navigate("/login");
+    } else {
+      axios
+        .post(
+          // `http://localhost:8080/v1/token`,
+          `https://www.hongiklikelion.click/v1/token`,
+          UID,
+          {
+            headers: {
+              "Content-Type": `application/json`,
+            },
+          },
+        )
+        .then((response) => {
+          const token = response.data.JWT;
+          if (response.data && token) {
+            localStorage.setItem("token", token);
+            setUserInfo({
+              ...userInfo,
+              accessToken: token,
+            });
+          }
+          if (response.data.isJoined === false && response.data.role === "GUEST") {
+            // 멋사회원도 아니고 그냥 소셜로그인 한 사람
+            console.log("멋사 회원이 아니에요!");
+            navigate("/");
+          } else if (response.data.isJoined === false && response.data.role === "USER") {
+            console.log("멋사 회원 + 회원가입");
+            navigate("/login/detail");
+          } else {
+            console.log("멋사 회원 + 로그인");
+            setIsLoggedIn(true);
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
   };
 
   useEffect(() => {
@@ -61,7 +71,7 @@ const Ing = () => {
         alignItems: "center",
       }}
     >
-      <BeatLoader color="#ED7F30" size={50} />
+      {/* <BeatLoader color="#ED7F30" size={50} /> */}
     </div>
   );
 };
