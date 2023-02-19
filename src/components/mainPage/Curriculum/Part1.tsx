@@ -26,6 +26,10 @@ const Part1 = () => {
           <S.Date>5차 세션</S.Date>
           <S.Text>기획디자인</S.Text>
         </S.Dot5>
+        <S.Dot6>
+          <S.Date>6차 세션</S.Date>
+          <S.Text>기획디자인</S.Text>
+        </S.Dot6>
       </S.BarContainer>
     </S.Box>
   );
