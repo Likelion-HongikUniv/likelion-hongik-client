@@ -4,10 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import 같공 from "../images/같공.png";
-import project2 from "../images/main_project2.png";
-import project3 from "../images/main_project3.png";
-import project4 from "../images/main_project4.png";
-import project5 from "../images/main_project5.png";
+import 캘린포니아 from '../images/캘린포니아.jpeg';
+import 페스티발람 from "../images/페스티발람.jpeg";
+import 멋사먹자 from "../images/멋사먹자.png";
 import project_default from "../images/project_default.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -25,27 +24,27 @@ interface Iprojects {
 
 const imageList = [
   {
-    pid: '같공',
+    pid: "같공",
     title: 같공,
     desc: "친구와 함께하는 랭킹별 참가비 환급 스터디 서비스",
   },
   {
-    pid: '2',
-    title: project_default,
-    desc: "project2 설명",
+    pid: "calenfornia",
+    title: 캘린포니아,
+    desc: "홍익대학교 학생 인증을 이용한 수업 일정 공유 캘린더",
   },
   {
-    pid: '3',
-    title: project_default,
-    desc: "project3 설명",
+    pid: "Festivalarm",
+    title: 페스티발람,
+    desc: "국내 야외 음악 페스티벌 알림, 후기 공유 서비스",
   },
   {
-    pid: '4',
-    title: project_default,
-    desc: "project4 설명",
+    pid: "멋사먹자",
+    title: 멋사먹자,
+    desc: "홍대생 큐레이터의 홍대 근처 먹킷리스트 지도 서비스",
   },
   {
-    pid: '5',
+    pid: "5",
     title: project_default,
     desc: "project5 설명",
   },
