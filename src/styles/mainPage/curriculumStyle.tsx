@@ -141,7 +141,7 @@ export const Text = styled.div`
   width: 182.68px;
   height: 29px;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   margin-top: 16px;
   @media (max-width: 768px) {

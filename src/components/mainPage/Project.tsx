@@ -7,7 +7,7 @@ import 같공 from "../images/같공.png";
 import 캘린포니아 from '../images/캘린포니아.jpeg';
 import 페스티발람 from "../images/페스티발람.jpeg";
 import 멋사먹자 from "../images/멋사먹자.png";
-import project_default from "../images/project_default.png";
+import 꽃바다 from "../images/꽃바다.jpeg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -44,9 +44,9 @@ const imageList = [
     desc: "홍대생 큐레이터의 홍대 근처 먹킷리스트 지도 서비스",
   },
   {
-    pid: "5",
-    title: project_default,
-    desc: "project5 설명",
+    pid: "FlowerSea",
+    title: 꽃바다,
+    desc: "홍익대학교 근처 꽃집 배달 및 픽업 서비스",
   },
 ];
 
