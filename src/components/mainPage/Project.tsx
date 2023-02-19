@@ -3,7 +3,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import project1 from "../images/main_project1.png";
+import 같공 from "../images/같공.png";
 import project2 from "../images/main_project2.png";
 import project3 from "../images/main_project3.png";
 import project4 from "../images/main_project4.png";
@@ -20,32 +20,32 @@ interface Iarrow {
 interface Iprojects {
   title: string;
   desc: string;
-  pid: number;
+  pid: string;
 }
 
 const imageList = [
   {
-    pid: 1,
-    title: project_default,
-    desc: "project1 설명",
+    pid: '같공',
+    title: 같공,
+    desc: "친구와 함께하는 랭킹별 참가비 환급 스터디 서비스",
   },
   {
-    pid: 2,
+    pid: '2',
     title: project_default,
     desc: "project2 설명",
   },
   {
-    pid: 3,
+    pid: '3',
     title: project_default,
     desc: "project3 설명",
   },
   {
-    pid: 4,
+    pid: '4',
     title: project_default,
     desc: "project4 설명",
   },
   {
-    pid: 5,
+    pid: '5',
     title: project_default,
     desc: "project5 설명",
   },
@@ -105,7 +105,7 @@ const Project = () => {
               <ProjectBox title={title}>
                 <Hover id="hover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   <HoverText>
-                    <Title>{`project` + pid}</Title>
+                    <Title>{pid}</Title>
                     <Desc>{desc}</Desc>
                   </HoverText>
                 </Hover>
@@ -162,7 +162,7 @@ const Hover = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   opacity: 0;
 `;
 
@@ -185,6 +185,7 @@ const Desc = styled.div`
   width: 232px;
   height: 60px;
   margin-top: 24px;
+  word-break: keep-all;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -197,7 +198,7 @@ const StyledSlider = styled(Slider)`
 const Next = styled.div`
   font-size: 25px;
   position: absolute;
-  top: 280px;
+  z-index: 10;
   left: 780px;
   &:hover {
     cursor: pointer;
@@ -207,7 +208,7 @@ const Next = styled.div`
 const Prev = styled.div`
   font-size: 25px;
   position: absolute;
-  top: 280px;
+  z-index: 10;
   right: 780px;
   &:hover {
     cursor: pointer;

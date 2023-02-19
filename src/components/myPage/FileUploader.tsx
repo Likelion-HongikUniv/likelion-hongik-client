@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { profileImgState, userState } from "./../../states/index";
+import { userState } from "./../../states/index";
 import axios from "axios";
 import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
+import { editProfileImage } from "../../api/edit";
 
 export interface UploadImage {
   file: File;
@@ -14,9 +15,9 @@ export interface UploadImage {
 
 export function FileUploader() {
   const profileImgFileInput = useRef<HTMLInputElement>(null);
-  const [profileImg, setProfileImg] = useRecoilState(profileImgState);
   const [userInfo, setUserInfo] = useRecoilState(userState);
-  const token: any = localStorage.getItem("token");
+  const profileImg = userInfo.profileImageSrc;
+  const token = userInfo.accessToken;
 
   const handleClickFileInput = () => {
     profileImgFileInput.current?.click();
@@ -40,8 +41,11 @@ export function FileUploader() {
           file: file,
         });
         if (statusCode === 200) {
-          setProfileImg(slicedUrl);
-          setUserInfo({ ...userInfo, profileImgSrc: slicedUrl });
+          setUserInfo({ ...userInfo, profileImageSrc: slicedUrl });
+          editProfileImage({
+            token: token,
+            slicedUrl: slicedUrl,
+          });
           return;
         }
       }
@@ -50,7 +54,7 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={profileImg || emoji_lion} onClick={handleClickFileInput} />
+      <ProfileThumbnail src={userInfo.profileImageSrc || emoji_lion} onClick={handleClickFileInput} />
       <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>

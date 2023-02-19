@@ -18,7 +18,9 @@ export const userState = atom<any>({
     team: null,
     userId: 0,
     username: "",
+    accessToken: "",
   },
+  // effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({
@@ -33,11 +35,6 @@ export const profileState = atom<UploadImage | null>({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const profileImgState = atom<string>({
-  key: "profileImgState",
-  default: "",
-  effects_UNSTABLE: [persistAtom],
-});
 
 interface IEdit {
   key?: string;

@@ -16,8 +16,12 @@ export function QnA() {
           <Answer>네, 지원 할 수 있습니다. 개발을 배우고자 하는 열정이 중요합니다.</Answer>
           <Question>Q. 활동은 언제인가요??</Question>
           <Answer>멋사는 1년 단위로 모집하며 매주 목요일에 세션이 진행됩니다!</Answer>
+          <Question>Q. 멋사에 지원하면 좋은 점이 뭔가요?</Question>
+          <Answer></Answer>
           <Question>Q. 여러 파트 지원할 수 있나요?</Question>
           <Answer>아쉽게도 하나의 파트만 지원 가능합니다.</Answer>
+          <Question>Q. 면접은 온라인으로 진행되나요?</Question>
+          <Answer>네, 면접은 온라인으로 진행됩니다.</Answer>
         </div>
       </div>
     </ForDiv>

@@ -7,9 +7,10 @@ import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
-import { useRecoilState } from "recoil";
-import { currPageState } from "../../states/index";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { currPageState, userState } from "../../states/index";
 import * as S from "../../styles/myPages/myPageStyle";
+import { useNavigate } from "react-router-dom";
 
 interface IPost {
   title: string;
@@ -26,17 +27,22 @@ export function MyReplyPage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
   const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
+  const userInfo = useRecoilValue(userState);
+  // const token = userInfo.accessToken;
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
+  const baseURL = "https://www.hongiklikelion.click";
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getMyReplyAPI();
   }, [currPage]);
 
   const getMyReplyAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/comments/`, {
+      .get(`${baseURL}/mypage/comments/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -53,11 +59,10 @@ export function MyReplyPage() {
       })
       .catch(function (error) {
         console.log(error);
+         alert("로그인이 필요한 기능입니다.");
+         navigate("/login");
       });
   };
-  useEffect(() => {
-    getMyReplyAPI();
-  }, [currPage]);
 
   return (
     <>

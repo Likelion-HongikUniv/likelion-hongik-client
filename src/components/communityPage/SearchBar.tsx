@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "../../styles/theme";
-import { useState } from "react";
 import axios from "axios";
 import { ICommunityParam, ITag } from "../../interfaces/category";
 import { nowTagState, pageState, paginationState, postsListState, searchState } from "../../states/atoms";
@@ -16,7 +15,7 @@ export function SearchBar(categoryName: ICommunityParam) {
     setSearch(event.target.value);
   };
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
-  const page = useRecoilValue<number>(pageState);
+  const [page, setPage] = useRecoilState<number>(pageState);
   const setPagination = useSetRecoilState<IPagination>(paginationState);
 
   function GetSearchList(category: string, tag: string, search: string) {
@@ -59,6 +58,7 @@ export function SearchBar(categoryName: ICommunityParam) {
   }
 
   const onSubmitHandler = () => {
+    setPage(1);
     GetSearchList(categoryName.categoryName, nowTag.key, search);
   };
 
