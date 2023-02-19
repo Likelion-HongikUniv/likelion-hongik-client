@@ -5,6 +5,7 @@ import { editState, NickMulState, mulBtnState } from "../../../states";
 import { BLACK_1, WHITE_1 } from "./../../../styles/theme";
 
 export function NickEdit(props: any) {
+  const baseURL = "https://www.hongiklikelion.click";
   const token = localStorage.getItem("token");
   const info = useRecoilValue(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);
@@ -17,7 +18,7 @@ export function NickEdit(props: any) {
   const checkNickname = async () => {
     console.log(props.value);
     await axios
-      .post(`http://13.125.72.138:8080/nickname`, JSON.stringify(nick), {
+      .post(`${baseURL}/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

@@ -15,7 +15,7 @@ export function EditPart() {
   const [info, setInfo] = useRecoilState(editState);
   const [nickCheck, setNickCheck] = useRecoilState(mulBtnState);
   const mulNick = useRecoilValue(NickMulState);
-
+  const baseURL = "https://www.hongiklikelion.click";
   const jwt = localStorage.getItem("token");
 
   const useNickInput = (initialValue: string | undefined) => {
@@ -51,7 +51,7 @@ export function EditPart() {
     console.log(info);
 
     axios
-      .put("http://13.125.72.138:8080/mypage/edit", JSON.stringify(data), {
+      .put(`${baseURL}/mypage/edit`, JSON.stringify(data), {
         headers: {
           "Content-Type": `application/json`,
           JWT: `${jwt}`,
