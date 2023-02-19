@@ -3,7 +3,7 @@ import { WHITE_1, BLACK_1 } from "../../styles/theme";
 import { useState } from "react";
 
 export function RecruitInfo() {
-  const [regDate, setRegDate] = useState(false);
+  const [regDate, setRegDate] = useState(true);
 
   const gotoReg = () => {
     if (regDate === false) {
