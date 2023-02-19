@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { boardState } from "../../states/atoms";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -14,7 +14,7 @@ interface MoreButtonProps {
 }
 
 export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
-  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
+  const board = useRecoilValue<IBoard>(boardState);
   const accessToken = localStorage.getItem("token");
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);

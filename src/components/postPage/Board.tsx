@@ -5,7 +5,7 @@ import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MoreButton } from "../icons/MoreButton";
+import { MoreButton } from "./MoreButton";
 
 export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 1024px)");

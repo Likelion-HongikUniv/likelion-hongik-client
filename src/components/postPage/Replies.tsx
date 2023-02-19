@@ -8,7 +8,7 @@ import { IReply } from "../../interfaces/comments";
 import moment from "moment";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { CommentArrowSmall } from "../icons/CommentArrowSmall";
-import { MoreButton } from "../icons/MoreButton";
+import { MoreButton } from "./MoreButton";
 
 interface IReplyProps {
   cid: number;

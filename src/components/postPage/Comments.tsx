@@ -9,7 +9,7 @@ import { Replies } from "./Replies";
 import { LikeButton } from "./LikeButton";
 import { WHITE_1, WHITE_2 } from "../../styles/theme";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MoreButton } from "../icons/MoreButton";
+import { MoreButton } from "./MoreButton";
 import { IAuthor } from "../../interfaces/post";
 
 export function Comments(props: IComment) {
