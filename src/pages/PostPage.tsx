@@ -5,7 +5,7 @@ import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IComment, IBoard } from "../interfaces/comments";
 import { commentsListState, boardState } from "../states/atoms";
 import styled from "styled-components";
@@ -15,27 +15,66 @@ import { getPostDetail } from "../api/getPostDetail";
 import { useQuery } from "@tanstack/react-query";
 
 export function PostPage() {
-  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
+  const [board, setBoardData] = useState<IBoard>({
+    postId: 1,
+    author: {
+      authorId: 1,
+      nickname: "",
+      profileImage: "",
+      isAuthor: true,
+    },
+    title: "",
+    body: "",
+    createdTime: "",
+    isLiked: true,
+    likeCount: 0,
+    comments: [],
+    imageUrls: [],
+  });
+  const [comments, setCommentsData] = useState<IComment[]>([
+    {
+      commentId: 1,
+      author: {
+        authorId: 1,
+        nickname: "",
+        profileImage: "",
+        isAuthor: true,
+      },
+      body: "",
+      isDeleted: false,
+      createdTime: "",
+      isLiked: false,
+      likeCount: 0,
+      replies: [],
+    },
+  ]);
   const isPC = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
   const { id } = useParams<{ id?: string }>();
 
   const postIdToNumber = Number(id);
-  const { isLoading: isPostDataLoading, data: postData } = useQuery(
-    ["post-detail", postIdToNumber],
-    async () => await getPostDetail(postIdToNumber),
+  const { isLoading: isPostDataLoading, data: postData } = useQuery(["post-detail", postIdToNumber], () =>
+    getPostDetail(postIdToNumber),
   );
-  if (!isPostDataLoading) {
-    setBoardData(postData);
-    setCommentsData(postData.comments);
-  }
+
+  useEffect(() => {
+    if (!isPostDataLoading && postData) {
+      console.log(postData);
+
+      setBoardData(postData);
+      setCommentsData(postData.comments);
+    }
+  }, [isPostDataLoading]);
+  // if (!isPostDataLoading && postData) {
+  //   setBoardData(postData);
+  //   setCommentsData(postData.comments);
+  // }
 
   return (
     <>
       <Header />
-      {isPC && (
+      {isPC && !isPostDataLoading && (
         <Section style={{ padding: "0 340px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
@@ -43,7 +82,7 @@ export function PostPage() {
           </Column>
         </Section>
       )}
-      {isTablet && (
+      {isTablet && !isPostDataLoading && (
         <Section style={{ padding: "0 40px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
@@ -52,7 +91,7 @@ export function PostPage() {
           </Column>
         </Section>
       )}
-      {isMobile && (
+      {isMobile && !isPostDataLoading && (
         <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
