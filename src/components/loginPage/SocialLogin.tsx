@@ -28,6 +28,7 @@ export function SocialLogin() {
 
   const kakaoLogin = () => {
     window.open(
+      // "http://localhost:8080/oauth2/authorization/kakao",
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
       "_self",
     );

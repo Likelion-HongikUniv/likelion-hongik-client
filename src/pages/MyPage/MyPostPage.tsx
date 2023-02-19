@@ -10,7 +10,7 @@ import MyPagination from "../MyPage/MyPagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
 import { currPageState, userState } from "../../states/index";
-// import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from 'react-router-dom';
 
 interface IPost {
   title: string;
@@ -31,15 +31,19 @@ export function MyPostPage() {
   const [totalPages, setTotalPages] = useState(5);
   const userInfo = useRecoilValue(userState);
   const profileImg = userInfo.profileImageSrc;
-  const token = userInfo.accessToken;
+  // const token = userInfo.accessToken;
+  const token = localStorage.getItem('token');
+  const baseURL = "https://www.hongiklikelion.click";
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getMyPostAPI();
   }, [currPage]);
 
   const getMyPostAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/posts/`, {
+      .get(`${baseURL}/mypage/posts/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -50,17 +54,15 @@ export function MyPostPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setPostList(response.data.content);
         setTotalPages(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
+        alert('로그인이 필요한 기능입니다.');
+        navigate('/login');
       });
   };
-  useEffect(() => {
-    getMyPostAPI();
-  }, [currPage]);
 
   return (
     <>
