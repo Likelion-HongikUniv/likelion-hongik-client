@@ -11,19 +11,11 @@ import { ReactHTMLElement, useEffect } from "react";
 import axios from "axios";
 
 export function SocialLogin() {
-<<<<<<< HEAD
   const googleLogin = () => {
     window.open(
       "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
       "_self",
     );
-=======
-  const navigate = useNavigate();
-  const googleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("구글 로그인 클릭");
-    // window.open("http://localhost:8080/oauth2/authorization/google", "_self");
-    window.open("http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google", "_self");
->>>>>>> 482f0d41b16444181279af54bd17a3a6d65cfa3b
     // navigate('/ing');
   };
   const naverLogin = () => {
@@ -58,29 +50,31 @@ export function SocialLogin() {
         오신 걸 환영합니다
       </WelcomeText>
       <SmallText>로그인 후 이용할 수 있어요.</SmallText>
-      <SocialBtn style={{ marginTop: "60px" }} onClick={githubLogin}>
-        <FontAwesomeIcon icon={faGithub} />
-        <Social>Github으로 계속하기</Social>
-      </SocialBtn>
-      <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
-        <NaverIcon />
-        <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
-      </SocialBtn>
-      <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
-        <KakaoIcon />
-        <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
-      </SocialBtn>
-      <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
-        <GoogleIcon />
-        <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
-      </SocialBtn>
+      <div>
+        <SocialBtn style={{ marginTop: "60px" }} onClick={githubLogin}>
+          <FontAwesomeIcon icon={faGithub} />
+          <Social>Github으로 계속하기</Social>
+        </SocialBtn>
+        <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
+          <NaverIcon />
+          <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
+        </SocialBtn>
+        <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
+          <KakaoIcon />
+          <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
+        </SocialBtn>
+        <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
+          <GoogleIcon />
+          <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
+        </SocialBtn>
+      </div>
     </ForDiv>
   );
 }
 
 const ForDiv = styled.div`
   height: 100%;
-  padding-top: 183px;
+  padding-top: 180px;
 `;
 
 const WelcomeText = styled.div`

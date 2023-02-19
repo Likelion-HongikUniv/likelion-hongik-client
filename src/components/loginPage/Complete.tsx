@@ -47,7 +47,7 @@ const SmallText = styled.div`
 
 const OkBtn = styled.button`
   background-color: #333333;
-  width: 400px;
+  width: 360px;
   height: 80px;
   border-radius: 20px;
   font-weight: 700;

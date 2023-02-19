@@ -8,6 +8,7 @@ import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
+  const baseURL = "https://www.hongiklikelion.click";
   const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
   const team = useRecoilValue(teamState);
@@ -18,7 +19,7 @@ export function MyPageNav() {
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.125.72.138:8080/mypage`, {
+      .get(`${baseURL}/mypage`, {
         // .get(`http://localhost:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
