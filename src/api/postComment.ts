@@ -28,7 +28,7 @@ export const usePostComment = () => {
   const queryClient = useQueryClient();
   return useMutation(postComment, {
     onSuccess: () => {
-      return queryClient.invalidateQueries({ queryKey: ["post-detail"] });
+      return queryClient.invalidateQueries({ queryKey: ["postData"] });
     },
   });
 };

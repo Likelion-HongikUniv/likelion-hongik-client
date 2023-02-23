@@ -43,11 +43,9 @@ export function CommentsList(commentList: IComment[]) {
             <InputButton type="submit">작성</InputButton>
           </InputForm>
           <Column gap="32px">
-            <div ref={ref}>
-              {comments.map((value, id) => {
-                return <Comments key={id} {...value} />;
-              })}
-            </div>
+            {comments.map((value, id) => {
+              return <Comments key={id} {...value} />;
+            })}
           </Column>
         </Column>
       ) : (

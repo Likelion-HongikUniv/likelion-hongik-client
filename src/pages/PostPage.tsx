@@ -12,7 +12,7 @@ export function PostPage() {
   const isPC = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
-  const { id } = useParams<{ id?: string }>();
+  const { id } = useParams<{ id: string }>();
   const postIdToNumber = Number(id);
   const { board, status } = useGetPostDetail(postIdToNumber);
 
