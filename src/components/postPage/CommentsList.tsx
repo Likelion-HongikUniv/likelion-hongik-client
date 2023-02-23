@@ -1,16 +1,14 @@
 import styled from "styled-components";
+import { useCallback, useRef, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { useParams } from "react-router-dom";
+import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { Comments } from "./Comments";
 import { Column } from "../elements/Wrapper";
-import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { IComment } from "../../interfaces/comments";
-import { useRecoilState } from "recoil";
 import { userState } from "../../states/index";
-import { commentsListState } from "../../states/atoms";
-import moment from "moment";
 import useInput from "../../hooks/useInput";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 import { usePostComment } from "../../api/postComment";
 
 export function CommentsList(commentList: IComment[]) {
@@ -18,6 +16,7 @@ export function CommentsList(commentList: IComment[]) {
   const { mutate, status, data } = usePostComment();
   const comments = Object.values(commentList).map((comments: IComment) => comments);
   const commentInput = useInput("");
+  const ref = useRef(null);
   const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id: string }>();
 
@@ -44,9 +43,11 @@ export function CommentsList(commentList: IComment[]) {
             <InputButton type="submit">작성</InputButton>
           </InputForm>
           <Column gap="32px">
-            {comments.map((value, id) => {
-              return <Comments key={id} {...value} />;
-            })}
+            <div ref={ref}>
+              {comments.map((value, id) => {
+                return <Comments key={id} {...value} />;
+              })}
+            </div>
           </Column>
         </Column>
       ) : (

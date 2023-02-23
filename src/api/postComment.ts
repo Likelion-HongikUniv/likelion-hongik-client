@@ -1,6 +1,6 @@
 import client from "./client";
 import { IComment } from "../interfaces/comments";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface CommentProps {
   postId: number;
@@ -25,5 +25,10 @@ async function postComment(props: CommentProps) {
 }
 
 export const usePostComment = () => {
-  return useMutation(postComment);
+  const queryClient = useQueryClient();
+  return useMutation(postComment, {
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ["post-detail"] });
+    },
+  });
 };

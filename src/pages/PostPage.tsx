@@ -4,14 +4,9 @@ import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { useEffect, useState } from "react";
-import { IComment, IBoard } from "../interfaces/comments";
-import { commentsListState, boardState } from "../states/atoms";
 import styled from "styled-components";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { useGetPostDetail } from "../api/useGetPostDetail";
-import { useQuery } from "@tanstack/react-query";
 
 export function PostPage() {
   const isPC = useMediaQuery("(min-width: 1024px)");
