@@ -24,7 +24,7 @@ export function Replies(props: IReplyProps) {
   return (
     <>
       <Row>
-        {isPC ? <CommentArrow /> : <CommentArrowSmall />}
+        {isPC && props.reply ? <CommentArrow /> : <CommentArrowSmall />}
         <Wrapper>
           <Row gap="10px">
             {props.reply.author?.profileImage && <Profile profile={props.reply.author?.profileImage} />}
@@ -40,18 +40,18 @@ export function Replies(props: IReplyProps) {
                   {props.reply?.body}
                   <LikeButton
                     cid={props.cid}
-                    rid={props.reply?.replyId}
+                    rid={props.reply.replyId}
                     isLiked={props.reply.isLiked}
-                    isAuthor={props.reply.author?.isAuthor}
+                    isAuthor={props.reply.author.isAuthor}
                     isComment={false}
-                    likes={props.reply?.likeCount}
+                    likes={props.reply.likeCount}
                   />
                 </>
               )}
             </TextContainer>
             {}
           </Row>
-          {props.reply.deleted === false && props.reply.author?.isAuthor && (
+          {props.reply.deleted === false && props.reply.author.isAuthor && (
             <MoreButton id={props.reply?.replyId} isBoard={false} isComment={false} />
           )}
         </Wrapper>

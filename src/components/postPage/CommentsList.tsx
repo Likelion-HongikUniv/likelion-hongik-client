@@ -16,7 +16,6 @@ export function CommentsList(commentList: IComment[]) {
   const { mutate, status, data } = usePostComment();
   const comments = Object.values(commentList).map((comments: IComment) => comments);
   const commentInput = useInput("");
-  const ref = useRef(null);
   const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id: string }>();
 
@@ -29,7 +28,7 @@ export function CommentsList(commentList: IComment[]) {
     };
     commentInput.setValue("");
 
-    if (status != "loading") {
+    if (status !== "loading") {
       mutate(props);
     }
   };

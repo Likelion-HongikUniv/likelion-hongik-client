@@ -16,6 +16,10 @@ export function PostPage() {
   const postIdToNumber = Number(id);
   const { board, status } = useGetPostDetail(postIdToNumber);
 
+  if (status === "loading" || !board) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Header />
@@ -27,7 +31,7 @@ export function PostPage() {
           </Column>
         </Section>
       )}
-      {isTablet && board && status === "success" && (
+      {isTablet && board && (
         <Section style={{ padding: "0 40px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
@@ -36,7 +40,7 @@ export function PostPage() {
           </Column>
         </Section>
       )}
-      {isMobile && board && status === "success" && (
+      {isMobile && board && (
         <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />

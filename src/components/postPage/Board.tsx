@@ -25,7 +25,7 @@ export function Board(boardData: IBoard) {
             {boardData.author?.isAuthor ? <MoreButton id={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
+          {boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}
           <HeartButton />
           <Hairline />
         </Column>
