@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { boardState } from "../../states/atoms";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import axios from "axios";
+import { useDeletePostState, useDeleteCommentState, useDeleteReplyState } from "../../api/deletePost";
 
 interface MoreButtonProps {
   id: number;
@@ -14,13 +14,14 @@ interface MoreButtonProps {
 }
 
 export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
+  const navigate = useNavigate();
   const board = useRecoilValue<IBoard>(boardState);
-  const accessToken = localStorage.getItem("token");
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);
-  const navigate = useNavigate();
   const isPC = useMediaQuery("(min-width: 1024px)");
-  let targetURL = "";
+  const handleDeletePost = useDeletePostState();
+  const handleDeleteComment = useDeleteCommentState();
+  const handleDeleteReply = useDeleteReplyState();
 
   const onClickMore = (event: React.MouseEvent<HTMLButtonElement>) => {
     setMore(!isMore);
@@ -32,43 +33,13 @@ export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
 
   const onClickDelete = () => {
     if (isBoard) {
-      targetURL = `https://www.hongiklikelion.click/community/post/${id}`;
+      handleDeletePost(id);
+      navigate(`/community/board`);
     } else if (isComment) {
-      targetURL = `https://www.hongiklikelion.click/community/comment/${id}`;
+      handleDeleteComment(id);
     } else {
-      targetURL = `https://www.hongiklikelion.click/community/reply/${id}`;
+      handleDeleteReply(id);
     }
-    axios
-      .delete(targetURL, {
-        headers: {
-          "Content-Type": `application/json`,
-          JWT: `${accessToken}`,
-        },
-      })
-      .catch((err) => {
-        if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
-        }
-        if (err.response.status === 404) {
-          alert("삭제 대상을 찾을 수 없습니다.");
-        }
-        window.location.reload();
-        throw err;
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          if (isBoard) {
-            alert("게시글이 삭제되었습니다.");
-            navigate(`/community/board`);
-          } else if (isComment) {
-            alert("댓글이 삭제되었습니다.");
-            window.location.reload();
-          } else {
-            alert("답글이 삭제되었습니다.");
-            window.location.reload();
-          }
-        }
-      });
   };
 
   return (

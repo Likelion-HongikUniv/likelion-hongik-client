@@ -39,8 +39,7 @@ export function Replies(props: IReplyProps) {
                 <>
                   {props.reply?.body}
                   <LikeButton
-                    cid={props.cid}
-                    rid={props.reply.replyId}
+                    id={props.reply.replyId}
                     isLiked={props.reply.isLiked}
                     isAuthor={props.reply.author.isAuthor}
                     isComment={false}

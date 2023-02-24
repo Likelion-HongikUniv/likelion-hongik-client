@@ -1,5 +1,4 @@
 import client from "./client";
-import { IComment } from "../interfaces/comments";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface CommentProps {
