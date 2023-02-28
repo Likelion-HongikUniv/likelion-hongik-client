@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface CommentProps {
   postId: number;
-  authorId: number;
   body?: string;
 }
 

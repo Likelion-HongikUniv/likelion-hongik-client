@@ -1,35 +1,32 @@
 import styled from "styled-components";
-import { useCallback, useRef, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { Comments } from "./Comments";
 import { Column } from "../elements/Wrapper";
 import { IComment } from "../../interfaces/comments";
-import { userState } from "../../states/index";
 import useInput from "../../hooks/useInput";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { usePostComment } from "../../api/postComment";
 
 export function CommentsList(commentList: IComment[]) {
-  const [userInfo, setUserInfo] = useRecoilState(userState);
-  const { mutate, status, data } = usePostComment();
-  const comments = Object.values(commentList).map((comments: IComment) => comments);
+  const { mutate, status } = usePostComment();
   const commentInput = useInput("");
   const isPC = useMediaQuery("(min-width: 1200px)");
   const { id } = useParams<{ id: string }>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     const props = {
       postId: Number(id),
-      authorId: userInfo.authorId,
       body: commentInput.value,
     };
     commentInput.setValue("");
 
     if (status !== "loading") {
       mutate(props);
+      ref.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -42,15 +39,16 @@ export function CommentsList(commentList: IComment[]) {
             <InputButton type="submit">작성</InputButton>
           </InputForm>
           <Column gap="32px">
-            {comments.map((value, id) => {
+            {Object.values(commentList).map((value, id) => {
               return <Comments key={id} {...value} />;
             })}
+            <div ref={ref}></div>
           </Column>
         </Column>
       ) : (
         <Column>
           <Column gap="20px">
-            {comments.map((value, id) => {
+            {Object.values(commentList).map((value, id) => {
               return <Comments key={id} {...value} />;
             })}
           </Column>

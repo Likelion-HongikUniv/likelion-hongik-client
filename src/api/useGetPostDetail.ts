@@ -12,11 +12,12 @@ type QueryResult = {
 
 export function useGetPostDetail(postId: number): QueryResult {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const {
-    data,
-    status,
-    refetch,
-  } = useQuery(["postData", postId], async () => await getPostDetail(postId), { onSuccess: data => { setBoardData(data) }, enabled: !!postId });
+  const { status, refetch } = useQuery(["postData", postId], async () => await getPostDetail(postId), {
+    onSuccess: (data) => {
+      setBoardData(data);
+    },
+    enabled: !!postId,
+  });
 
   useEffect(() => {
     refetch();
@@ -37,4 +38,3 @@ export function useGetPostDetail(postId: number): QueryResult {
     status,
   };
 }
-

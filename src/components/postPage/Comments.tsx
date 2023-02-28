@@ -51,11 +51,9 @@ export function Comments(props: IComment) {
               <MoreButton id={props.commentId} isBoard={false} isComment={true} />
             )}
           </Row>
-          {props.replies
-            ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
-              })
-            : null}
+          {props.replies?.map((reply: IReply, idx: number) => {
+            return <Replies key={idx} cid={props.commentId} reply={reply} />;
+          })}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>
@@ -88,11 +86,9 @@ export function Comments(props: IComment) {
               </Row>
             )}
           </Column>
-          {props.replies
-            ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
-              })
-            : null}
+          {props.replies?.map((reply: IReply, idx: number) => {
+            return <Replies key={idx} cid={props.commentId} reply={reply} />;
+          })}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>
