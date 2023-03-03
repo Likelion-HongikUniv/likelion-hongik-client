@@ -33,6 +33,7 @@
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.1.0",
     "react-dom": "^18.2.0",
+    "react-ga": "^3.3.1",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.7.1",
     "react-responsive": "^9.0.2",
@@ -77,6 +78,5 @@
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/react-slick": "^0.23.10"
-  },
-  "proxy": "http://localhost:8080/"
+  }
 }

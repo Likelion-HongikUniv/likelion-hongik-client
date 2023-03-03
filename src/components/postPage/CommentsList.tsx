@@ -1,50 +1,32 @@
 import styled from "styled-components";
+import { useRef } from "react";
+import { useParams } from "react-router-dom";
+import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { Comments } from "./Comments";
 import { Column } from "../elements/Wrapper";
-import { BLACK_1, BLACK_2, WHITE_1 } from "../../styles/theme";
 import { IComment } from "../../interfaces/comments";
-import { useRecoilState } from "recoil";
-import { userState } from "../../states/index";
-import { commentsListState } from "../../states/atoms";
-import moment from "moment";
 import useInput from "../../hooks/useInput";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { postComment } from "../../api/postComment";
+import { usePostComment } from "../../api/postComment";
 
 export function CommentsList(commentList: IComment[]) {
-  const { data, isLoading, mutate, mutateAsync } = useMutation(postComment);
-  const [userInfo, setUserInfo] = useRecoilState(userState);
-  const comments = Object.values(commentList).map((comments: IComment) => comments);
+  const { mutate, status } = usePostComment();
   const commentInput = useInput("");
   const isPC = useMediaQuery("(min-width: 1200px)");
-  const { id } = useParams<{ id?: string }>();
+  const { id } = useParams<{ id: string }>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const onClickSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let curTime = new Date().toString();
-    let formatTime = moment(curTime).format("YYYY-MM-DD HH:mm:ss");
     const props = {
-      commentId: comments.length + 1,
-      author: {
-        authorId: userInfo.userId,
-        nickname: userInfo.nickname,
-        profileImage: userInfo.profileImageSrc,
-        isAuthor: true,
-      },
+      postId: Number(id),
       body: commentInput.value,
-      isDeleted: false,
-      isLiked: false,
-      createdTime: formatTime,
-      likeCount: 0,
-      replies: [],
     };
-    let pid = Number(id);
-    if (!isLoading) {
-      mutate({ pid, props });
-      commentInput.value = "";
+    commentInput.setValue("");
+
+    if (status !== "loading") {
+      mutate(props);
+      ref.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -57,15 +39,16 @@ export function CommentsList(commentList: IComment[]) {
             <InputButton type="submit">작성</InputButton>
           </InputForm>
           <Column gap="32px">
-            {comments.map((value, id) => {
+            {Object.values(commentList).map((value, id) => {
               return <Comments key={id} {...value} />;
             })}
+            <div ref={ref}></div>
           </Column>
         </Column>
       ) : (
         <Column>
           <Column gap="20px">
-            {comments.map((value, id) => {
+            {Object.values(commentList).map((value, id) => {
               return <Comments key={id} {...value} />;
             })}
           </Column>

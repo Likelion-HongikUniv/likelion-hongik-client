@@ -20,7 +20,6 @@ export function WritingPage() {
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
   const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
   const userInfo = useRecoilValue(userState);
-  console.log(userInfo);
 
   const [clickedCategory, setClickedCategory] = useState("공지사항");
   const title = useInput(""); // title.value가 값임

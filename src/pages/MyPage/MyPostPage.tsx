@@ -10,7 +10,7 @@ import MyPagination from "../MyPage/MyPagination";
 import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
 import { currPageState, userState } from "../../states/index";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface IPost {
   title: string;
@@ -32,7 +32,7 @@ export function MyPostPage() {
   const userInfo = useRecoilValue(userState);
   const profileImg = userInfo.profileImageSrc;
   // const token = userInfo.accessToken;
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const baseURL = "https://www.hongiklikelion.click";
   const navigate = useNavigate();
 
@@ -59,8 +59,8 @@ export function MyPostPage() {
       })
       .catch(function (error) {
         console.log(error);
-        alert('로그인이 필요한 기능입니다.');
-        navigate('/login');
+        alert("로그인이 필요한 기능입니다.");
+        navigate("/login");
       });
   };
 

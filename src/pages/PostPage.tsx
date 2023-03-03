@@ -4,63 +4,48 @@ import { Section } from "../components/elements/Wrapper";
 import { Board } from "../components/postPage/Board";
 import { CommentsList } from "../components/postPage/CommentsList";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { useEffect } from "react";
-import { IComment, IBoard } from "../interfaces/comments";
-import { commentsListState, boardState } from "../states/atoms";
 import styled from "styled-components";
-import axios from "axios";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { getPostDetail } from "../api/getPostDetail";
-import { useQuery } from "@tanstack/react-query";
-import { userState } from "../states";
-
-const baseURL = "http://13.125.72.138:8080";
+import { useGetPostDetail } from "../api/useGetPostDetail";
 
 export function PostPage() {
-  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const [comments, setCommentsData] = useRecoilState<IComment[]>(commentsListState);
   const isPC = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const isMobile = useMediaQuery("(max-width : 768px)");
-  const { id } = useParams<{ id?: string }>();
-
+  const { id } = useParams<{ id: string }>();
   const postIdToNumber = Number(id);
-  const { isLoading: isPostDataLoading, data: postData } = useQuery(
-    ["post-detail", postIdToNumber],
-    async () => await getPostDetail(postIdToNumber),
-  );
-  if (!isPostDataLoading) {
-    setBoardData(postData);
-    setCommentsData(postData.comments);
+  const { board, status } = useGetPostDetail(postIdToNumber);
+
+  if (status === "loading" || !board) {
+    return <div>Loading...</div>;
   }
 
   return (
     <>
       <Header />
-      {isPC && (
+      {isPC && board && (
         <Section style={{ padding: "0 340px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
-            <CommentsList {...comments} />
+            <CommentsList {...board.comments} />
           </Column>
         </Section>
       )}
-      {isTablet && (
+      {isTablet && board && (
         <Section style={{ padding: "0 40px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
             <Hairline />
-            <CommentsList {...comments} />
+            <CommentsList {...board.comments} />
           </Column>
         </Section>
       )}
-      {isMobile && (
+      {isMobile && board && (
         <Section style={{ position: "relative", padding: "0 20px", display: "flex", justifyContent: "center" }}>
           <Column style={{ marginTop: "100px" }}>
             <Board {...board} />
             <Hairline />
-            <CommentsList {...comments} />
+            <CommentsList {...board.comments} />
           </Column>
         </Section>
       )}
