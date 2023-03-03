@@ -6,7 +6,7 @@ import { nowTagState, pageState, paginationState, postsListState, searchState } 
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { IPost, IPagination } from "../../interfaces/post";
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://www.hongiklikelion.click";
 
 export function SearchBar(categoryName: ICommunityParam) {
   const nowTag = useRecoilValue<ITag>(nowTagState);

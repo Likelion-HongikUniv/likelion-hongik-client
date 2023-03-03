@@ -41,7 +41,7 @@ export function TopBoard(categoryName: ICommunityParam) {
               navigate("/write", { state: { category: "PROJECT" } });
             }}
           >
-            <span>과제업로드</span>
+            <span>과제 업로드</span>
           </button>
         )}
       </Table>

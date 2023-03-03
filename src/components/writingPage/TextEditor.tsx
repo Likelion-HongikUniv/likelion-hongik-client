@@ -15,12 +15,13 @@ import { postPost } from "../../api/post";
 import { useNavigate, useLocation } from "react-router-dom";
 
 interface EditorProps {
-  category?: string;
+  mainCategory?: string;
+  subCategory?: string;
   title?: string;
 }
 type HookCallback = (url: string, text?: string) => void;
 
-export function TextEditor({ category, title }: EditorProps) {
+export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
   const editorRef = useRef<Editor>(null);
   const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
   const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
@@ -30,6 +31,7 @@ export function TextEditor({ category, title }: EditorProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isEdit = Boolean(location.state.body);
+  console.log(mainCategory, subCategory);
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
@@ -58,7 +60,7 @@ export function TextEditor({ category, title }: EditorProps) {
     if (token && title && editorContent) {
       await axios
         .post(
-          `https://www.hongiklikelion.click/community/posts/BOARD/NOTICE`,
+          `https://www.hongiklikelion.click/community/posts/${mainCategory}/${subCategory}`,
           { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
           { headers: { JWT: token } },
         )

@@ -7,18 +7,20 @@ import { paginationState, postsListState, pageState, searchState } from "../../s
 import { IPagination } from "../../interfaces/post";
 import { useEffect } from "react";
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://www.hongiklikelion.click";
 
 export function SearchPostList(params: any) {
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const setPagination = useSetRecoilState<IPagination>(paginationState);
   const page = useRecoilValue<number>(pageState);
   const search = useRecoilValue<string>(searchState);
+  console.log(params.tag);
+
   function GetSearchPostList(category: string, tag: string, page: number, search: string) {
     const params = { search: search, page: page };
     const token = localStorage.getItem("token");
     axios
-      .get(`${baseURL}/community/posts/${category}/${tag}/search/`, {
+      .get(`${baseURL}/community/posts/${category}/${tag}/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -26,6 +28,8 @@ export function SearchPostList(params: any) {
         params,
       })
       .then((response) => {
+        console.log(response);
+
         if (response.status === 200) {
           setPagination({
             totalPage: response.data.totalPage,
@@ -59,6 +63,7 @@ export function SearchPostList(params: any) {
   useEffect(() => {
     GetSearchPostList(params.categoryName, params.tag.key, page, search);
   }, [params.categoryName, params.tag.key, page]);
+
   const posts = Object.values(postsData).map((posts: IPost) => posts);
   return (
     <List>

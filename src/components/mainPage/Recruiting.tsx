@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import main_recruiting_tablet from "../images/main_recruiting_tablet.png";
 import main_recruiting_mobile from "../images/main_recruiting_mobile.png";
 
-
 const Recruiting = () => {
   const onClickBtn = () => {
     window.location.replace("/recruit");
@@ -94,7 +93,11 @@ const ApplyBtn = styled.button`
   border-radius: 20px;
   font-weight: 500;
   font-size: 28px;
+  appearance: none;
+  color: black;
   @media (max-width: 768px) {
+    appearance: none;
+    color: black;
     font-size: 16px;
     width: 350px;
     height: 52px;

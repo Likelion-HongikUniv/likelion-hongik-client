@@ -238,6 +238,8 @@ const RegBtn = styled.button`
   font-weight: 700;
   line-height: 33.6px;
   text-align: center;
+  appearance: none;
+  color: black;
 
   @media (max-width: 391px) {
     margin-left: 0;
@@ -245,6 +247,8 @@ const RegBtn = styled.button`
     margin-top: 40px;
     font-size: 16px;
     line-height: 19.2px;
+    appearance: none;
+    color: black;
   }
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일
@@ -253,6 +257,8 @@ const RegBtn = styled.button`
     margin-top: 42px;
     font-size: 18px;
     line-height: 22.6px;
+    appearance: none;
+    color: black;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -262,6 +268,8 @@ const RegBtn = styled.button`
     margin-top: 80px;
     font-size: 16px;
     line-height: 19.2.px;
+    appearance: none;
+    color: black;
   }
 
   @media (min-width: 1024px) and (max-width: 1200px) {
@@ -270,5 +278,7 @@ const RegBtn = styled.button`
     margin-top: 80px;
     font-size: 16px;
     line-height: 19.2.px;
+    appearance: none;
+    color: black;
   }
 `;
