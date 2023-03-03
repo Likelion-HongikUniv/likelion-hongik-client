@@ -32,9 +32,12 @@ export function RecruitInfo() {
 
 const BasicInfo = styled.div`
   width: 1150px;
+  /* height: calc(100vh - 90px); */
   background-color: transparent;
-  margin-top: 60px;
-
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   @media (max-width: 391px) {
     margin-top: 29px;
     /* padding-left: 20px; */
@@ -42,16 +45,19 @@ const BasicInfo = styled.div`
 
   @media (min-width: 391px) and (max-width: 767px) {
     margin-top: 32px;
+    height: none;
   }
 
   @media (min-width: 768px) and (max-width: 1200px) {
     margin-top: 48px;
     padding-left: 40px;
+    height: none;
   }
 
   @media (min-width: 1024px) and (max-width: 1200px) {
     margin-top: 48px;
     padding-left: 160px;
+    height: none;
   }
 `;
 
@@ -211,7 +217,6 @@ const Divs = styled.div`
 `;
 
 const RegBtn = styled.button`
-  margin-top: 60px;
   width: 400px;
   height: 64px;
   background-color: #ed7f30;

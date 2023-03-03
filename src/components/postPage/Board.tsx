@@ -5,7 +5,7 @@ import { ViewerUi } from "./ViewerUi";
 import moment from "moment";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MoreButton } from "../icons/MoreButton";
+import { MoreButton } from "./MoreButton";
 
 export function Board(boardData: IBoard) {
   const isPC = useMediaQuery("(min-width: 1024px)");
@@ -25,7 +25,7 @@ export function Board(boardData: IBoard) {
             {boardData.author?.isAuthor ? <MoreButton id={boardData.postId} isBoard={true} isComment={false} /> : null}
           </SubTextDiv>
           <Hairline />
-          <Column lineHeight="1.25rem">{boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}</Column>
+          {boardData.body !== "" ? <ViewerUi body={boardData.body} /> : null}
           <HeartButton />
           <Hairline />
         </Column>

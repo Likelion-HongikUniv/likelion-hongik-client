@@ -15,6 +15,7 @@ export function PostItem(post: IPost) {
   const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+  const body = post.body.replace(/<[^>]*>?/g, "");
 
   const onClickHandler = () => {
     navigate(`/community/post/${post.postId}`);
@@ -36,7 +37,7 @@ export function PostItem(post: IPost) {
             )}
             <Column gap="12px">
               <Title>{post.title}</Title>
-              <Body>{post.body}</Body>
+              <Body>{body}</Body>
             </Column>
             <Bottom>
               <Icon>
@@ -58,7 +59,7 @@ export function PostItem(post: IPost) {
                 <UploadDate>{date}</UploadDate>
               </Column>
               <Title>{post.title}</Title>
-              <Body>{post.body}</Body>
+              <Body>{body}</Body>
               <Bottom>
                 <Icon>
                   <HeartIcon />

@@ -9,8 +9,7 @@ import { Replies } from "./Replies";
 import { LikeButton } from "./LikeButton";
 import { WHITE_1, WHITE_2 } from "../../styles/theme";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { MoreButton } from "../icons/MoreButton";
-import { IAuthor } from "../../interfaces/post";
+import { MoreButton } from "./MoreButton";
 
 export function Comments(props: IComment) {
   const isPC = useMediaQuery("(min-width: 1024px)");
@@ -23,7 +22,7 @@ export function Comments(props: IComment) {
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm");
   return (
     <>
-      {isPC && props.replies && (
+      {isPC ? (
         <Column gap="32px">
           <Row gap="16px" alignItems="flex-start">
             {props.author?.profileImage && <Profile profile={props.author.profileImage} />}
@@ -36,11 +35,11 @@ export function Comments(props: IComment) {
               {props.isDeleted ? null : (
                 <Row gap="12px">
                   <LikeButton
-                    cid={props.commentId}
+                    id={props.commentId}
                     isLiked={props.isLiked}
                     isAuthor={props.author?.isAuthor}
-                    isComment={true}
                     likes={props.likeCount}
+                    isComment={true}
                   />
                   <ReplyButton className="replyOption" onClick={onClickReplyButton}>
                     댓글 달기
@@ -52,16 +51,13 @@ export function Comments(props: IComment) {
               <MoreButton id={props.commentId} isBoard={false} isComment={true} />
             )}
           </Row>
-          {props.replies
-            ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
-              })
-            : null}
+          {props.replies?.map((reply: IReply, idx: number) => {
+            return <Replies key={idx} cid={props.commentId} reply={reply} />;
+          })}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>
-      )}
-      {isPC === false && props.replies && (
+      ) : (
         <Column gap="20px">
           <Row gap="12px">
             {props.author?.profileImage && <Profile profile={props.author.profileImage} />}
@@ -78,11 +74,11 @@ export function Comments(props: IComment) {
             {props.isDeleted ? null : (
               <Row gap="12px">
                 <LikeButton
-                  cid={props.commentId}
+                  id={props.commentId}
                   isAuthor={props.author?.isAuthor}
-                  isComment={true}
                   isLiked={props.isLiked}
                   likes={props.likeCount}
+                  isComment={true}
                 />
                 <ReplyButton className="replyOption" onClick={onClickReplyButton}>
                   댓글 달기
@@ -90,11 +86,9 @@ export function Comments(props: IComment) {
               </Row>
             )}
           </Column>
-          {props.replies
-            ? props.replies.map((reply: IReply, idx: number) => {
-                return <Replies key={idx} cid={props.commentId} reply={reply} />;
-              })
-            : null}
+          {props.replies?.map((reply: IReply, idx: number) => {
+            return <Replies key={idx} cid={props.commentId} reply={reply} />;
+          })}
           {isShowReplyInput && <Input cid={props.commentId} username={props.author?.nickname}></Input>}
           <Hairline />
         </Column>

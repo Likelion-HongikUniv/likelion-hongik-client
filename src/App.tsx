@@ -15,6 +15,7 @@ import { MyPage } from "./pages/MyPage/Mypage";
 import { MyPostPage } from "./pages/MyPage/MyPostPage";
 import { MyReplyPage } from "./pages/MyPage/MyReplyPage";
 import { MyLikePage } from "./pages/MyPage/MyLikePage";
+import RouteChangeTracker from "./RouteChangeTracker";
 import Ing from "./components/loginPage/Ing";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <BrowserRouter>
+      <RouteChangeTracker />
       <QueryClientProvider client={queryClient}>
         <GlobalStyle />
         <RecoilRoot>

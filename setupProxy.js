@@ -1,12 +1,12 @@
-// const { createProxyMiddleware } = require("http-proxy-middleware");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-// const baseURL = "https://likelionhongik.com";
+const baseURL = "https://www.hongiklikelion.click/";
 
-// module.exports = function (app) {
-//   app.use(
-//     createProxyMiddleware("/v1/**", {
-//       target: baseURL,
-//       changeOrigin: true,
-//     }),
-//   );
-// };
+module.exports = function (app) {
+  app.use(
+    createProxyMiddleware("/v1/**", {
+      target: baseURL,
+      changeOrigin: true,
+    }),
+  );
+};

@@ -7,29 +7,20 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { ReactHTMLElement, useEffect } from "react";
-import axios from "axios";
 
 export function SocialLogin() {
   const googleLogin = () => {
     window.open("https://www.hongiklikelion.click/oauth2/authorization/google", "_self");
-    // navigate('/ing');
   };
   const naverLogin = () => {
     window.open("https://www.hongiklikelion.click/oauth2/authorization/naver", "_self");
-    // navigate('/ing');
   };
 
   const kakaoLogin = () => {
-    window.open(
-      // "http://localhost:8080/oauth2/authorization/kakao",
-      "https://www.hongiklikelion.click/oauth2/authorization/kakao",
-      "_self",
-    );
+    window.open("https://www.hongiklikelion.click/oauth2/authorization/kakao", "_self");
   };
 
   const githubLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("깃허브 로그인 클릭");
     window.open("https://www.hongiklikelion.click/oauth2/authorization/github", "_self");
   };
 

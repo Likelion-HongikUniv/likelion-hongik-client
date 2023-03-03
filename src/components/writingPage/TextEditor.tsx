@@ -12,7 +12,7 @@ import {
 } from "../../states/index";
 import axios from "axios";
 import { postPost } from "../../api/post";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface EditorProps {
   category?: string;
@@ -28,6 +28,8 @@ export function TextEditor({ category, title }: EditorProps) {
   const token = localStorage.getItem("token");
   const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const isEdit = Boolean(location.state.body);
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
@@ -62,7 +64,6 @@ export function TextEditor({ category, title }: EditorProps) {
         )
         .then((res) => {
           console.log(res);
-
           navigate(`/community/post/${res.data.id}`);
         });
       // const res = await postPost(token, {
@@ -71,6 +72,22 @@ export function TextEditor({ category, title }: EditorProps) {
       //   thumbnailImageUrl: thumbnailImageUrl,
       // });
       // console.log(res);
+    }
+  };
+
+  const onClickEditButton = async () => {
+    const editorContent = editorRef.current?.getInstance().getHTML();
+    if (isEdit && token && title && editorContent) {
+      await axios
+        .patch(
+          `https://www.hongiklikelion.click/community/post/${location.state.id}`,
+          { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+          { headers: { JWT: token } },
+        )
+        .then((res) => {
+          console.log("patch");
+          navigate(`/community/post/${res.data.id}`);
+        });
     }
   };
 
@@ -87,6 +104,7 @@ export function TextEditor({ category, title }: EditorProps) {
       <EditorWrapper>
         <Editor
           ref={editorRef}
+          initialValue={location.state.body}
           placeholder="내용을 입력해주세요."
           previewStyle="vertical" // 미리보기 스타일 지정
           height="500px" // 에디터 창 높이
@@ -111,7 +129,7 @@ export function TextEditor({ category, title }: EditorProps) {
         <CancelButton onClick={onClickThumbnailSetButton}>썸네일 설정</CancelButton>
         <Row width="100%" justifyContent="flex-end" gap="12px">
           <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
-          <SaveButton onClick={onClickRegisterButton}>등록</SaveButton>
+          <SaveButton onClick={isEdit ? onClickEditButton : onClickRegisterButton}>등록</SaveButton>
         </Row>
       </Row>
     </Column>

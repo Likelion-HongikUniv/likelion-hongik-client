@@ -21,7 +21,7 @@ export default function useAutoLogin() {
   useEffect(() => {
     if (token) {
       axios.get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } }).then((res) => {
-        console.log(res);
+        // console.log(res);
         const data = res.data;
         if (res.status === 200) {
           setIsLoggedIn(true);
