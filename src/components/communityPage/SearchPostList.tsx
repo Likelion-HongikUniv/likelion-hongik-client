@@ -14,11 +14,13 @@ export function SearchPostList(params: any) {
   const setPagination = useSetRecoilState<IPagination>(paginationState);
   const page = useRecoilValue<number>(pageState);
   const search = useRecoilValue<string>(searchState);
+  console.log(params.tag);
+
   function GetSearchPostList(category: string, tag: string, page: number, search: string) {
     const params = { search: search, page: page };
     const token = localStorage.getItem("token");
     axios
-      .get(`${baseURL}/community/posts/${category}/${tag}/search/`, {
+      .get(`${baseURL}/community/posts/${category}/${tag}/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,

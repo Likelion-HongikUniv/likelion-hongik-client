@@ -23,30 +23,47 @@ export function TabBar({
 }: TabBarProps) {
   const [subCategoryList, setSubCategoryList] = useState(
     clickedMainCategory === "BOARD"
-      ? ["공지사항", "Q&A", "자유게시판"]
+      ? [
+          { key: "NOTICE", text: "공지사항" },
+          { key: "QNA", text: "Q&A" },
+          { key: "FREEBOARD", text: "자유게시판" },
+        ]
       : clickedMainCategory === "HOMEWORK"
-      ? ["프론트", "백엔드", "기획·디자인"]
-      : ["프론트", "백엔드", "기획·디자인", "프로젝트 회의"],
+      ? [
+          { key: "FRONTEND", text: "프론트" },
+          { key: "BACKEND", text: "백엔드" },
+          { key: "DESIGN", text: "기획·디자인" },
+        ]
+      : [
+          { key: "FRONTEND", text: "프론트" },
+          { key: "BACKEND", text: "백엔드" },
+          { key: "DESIGN", text: "기획·디자인" },
+          { key: "MEETING", text: "프로젝트 회의" },
+        ],
   );
 
   useEffect(() => {
     if (clickedMainCategory === "BOARD") {
-      setSubCategoryList(["공지사항", "Q&A", "자유게시판"]);
+      setSubCategoryList([
+        { key: "NOTICE", text: "공지사항" },
+        { key: "QNA", text: "Q&A" },
+        { key: "FREEBOARD", text: "자유게시판" },
+      ]);
     } else if (clickedMainCategory === "HOMEWORK") {
-      setSubCategoryList(["프론트", "백엔드", "기획·디자인"]);
+      setSubCategoryList([
+        { key: "FRONTEND", text: "프론트" },
+        { key: "BACKEND", text: "백엔드" },
+        { key: "DESIGN", text: "기획·디자인" },
+      ]);
     } else {
-      setSubCategoryList(["프론트", "백엔드", "기획·디자인", "프로젝트 회의"]);
+      setSubCategoryList([
+        { key: "FRONTEND", text: "프론트" },
+        { key: "BACKEND", text: "백엔드" },
+        { key: "DESIGN", text: "기획·디자인" },
+        { key: "MEETING", text: "프로젝트 회의" },
+      ]);
     }
   }, [clickedMainCategory]);
-
-  /**
-   * 
-   setSubCategoryList(["NOTICE", "QNA", "FREEBOARD"]);
-    } else if (clickedMainCategory === "HOMEWORK") {
-      setSubCategoryList(["DESIGN", "FRONTEND", "BACKEND"]);
-    } else {
-      setSubCategoryList(["DESIGN", "FRONTEND", "BACKEND", "MEETING"]);
-   */
 
   const onClickMainCategory = (e: any) => {
     const category = e.target.name;
@@ -80,12 +97,12 @@ export function TabBar({
         {subCategoryList.map((subCategory) => {
           return (
             <SubCategoryButton
-              key={subCategory}
-              isClicked={clickedSubCategory === subCategory}
+              key={subCategory.key}
+              isClicked={clickedSubCategory === subCategory.key}
               onClick={onClickSubCategory}
-              name={subCategory}
+              name={subCategory.key}
             >
-              {subCategory}
+              {subCategory.text}
             </SubCategoryButton>
           );
         })}
