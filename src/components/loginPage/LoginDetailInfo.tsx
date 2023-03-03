@@ -9,6 +9,7 @@ import { editState, NickMulState, mulBtnState } from "../../states";
 import { WHITE_1 } from "../../styles/theme";
 
 export function LoginDetailInfo() {
+  const baseURL = "https://www.hongiklikelion.click";
   const navigate = useNavigate();
   const [info, setInfo] = useRecoilState(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);
@@ -45,7 +46,7 @@ export function LoginDetailInfo() {
 
   const nickMulCheck = async () => {
     await axios
-      .post(`https://www.hongiklikelion.click/nickname`, JSON.stringify(nick), {
+      .post(`${baseURL}/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: jwt,
@@ -93,7 +94,7 @@ export function LoginDetailInfo() {
 
     axios
       .post(
-        "https://www.hongiklikelion.click/accounts/detail_info/",
+        `${baseURL}/accounts/detail_info/`,
         JSON.stringify(data),
         // { withCredentials: true },
         {

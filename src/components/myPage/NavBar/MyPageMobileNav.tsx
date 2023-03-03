@@ -12,6 +12,7 @@ import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {
   const [info, setInfo] = useRecoilState(editState);
+  const baseURL = "https://www.hongiklikelion.click";
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const userInfo = useRecoilValue(userState);
   const profileImg = userInfo.profileImageSrc;
@@ -27,7 +28,7 @@ export function MyPageMobileNav() {
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`https://www.hongiklikelion.click/mypage`, {
+      .get(`${baseURL}/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
