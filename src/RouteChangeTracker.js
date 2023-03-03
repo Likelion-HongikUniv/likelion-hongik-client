@@ -1,34 +1,36 @@
-/* src/RouteChangeTracker.js */
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
+/**
+ * uri 변경 추적 컴포넌트
+ * uri가 변경될 때마다 pageview 이벤트 전송
+ */
 const RouteChangeTracker = () => {
   const location = useLocation();
   const [initialized, setInitialized] = useState(false);
 
-  // localhost로 실행시 추적 방지
+  // localhost는 기록하지 않음
   useEffect(() => {
     if (!window.location.href.includes("localhost")) {
-      ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID);
+      ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID, { debug: true });
       setInitialized(true);
     }
   }, []);
-  // 초기화 완료 되었다면 location 변화 추적하고 pageview 이벤트 발생.
+
+  // location 변경 감지시 pageview 이벤트 전송
   useEffect(() => {
     if (initialized) {
       ReactGA.set({ page: location.pathname });
-      ReactGA.pageview(location.pathname + location.search);
+      ReactGA.send("pageview");
     }
   }, [initialized, location]);
 
   // 개발용
   useEffect(() => {
-    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID, {
-      debug: true,
-    });
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID);
     ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.send("pageview");
   }, [location]);
 
   return <></>;
