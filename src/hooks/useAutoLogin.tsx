@@ -20,31 +20,45 @@ export default function useAutoLogin() {
 
   useEffect(() => {
     if (token) {
-      axios.get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } }).then((res) => {
-        // console.log(res);
-        const data = res.data;
-        if (res.status === 200) {
-          setIsLoggedIn(true);
-          setUserInfo({
-            ...userInfo,
-            major: data.major,
-            nickname: data.nickname,
-            part: data.part,
-            profileImageSrc: data.profileImageSrc,
-            role: data.role,
-            studentId: data.studentId,
-            team: data.team,
-            userId: data.userId,
-            username: data.username,
-            accessToken: token,
-          });
-        } else {
-          alert("시간이 지나 로그인이 만료되었습니다.");
-          // localStorage.removeItem("token");
-          // setIsLoggedIn(false);
-          // navigate("/");
-        }
-      });
+      axios
+        .get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } })
+        .then((res) => {
+          const data = res.data;
+
+          if (res.status === 200) {
+            setIsLoggedIn(true);
+            setUserInfo({
+              ...userInfo,
+              major: data.major,
+              nickname: data.nickname,
+              part: data.part,
+              profileImageSrc: data.profileImageSrc,
+              role: data.role,
+              studentId: data.studentId,
+              team: data.team,
+              userId: data.userId,
+              username: data.username,
+              accessToken: token,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status === 401) {
+            // alert("시간이 지나 로그인이 만료되었습니다.");
+            // 리프레쉬 토큰 로직 추가
+
+            axios
+              .get("http://13.125.72.138/refresh", {
+                headers: {
+                  "Content-Type": `application/json`,
+                },
+              })
+              .then((res) => {
+                console.log(res);
+              });
+          }
+        });
     } else if (!token && privatePage) {
       alert("로그인 후 이용해주세요🦁");
       navigate("/");

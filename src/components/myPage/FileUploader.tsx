@@ -52,7 +52,11 @@ export function FileUploader() {
 
   return (
     <FileUploadContainer>
-      <ProfileThumbnail src={userInfo.profileImageSrc || emoji_lion} onClick={handleClickFileInput} />
+      <ProfileThumbnail
+        src={userInfo.profileImageSrc || emoji_lion}
+        onClick={handleClickFileInput}
+        className="profile-img"
+      />
       <form encType="multipart/form-data">
         <FileInput type="file" accept="image/*" ref={profileImgFileInput} onChange={uploadProfile} />
       </form>
@@ -68,6 +72,10 @@ const FileUploadContainer = styled.div`
     //모바일
     width: 60px;
     height: 60px;
+  }
+  :hover .profile-img {
+    display: block;
+    filter: brightness(60%);
   }
 `;
 

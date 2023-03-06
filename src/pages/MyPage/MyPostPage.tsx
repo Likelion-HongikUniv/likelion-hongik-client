@@ -19,7 +19,7 @@ interface IPost {
   body: string;
   time: string;
   likes: number;
-  reply: number;
+  comments: number;
   postId: number;
 }
 
@@ -73,19 +73,21 @@ export function MyPostPage() {
           <S.MyPostBoxContainer>
             {isMobile ? "" : <S.Title>내가 쓴 글</S.Title>}
             <S.PostItemContainer>
-              {postList.map((post: IPost, index: number) => (
-                <PostItem
-                  key={index}
-                  postId={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImg={profileImg}
-                />
-              ))}
+              {postList.map((post: IPost, index: number) => {
+                return (
+                  <PostItem
+                    key={index}
+                    postId={post.postId}
+                    author={post.author}
+                    title={post.title}
+                    body={post.body}
+                    likes={post.likes}
+                    reply={post.comments}
+                    time={post.time}
+                    profileImg={profileImg}
+                  />
+                );
+              })}
             </S.PostItemContainer>
             <MyPagination totalPages={totalPages} />
           </S.MyPostBoxContainer>
