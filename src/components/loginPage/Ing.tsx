@@ -19,16 +19,11 @@ const Ing = () => {
       navigate("/login");
     } else {
       axios
-        .post(
-          // `http://localhost:8080/v1/token`,
-          `https://www.hongiklikelion.click/v1/token`,
-          UID,
-          {
-            headers: {
-              "Content-Type": `application/json`,
-            },
+        .post(`https://www.hongiklikelion.click/v1/token`, UID, {
+          headers: {
+            "Content-Type": `application/json`,
           },
-        )
+        })
         .then((response) => {
           const token = response.data.JWT;
           if (response.data && token) {

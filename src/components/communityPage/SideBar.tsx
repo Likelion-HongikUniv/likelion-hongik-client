@@ -51,7 +51,12 @@ export function SideBar(categoryName: ICommunityParam) {
         ""
       ) : (
         <ProfileBoard>
-          <ProfileImg>
+          <ProfileImg
+            onClick={() => {
+              navigate("/myPage/post");
+            }}
+            style={{ cursor: "pointer" }}
+          >
             <img alt="profile-img" src={info.profileImageSrc || emoji_lion} />
           </ProfileImg>
           <ProfileDesc>
