@@ -1,11 +1,14 @@
 // 상태 관리
 
 import { atom, atomFamily, selectorFamily } from "recoil";
+import { recoilPersist } from "recoil-persist";
 import { IBoard, IComment } from "../interfaces/comments";
 import { ICategory, ITag } from "../interfaces/category";
 import { IPost } from "../interfaces/post";
 import { IPagination } from "../interfaces/post";
 import { IProjectTeam } from "../interfaces/team";
+
+const { persistAtom } = recoilPersist();
 
 export const commentsListState = atom<IComment[]>({
   key: "commentsState",
@@ -120,15 +123,16 @@ export const tagListState = atom<ICategory[]>({
 export const nowTagState = atom<ITag>({
   key: "nowTagState",
   default: { key: "NOTICE", text: "공지사항" },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const tagListSelector = selectorFamily({
   key: "tagListSelector",
   get:
     (param: string) =>
-    ({ get }) => {
-      return get(tagListState).filter((tagList) => tagList.key === param);
-    },
+      ({ get }) => {
+        return get(tagListState).filter((tagList) => tagList.key === param);
+      },
 });
 
 export const postsListState = atom<IPost[]>({
