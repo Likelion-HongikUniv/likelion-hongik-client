@@ -18,6 +18,23 @@ export default function useAutoLogin() {
     pathname.includes("write") ||
     pathname.includes("community"); // 로그인 해야만 접근 가능한 페이지명
 
+  // 리프레쉬 토큰 로직 테스트
+  if (token) {
+    axios
+      .get(`https://www.hongiklikelion.click/refresh`, {
+        headers: {
+          "Content-Type": `application/json`,
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     if (token) {
       axios
