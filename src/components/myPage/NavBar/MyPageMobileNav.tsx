@@ -103,6 +103,7 @@ const Team = styled.div`
   font-size: 14px;
   line-height: 16.94px;
   color: #b9b9b9;
+  width: 150px;
 `;
 
 const EditBtn = styled.button`

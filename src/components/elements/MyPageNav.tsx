@@ -47,7 +47,7 @@ export function MyPageNav() {
         <ProfileCopy src={userInfo.profileImageSrc || emoji_lion} />
         <div style={{ width: "88px" }}>
           <Name>{userInfo.nickname}</Name>
-          <Team>{userInfo.team ? `${userInfo.team}팀` : "건빵팀"}</Team>
+          <Team>{userInfo.major}</Team>
         </div>
       </div>
       <NavSelectPart />
