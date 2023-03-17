@@ -4,7 +4,7 @@ import { BLACK_1 } from "./../../styles/theme";
 import { useState } from "react";
 
 export function Tip() {
-  const [regDate, setRegDate] = useState(true);
+  const [regDate, setRegDate] = useState(false);
 
   const gotoReg = () => {
     if (regDate === false) {
