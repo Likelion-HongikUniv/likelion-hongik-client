@@ -214,6 +214,10 @@ const Divs = styled.div`
     //모바일
     text-align: center;
   }
+
+  & > button {
+    color: black;
+  }
 `;
 
 const RegBtn = styled.button`
@@ -225,10 +229,6 @@ const RegBtn = styled.button`
   font-weight: 700;
   line-height: 24.96px;
   text-align: center;
-
-  & > a {
-    color: white;
-  }
 
   @media (max-width: 391px) {
     width: 350px;
