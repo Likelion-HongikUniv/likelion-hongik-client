@@ -128,9 +128,13 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
         />
       </EditorWrapper>
       <Row marginTop="24px" width="100%" justifyContent="space-between">
-        <CancelButton onClick={onClickThumbnailSetButton}>썸네일 설정</CancelButton>
+        <CancelButton isThumbnail={true} onClick={onClickThumbnailSetButton}>
+          썸네일 설정
+        </CancelButton>
         <Row width="100%" justifyContent="flex-end" gap="12px">
-          <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
+          <CancelButton isThumbnail={false} onClick={onClickCancelButton}>
+            취소
+          </CancelButton>
           <SaveButton onClick={isEdit ? onClickEditButton : onClickRegisterButton}>등록</SaveButton>
         </Row>
       </Row>
@@ -165,9 +169,21 @@ const SaveButton = styled.button`
   border-radius: 8px;
   background-color: #ed7f30;
   color: black;
+  @media (max-width: 391px) {
+    font-size: 16px;
+    width: 88px;
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;
 
-const CancelButton = styled.button`
+const CancelButton = styled.button<{ isThumbnail: boolean }>`
   width: 128px;
   height: 52px;
   font-size: 20px;
@@ -176,4 +192,16 @@ const CancelButton = styled.button`
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   color: white;
+  @media (max-width: 391px) {
+    font-size: 16px;
+    width: ${(props) => (props.isThumbnail ? "128px" : "88px")};
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;
