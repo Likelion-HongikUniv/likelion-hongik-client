@@ -226,6 +226,10 @@ const RegBtn = styled.button`
   line-height: 24.96px;
   text-align: center;
 
+  & > a {
+    color: white;
+  }
+
   @media (max-width: 391px) {
     width: 350px;
     height: 52px;
