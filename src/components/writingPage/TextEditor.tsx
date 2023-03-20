@@ -60,7 +60,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
       await axios
         .post(
           `https://www.hongiklikelion.click/community/posts/${mainCategory}/${subCategory}`,
-          { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+          { title: title, body: editorContent, thumbnailImage: thumbnailImageUrl },
           { headers: { JWT: token } },
         )
         .then((res) => {
