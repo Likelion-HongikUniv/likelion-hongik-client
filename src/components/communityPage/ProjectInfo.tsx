@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { projectTeamState } from "../../states/atoms";
 import { IMember, IProjectTeam } from "../../interfaces/team";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
+import { useNavigate } from "react-router-dom";
 
 const baseURL = "https://www.hongiklikelion.click";
 
 export function ProjectInfo() {
   const [projectInfo, setProjectInfo] = useRecoilState<IProjectTeam>(projectTeamState);
+  const navigate = useNavigate();
 
   function GetTeamMembers() {
     const token = localStorage.getItem("token");
@@ -27,13 +29,7 @@ export function ProjectInfo() {
         }
       })
       .catch((err) => {
-        // if (err.response.status === 401 || err.response.status === 500) {
-        //   alert("팀 빌딩 후 이용 가능합니다🦁");
-        // }
-        // if (err.response.status === 404) {
-        //   alert("게시글을 찾을 수 없습니다.");
-        // }
-        window.location.href = "/";
+        navigate("/community/BOARD");
         throw err;
       });
   }

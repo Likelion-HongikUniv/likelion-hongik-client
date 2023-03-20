@@ -18,12 +18,32 @@ export default function useAutoLogin() {
     pathname.includes("write") ||
     pathname.includes("community"); // 로그인 해야만 접근 가능한 페이지명
 
+  // 리프레쉬 토큰 로직 테스트
+  if (token) {
+    // axios
+    //   .get(`https://www.hongiklikelion.click/refresh`, {
+    //     headers: {
+    //       "Content-Type": `application/json`,
+    //     },
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }
+
   useEffect(() => {
+    console.log(userInfo.role);
+
     if (token) {
       axios
         .get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } })
         .then((res) => {
           const data = res.data;
+          console.log(data);
 
           if (res.status === 200) {
             setIsLoggedIn(true);
@@ -40,6 +60,11 @@ export default function useAutoLogin() {
               username: data.username,
               accessToken: token,
             });
+            if (data.role !== "USER" && privatePage) {
+              alert("아기사자만 접근 가능한 기능입니다🦁");
+              navigate("/");
+              return;
+            }
           }
         })
         .catch((err) => {
@@ -47,16 +72,15 @@ export default function useAutoLogin() {
           if (err.response.status === 401) {
             // alert("시간이 지나 로그인이 만료되었습니다.");
             // 리프레쉬 토큰 로직 추가
-
-            axios
-              .get("http://13.125.72.138/refresh", {
-                headers: {
-                  "Content-Type": `application/json`,
-                },
-              })
-              .then((res) => {
-                console.log(res);
-              });
+            // axios
+            //   .get("http://13.125.72.138/refresh", {
+            //     headers: {
+            //       "Content-Type": `application/json`,
+            //     },
+            //   })
+            //   .then((res) => {
+            //     console.log(res);
+            //   });
           }
         });
     } else if (!token && privatePage) {
