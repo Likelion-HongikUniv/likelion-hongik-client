@@ -16,7 +16,6 @@ export function NickEdit(props: any) {
   };
 
   const checkNickname = async () => {
-    console.log(props.value);
     await axios
       .post(`${baseURL}/nickname`, JSON.stringify(nick), {
         headers: {
@@ -26,9 +25,7 @@ export function NickEdit(props: any) {
       })
 
       .then((response) => {
-        console.log(response);
         if (response.data.code === 200) {
-          console.log("사용가능 닉네임");
           setNickMul(true);
           setOnClickActive(true);
         }
@@ -37,7 +34,6 @@ export function NickEdit(props: any) {
       .catch((err) => {
         console.log(err);
         if (err.response.data.code === 1006) {
-          console.log("중복되는 닉네임");
           setNickMul(false);
           setOnClickActive(true);
         }

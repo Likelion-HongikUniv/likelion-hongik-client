@@ -53,8 +53,6 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
 
   const onClickRegisterButton = async () => {
     const editorContent = editorRef.current?.getInstance().getHTML();
-    // console.log(editorContent);
-    console.log(thumbnailImageUrl);
 
     if (token && title && editorContent) {
       await axios
@@ -64,15 +62,8 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
           { headers: { JWT: token } },
         )
         .then((res) => {
-          console.log(res);
           navigate(`/community/post/${res.data.id}`);
         });
-      // const res = await postPost(token, {
-      //   title: title,
-      //   editorContent: editorContent,
-      //   thumbnailImageUrl: thumbnailImageUrl,
-      // });
-      // console.log(res);
     } else if (!title) {
       alert("글 제목을 입력해주세요.");
       return;
@@ -92,7 +83,6 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
           { headers: { JWT: token } },
         )
         .then((res) => {
-          console.log("patch");
           navigate(`/community/post/${res.data.id}`);
         });
     }

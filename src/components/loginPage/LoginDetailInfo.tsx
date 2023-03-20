@@ -32,14 +32,6 @@ export function LoginDetailInfo() {
   const studentId = useInput("");
   const jwt = localStorage.getItem("token");
 
-  // const data = {
-  //   nickname: nickname.value,
-  //   major: major.value,
-  //   studentId: studentId.value,
-  //   part: part.value,
-  // };
-  // console.log(JSON.stringify(data));
-
   const nick = {
     nickname: nickname.value,
   };
@@ -53,9 +45,7 @@ export function LoginDetailInfo() {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.data.code === 200) {
-          console.log("중복 X");
           setNickMul(true);
           setOnClickActive(true);
         }
@@ -63,7 +53,6 @@ export function LoginDetailInfo() {
       .catch((err) => {
         console.log(err);
         if (err.response.data.code === 1006) {
-          console.log("중복");
           setNickMul(false);
           setOnClickActive(true);
         }
@@ -72,9 +61,7 @@ export function LoginDetailInfo() {
 
   const onClickSave = () => {
     //저장 버튼 클릭 시 정보 넘겨주기
-    console.log(studentId.value);
     if (studentId.value) {
-      console.log("if 속!");
       const infoHandler = {
         ...info,
         major: major.value,
@@ -83,7 +70,6 @@ export function LoginDetailInfo() {
         studentId: studentId.value,
       };
       setInfo(infoHandler);
-      console.log(info);
     }
     const data = {
       nickname: nickname.value,
@@ -105,7 +91,6 @@ export function LoginDetailInfo() {
         },
       )
       .then((response) => {
-        console.log(response);
         navigate("/login/complete");
       })
       .catch((err) => {

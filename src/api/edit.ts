@@ -16,8 +16,5 @@ export async function editProfileImage({ token, slicedUrl }: editProfileImagePro
         },
       },
     )
-    .then((response) => {
-      console.log(response.status);
-    })
     .catch((error) => console.error(error));
 }
