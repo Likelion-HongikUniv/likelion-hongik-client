@@ -214,6 +214,10 @@ const Divs = styled.div`
     //모바일
     text-align: center;
   }
+
+  & > button {
+    color: black;
+  }
 `;
 
 const RegBtn = styled.button`

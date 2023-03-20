@@ -8,7 +8,7 @@ export function Tip() {
 
   const gotoReg = () => {
     if (regDate === false) {
-      alert("지원 기간이 아닙니다!");
+      alert("현재 모집기간이 아닙니다🦁");
     } else {
       window.open("https://forms.gle/KE1tRsetSke2u9za7");
     }

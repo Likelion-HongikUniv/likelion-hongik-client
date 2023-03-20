@@ -36,12 +36,14 @@ const Ing = () => {
           if (response.data.isJoined === false && response.data.role === "GUEST") {
             // 멋사회원도 아니고 그냥 소셜로그인 한 사람
             console.log("멋사 회원이 아니에요!");
+            alert("멋사 회원이 아니에요!");
             navigate("/");
           } else if (response.data.isJoined === false && response.data.role === "USER") {
             console.log("멋사 회원 + 회원가입");
             navigate("/login/detail");
           } else {
             console.log("멋사 회원 + 로그인");
+            alert("로그인이 완료되었습니다.");
             setIsLoggedIn(true);
             navigate("/");
           }
