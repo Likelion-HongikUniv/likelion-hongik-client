@@ -32,7 +32,7 @@ export function PostItem(post: IPost) {
                 <UploadDate>{date}</UploadDate>
               </Column>
             </Row>
-            {post.thumbnailImage && <PostImg src={post.thumbnailImage} alt="post-thumbnail" />}
+            {post.thumbNailImage && <PostImg src={post.thumbNailImage} alt="post-thumbnail" />}
             <Column gap="12px">
               <Title>{post.title}</Title>
               <Body>{body}</Body>
@@ -72,8 +72,8 @@ export function PostItem(post: IPost) {
           </Row>
         )}
       </Left>
-      {!isMobile && post.thumbnailImage ? (
-        <PostImg src={post.thumbnailImage} alt="post-thumbnail" />
+      {!isMobile && post.thumbNailImage ? (
+        <PostImg src={post.thumbNailImage} alt="post-thumbnail" />
       ) : (
         !isMobile && <NoneImg />
       )}
