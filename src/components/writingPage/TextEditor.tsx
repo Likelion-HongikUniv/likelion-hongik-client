@@ -53,8 +53,8 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
 
   const onClickRegisterButton = async () => {
     const editorContent = editorRef.current?.getInstance().getHTML();
-    console.log(editorContent);
-    console.log(title);
+    // console.log(editorContent);
+    console.log(thumbnailImageUrl);
 
     if (token && title && editorContent) {
       await axios
