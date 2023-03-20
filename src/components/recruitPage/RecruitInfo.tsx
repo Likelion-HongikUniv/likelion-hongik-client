@@ -3,7 +3,7 @@ import { WHITE_1, BLACK_1 } from "../../styles/theme";
 import { useState } from "react";
 
 export function RecruitInfo() {
-  const [regDate, setRegDate] = useState(true);
+  const [regDate, setRegDate] = useState(false);
 
   const gotoReg = () => {
     if (regDate === false) {
@@ -213,6 +213,10 @@ const Divs = styled.div`
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     text-align: center;
+  }
+
+  & > button {
+    color: black;
   }
 `;
 

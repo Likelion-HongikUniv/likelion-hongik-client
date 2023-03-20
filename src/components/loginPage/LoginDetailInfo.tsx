@@ -32,12 +32,12 @@ export function LoginDetailInfo() {
   const studentId = useInput("");
   const jwt = localStorage.getItem("token");
 
-  const data = {
-    nickname: nickname.value,
-    major: major.value,
-    studentId: studentId.value,
-    part: part.value,
-  };
+  // const data = {
+  //   nickname: nickname.value,
+  //   major: major.value,
+  //   studentId: studentId.value,
+  //   part: part.value,
+  // };
   // console.log(JSON.stringify(data));
 
   const nick = {
@@ -167,7 +167,7 @@ export function LoginDetailInfo() {
       </div>
 
       <DetailInfo>학번</DetailInfo>
-      <InputBox placeholder="학번 입력" {...studentId} />
+      <InputBox placeholder="학번 입력 (ex. CXXXXXX)" {...studentId} />
       <DetailInfo>학과</DetailInfo>
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>

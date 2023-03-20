@@ -117,6 +117,17 @@ const MainCategoryWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  @media (max-width: 391px) {
+    font-size: 16px;
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const MainCategoryButton = styled.button<ButtonProps>`
@@ -126,6 +137,18 @@ const MainCategoryButton = styled.button<ButtonProps>`
   font-size: 18px;
   line-height: 22px;
   border-bottom: ${(props) => (props.isClicked ? "2px solid #FFFFFF" : "")};
+
+  @media (max-width: 391px) {
+    font-size: 16px;
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const SubCategoryWrapper = styled.div`
@@ -144,4 +167,15 @@ const SubCategoryButton = styled.button<ButtonProps>`
   font-size: 18px;
   line-height: 22px;
   background-color: ${(props) => (props.isClicked ? "#333333" : "")};
+  @media (max-width: 391px) {
+    font-size: 16px;
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;

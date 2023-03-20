@@ -21,7 +21,7 @@ export function Curriculum() {
               <Text>면접</Text>
             </Dot3>
             <Dot4>
-              <Date>2022.03.19</Date>
+              <Date>2023.03.19</Date>
               <Text>최종 합격자 발표</Text>
             </Dot4>
           </div>
