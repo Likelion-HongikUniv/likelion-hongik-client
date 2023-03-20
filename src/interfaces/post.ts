@@ -14,7 +14,7 @@ export interface IPost {
   title: string;
   author: IAuthor;
   body: string;
-  thumbNailImage?: string | null | undefined;
+  thumbnailImage?: string | null | undefined;
   likeCount?: number;
   commentCount?: number;
   createdTime?: string;
