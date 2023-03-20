@@ -31,7 +31,6 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isEdit = Boolean(location.state.body);
-  console.log(mainCategory, subCategory);
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
@@ -74,6 +73,12 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
       //   thumbnailImageUrl: thumbnailImageUrl,
       // });
       // console.log(res);
+    } else if (!title) {
+      alert("글 제목을 입력해주세요.");
+      return;
+    } else if (editorContent) {
+      alert("글 내용을 입력해주세요.");
+      return;
     }
   };
 
