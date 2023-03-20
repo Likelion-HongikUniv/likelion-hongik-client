@@ -48,7 +48,6 @@ export function EditPart() {
       part: changePart.value,
     };
     setInfo(infoHandler);
-    console.log(info);
 
     axios
       .put(`${baseURL}/mypage/edit`, JSON.stringify(data), {
@@ -58,7 +57,6 @@ export function EditPart() {
         },
       })
       .then((response) => {
-        console.log(response);
         window.location.reload(); //새로고침되게
       })
       .catch((err) => {

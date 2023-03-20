@@ -27,7 +27,6 @@ export function MyPageNav() {
         },
       })
       .then((response) => {
-        console.log(response);
         const infoHandler = {
           ...info,
           major: response.data.major,

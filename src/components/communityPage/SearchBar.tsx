@@ -31,7 +31,6 @@ export function SearchBar(categoryName: ICommunityParam) {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
           setPagination({
             totalPage: response.data.totalPage,
             totalElements: response.data.totalElements,

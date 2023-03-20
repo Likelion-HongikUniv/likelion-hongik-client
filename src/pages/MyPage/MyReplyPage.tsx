@@ -53,7 +53,6 @@ export function MyReplyPage() {
         },
       })
       .then((response) => {
-        console.log(response);
         setPostList(response.data.content);
         setTotalPages(response.data.totalPages);
       })

@@ -36,14 +36,11 @@ export default function useAutoLogin() {
   }
 
   useEffect(() => {
-    console.log(userInfo.role);
-
     if (token) {
       axios
         .get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } })
         .then((res) => {
           const data = res.data;
-          console.log(data);
 
           if (res.status === 200) {
             setIsLoggedIn(true);

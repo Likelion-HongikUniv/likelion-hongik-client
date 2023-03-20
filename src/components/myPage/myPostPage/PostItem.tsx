@@ -22,7 +22,6 @@ export function PostItem({ postId, author, title, body, likes, reply, time, prof
     navigate(`/community/post/${postId}`);
   };
   body = body.replace(/<[^>]*>?/g, "");
-  console.log(reply);
   return (
     <Item onClick={onClickHandler}>
       <Left>

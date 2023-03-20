@@ -17,7 +17,6 @@ export function SearchPostList(params: any) {
 
   const page = useRecoilValue<number>(pageState);
   const search = useRecoilValue<string>(searchState);
-  console.log(params.tag);
 
   function GetSearchPostList(category: string, tag: string, page: number, search: string) {
     const params = { search: search, page: page };
@@ -32,8 +31,6 @@ export function SearchPostList(params: any) {
         params,
       })
       .then((response) => {
-        console.log(response);
-
         if (response.status === 200) {
           setPagination({
             totalPage: response.data.totalPage,

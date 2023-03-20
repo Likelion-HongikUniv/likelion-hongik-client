@@ -22,21 +22,22 @@ export function RecruitPage() {
       <Section style={{ overflow: "hidden" }}>
         <Column justifyContent="center" alignItems="center">
           <Section style={{ paddingTop: "0" }}>
-            <Wrapper style={{}}>
+            <Wrapper>
               <RecruitInfo />
             </Wrapper>
+
+            {/* </Column>
+        <Column> */}
+            <Wrappers>
+              <ForDiv>
+                <Curriculum />
+                <Part />
+                <Requirement />
+                <QnA />
+                <Tip />
+              </ForDiv>
+            </Wrappers>
           </Section>
-        </Column>
-        <Column>
-          <Wrappers>
-            <ForDiv>
-              <Curriculum />
-              <Part />
-              <Requirement />
-              <QnA />
-              <Tip />
-            </ForDiv>
-          </Wrappers>
         </Column>
         <div style={{ textAlign: "center", marginTop: "185px" }}>
           <Channel />
