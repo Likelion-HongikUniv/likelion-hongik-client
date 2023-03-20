@@ -36,6 +36,8 @@ export default function useAutoLogin() {
   }
 
   useEffect(() => {
+    console.log(userInfo.role);
+
     if (token) {
       axios
         .get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } })
@@ -58,6 +60,11 @@ export default function useAutoLogin() {
               username: data.username,
               accessToken: token,
             });
+            if (data.role !== "USER" && privatePage) {
+              alert("아기사자만 접근 가능한 기능입니다🦁");
+              navigate("/");
+              return;
+            }
           }
         })
         .catch((err) => {
@@ -78,9 +85,6 @@ export default function useAutoLogin() {
         });
     } else if (!token && privatePage) {
       alert("로그인 후 이용해주세요🦁");
-      navigate("/");
-    } else if (userInfo.role !== "USER" && privatePage) {
-      alert("아기사자만 접근 가능한 기능입니다🦁");
       navigate("/");
     }
   }, [pathname, token]);
