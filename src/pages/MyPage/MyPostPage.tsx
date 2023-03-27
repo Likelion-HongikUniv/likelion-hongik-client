@@ -33,7 +33,7 @@ export function MyPostPage() {
   const profileImg = userInfo.profileImageSrc;
   // const token = userInfo.accessToken;
   const token = localStorage.getItem("token");
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const navigate = useNavigate();
 
   useEffect(() => {

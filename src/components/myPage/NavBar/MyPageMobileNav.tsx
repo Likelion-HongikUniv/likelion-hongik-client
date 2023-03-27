@@ -12,7 +12,7 @@ import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {
   const [info, setInfo] = useRecoilState(editState);
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const userInfo = useRecoilValue(userState);
   const profileImg = userInfo.profileImageSrc;

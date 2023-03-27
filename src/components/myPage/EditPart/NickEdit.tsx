@@ -5,7 +5,7 @@ import { editState, NickMulState, mulBtnState } from "../../../states";
 import { BLACK_1, WHITE_1 } from "./../../../styles/theme";
 
 export function NickEdit(props: any) {
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const token = localStorage.getItem("token");
   const info = useRecoilValue(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);

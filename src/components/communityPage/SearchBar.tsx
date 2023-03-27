@@ -6,7 +6,7 @@ import { nowTagState, pageState, paginationState, postsListState, searchState } 
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { IPost, IPagination } from "../../interfaces/post";
 
-const baseURL = "https://www.hongiklikelion.click";
+const baseURL = "https://api.likelionhongik.com";
 
 export function SearchBar(categoryName: ICommunityParam) {
   const nowTag = useRecoilValue<ITag>(nowTagState);

@@ -34,7 +34,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
-      .get("https://www.hongiklikelion.click/pre-signed-url/postImage", { headers: { JWT: token } })
+      .get("https://api.likelionhongik.com/pre-signed-url/postImage", { headers: { JWT: token } })
       .then((res) => {
         return res.data;
       });
@@ -57,7 +57,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
     if (token && title && editorContent) {
       await axios
         .post(
-          `https://www.hongiklikelion.click/community/posts/${mainCategory}/${subCategory}`,
+          `https://api.likelionhongik.com/community/posts/${mainCategory}/${subCategory}`,
           { title: title, body: editorContent, thumbnailImage: thumbnailImageUrl },
           { headers: { JWT: token } },
         )
@@ -78,7 +78,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
     if (isEdit && token && title && editorContent) {
       await axios
         .patch(
-          `https://www.hongiklikelion.click/community/post/${location.state.id}`,
+          `https://api.likelionhongik.com/community/post/${location.state.id}`,
           { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
           { headers: { JWT: token } },
         )

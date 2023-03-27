@@ -7,7 +7,7 @@ import { IMember, IProjectTeam } from "../../interfaces/team";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 import { useNavigate } from "react-router-dom";
 
-const baseURL = "https://www.hongiklikelion.click";
+const baseURL = "https://api.likelionhongik.com";
 
 export function ProjectInfo() {
   const [projectInfo, setProjectInfo] = useRecoilState<IProjectTeam>(projectTeamState);

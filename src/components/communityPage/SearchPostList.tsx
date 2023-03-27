@@ -8,7 +8,7 @@ import { IPagination } from "../../interfaces/post";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const baseURL = "https://www.hongiklikelion.click";
+const baseURL = "https://api.likelionhongik.com";
 
 export function SearchPostList(params: any) {
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
