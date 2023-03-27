@@ -32,7 +32,7 @@ export function MyLikePage() {
   const [totalPages, setTotalPages] = useState(5);
   // const token = userInfo.accessToken;
   const token = localStorage.getItem("token");
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const navigate = useNavigate();
 
   useEffect(() => {

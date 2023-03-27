@@ -8,7 +8,7 @@ import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
   const team = useRecoilValue(teamState);

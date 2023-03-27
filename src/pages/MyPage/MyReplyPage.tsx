@@ -32,7 +32,7 @@ export function MyReplyPage() {
   const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const navigate = useNavigate();
 
   useEffect(() => {

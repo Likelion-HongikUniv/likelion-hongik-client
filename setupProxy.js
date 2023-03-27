@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const baseURL = "https://www.hongiklikelion.click/";
+const baseURL = "https://api.likelionhongik.com/";
 
 module.exports = function (app) {
   app.use(

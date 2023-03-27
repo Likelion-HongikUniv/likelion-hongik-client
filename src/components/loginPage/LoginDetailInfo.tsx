@@ -9,7 +9,7 @@ import { editState, NickMulState, mulBtnState } from "../../states";
 import { WHITE_1 } from "../../styles/theme";
 
 export function LoginDetailInfo() {
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const navigate = useNavigate();
   const [info, setInfo] = useRecoilState(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);

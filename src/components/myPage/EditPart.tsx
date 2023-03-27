@@ -15,7 +15,7 @@ export function EditPart() {
   const [info, setInfo] = useRecoilState(editState);
   const [nickCheck, setNickCheck] = useRecoilState(mulBtnState);
   const mulNick = useRecoilValue(NickMulState);
-  const baseURL = "https://www.hongiklikelion.click";
+  const baseURL = "https://api.likelionhongik.com";
   const jwt = localStorage.getItem("token");
 
   const useNickInput = (initialValue: string | undefined) => {

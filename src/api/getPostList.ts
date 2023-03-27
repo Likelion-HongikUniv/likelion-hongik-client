@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IPostList } from "../interfaces/post";
 
-const baseURL = "https://www.hongiklikelion.click";
+const baseURL = "https://api.likelionhongik.com";
 
 interface postsProps {
   category?: string;

@@ -38,7 +38,7 @@ export default function useAutoLogin() {
   useEffect(() => {
     if (token) {
       axios
-        .get(`https://www.hongiklikelion.click/userinfo`, { headers: { JWT: token } })
+        .get(`https://api.likelionhongik.com/userinfo`, { headers: { JWT: token } })
         .then((res) => {
           const data = res.data;
 

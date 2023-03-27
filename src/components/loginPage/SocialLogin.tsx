@@ -9,19 +9,20 @@ import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
 
 export function SocialLogin() {
+  const baseUrl = "https://api.likelionhongik.com/oauth2/authorization";
   const googleLogin = () => {
-    window.open("https://www.hongiklikelion.click/oauth2/authorization/google", "_self");
+    window.open(`${baseUrl}/google`, "_self");
   };
   const naverLogin = () => {
-    window.open("https://www.hongiklikelion.click/oauth2/authorization/naver", "_self");
+    window.open(`${baseUrl}/naver`, "_self");
   };
 
   const kakaoLogin = () => {
-    window.open("https://www.hongiklikelion.click/oauth2/authorization/kakao", "_self");
+    window.open(`${baseUrl}/kakao`, "_self");
   };
 
   const githubLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    window.open("https://www.hongiklikelion.click/oauth2/authorization/github", "_self");
+    window.open(`${baseUrl}/github`, "_self");
   };
 
   return (
