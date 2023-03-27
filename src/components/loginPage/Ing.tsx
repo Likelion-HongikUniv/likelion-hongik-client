@@ -19,7 +19,7 @@ const Ing = () => {
       navigate("/login");
     } else {
       axios
-        .post(`https://api.likelionhongik.com`, UID, {
+        .post(`https://api.likelionhongik.com/v1/token`, UID, {
           headers: {
             "Content-Type": `application/json`,
           },
