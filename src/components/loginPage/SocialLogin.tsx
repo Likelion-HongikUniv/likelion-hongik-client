@@ -34,21 +34,21 @@ export function SocialLogin() {
       </WelcomeText>
       <SmallText>로그인 후 이용할 수 있어요.</SmallText>
       <div>
-        <SocialBtn style={{ marginTop: "60px" }} onClick={githubLogin}>
-          <FontAwesomeIcon icon={faGithub} />
-          <Social>Github으로 계속하기</Social>
-        </SocialBtn>
-        <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
+        {/* <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
           <NaverIcon />
           <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
-        </SocialBtn>
-        <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
+        </SocialBtn> */}
+        <SocialBtn style={{ marginTop: "60px", background: "#EFDB30" }} onClick={kakaoLogin}>
           <KakaoIcon />
           <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
         </SocialBtn>
         <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
           <GoogleIcon />
           <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
+        </SocialBtn>
+        <SocialBtn style={{ marginTop: "" }} onClick={githubLogin}>
+          <FontAwesomeIcon icon={faGithub} />
+          <Social>Github으로 계속하기</Social>
         </SocialBtn>
       </div>
     </ForDiv>
