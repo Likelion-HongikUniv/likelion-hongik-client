@@ -68,7 +68,7 @@ export function ThumbnailUploadPopup() {
               </CancelButton>
               <UploadButton
                 onClick={() => {
-                  alert("업로드가 완료되었습니다.");
+                  alert("🦁 업로드가 완료되었습니다 🦁");
                   setIsThumbnailSetButtonClicked(false);
                 }}
               >

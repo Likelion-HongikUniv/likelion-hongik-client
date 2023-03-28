@@ -65,10 +65,10 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
           navigate(`/community/post/${res.data.id}`);
         });
     } else if (!title) {
-      alert("글 제목을 입력해주세요.");
+      alert("🦁 글 제목을 입력해주세요 🦁");
       return;
     } else if (editorContent) {
-      alert("글 내용을 입력해주세요.");
+      alert("🦁 글 내용을 입력해주세요 🦁");
       return;
     }
   };

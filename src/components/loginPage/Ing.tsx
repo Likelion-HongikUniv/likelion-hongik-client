@@ -15,7 +15,7 @@ const Ing = () => {
   const UID = searchParams.get("UID");
   const getProfile = async () => {
     if (UID === "-1") {
-      alert("이미 이 이메일의 계정이 있습니다. 다른 소셜로그인으로 로그인해주세요!");
+      alert("🦁 이미 이 이메일의 계정이 있습니다. 다른 소셜로그인으로 로그인해주세요 🦁");
       navigate("/login");
     } else {
       axios
@@ -35,12 +35,12 @@ const Ing = () => {
           }
           if (response.data.isJoined === false && response.data.role === "GUEST") {
             // 멋사회원도 아니고 그냥 소셜로그인 한 사람
-            alert("멋사 회원이 아니에요!");
+            alert("🦁 멋사 회원이 아니에요 🦁");
             navigate("/");
           } else if (response.data.isJoined === false && response.data.role === "USER") {
             navigate("/login/detail");
           } else {
-            alert("로그인이 완료되었습니다.");
+            alert("🦁 로그인이 완료되었습니다 🦁");
             setIsLoggedIn(true);
             navigate("/");
           }

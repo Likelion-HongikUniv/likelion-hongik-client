@@ -58,7 +58,7 @@ export default function useAutoLogin() {
               accessToken: token,
             });
             if (data.role !== "USER" && privatePage) {
-              alert("아기사자만 접근 가능한 기능입니다🦁");
+              alert("🦁 아기사자만 접근 가능한 기능입니다 🦁");
               navigate("/");
               return;
             }
@@ -81,7 +81,7 @@ export default function useAutoLogin() {
           }
         });
     } else if (!token && privatePage) {
-      alert("로그인 후 이용해주세요🦁");
+      alert("🦁 로그인 후 이용해주세요 🦁");
       navigate("/");
     }
   }, [pathname, token]);
