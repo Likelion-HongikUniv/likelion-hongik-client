@@ -20,8 +20,6 @@ export function LoginDetailInfo() {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
       setOnClickActive(false);
-      //이걸 위해서 useInput 살짝 수정해서 붙여옴 허허
-      // input값이 바뀔 때마다 중복확인 체크를 다시 해줘야함
     };
     return { value, setValue, onChange };
   };
@@ -79,17 +77,12 @@ export function LoginDetailInfo() {
     };
 
     axios
-      .post(
-        `${baseURL}/accounts/detail_info/`,
-        JSON.stringify(data),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${jwt}`,
-          },
+      .post(`${baseURL}/accounts/detail_info/`, JSON.stringify(data), {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: `${jwt}`,
         },
-      )
+      })
       .then((response) => {
         navigate("/login/complete");
       })
