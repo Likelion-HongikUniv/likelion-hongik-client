@@ -26,7 +26,6 @@ export function WritingPage() {
   const selectedMainCategory = state.category;
   const [clickedMainCategory, setClickedMainCategory] = useState(selectedMainCategory);
   const [clickedSubCategory, setClickedSubCategory] = useState(selectedSubCategory.key);
-
   const title = useInput(""); // title.value가 값임
 
   return (
@@ -47,7 +46,11 @@ export function WritingPage() {
             clickedSubCategory={clickedSubCategory}
             setClickedSubCategory={setClickedSubCategory}
           />
-          <InputBar style={{ marginTop: "60px" }} {...title} />
+          {state ? (
+            <InputBar style={{ marginTop: "60px" }} {...title} value={state.title} />
+          ) : (
+            <InputBar style={{ marginTop: "60px" }} {...title} />
+          )}
           <TextEditor title={title.value} mainCategory={clickedMainCategory} subCategory={clickedSubCategory} />
           {isCancelButtonClicked && <ConfirmationPopup />}
           {isThumbnailSetButtonClicked && <ThumbnailUploadPopup />}

@@ -31,6 +31,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isEdit = Boolean(location.state.body);
+  // const regBody = location.state.body.replace(/<[^>]*>? /g, "");
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
