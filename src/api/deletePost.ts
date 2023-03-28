@@ -12,16 +12,16 @@ async function deletePost(postId: number): Promise<void> {
     })
     .catch((err) => {
       if (err.response.status === 401 || err.response.status === 500) {
-        alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        alert("🦁 접근 권한이 없습니다. 로그인이 필요합니다 🦁");
       }
       if (err.response.status === 404) {
-        alert("삭제 대상을 찾을 수 없습니다.");
+        alert("🦁 삭제 대상을 찾을 수 없습니다 🦁");
       }
       window.location.reload();
       throw err;
     })
     .then((response) => {
-      alert("글이 삭제되었습니다");
+      alert("🦁 글이 삭제되었습니다 🦁");
     });
 }
 
@@ -35,16 +35,16 @@ async function deleteComment(commentId: number): Promise<void> {
     })
     .catch((err) => {
       if (err.response.status === 401 || err.response.status === 500) {
-        alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        alert("🦁 접근 권한이 없습니다. 로그인이 필요합니다 🦁");
       }
       if (err.response.status === 404) {
-        alert("삭제 대상을 찾을 수 없습니다.");
+        alert("🦁 삭제 대상을 찾을 수 없습니다 🦁");
       }
       window.location.reload();
       throw err;
     })
     .then((response) => {
-      alert("댓글이 삭제되었습니다");
+      alert("🦁 댓글이 삭제되었습니다 🦁");
     });
 }
 
@@ -58,19 +58,18 @@ async function deleteReply(replyId: number): Promise<void> {
     })
     .catch((err) => {
       if (err.response.status === 401 || err.response.status === 500) {
-        alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
+        alert("🦁 접근 권한이 없습니다. 로그인이 필요합니다 🦁");
       }
       if (err.response.status === 404) {
-        alert("삭제 대상을 찾을 수 없습니다.");
+        alert("🦁 삭제 대상을 찾을 수 없습니다 🦁");
       }
       window.location.reload();
       throw err;
     })
     .then((response) => {
-      alert("답글이 삭제되었습니다");
+      alert("🦁 답글이 삭제되었습니다 🦁");
     });
 }
-
 
 function useDeletePost(): UseMutationResult<void, unknown, number, unknown> {
   return useMutation(deletePost);

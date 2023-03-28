@@ -59,7 +59,7 @@ export function MyPostPage() {
       })
       .catch(function (error) {
         console.log(error);
-        alert("로그인이 필요한 기능입니다.");
+        alert("🦁 로그인이 필요한 기능입니다 🦁");
         navigate("/login");
       });
   };

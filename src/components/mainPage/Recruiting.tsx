@@ -8,7 +8,7 @@ import main_recruiting_mobile from "../images/main_recruiting_mobile.png";
 
 const Recruiting = () => {
   const onClickBtn = () => {
-    alert("현재 모집기간이 아닙니다🦁");
+    alert("🦁 현재 모집기간이 아닙니다 🦁");
     window.location.replace("/recruit");
   };
   useEffect(() => {

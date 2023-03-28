@@ -16,7 +16,7 @@ export function LikeButton({ id, isLiked, isAuthor, likes, isComment }: LikeButt
     if (!isAuthor) {
       mutate({ id, isComment });
     } else {
-      alert("본인의 답글은 좋아요할 수 없습니다.");
+      alert("🦁 본인의 답글은 좋아요할 수 없습니다 🦁");
     }
   };
 

@@ -46,10 +46,10 @@ export function SearchBar(categoryName: ICommunityParam) {
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.status === 500) {
-          alert("로그인 후 이용해주세요🦁");
+          alert("🦁 로그인 후 이용해주세요 🦁");
         }
         if (err.response.status === 404) {
-          alert("게시글을 찾을 수 없습니다.");
+          alert("🦁 게시글을 찾을 수 없습니다 🦁");
         }
         // window.location.href = "/";
         throw err;
