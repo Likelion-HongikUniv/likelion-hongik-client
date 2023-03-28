@@ -23,8 +23,6 @@ export function EditPart() {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
       setNickCheck(false);
-      //이걸 위해서 useInput 살짝 수정해서 붙여옴 허허
-      // input값이 바뀔 때마다 중복확인 체크를 다시 해줘야함
     };
     return { value, setValue, onChange };
   };
