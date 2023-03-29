@@ -130,9 +130,9 @@ export const tagListSelector = selectorFamily({
   key: "tagListSelector",
   get:
     (param: string) =>
-      ({ get }) => {
-        return get(tagListState).filter((tagList) => tagList.key === param);
-      },
+    ({ get }) => {
+      return get(tagListState).filter((tagList) => tagList.key === param);
+    },
 });
 
 export const postsListState = atom<IPost[]>({

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Header } from "../components/elements/Header";
 import { Section } from "../components/elements/Wrapper";
@@ -7,12 +7,7 @@ import { InputBar } from "../components/writingPage/InputBar";
 import { TabBar } from "../components/writingPage/TabBar";
 import { TextEditor } from "../components/writingPage/TextEditor";
 import { ThumbnailUploadPopup } from "../components/writingPage/ThumbniailUploadPopup";
-import {
-  isCancelButtonClickedState,
-  isThumbnailSetButtonClickedState,
-  postThumbnailUrlState,
-  userState,
-} from "../states";
+import { isCancelButtonClickedState, isThumbnailSetButtonClickedState } from "../states";
 import useInput from "../hooks/useInput";
 import { useLocation } from "react-router-dom";
 import { nowTagState } from "../states/atoms";
@@ -21,7 +16,6 @@ export function WritingPage() {
   const isCancelButtonClicked = useRecoilValue(isCancelButtonClickedState);
   const isThumbnailSetButtonClicked = useRecoilValue(isThumbnailSetButtonClickedState);
   const selectedSubCategory = useRecoilValue(nowTagState);
-  const userInfo = useRecoilValue(userState);
   const { state } = useLocation();
   const selectedMainCategory = state.category;
   const [clickedMainCategory, setClickedMainCategory] = useState(selectedMainCategory);
