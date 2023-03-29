@@ -1,5 +1,6 @@
 import client from "./client";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+
 const token = localStorage.getItem("token");
 
 async function deletePost(postId: number): Promise<void> {
@@ -22,6 +23,7 @@ async function deletePost(postId: number): Promise<void> {
     })
     .then((response) => {
       alert("🦁 글이 삭제되었습니다 🦁");
+      window.location.reload();
     });
 }
 
