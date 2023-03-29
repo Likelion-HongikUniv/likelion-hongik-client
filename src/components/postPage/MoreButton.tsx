@@ -34,7 +34,7 @@ export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
   const onClickDelete = () => {
     if (isBoard) {
       handleDeletePost(id);
-      window.location.replace(`/community/BOARD`);
+      navigate(`/community/BOARD`);
     } else if (isComment) {
       handleDeleteComment(id);
     } else {
