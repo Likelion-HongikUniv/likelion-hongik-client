@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Editor, Viewer } from "@toast-ui/react-editor";
+import React, { useRef, useState } from "react";
+import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import styled from "styled-components";
@@ -11,7 +11,6 @@ import {
   postThumbnailUrlState,
 } from "../../states/index";
 import axios from "axios";
-import { postPost } from "../../api/post";
 import { useNavigate, useLocation } from "react-router-dom";
 
 interface EditorProps {
@@ -80,7 +79,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
       await axios
         .patch(
           `https://api.likelionhongik.com/community/post/${location.state.id}`,
-          { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+          { title: title, body: editorContent, thumbnailImage: thumbnailImageUrl },
           { headers: { JWT: token } },
         )
         .then((res) => {

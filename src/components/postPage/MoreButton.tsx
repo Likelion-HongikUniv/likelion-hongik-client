@@ -6,6 +6,7 @@ import { boardState } from "../../states/atoms";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { useDeletePostState, useDeleteCommentState, useDeleteReplyState } from "../../api/deletePost";
+import { postThumbnailUrlState } from "./../../states/index";
 
 interface MoreButtonProps {
   id: number;
@@ -16,6 +17,7 @@ interface MoreButtonProps {
 export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
   const navigate = useNavigate();
   const board = useRecoilValue<IBoard>(boardState);
+  const thumbnail = useRecoilValue(postThumbnailUrlState);
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);
   const isPC = useMediaQuery("(min-width: 1024px)");
@@ -28,7 +30,9 @@ export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
   };
 
   const onClickEdit = () => {
-    navigate("/write", { state: { id: board.postId, title: board.title, body: board.body } });
+    navigate("/write", {
+      state: { id: board.postId, title: board.title, body: board.body, thumbnailImage: thumbnail },
+    });
   };
 
   const onClickDelete = () => {

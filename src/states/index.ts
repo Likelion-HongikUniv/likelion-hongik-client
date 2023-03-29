@@ -1,6 +1,6 @@
 // 상태 관리
 
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { UploadImage } from "../components/myPage/FileUploader";
 
@@ -34,7 +34,6 @@ export const profileState = atom<UploadImage | null>({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
-
 
 interface IEdit {
   key?: string;
