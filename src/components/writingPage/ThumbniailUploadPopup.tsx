@@ -51,19 +51,19 @@ export function ThumbnailUploadPopup() {
               type="file"
               id="img-upload"
               style={{ display: "none" }}
-              ref={thumbnailImgFileInput}
               onChange={onUploadThumbnailImage}
+              ref={thumbnailImgFileInput}
               accept="image/x-png,image/gif,image/jpeg"
               onClick={handleClickFileInput}
             />
-            {thumbnailUrl.length > 1 ? (
-              <img src={thumbnailUrl} width={209} height={209} onClick={handleClickFileInput} />
-            ) : (
+            {thumbnailUrl === null ? (
               <ImageArea>
                 <ImageIcon htmlFor="img-upload" />
               </ImageArea>
+            ) : (
+              <img alt="thumbnail" src={thumbnailUrl} width={209} height={209} onClick={handleClickFileInput} />
             )}
-            <TextArea>썸네일 이미지 미설정 시 기본 이미지로 업로드됩니다.</TextArea>
+            <TextArea>썸네일 이미지 미설정 시 썸네일 자동설정되지 않습니다.</TextArea>
             <Row gap="12px" style={{ height: "auto" }}>
               <CancelButton
                 onClick={() => {
@@ -80,6 +80,15 @@ export function ThumbnailUploadPopup() {
               >
                 등록
               </UploadButton>
+              <DeleteButton
+                onClick={() => {
+                  alert("🦁 썸네일이 삭제되었습니다 🦁");
+                  setIsThumbnailSetButtonClicked(false);
+                  setThumbnailUrl(null);
+                }}
+              >
+                삭제
+              </DeleteButton>
             </Row>
           </Column>
         </Column>
@@ -136,7 +145,7 @@ const ImageArea = styled.div`
 `;
 
 const CancelButton = styled.button`
-  width: 180px;
+  width: 72px;
   height: 52px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 8px;
@@ -146,7 +155,17 @@ const CancelButton = styled.button`
 `;
 
 const UploadButton = styled.button`
-  width: 180px;
+  width: 72px;
+  height: 52px;
+  background-color: #ed7f30;
+  border-radius: 8px;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const DeleteButton = styled.button`
+  width: 72px;
   height: 52px;
   background-color: #ed7f30;
   border-radius: 8px;

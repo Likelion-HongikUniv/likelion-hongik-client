@@ -17,7 +17,6 @@ export function DropMenu(isActive: DropMenuProps) {
       setIsLoggedIn(false);
       setUserInfo("");
       localStorage.removeItem("token");
-      // localStorage.removeItem("username");
     } else {
       navigate("/login");
     }

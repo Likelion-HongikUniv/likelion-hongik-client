@@ -20,7 +20,6 @@ export const userState = atom<any>({
     username: "",
     accessToken: "",
   },
-  // effects_UNSTABLE: [persistAtom],
 });
 
 export const btnActiveState = atom<number>({
@@ -75,9 +74,9 @@ export const isThumbnailSetButtonClickedState = atom<boolean>({
   default: false,
 });
 
-export const postThumbnailUrlState = atom<string>({
+export const postThumbnailUrlState = atom<string | null>({
   key: "postThumbnailUrlState",
-  default: "",
+  default: null,
 });
 
 export const currPageState = atom<number>({

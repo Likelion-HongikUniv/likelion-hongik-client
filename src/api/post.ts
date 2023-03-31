@@ -9,7 +9,7 @@ interface postProps {
 export async function postPost(token: string, props: postProps) {
   await client.post(
     `/community/posts/BOARD/NOTICE`,
-    { title: props.title, body: props.editorContent, thumbnailImageUrl: props.thumbnailImageUrl },
+    { title: props.title, body: props.editorContent, thumbnailImage: props.thumbnailImageUrl },
     { headers: { JWT: token } },
   );
 }

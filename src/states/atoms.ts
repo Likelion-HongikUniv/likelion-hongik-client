@@ -43,6 +43,7 @@ export const boardState = atom<IBoard>({
     },
     title: "",
     body: "",
+    thumbnailImage: null,
     createdTime: "",
     isLiked: false,
     likeCount: 0,

@@ -6,14 +6,12 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { paginationState, postsListState, pageState, searchState } from "../../states/atoms";
 import { IPagination } from "../../interfaces/post";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const baseURL = "https://api.likelionhongik.com";
 
 export function SearchPostList(params: any) {
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
   const setPagination = useSetRecoilState<IPagination>(paginationState);
-  const navigate = useNavigate();
 
   const page = useRecoilValue<number>(pageState);
   const search = useRecoilValue<string>(searchState);
@@ -61,8 +59,6 @@ export function SearchPostList(params: any) {
             return;
           }
         }
-        // window.location.href = "/";
-        // throw err;
       });
   }
 

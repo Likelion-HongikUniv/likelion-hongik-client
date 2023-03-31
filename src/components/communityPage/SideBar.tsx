@@ -6,8 +6,6 @@ import { ITag, ICategory, ICommunityParam } from "../../interfaces/category";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { WHITE_1 } from "../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
-import { SelectArrowDown } from "../icons/SelectArrowDown";
-// import { SelectModal } from "./SelectModal";
 import { userState } from "../../states/index";
 
 export function SideBar(categoryName: ICommunityParam) {
@@ -16,7 +14,6 @@ export function SideBar(categoryName: ICommunityParam) {
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
   const tagList = useRecoilValue<ICategory[]>(tagListState);
-  // const profileImg = userInfo.profileImageSrc;
   const setPage = useSetRecoilState<number>(pageState);
   const navigate = useNavigate();
   const activeStyle = {

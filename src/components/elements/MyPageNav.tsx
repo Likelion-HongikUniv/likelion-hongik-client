@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { userState, teamState, editState } from "./../../states/index";
+import { userState, editState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavBar/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
@@ -11,7 +11,6 @@ export function MyPageNav() {
   const baseURL = "https://api.likelionhongik.com";
   const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
-  const team = useRecoilValue(teamState);
   useEffect(() => {
     getUserInfoAPI();
   }, []);
@@ -20,7 +19,6 @@ export function MyPageNav() {
     const token = localStorage.getItem("token");
     await axios
       .get(`${baseURL}/mypage`, {
-        // .get(`http://localhost:8080/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
