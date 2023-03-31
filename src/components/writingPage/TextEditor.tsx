@@ -83,7 +83,7 @@ export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
           { headers: { JWT: token } },
         )
         .then((res) => {
-          window.location.replace(`/community/BOARD`);
+          window.location.replace(`/community/post/${location.state.id}`);
         });
     }
   };
