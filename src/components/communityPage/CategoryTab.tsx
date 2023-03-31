@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListSelector } from "../../states/atoms";

@@ -4,6 +4,7 @@ import { IBoard } from "../interfaces/comments";
 import { boardState } from "../states/atoms";
 import { getPostDetail } from "./getPostDetail";
 import { useEffect } from "react";
+import { postThumbnailUrlState } from "../states";
 
 type QueryResult = {
   board: IBoard;
@@ -12,9 +13,11 @@ type QueryResult = {
 
 export function useGetPostDetail(postId: number): QueryResult {
   const [board, setBoardData] = useRecoilState<IBoard>(boardState);
+  const [thumbnailUrl, setThumbnailUrl] = useRecoilState(postThumbnailUrlState);
   const { status, refetch } = useQuery(["postData", postId], async () => await getPostDetail(postId), {
     onSuccess: (data) => {
       setBoardData(data);
+      setThumbnailUrl(data.thumbnailImage);
     },
     enabled: !!postId,
   });
