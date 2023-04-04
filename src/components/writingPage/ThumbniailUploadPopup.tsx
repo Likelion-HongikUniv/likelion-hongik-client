@@ -1,6 +1,4 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { getPresignedUrl, uploadFile } from "../../api/uploadImage";
@@ -12,25 +10,35 @@ export function ThumbnailUploadPopup() {
   const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
   const token: any = localStorage.getItem("token");
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(postThumbnailUrlState);
+  const thumbnailImgFileInput = useRef<HTMLInputElement>(null);
 
-  const onUploadThumbnailImage = async (file: any) => {
-    // presigned url 받는 api.
-    const url = await getPresignedUrl({
-      path: "postImage",
-      token: token,
-    });
-    const slicedUrl = url.slice(0, url.indexOf("?x-amz"));
+  const onUploadThumbnailImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList: any = e.target.files;
+    const file = fileList[0];
 
-    if (url) {
-      // presigned url에 파일 업로드 후 url 저장.
-      const statusCode = await uploadFile({
-        url: url,
-        file: file,
+    if (file) {
+      const url = await getPresignedUrl({
+        path: "postImage",
+        token: token,
       });
-      if (statusCode === 200) {
-        setThumbnailUrl(slicedUrl);
+      const slicedUrl = url.slice(0, url.indexOf("?x-amz"));
+
+      if (url) {
+        // presigned url에 파일 업로드 후 url 저장.
+        const statusCode = await uploadFile({
+          url: url,
+          file: file,
+        });
+        if (statusCode === 200) {
+          setThumbnailUrl(slicedUrl);
+        }
+        return;
       }
     }
+  };
+
+  const handleClickFileInput = () => {
+    thumbnailImgFileInput.current?.click();
   };
 
   return (
@@ -39,25 +47,23 @@ export function ThumbnailUploadPopup() {
         <Column gap="16px" justifyContent="flex-start">
           <div style={{ color: "white", fontSize: "24px", fontWeight: "700" }}>썸네일 업로드</div>
           <Column width="100%" marginTop="25px" alignItems="center">
-            {thumbnailUrl.length > 1 ? (
-              <img src={thumbnailUrl} width={209} height={209} />
+            <input
+              type="file"
+              id="img-upload"
+              style={{ display: "none" }}
+              onChange={onUploadThumbnailImage}
+              ref={thumbnailImgFileInput}
+              accept="image/x-png,image/gif,image/jpeg"
+              onClick={handleClickFileInput}
+            />
+            {thumbnailUrl === null ? (
+              <ImageArea>
+                <ImageIcon htmlFor="img-upload" />
+              </ImageArea>
             ) : (
-              <div>
-                <input
-                  type="file"
-                  id="img-upload"
-                  style={{ display: "none" }}
-                  onChange={(e) => {
-                    if (e.target.files) return onUploadThumbnailImage(e.target.files[0]);
-                  }}
-                  accept="image/x-png,image/gif,image/jpeg"
-                />
-                <ImageArea>
-                  <ImageIcon htmlFor="img-upload" />
-                </ImageArea>
-              </div>
+              <img alt="thumbnail" src={thumbnailUrl} width={209} height={209} onClick={handleClickFileInput} />
             )}
-            <TextArea>썸네일 이미지 미설정 시 기본 이미지로 업로드됩니다.</TextArea>
+            <TextArea>썸네일 이미지 미설정 시 썸네일 자동설정되지 않습니다.</TextArea>
             <Row gap="12px" style={{ height: "auto" }}>
               <CancelButton
                 onClick={() => {
@@ -68,12 +74,21 @@ export function ThumbnailUploadPopup() {
               </CancelButton>
               <UploadButton
                 onClick={() => {
-                  alert("업로드가 완료되었습니다.");
+                  alert("🦁 업로드가 완료되었습니다 🦁");
                   setIsThumbnailSetButtonClicked(false);
                 }}
               >
                 등록
               </UploadButton>
+              <DeleteButton
+                onClick={() => {
+                  alert("🦁 썸네일이 삭제되었습니다 🦁");
+                  setIsThumbnailSetButtonClicked(false);
+                  setThumbnailUrl(null);
+                }}
+              >
+                삭제
+              </DeleteButton>
             </Row>
           </Column>
         </Column>
@@ -130,7 +145,7 @@ const ImageArea = styled.div`
 `;
 
 const CancelButton = styled.button`
-  width: 180px;
+  width: 72px;
   height: 52px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 8px;
@@ -140,7 +155,17 @@ const CancelButton = styled.button`
 `;
 
 const UploadButton = styled.button`
-  width: 180px;
+  width: 72px;
+  height: 52px;
+  background-color: #ed7f30;
+  border-radius: 8px;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const DeleteButton = styled.button`
+  width: 72px;
   height: 52px;
   background-color: #ed7f30;
   border-radius: 8px;

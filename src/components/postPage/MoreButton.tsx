@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { boardState } from "../../states/atoms";
 import { IBoard } from "../../interfaces/comments";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import axios from "axios";
+import { useDeletePostState, useDeleteCommentState, useDeleteReplyState } from "../../api/deletePost";
+import { postThumbnailUrlState } from "./../../states/index";
 
 interface MoreButtonProps {
   id: number;
@@ -14,65 +15,35 @@ interface MoreButtonProps {
 }
 
 export function MoreButton({ id, isBoard, isComment }: MoreButtonProps) {
-  const [board, setBoardData] = useRecoilState<IBoard>(boardState);
-  const accessToken = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const board = useRecoilValue<IBoard>(boardState);
+  const thumbnail = useRecoilValue(postThumbnailUrlState);
   const ref = useRef<HTMLButtonElement>(null);
   const [isMore, setMore] = useState(false);
-  const navigate = useNavigate();
   const isPC = useMediaQuery("(min-width: 1024px)");
-  let targetURL = "";
+  const handleDeletePost = useDeletePostState();
+  const handleDeleteComment = useDeleteCommentState();
+  const handleDeleteReply = useDeleteReplyState();
 
   const onClickMore = (event: React.MouseEvent<HTMLButtonElement>) => {
     setMore(!isMore);
   };
 
   const onClickEdit = () => {
-    navigate(`community/post/edit/${id}`, { state: board.body });
-    // useLocation으로 edit에 전달한 body를 받으려함
-    // const { state } = useLocation();
-    // console.log(state);
-    // ( state !== undefined) ? initialValue = board.body : null;
+    navigate("/write", {
+      state: { id: board.postId, title: board.title, body: board.body, thumbnailImage: thumbnail },
+    });
   };
 
   const onClickDelete = () => {
     if (isBoard) {
-      targetURL = `http://13.125.72.138:8080/community/post/${id}`;
+      handleDeletePost(id);
+      navigate(`/community/BOARD`);
     } else if (isComment) {
-      targetURL = `http://13.125.72.138:8080/community/comment/${id}`;
+      handleDeleteComment(id);
     } else {
-      targetURL = `http://13.125.72.138:8080/community/reply/${id}`;
+      handleDeleteReply(id);
     }
-    axios
-      .delete(targetURL, {
-        headers: {
-          "Content-Type": `application/json`,
-          JWT: `${accessToken}`,
-        },
-      })
-      .catch((err) => {
-        if (err.response.status === 401 || err.response.status === 500) {
-          alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
-        }
-        if (err.response.status === 404) {
-          alert("삭제 대상을 찾을 수 없습니다.");
-        }
-        window.location.reload();
-        throw err;
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          if (isBoard) {
-            alert("게시글이 삭제되었습니다.");
-            navigate(`/community/board`);
-          } else if (isComment) {
-            alert("댓글이 삭제되었습니다.");
-            window.location.reload();
-          } else {
-            alert("답글이 삭제되었습니다.");
-            window.location.reload();
-          }
-        }
-      });
   };
 
   return (
@@ -121,12 +92,15 @@ const MoreSection = styled.div`
 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07),
     0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+
+  & > button {
+    color: white;
+  }
 `;
 
 const EditButton = styled.button`
   right: 0;
   width: max-content;
-  color: white;
   margin: 24px;
   letter-spacing: -0.32px;
   font-weight: 500;

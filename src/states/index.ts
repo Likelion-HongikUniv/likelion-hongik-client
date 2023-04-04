@@ -1,6 +1,6 @@
 // 상태 관리
 
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { UploadImage } from "../components/myPage/FileUploader";
 
@@ -18,6 +18,7 @@ export const userState = atom<any>({
     team: null,
     userId: 0,
     username: "",
+    accessToken: "",
   },
 });
 
@@ -30,12 +31,6 @@ export const btnActiveState = atom<number>({
 export const profileState = atom<UploadImage | null>({
   key: "profileState",
   default: null,
-  effects_UNSTABLE: [persistAtom],
-});
-
-export const profileImgState = atom<string>({
-  key: "profileImgState",
-  default: "",
   effects_UNSTABLE: [persistAtom],
 });
 
@@ -79,9 +74,9 @@ export const isThumbnailSetButtonClickedState = atom<boolean>({
   default: false,
 });
 
-export const postThumbnailUrlState = atom<string>({
+export const postThumbnailUrlState = atom<string | null>({
   key: "postThumbnailUrlState",
-  default: "",
+  default: null,
 });
 
 export const currPageState = atom<number>({

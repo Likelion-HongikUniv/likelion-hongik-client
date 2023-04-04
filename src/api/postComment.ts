@@ -1,15 +1,15 @@
 import client from "./client";
-import { IComment } from "../interfaces/comments";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface CommentProps {
-  pid?: number;
-  props?: IComment;
+  postId: number;
+  body?: string;
 }
 
-export async function postComment({ pid, props }: CommentProps) {
+async function postComment(props: CommentProps) {
   const token = localStorage.getItem("token");
   return await client
-    .post(`/community/post/${pid}`, JSON.stringify(props), {
+    .post(`/community/post/${props.postId}`, JSON.stringify(props), {
       headers: {
         "Content-Type": `application/json`,
         JWT: token,
@@ -17,18 +17,16 @@ export async function postComment({ pid, props }: CommentProps) {
     })
     .then((response) => {
       if (response.status === 200) {
-        return response.data();
+        return response.data;
       }
-    })
-    .catch((err) => {
-      if (err.response.status === 401 || err.response.status === 500) {
-        alert("오류코드 401, 접근 권한이 없습니다. 로그인이 필요합니다.");
-      }
-      if (err.response.status === 404) {
-        alert("게시글을 찾을 수 없습니다.");
-      }
-      window.location.href = "/";
-      throw err;
     });
 }
 
+export const usePostComment = () => {
+  const queryClient = useQueryClient();
+  return useMutation(postComment, {
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ["postData"] });
+    },
+  });
+};

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Editor, Viewer } from "@toast-ui/react-editor";
+import React, { useRef, useState } from "react";
+import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import styled from "styled-components";
@@ -11,16 +11,16 @@ import {
   postThumbnailUrlState,
 } from "../../states/index";
 import axios from "axios";
-import { postPost } from "../../api/post";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface EditorProps {
-  category?: string;
+  mainCategory?: string;
+  subCategory?: string;
   title?: string;
 }
 type HookCallback = (url: string, text?: string) => void;
 
-export function TextEditor({ category, title }: EditorProps) {
+export function TextEditor({ mainCategory, subCategory, title }: EditorProps) {
   const editorRef = useRef<Editor>(null);
   const setIsCancelButtonClicked = useSetRecoilState(isCancelButtonClickedState);
   const setIsThumbnailSetButtonClicked = useSetRecoilState(isThumbnailSetButtonClickedState);
@@ -28,10 +28,13 @@ export function TextEditor({ category, title }: EditorProps) {
   const token = localStorage.getItem("token");
   const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const isEdit = Boolean(location.state.body);
+  // const regBody = location.state.body.replace(/<[^>]*>? /g, "");
 
   const onUploadImage = async (file: any, callback: HookCallback) => {
     const url = await axios
-      .get("http://13.125.72.138:8080/pre-signed-url/postImage", { headers: { JWT: token } })
+      .get("https://api.likelionhongik.com/pre-signed-url/postImage", { headers: { JWT: token } })
       .then((res) => {
         return res.data;
       });
@@ -50,27 +53,38 @@ export function TextEditor({ category, title }: EditorProps) {
 
   const onClickRegisterButton = async () => {
     const editorContent = editorRef.current?.getInstance().getHTML();
-    console.log(editorContent);
-    console.log(title);
 
     if (token && title && editorContent) {
       await axios
         .post(
-          `http://13.125.72.138:8080/community/posts/BOARD/NOTICE`,
-          { title: title, body: editorContent, thumbnailImageUrl: thumbnailImageUrl },
+          `https://api.likelionhongik.com/community/posts/${mainCategory}/${subCategory}`,
+          { title: title, body: editorContent, thumbnailImage: thumbnailImageUrl },
           { headers: { JWT: token } },
         )
         .then((res) => {
-          console.log(res);
-
           navigate(`/community/post/${res.data.id}`);
         });
-      // const res = await postPost(token, {
-      //   title: title,
-      //   editorContent: editorContent,
-      //   thumbnailImageUrl: thumbnailImageUrl,
-      // });
-      // console.log(res);
+    } else if (!title) {
+      alert("🦁 글 제목을 입력해주세요 🦁");
+      return;
+    } else if (editorContent) {
+      alert("🦁 글 내용을 입력해주세요 🦁");
+      return;
+    }
+  };
+
+  const onClickEditButton = async () => {
+    const editorContent = editorRef.current?.getInstance().getHTML();
+    if (isEdit && token && title && editorContent) {
+      await axios
+        .patch(
+          `https://api.likelionhongik.com/community/post/${location.state.id}`,
+          { title: title, body: editorContent, thumbnailImage: thumbnailImageUrl },
+          { headers: { JWT: token } },
+        )
+        .then((res) => {
+          window.location.replace(`/community/post/${location.state.id}`);
+        });
     }
   };
 
@@ -87,6 +101,7 @@ export function TextEditor({ category, title }: EditorProps) {
       <EditorWrapper>
         <Editor
           ref={editorRef}
+          initialValue={location.state.body}
           placeholder="내용을 입력해주세요."
           previewStyle="vertical" // 미리보기 스타일 지정
           height="500px" // 에디터 창 높이
@@ -108,10 +123,14 @@ export function TextEditor({ category, title }: EditorProps) {
         />
       </EditorWrapper>
       <Row marginTop="24px" width="100%" justifyContent="space-between">
-        <CancelButton onClick={onClickThumbnailSetButton}>썸네일 설정</CancelButton>
+        <CancelButton isThumbnail={true} onClick={onClickThumbnailSetButton}>
+          썸네일 설정
+        </CancelButton>
         <Row width="100%" justifyContent="flex-end" gap="12px">
-          <CancelButton onClick={onClickCancelButton}>취소</CancelButton>
-          <SaveButton onClick={onClickRegisterButton}>등록</SaveButton>
+          <CancelButton isThumbnail={false} onClick={onClickCancelButton}>
+            취소
+          </CancelButton>
+          <SaveButton onClick={isEdit ? onClickEditButton : onClickRegisterButton}>등록</SaveButton>
         </Row>
       </Row>
     </Column>
@@ -145,9 +164,21 @@ const SaveButton = styled.button`
   border-radius: 8px;
   background-color: #ed7f30;
   color: black;
+  @media (max-width: 391px) {
+    font-size: 16px;
+    width: 88px;
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;
 
-const CancelButton = styled.button`
+const CancelButton = styled.button<{ isThumbnail: boolean }>`
   width: 128px;
   height: 52px;
   font-size: 20px;
@@ -156,4 +187,16 @@ const CancelButton = styled.button`
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   color: white;
+  @media (max-width: 391px) {
+    font-size: 16px;
+    width: ${(props) => (props.isThumbnail ? "128px" : "88px")};
+  }
+  @media (min-width: 391px) and (max-width: 767px) {
+    //모바일
+    font-size: 16px;
+  }
+
+  @media (width: 768px) {
+    font-size: 16px;
+  }
 `;

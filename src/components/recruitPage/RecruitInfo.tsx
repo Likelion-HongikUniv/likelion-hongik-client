@@ -7,7 +7,7 @@ export function RecruitInfo() {
 
   const gotoReg = () => {
     if (regDate === false) {
-      alert("지원 기간이 아닙니다!");
+      alert("🦁 지원 기간이 아닙니다 🦁");
     } else {
       window.open("https://forms.gle/KE1tRsetSke2u9za7");
     }
@@ -18,7 +18,7 @@ export function RecruitInfo() {
       <Diving>
         <Now>NOW</Now>
         <BigText>멋쟁이사자처럼 11기</BigText>
-        <SmallText>멋쟁이사자처럼 지원에 관련된 것들을 소개합니다.</SmallText>
+        <SmallText>멋쟁이사자처럼 지원에 관련된 내용을 소개합니다.</SmallText>
         <ForDiv />
         <BasicText>지원 기간: 2023.02.20 ~ 2023.03.10</BasicText>
         <BasicText>모집 인원: 총 30명 내외 선발 예정</BasicText>
@@ -32,9 +32,12 @@ export function RecruitInfo() {
 
 const BasicInfo = styled.div`
   width: 1150px;
+  /* height: calc(100vh - 90px); */
   background-color: transparent;
-  margin-top: 60px;
-
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   @media (max-width: 391px) {
     margin-top: 29px;
     /* padding-left: 20px; */
@@ -42,16 +45,19 @@ const BasicInfo = styled.div`
 
   @media (min-width: 391px) and (max-width: 767px) {
     margin-top: 32px;
+    height: none;
   }
 
   @media (min-width: 768px) and (max-width: 1200px) {
     margin-top: 48px;
     padding-left: 40px;
+    height: none;
   }
 
   @media (min-width: 1024px) and (max-width: 1200px) {
     margin-top: 48px;
     padding-left: 160px;
+    height: none;
   }
 `;
 
@@ -208,10 +214,13 @@ const Divs = styled.div`
     //모바일
     text-align: center;
   }
+
+  & > button {
+    color: black;
+  }
 `;
 
 const RegBtn = styled.button`
-  margin-top: 60px;
   width: 400px;
   height: 64px;
   background-color: #ed7f30;

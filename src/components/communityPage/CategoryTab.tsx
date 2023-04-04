@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { nowTagState, tagListSelector } from "../../states/atoms";
@@ -7,15 +6,14 @@ import { WHITE_1 } from "../../styles/theme";
 
 export function CategoryTab(categoryName: ICommunityParam) {
   const tagList = useRecoilValue<ICategory[]>(tagListSelector(categoryName.categoryName));
-  const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState);
-  const navigate = useNavigate();
+  const [nowTag, setNowTag] = useRecoilState<ITag>(nowTagState); // TODO nowTag라는거 이름이 너무 이상한것 같아요. currentCategory, 아니면 subCategory 같은걸로 바꾸는게 좋을 것 같아요.
+
   const activeStyle = {
     borderBottom: `2px solid #fff`,
   };
 
   const onClickTagHandler = (tag: ITag) => {
     setNowTag({ key: tag.key, text: tag.text });
-    navigate(`/community/${categoryName.categoryName}`);
   };
 
   return (

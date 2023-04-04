@@ -5,6 +5,7 @@ import { editState, NickMulState, mulBtnState } from "../../../states";
 import { BLACK_1, WHITE_1 } from "./../../../styles/theme";
 
 export function NickEdit(props: any) {
+  const baseURL = "https://api.likelionhongik.com";
   const token = localStorage.getItem("token");
   const info = useRecoilValue(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);
@@ -15,9 +16,8 @@ export function NickEdit(props: any) {
   };
 
   const checkNickname = async () => {
-    console.log(props.value);
     await axios
-      .post(`http://13.125.72.138:8080/nickname`, JSON.stringify(nick), {
+      .post(`${baseURL}/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -25,9 +25,7 @@ export function NickEdit(props: any) {
       })
 
       .then((response) => {
-        console.log(response);
         if (response.data.code === 200) {
-          console.log("사용가능 닉네임");
           setNickMul(true);
           setOnClickActive(true);
         }
@@ -36,7 +34,6 @@ export function NickEdit(props: any) {
       .catch((err) => {
         console.log(err);
         if (err.response.data.code === 1006) {
-          console.log("중복되는 닉네임");
           setNickMul(false);
           setOnClickActive(true);
         }

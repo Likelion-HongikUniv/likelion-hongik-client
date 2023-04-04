@@ -12,12 +12,16 @@ export function QnA() {
         <div>
           <Question style={{ marginTop: "60px" }}>Q. 휴학 중인데 지원할 수 있나요?</Question>
           <Answer>네, 지원 할 수 있습니다. 멋사는 재학생, 휴학생 제한이 없습니다!</Answer>
+          <Question>Q. 신입생도 지원할 수 있나요?</Question>
+          <Answer>물론이죠. 멋사는 학년 제한도 없답니다!</Answer>
           <Question>Q. 개발 경험이 없어도 지원할 수 있나요?</Question>
           <Answer>네, 지원 할 수 있습니다. 개발을 배우고자 하는 열정이 중요합니다.</Answer>
           <Question>Q. 활동은 언제인가요??</Question>
-          <Answer>멋사는 1년 단위로 모집하며 매주 목요일에 세션이 진행됩니다!</Answer>
+          <Answer>멋사는 1년 단위로 모집하며 매주 목요일 18시에 세션이 진행됩니다!</Answer>
           <Question>Q. 여러 파트 지원할 수 있나요?</Question>
           <Answer>아쉽게도 하나의 파트만 지원 가능합니다.</Answer>
+          <Question>Q. 면접은 온라인으로 진행되나요?</Question>
+          <Answer>네, 면접은 온라인으로 진행됩니다.</Answer>
         </div>
       </div>
     </ForDiv>

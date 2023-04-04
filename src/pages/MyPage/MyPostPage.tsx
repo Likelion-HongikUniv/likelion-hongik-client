@@ -7,9 +7,10 @@ import axios from "axios";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { MyPageMobileNav } from "../../components/myPage/NavBar/MyPageMobileNav";
 import MyPagination from "../MyPage/MyPagination";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import * as S from "../../styles/myPages/myPageStyle";
-import { btnActiveState, currPageState, profileImgState } from "../../states/index";
+import { currPageState, userState } from "../../states/index";
+import { useNavigate } from "react-router-dom";
 
 interface IPost {
   title: string;
@@ -18,7 +19,7 @@ interface IPost {
   body: string;
   time: string;
   likes: number;
-  reply: number;
+  comments: number;
   postId: number;
 }
 
@@ -26,24 +27,23 @@ export function MyPostPage() {
   const isMobile = useMediaQuery("( max-width: 768px )");
   const isTablet = useMediaQuery("(max-width: 1023px)");
   const [postList, setPostList] = useState([]);
-  const token = localStorage.getItem("token");
   const [currPage] = useRecoilState(currPageState);
   const [totalPages, setTotalPages] = useState(5);
-  const [profileImg] = useRecoilState(profileImgState);
-  const [navSelect, setNavSelect] = useRecoilState(btnActiveState);
-
-  useEffect(() => {
-    setNavSelect(1); //nav 오류 방지를 위해 마이페이지 접속시에 btnActiveState 1로 초기화
-    console.log(navSelect);
-  }, []);
+  const userInfo = useRecoilValue(userState);
+  const profileImg = userInfo.profileImageSrc;
+  // const token = userInfo.accessToken;
+  const token = localStorage.getItem("token");
+  const baseURL = "https://api.likelionhongik.com";
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getMyPostAPI();
   }, [currPage]);
 
   const getMyPostAPI = async () => {
     await axios
-      .get(`http://13.125.72.138:8080/mypage/posts/`, {
+      .get(`${baseURL}/mypage/posts/`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
@@ -54,17 +54,15 @@ export function MyPostPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setPostList(response.data.content);
         setTotalPages(response.data.totalPages);
       })
       .catch(function (error) {
         console.log(error);
+        alert("🦁 로그인이 필요한 기능입니다 🦁");
+        navigate("/login");
       });
   };
-  useEffect(() => {
-    getMyPostAPI();
-  }, [currPage]);
 
   return (
     <>
@@ -75,19 +73,21 @@ export function MyPostPage() {
           <S.MyPostBoxContainer>
             {isMobile ? "" : <S.Title>내가 쓴 글</S.Title>}
             <S.PostItemContainer>
-              {postList.map((post: IPost, index: number) => (
-                <PostItem
-                  key={index}
-                  postId={post.postId}
-                  author={post.author}
-                  title={post.title}
-                  body={post.body}
-                  likes={post.likes}
-                  reply={post.reply}
-                  time={post.time}
-                  profileImg={profileImg}
-                />
-              ))}
+              {postList.map((post: IPost, index: number) => {
+                return (
+                  <PostItem
+                    key={index}
+                    postId={post.postId}
+                    author={post.author}
+                    title={post.title}
+                    body={post.body}
+                    likes={post.likes}
+                    reply={post.comments}
+                    time={post.time}
+                    profileImg={profileImg}
+                  />
+                );
+              })}
             </S.PostItemContainer>
             <MyPagination totalPages={totalPages} />
           </S.MyPostBoxContainer>

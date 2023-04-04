@@ -7,38 +7,22 @@ import { WHITE_1 } from "../../styles/theme";
 import { KakaoIcon } from "../icons/SocialIcon/KakaoIcon";
 import { NaverIcon } from "../icons/SocialIcon/NaverIcon";
 import { GoogleIcon } from "../icons/SocialIcon/GoogleIcon";
-import { ReactHTMLElement, useEffect } from "react";
-import axios from "axios";
 
 export function SocialLogin() {
+  const baseUrl = "https://api.likelionhongik.com/oauth2/authorization";
   const googleLogin = () => {
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google",
-      "_self",
-    );
-    // navigate('/ing');
+    window.open(`${baseUrl}/google`, "_self");
   };
   const naverLogin = () => {
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver",
-      "_self",
-    );
-    // navigate('/ing');
+    window.open(`${baseUrl}/naver`, "_self");
   };
 
   const kakaoLogin = () => {
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao",
-      "_self",
-    );
+    window.open(`${baseUrl}/kakao`, "_self");
   };
 
   const githubLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("깃허브 로그인 클릭");
-    window.open(
-      "http://ec2-13-125-72-138.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/github",
-      "_self",
-    );
+    window.open(`${baseUrl}/github`, "_self");
   };
 
   return (
@@ -49,29 +33,32 @@ export function SocialLogin() {
         오신 걸 환영합니다
       </WelcomeText>
       <SmallText>로그인 후 이용할 수 있어요.</SmallText>
-      <SocialBtn style={{ marginTop: "60px" }} onClick={githubLogin}>
-        <FontAwesomeIcon icon={faGithub} />
-        <Social>Github으로 계속하기</Social>
-      </SocialBtn>
-      <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
-        <NaverIcon />
-        <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
-      </SocialBtn>
-      <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
-        <KakaoIcon />
-        <Social style={{ marginLeft: "86px", color: "#000000" }}>카카오로 로그인</Social>
-      </SocialBtn>
-      <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
-        <GoogleIcon />
-        <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
-      </SocialBtn>
+      <div>
+        {/* <SocialBtn style={{ background: "#1FC83A" }} onClick={naverLogin}>
+          <NaverIcon />
+          <Social style={{ marginLeft: "94px" }}>네이버 로그인</Social>
+        </SocialBtn> */}
+        <SocialBtn style={{ background: "#EFDB30" }} onClick={kakaoLogin}>
+          <KakaoIcon />
+          <Social style={{ marginLeft: "84px ", color: "#000000" }}>카카오로 로그인</Social>
+        </SocialBtn>
+        <SocialBtn onClick={googleLogin} style={{ background: "#FFFFFF" }}>
+          <GoogleIcon />
+          <Social style={{ marginLeft: "74px", color: "#000000" }}>Sign with Google</Social>
+        </SocialBtn>
+        {/* <SocialBtn style={{ marginTop: "86px" }} onClick={githubLogin}> */}
+        <SocialBtn onClick={githubLogin}>
+          <FontAwesomeIcon icon={faGithub} />
+          <Social>Github으로 계속하기</Social>
+        </SocialBtn>
+      </div>
     </ForDiv>
   );
 }
 
 const ForDiv = styled.div`
   height: 100%;
-  padding-top: 183px;
+  padding-top: 180px;
 `;
 
 const WelcomeText = styled.div`

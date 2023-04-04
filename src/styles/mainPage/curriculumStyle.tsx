@@ -5,7 +5,7 @@ export const Box = styled.div`
   width: 80vw;
   margin-top: 50px;
   @media (max-width: 768px) {
-    height: 500px;
+    height: 550px;
     width: 70vw;
     display: flex;
     flex-direction: column;
@@ -41,11 +41,11 @@ export const BarContainer = styled.div`
   position: relative;
   @media (max-width: 768px) {
     width: 20px;
-    height: 326px;
+    height: 400px;
     margin-left: 50px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    width: 688px;
+    width: 710px;
     height: 20px;
   }
 `;
@@ -61,49 +61,61 @@ export const Dot1 = styled.div`
 
 export const Dot2 = styled(Dot1)`
   position: absolute;
-  left: 250px;
+  left: 220px;
   @media (max-width: 768px) {
     top: 70px;
     left: 0px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    left: 150px;
+    left: 120px;
   }
 `;
 
 export const Dot3 = styled(Dot2)`
   position: absolute;
-  left: 500px;
+  left: 440px;
   @media (max-width: 768px) {
     top: 140px;
     left: 0px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    left: 300px;
+    left: 240px;
   }
 `;
 
 export const Dot4 = styled(Dot3)`
   position: absolute;
-  left: 750px;
+  left: 660px;
   @media (max-width: 768px) {
     top: 210px;
     left: 0px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    left: 430px;
+    left: 360px;
   }
 `;
 
 export const Dot5 = styled(Dot4)`
   position: absolute;
-  left: 1000px;
+  left: 880px;
   @media (max-width: 768px) {
     top: 280px;
     left: 0px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    left: 570px;
+    left: 480px;
+  }
+`;
+
+export const Dot6 = styled(Dot5)`
+  position: absolute;
+  left: 1100px;
+  @media (max-width: 768px) {
+    top: 350px;
+    left: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    left: 600px;
   }
 `;
 
@@ -121,15 +133,15 @@ export const Date = styled.div`
     line-height: 14px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 `;
 
 export const Text = styled.div`
-  width: 182.68px;
+  width: 200px;
   height: 29px;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   margin-top: 16px;
   @media (max-width: 768px) {

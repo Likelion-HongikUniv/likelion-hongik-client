@@ -7,6 +7,7 @@ export interface IBoard {
   body: string;
   createdTime: string;
   isLiked: boolean;
+  thumbnailImage: string | null;
   likeCount: number;
   comments: IComment[];
   imageUrls?: string[];

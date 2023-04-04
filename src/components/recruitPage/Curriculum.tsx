@@ -14,15 +14,15 @@ export function Curriculum() {
             </Dot1>
             <Dot2>
               <Date>2023.03.12</Date>
-              <Text>서류 합격 발표</Text>
+              <Text>서류 합격자 발표</Text>
             </Dot2>
             <Dot3>
               <Date>2023.03.13 ~ 03.17</Date>
               <Text>면접</Text>
             </Dot3>
             <Dot4>
-              <Date>2022.03.19</Date>
-              <Text>최종 합격 발표</Text>
+              <Date>2023.03.19</Date>
+              <Text>최종 합격자 발표</Text>
             </Dot4>
           </div>
         </BarContainer>
@@ -36,6 +36,7 @@ const Box = styled.div`
   margin-top: 50px;
   margin-left: 340px;
   @media (max-width: 391px) {
+    margin-top: 0;
     margin-left: 0px;
   }
   @media (min-width: 391px) and (max-width: 767px) {
@@ -49,6 +50,7 @@ const Box = styled.div`
 
   @media (min-width: 769px) and (max-width: 1023px) {
     // 테블릿 세로
+    margin-top: 0;
     margin-left: 0px;
   }
   @media (min-width: 1024px) and (max-width: 1200px) {
@@ -278,7 +280,7 @@ const Date = styled.div`
 `;
 
 const Text = styled.div`
-  width: 180px;
+  width: 185px;
   height: 34px;
   font-weight: 600;
   font-size: 28px;

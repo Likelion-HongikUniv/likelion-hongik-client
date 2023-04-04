@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "../../../styles/theme";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { editState, profileImgState } from "../../../states/index";
+import { editState, userState } from "../../../states/index";
 import { NavSelectPartMobile } from "./NavSelectPartMobile";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,9 +11,11 @@ import useMediaQuery from "../../../hooks/useMediaQuery";
 import MyPageSelectNav from "./MyPageSelectNav";
 
 export function MyPageMobileNav() {
-  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
-  const profileImg = useRecoilValue(profileImgState);
   const [info, setInfo] = useRecoilState(editState);
+  const baseURL = "https://api.likelionhongik.com";
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
+  const userInfo = useRecoilValue(userState);
+  const profileImg = userInfo.profileImageSrc;
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/myPage/edit");
@@ -26,14 +28,13 @@ export function MyPageMobileNav() {
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.125.72.138:8080/mypage`, {
+      .get(`${baseURL}/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
         },
       })
       .then((response) => {
-        console.log(response);
         const infoHandler = {
           ...info,
           major: response.data.major,
@@ -57,7 +58,7 @@ export function MyPageMobileNav() {
           <Team>{info.major}</Team>
         </div>
       </Profile>
-      {isTablet ? '' : <EditBtn onClick={onNavigate}>정보 변경</EditBtn>}
+      {isTablet ? "" : <EditBtn onClick={onNavigate}>정보 변경</EditBtn>}
       {isTablet ? <MyPageSelectNav /> : <NavSelectPartMobile />}
     </MobileNavContainer>
   );
@@ -101,6 +102,7 @@ const Team = styled.div`
   font-size: 14px;
   line-height: 16.94px;
   color: #b9b9b9;
+  width: 150px;
 `;
 
 const EditBtn = styled.button`

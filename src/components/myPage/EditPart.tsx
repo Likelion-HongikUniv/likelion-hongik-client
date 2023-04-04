@@ -15,7 +15,7 @@ export function EditPart() {
   const [info, setInfo] = useRecoilState(editState);
   const [nickCheck, setNickCheck] = useRecoilState(mulBtnState);
   const mulNick = useRecoilValue(NickMulState);
-
+  const baseURL = "https://api.likelionhongik.com";
   const jwt = localStorage.getItem("token");
 
   const useNickInput = (initialValue: string | undefined) => {
@@ -23,8 +23,6 @@ export function EditPart() {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
       setNickCheck(false);
-      //이걸 위해서 useInput 살짝 수정해서 붙여옴 허허
-      // input값이 바뀔 때마다 중복확인 체크를 다시 해줘야함
     };
     return { value, setValue, onChange };
   };
@@ -48,17 +46,15 @@ export function EditPart() {
       part: changePart.value,
     };
     setInfo(infoHandler);
-    console.log(info);
 
     axios
-      .put("http://13.125.72.138:8080/mypage/edit", JSON.stringify(data), {
+      .put(`${baseURL}/mypage/edit`, JSON.stringify(data), {
         headers: {
           "Content-Type": `application/json`,
           JWT: `${jwt}`,
         },
       })
       .then((response) => {
-        console.log(response);
         window.location.reload(); //새로고침되게
       })
       .catch((err) => {

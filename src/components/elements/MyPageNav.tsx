@@ -2,16 +2,15 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { profileImgState, teamState, editState, userState } from "./../../states/index";
+import { userState, editState } from "./../../states/index";
 import { NavSelectPart } from "../myPage/NavBar/NavSelectPart";
 import { BLACK_1, WHITE_1 } from "./../../styles/theme";
 import emoji_lion from "./../images/emoji_lion_24x24.png";
 
 export function MyPageNav() {
+  const baseURL = "https://api.likelionhongik.com";
   const userInfo = useRecoilValue(userState);
   const [info, setInfo] = useRecoilState(editState);
-  const team = useRecoilValue(teamState);
-
   useEffect(() => {
     getUserInfoAPI();
   }, []);
@@ -19,15 +18,13 @@ export function MyPageNav() {
   const getUserInfoAPI = async () => {
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://13.125.72.138:8080/mypage`, {
-        // .get(`http://localhost:8080/mypage`, {
+      .get(`${baseURL}/mypage`, {
         headers: {
           "Content-Type": `application/json`,
           JWT: token,
         },
       })
       .then((response) => {
-        console.log(response);
         const infoHandler = {
           ...info,
           major: response.data.major,
@@ -47,7 +44,7 @@ export function MyPageNav() {
         <ProfileCopy src={userInfo.profileImageSrc || emoji_lion} />
         <div style={{ width: "88px" }}>
           <Name>{userInfo.nickname}</Name>
-          <Team>{userInfo.team ? `${userInfo.team}팀` : "건빵팀"}</Team>
+          <Team>{userInfo.major}</Team>
         </div>
       </div>
       <NavSelectPart />

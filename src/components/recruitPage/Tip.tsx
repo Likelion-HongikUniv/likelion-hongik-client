@@ -8,7 +8,7 @@ export function Tip() {
 
   const gotoReg = () => {
     if (regDate === false) {
-      alert("지원 기간이 아닙니다!");
+      alert("🦁 현재 모집기간이 아닙니다 🦁");
     } else {
       window.open("https://forms.gle/KE1tRsetSke2u9za7");
     }
@@ -18,27 +18,27 @@ export function Tip() {
     <ForDiv>
       <div>
         <TitleText>서류·면접 합격 꿀팁!</TitleText>
-        <DetailText>멋쟁이사자처럼 전 기수생이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
+        <DetailText>멋쟁이사자처럼 선배들이 알려주는 멋사 합격 꿀팁이에요.</DetailText>
         <TipGrid>
           <Tips>
-            2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
+            멋사는 지원자의 열정을 중요시해요.
             <br />
-            지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
+            지원서에 멋사에 대한 열정을 녹여내보세요!
           </Tips>
           <Tips>
-            2학기를 활동하기에 ‘열정'있는 모습을 많이 봅니다.
+            프로젝트경험이나 협업경험에 대한 질문은 면접과도
             <br />
-            지원서에 활동을 위한 열정을 녹여내면 좋을 것 같습니다.
+            연관이 깊으니 꾸밈없이 작성하는 것을 추천합니다.
           </Tips>
           <Tips>
-            프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
+            지원자를 잘 표현할 수 있는 키워드를 하나 정한 뒤,
             <br />
-            연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
+            키워드를 중심으로 본인의 스토리를 어필해보세요.
           </Tips>
           <Tips>
-            프로젝트 경험이나 협업 경험에 대한 질문은 면접과도
+            멋사가 어떤 것을 하고 무엇을 배우는 동아리인지
             <br />
-            연관이 많으니 꾸밈없이 작성하는 것을 추천합니다.
+            지원자 본인이 잘 파악하고 있는 것이 중요해요.
           </Tips>
         </TipGrid>
         <div style={{ textAlign: "center" }}>
@@ -238,6 +238,8 @@ const RegBtn = styled.button`
   font-weight: 700;
   line-height: 33.6px;
   text-align: center;
+  appearance: none;
+  color: black;
 
   @media (max-width: 391px) {
     margin-left: 0;
@@ -245,6 +247,8 @@ const RegBtn = styled.button`
     margin-top: 40px;
     font-size: 16px;
     line-height: 19.2px;
+    appearance: none;
+    color: black;
   }
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일
@@ -253,6 +257,8 @@ const RegBtn = styled.button`
     margin-top: 42px;
     font-size: 18px;
     line-height: 22.6px;
+    appearance: none;
+    color: black;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -262,6 +268,8 @@ const RegBtn = styled.button`
     margin-top: 80px;
     font-size: 16px;
     line-height: 19.2.px;
+    appearance: none;
+    color: black;
   }
 
   @media (min-width: 1024px) and (max-width: 1200px) {
@@ -270,5 +278,7 @@ const RegBtn = styled.button`
     margin-top: 80px;
     font-size: 16px;
     line-height: 19.2.px;
+    appearance: none;
+    color: black;
   }
 `;

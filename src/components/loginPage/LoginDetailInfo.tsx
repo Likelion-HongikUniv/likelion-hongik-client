@@ -9,6 +9,7 @@ import { editState, NickMulState, mulBtnState } from "../../states";
 import { WHITE_1 } from "../../styles/theme";
 
 export function LoginDetailInfo() {
+  const baseURL = "https://api.likelionhongik.com";
   const navigate = useNavigate();
   const [info, setInfo] = useRecoilState(editState);
   const [nickMul, setNickMul] = useRecoilState(NickMulState);
@@ -19,8 +20,6 @@ export function LoginDetailInfo() {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
       setOnClickActive(false);
-      //이걸 위해서 useInput 살짝 수정해서 붙여옴 허허
-      // input값이 바뀔 때마다 중복확인 체크를 다시 해줘야함
     };
     return { value, setValue, onChange };
   };
@@ -31,30 +30,20 @@ export function LoginDetailInfo() {
   const studentId = useInput("");
   const jwt = localStorage.getItem("token");
 
-  const data = {
-    nickname: nickname.value,
-    major: major.value,
-    studentId: studentId.value,
-    part: part.value,
-  };
-  // console.log(JSON.stringify(data));
-
   const nick = {
     nickname: nickname.value,
   };
 
   const nickMulCheck = async () => {
     await axios
-      .post(`http://13.125.72.138:8080/nickname`, JSON.stringify(nick), {
+      .post(`${baseURL}/nickname`, JSON.stringify(nick), {
         headers: {
           "Content-Type": `application/json`,
           JWT: jwt,
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.data.code === 200) {
-          console.log("중복 X");
           setNickMul(true);
           setOnClickActive(true);
         }
@@ -62,7 +51,6 @@ export function LoginDetailInfo() {
       .catch((err) => {
         console.log(err);
         if (err.response.data.code === 1006) {
-          console.log("중복");
           setNickMul(false);
           setOnClickActive(true);
         }
@@ -71,9 +59,7 @@ export function LoginDetailInfo() {
 
   const onClickSave = () => {
     //저장 버튼 클릭 시 정보 넘겨주기
-    console.log(studentId.value);
     if (studentId.value) {
-      console.log("if 속!");
       const infoHandler = {
         ...info,
         major: major.value,
@@ -82,7 +68,6 @@ export function LoginDetailInfo() {
         studentId: studentId.value,
       };
       setInfo(infoHandler);
-      console.log(info);
     }
     const data = {
       nickname: nickname.value,
@@ -92,19 +77,13 @@ export function LoginDetailInfo() {
     };
 
     axios
-      .post(
-        "http://13.125.72.138:8080/accounts/detail_info/",
-        JSON.stringify(data),
-        // { withCredentials: true },
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            JWT: `${jwt}`,
-          },
+      .post(`${baseURL}/accounts/detail_info/`, JSON.stringify(data), {
+        headers: {
+          "Content-Type": `application/json`,
+          JWT: `${jwt}`,
         },
-      )
+      })
       .then((response) => {
-        console.log(response);
         navigate("/login/complete");
       })
       .catch((err) => {
@@ -166,7 +145,7 @@ export function LoginDetailInfo() {
       </div>
 
       <DetailInfo>학번</DetailInfo>
-      <InputBox placeholder="학번 입력" {...studentId} />
+      <InputBox placeholder="학번 입력 (ex. CXXXXXX)" {...studentId} />
       <DetailInfo>학과</DetailInfo>
       <InputBox placeholder="학과 입력 ex. 시각디자인학과" {...major} />
       <DetailInfo>파트</DetailInfo>

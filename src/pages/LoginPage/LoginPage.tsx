@@ -3,15 +3,18 @@ import { BLACK_1, WHITE_1 } from "../../styles/theme";
 import styled from "styled-components";
 import { SocialLogin } from "../../components/loginPage/SocialLogin";
 import Footer from "./../../components/elements/Footer";
+import { Section } from "./../../components/elements/Wrapper";
 
 export function LoginPage() {
   return (
     <>
       <Header />
-      <Container>
-        <SocialLogin />
-      </Container>
-      <Footer style={{ position: "absolute" }} />
+      <Section>
+        <Container>
+          <SocialLogin />
+        </Container>
+        <Footer style={{ marginTop: "317px" }} />
+      </Section>
     </>
   );
 }

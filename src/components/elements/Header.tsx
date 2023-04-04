@@ -19,7 +19,7 @@ import { ITag } from "../../interfaces/category";
 export function Header() {
   useAutoLogin();
   const isPC = useMediaQuery("(min-width: 992px)");
-  const isTablet = useMediaQuery("(min-width: 768px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const navigate = useNavigate();
   const setNowTag = useSetRecoilState<ITag>(nowTagState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
@@ -59,20 +59,18 @@ export function Header() {
 
   const NavTablet = () => {
     return (
-      <>
-        <Wrapper>
-          <Logo type="tablet" />
-          <Row gap="60px" alignItems="center" justifyContent="center">
-            <HeaderButton onClick={onClickHeaderButton} name="recruit">
-              지원하기
-            </HeaderButton>
-            <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
-              커뮤니티
-            </HeaderButton>
-            <ProfileButton />
-          </Row>
-        </Wrapper>
-      </>
+      <Wrapper>
+        <Logo type="tablet" />
+        <Row gap="60px" alignItems="center" justifyContent="center">
+          <HeaderButton onClick={onClickHeaderButton} name="recruit">
+            지원하기
+          </HeaderButton>
+          <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
+            커뮤니티
+          </HeaderButton>
+          <ProfileButton />
+        </Row>
+      </Wrapper>
     );
   };
 
@@ -122,19 +120,13 @@ const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
   background-color: ${BLACK_1};
-  /* background-color: aqua; */
-  /* @media (min-width: 391px) {
-    width: 100%;
-    justify-content: left;
-    align-items: baseline;
-  } */
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1200px) {
     width: 100%;
     padding: 0px 40px;
     height: 60px !important;
     justify-content: space-between;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     width: 100%;
     padding: 0px 340px;
     height: 90px !important;

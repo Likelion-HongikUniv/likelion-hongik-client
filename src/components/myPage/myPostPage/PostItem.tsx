@@ -21,6 +21,7 @@ export function PostItem({ postId, author, title, body, likes, reply, time, prof
   const onClickHandler = () => {
     navigate(`/community/post/${postId}`);
   };
+  body = body.replace(/<[^>]*>?/g, "");
   return (
     <Item onClick={onClickHandler}>
       <Left>

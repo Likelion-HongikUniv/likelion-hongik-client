@@ -62,12 +62,8 @@
 ```
 ┣ 📂.github
 ┣ 📂public
-┃ ┣ 📂assets
-┃ ┃ ┣ 📂favicon
-┃ ┃ ┣ 📂icons
-┃ ┃ ┣ 📂images
-┃ ┃ ┗ 📂lottie
 ┣ 📂src
+┃ ┣ 📂api
 ┃ ┣ 📂components
 ┃ ┣ 📂hooks
 ┃ ┣ 📂pages

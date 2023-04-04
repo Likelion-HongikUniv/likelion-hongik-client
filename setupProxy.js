@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://api.likelionhongik.com/";
 
 module.exports = function (app) {
   app.use(

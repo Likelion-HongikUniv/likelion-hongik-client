@@ -1,9 +1,7 @@
 import axios from "axios";
-import { IPost, IPagination, IPostList } from "../interfaces/post";
-import { useSetRecoilState } from "recoil";
-import { postsListState, paginationState } from "../states/atoms";
+import { IPostList } from "../interfaces/post";
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://api.likelionhongik.com";
 
 interface postsProps {
   category?: string;
@@ -13,7 +11,6 @@ interface postsProps {
 
 const GetPostList = async ({ category, tag, page }: postsProps) => {
   const token = localStorage.getItem("token");
-  console.log(category, tag, page);
   try {
     const response = await axios.get<IPostList>(`${baseURL}/community/posts/${category}/${tag}/?page=${page}`, {
       headers: {

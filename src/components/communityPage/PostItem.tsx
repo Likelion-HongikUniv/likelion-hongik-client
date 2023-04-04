@@ -15,6 +15,7 @@ export function PostItem(post: IPost) {
   const navigate = useNavigate();
   const curDate = post.createdTime;
   const date = moment(curDate, "YYYYMMDDHHmmss").format("YYYY.MM.DD");
+  const body = post.body.replace(/<[^>]*>?/g, "");
 
   const onClickHandler = () => {
     navigate(`/community/post/${post.postId}`);
@@ -31,12 +32,10 @@ export function PostItem(post: IPost) {
                 <UploadDate>{date}</UploadDate>
               </Column>
             </Row>
-            {post.thumbNailImage && (
-              <PostImg src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
-            )}
+            {post.thumbNailImage && <PostImg src={post.thumbNailImage} alt="post-thumbnail" />}
             <Column gap="12px">
               <Title>{post.title}</Title>
-              <Body>{post.body}</Body>
+              <Body>{body}</Body>
             </Column>
             <Bottom>
               <Icon>
@@ -58,7 +57,7 @@ export function PostItem(post: IPost) {
                 <UploadDate>{date}</UploadDate>
               </Column>
               <Title>{post.title}</Title>
-              <Body>{post.body}</Body>
+              <Body>{body}</Body>
               <Bottom>
                 <Icon>
                   <HeartIcon />
@@ -74,7 +73,7 @@ export function PostItem(post: IPost) {
         )}
       </Left>
       {!isMobile && post.thumbNailImage ? (
-        <PostImg src={post.thumbNailImage ? post.thumbNailImage : ""} alt="post-thumbnail" />
+        <PostImg src={post.thumbNailImage} alt="post-thumbnail" />
       ) : (
         !isMobile && <NoneImg />
       )}

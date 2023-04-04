@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import arrowPng from "../../images/Polygon 7.svg";
 
 export function PartEdit(props: any) {
   return (
@@ -10,8 +9,6 @@ export function PartEdit(props: any) {
         <PartOptions value="프론트엔드">프론트엔드</PartOptions>
         <PartOptions value="백엔드">백엔드</PartOptions>
       </PartSelect>
-
-      {/* <ArrowImg src={arrowPng} alt="arrowPng" /> */}
     </Div>
   );
 }
@@ -62,9 +59,6 @@ const PartSelect = styled.select`
   line-height: 22.46px;
   letter-spacing: -0.32px;
   margin-bottom: 24px;
-  /* -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; */
 
   @media (max-width: 767px) {
     //모바일
@@ -103,13 +97,3 @@ const PartOptions = styled.option`
     // 테블릿 가로
   }
 `;
-
-// const ArrowImg = styled.img`
-//   position: absolute;
-//   margin-left: 401px;
-//   margin-top: 20px;
-//   pointer-events: none;
-//   width: 20px;
-//   height: 12px;
-
-// `;

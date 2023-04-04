@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { BLACK_1, WHITE_1 } from "../../styles/theme";
-import { useState } from "react";
 import axios from "axios";
 import { ICommunityParam, ITag } from "../../interfaces/category";
 import { nowTagState, pageState, paginationState, postsListState, searchState } from "../../states/atoms";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { IPost, IPagination } from "../../interfaces/post";
 
-const baseURL = "http://13.125.72.138:8080";
+const baseURL = "https://api.likelionhongik.com";
 
 export function SearchBar(categoryName: ICommunityParam) {
   const nowTag = useRecoilValue<ITag>(nowTagState);
@@ -16,7 +15,7 @@ export function SearchBar(categoryName: ICommunityParam) {
     setSearch(event.target.value);
   };
   const [postsData, setPostsData] = useRecoilState<IPost[]>(postsListState);
-  const page = useRecoilValue<number>(pageState);
+  const [page, setPage] = useRecoilState<number>(pageState);
   const setPagination = useSetRecoilState<IPagination>(paginationState);
 
   function GetSearchList(category: string, tag: string, search: string) {
@@ -32,7 +31,6 @@ export function SearchBar(categoryName: ICommunityParam) {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
           setPagination({
             totalPage: response.data.totalPage,
             totalElements: response.data.totalElements,
@@ -48,10 +46,10 @@ export function SearchBar(categoryName: ICommunityParam) {
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.status === 500) {
-          alert("로그인 후 이용해주세요🦁");
+          alert("🦁 로그인 후 이용해주세요 🦁");
         }
         if (err.response.status === 404) {
-          alert("게시글을 찾을 수 없습니다.");
+          alert("🦁 게시글을 찾을 수 없습니다 🦁");
         }
         // window.location.href = "/";
         throw err;
@@ -59,6 +57,7 @@ export function SearchBar(categoryName: ICommunityParam) {
   }
 
   const onSubmitHandler = () => {
+    setPage(1);
     GetSearchList(categoryName.categoryName, nowTag.key, search);
   };
 
