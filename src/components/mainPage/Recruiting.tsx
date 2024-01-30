@@ -20,7 +20,8 @@ const Recruiting = () => {
     <RecruitingContainer data-aos="zoom-in">
       <BoxContainer>
         <Now>NOW</Now>
-        <Title>멋쟁이사자처럼 11기</Title>
+        <Title>멋쟁이사자처럼 12기</Title>
+        {/* 아래 항목 수정 필요 */}
         <Text>
           지원 기간: 2023.02.20 ~ 2023.03.10
           <br />
