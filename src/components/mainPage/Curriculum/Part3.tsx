@@ -4,7 +4,7 @@ import * as S from "../../../styles/mainPage/curriculumStyle";
 const Part3 = () => {
   return (
     <S.Box>
-      <S.PartName>백엔드 타임라인</S.PartName>
+      <S.PartName>프론트엔드 타임라인</S.PartName>
       <S.BarContainer>
         <S.Dot1>
           <S.Date>1차 세션</S.Date>
@@ -26,10 +26,6 @@ const Part3 = () => {
           <S.Date>5차 세션</S.Date>
           <S.Text>Django 심화</S.Text>
         </S.Dot5>
-        <S.Dot6>
-          <S.Date>6차 세션</S.Date>
-          <S.Text>Django rest API / MySQL 연동</S.Text>
-        </S.Dot6>
       </S.BarContainer>
     </S.Box>
   );
