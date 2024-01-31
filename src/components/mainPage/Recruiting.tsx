@@ -23,9 +23,9 @@ const Recruiting = () => {
         <Title>멋쟁이사자처럼 12기</Title>
         {/* 아래 항목 수정 필요 */}
         <Text>
-          지원 기간: 2023.02.20 ~ 2023.03.10
+          지원 기간: 2024.02.19 ~ 2024.03.08
           <br />
-          모집 인원: 총 30명 내외 선발 예정
+          모집 인원: 총 35명 내외 선발 예정
         </Text>
       </BoxContainer>
       <ApplyBtn onClick={onClickBtn}>지원 바로가기</ApplyBtn>
