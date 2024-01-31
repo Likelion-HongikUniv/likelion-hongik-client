@@ -5,7 +5,8 @@ export function Curriculum() {
     <Box>
       <div>
         <PartName>모집 요강</PartName>
-        <PartText>멋쟁이사자처럼 11기의 지원 일정은 다음과 같습니다.</PartText>
+        <PartText>멋쟁이사자처럼 12기의 지원 일정은 다음과 같습니다.</PartText>
+        {/* 날짜 수정 필요 */}
         <BarContainer>
           <div>
             <Dot1>

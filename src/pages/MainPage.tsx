@@ -26,12 +26,12 @@ export function MainPage() {
           <Main />
           <>
             <Title data-aos="fade-up">Curriculum</Title>
-            <Desc data-aos="fade-up">멋쟁이사자처럼 11기의 파트별 커리큘럼을 소개합니다.</Desc>
+            <Desc data-aos="fade-up">멋쟁이사자처럼 12기의 파트별 커리큘럼을 소개합니다.</Desc>
             <Curriculum />
           </>
           <>
             <Title data-aos="fade-up">Our Projects</Title>
-            <Desc data-aos="fade-up">홍익대학교 멋쟁이사자처럼 10기에서 진행한 프로젝트를 소개합니다.</Desc>
+            <Desc data-aos="fade-up">홍익대학교 멋쟁이사자처럼 11기에서 진행한 프로젝트를 소개합니다.</Desc>
             <Project />
           </>
           <>
