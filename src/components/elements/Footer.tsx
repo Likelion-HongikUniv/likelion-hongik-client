@@ -1,7 +1,7 @@
 import styled, { CSSProperties } from "styled-components";
 
 const Footer = ({ style }: { style?: CSSProperties }) => {
-  return <Wrapper style={style}>© 2022 Mutsa. All rights reserved.</Wrapper>;
+  return <Wrapper style={style}>© 2024 Mutsa. All rights reserved.</Wrapper>;
 };
 
 export default Footer;
