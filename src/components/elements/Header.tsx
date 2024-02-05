@@ -48,10 +48,10 @@ export function Header() {
             <HeaderButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderButton>
-            {/* <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
+            <HeaderButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderButton>
-            <ProfileButton /> */}
+            <ProfileButton />
           </Row>
         </Wrapper>
       </>

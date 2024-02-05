@@ -8,13 +8,33 @@ export function Part() {
         <TitleText>모집 직군</TitleText>
         <BoxGrid>
           <PartBox>
-            <PartText>기획·디자인</PartText>
+            <PartText>기획</PartText>
             <PartSmallText>
-              고객 중심 사고를 바탕으로
+              사용자 경험(UX)을 중심으로
+              <br />
+              서비스를 기획하며, 서비스를 개발하는 동안
+              <br />
+              프로젝트 전체 여정을 관리합니다.
+              {/* 고객 중심 사고를 바탕으로
               <br />
               서비스 기획·디자인 일련의 과정을 배워
               <br />
-              실제 서비스를 기획합니다.
+              실제 서비스를 기획합니다. */}
+            </PartSmallText>
+          </PartBox>
+          <PartBox>
+            <PartText>디자인</PartText>
+            <PartSmallText>
+              기획자가 설계한 스토리보드를 바탕으로
+              <br />
+              디자인 요소를 사용하여
+              <br />
+              사용자 인터페이스(UI)를 디자인합니다.
+              {/* 시스템 설계부터 배포까지,
+              <br />
+              서비스 및 데이터의 흐름을 관리하며
+              <br />
+              전반적인 Life Cycle을 경험합니다. */}
             </PartSmallText>
           </PartBox>
           <PartBox>
@@ -104,7 +124,7 @@ const TitleText = styled.div`
 
 const PartBox = styled.div`
   height: 240px;
-  width: 400px;
+  width: 600px;
   border-radius: 20px;
   background: #333333cc;
   margin-top: 60px;
@@ -137,7 +157,7 @@ const PartBox = styled.div`
 
 const BoxGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   justify-content: center;
 
