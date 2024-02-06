@@ -4,7 +4,7 @@ import * as S from "../../../styles/mainPage/curriculumStyle";
 const Part1 = () => {
   return (
     <S.Box>
-      <S.PartName>기획·디자인 타임라인</S.PartName>
+      <S.PartName>기획 타임라인</S.PartName>
       <S.BarContainer>
         <S.Dot1>
           <S.Date>1차 세션</S.Date>

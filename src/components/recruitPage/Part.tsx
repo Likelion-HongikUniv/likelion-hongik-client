@@ -4,7 +4,7 @@ import { WHITE_1 } from "../../styles/theme";
 export function Part() {
   return (
     <ForDiv>
-      <div>
+      <Div1>
         <TitleText>모집 직군</TitleText>
         <BoxGrid>
           <PartBox>
@@ -40,42 +40,51 @@ export function Part() {
           <PartBox>
             <PartText>프론트엔드</PartText>
             <PartSmallText>
-              API에서 가져온 데이터의 출력, 입력을
+              API를 통해 주고받은 데이터를 이용하여
+              <br /> 최적의 사용자 경험과 성능을
               <br />
-              통한 비즈니스 로직 구성과 사용자
-              <br />
-              인터페이스에 대한 작업을 수행합니다.
+              이끌어낼 수 있는 서비스를 개발합니다.
             </PartSmallText>
           </PartBox>
           <PartBox>
             <PartText>백엔드</PartText>
             <PartSmallText>
-              시스템 설계부터 배포까지,
-              <br />
-              서비스 및 데이터의 흐름을 관리하며
-              <br />
-              전반적인 Life Cycle을 경험합니다.
+              API 개발 및 데이터를 관리하고,
+              <br /> 다양한 프레임워크 등을 이용해 서비스의 <br />
+              전체적인 인프라를 구현합니다.
             </PartSmallText>
           </PartBox>
         </BoxGrid>
-      </div>
+      </Div1>
     </ForDiv>
   );
 }
 
+const Div1 = styled.div`
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 const ForDiv = styled.div`
   font-weight: 800;
   display: flex;
   justify-content: center;
   padding: 0 340px;
   /* margin-left: 150px; */
+  margin: 0;
 
   @media (max-width: 391px) {
     padding: 0 0;
+    margin-left: 4.5px;
   }
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     padding: 0 0;
+    /* margin-left: 20px; */
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    margin-left: 29px;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -123,7 +132,7 @@ const TitleText = styled.div`
 `;
 
 const PartBox = styled.div`
-  height: 240px;
+  height: 260px;
   width: 600px;
   border-radius: 20px;
   background: #333333cc;
@@ -144,13 +153,14 @@ const PartBox = styled.div`
   @media (min-width: 768px) and (max-width: 1023px) {
     // 테블릿 세로
     margin-top: 20px;
-    width: 220px;
+    width: 350px;
     height: 148px;
+    justify-content: center;
   }
 
   @media (min-width: 1024px) and (max-width: 1200px) {
     margin-top: 20px;
-    width: 220px;
+    width: 350px;
     height: 148px;
   }
 `;
@@ -168,6 +178,7 @@ const BoxGrid = styled.div`
   @media (min-width: 391px) and (max-width: 767px) {
     //모바일
     display: inline;
+    justify-content: center;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
