@@ -8,7 +8,7 @@ import main_recruiting_mobile from "../images/main_recruiting_mobile.png";
 
 const Recruiting = () => {
   const onClickBtn = () => {
-    alert("🦁 현재 모집기간이 아닙니다 🦁");
+    // alert("🦁 현재 모집기간이 아닙니다 🦁");
     window.location.replace("/recruit");
   };
   useEffect(() => {
@@ -93,7 +93,7 @@ const ApplyBtn = styled.button`
   height: 80px;
   background: #ed7f30;
   border-radius: 20px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 28px;
   appearance: none;
   color: black;

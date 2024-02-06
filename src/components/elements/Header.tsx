@@ -93,7 +93,7 @@ export function Header() {
             <HeaderMobileButton onClick={onClickHeaderButton} name="recruit">
               지원하기
             </HeaderMobileButton>
-            {/* <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
+            <HeaderMobileButton onClick={onClickHeaderButton} name="community/BOARD">
               커뮤니티
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="mypage/post">
@@ -101,7 +101,7 @@ export function Header() {
             </HeaderMobileButton>
             <HeaderMobileButton onClick={onClickHeaderButton} name="login">
               {isLoggedIn ? "로그아웃" : "로그인"}
-            </HeaderMobileButton> */}
+            </HeaderMobileButton>
           </ToggleWrapper>
         )}
       </>
