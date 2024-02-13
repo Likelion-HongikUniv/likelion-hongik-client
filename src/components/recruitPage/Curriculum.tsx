@@ -10,19 +10,19 @@ export function Curriculum() {
         <BarContainer>
           <div>
             <Dot1>
-              <Date>2023.02.19 ~ 03.08</Date>
+              <Date>2024.02.19 ~ 03.08</Date>
               <Text>지원서 제출기간</Text>
             </Dot1>
             <Dot2>
-              <Date>2023.03.10</Date>
+              <Date>2024.03.10</Date>
               <Text>서류 합격자 발표</Text>
             </Dot2>
             <Dot3>
-              <Date>2023.03.11 ~ 03.15</Date>
+              <Date>2024.03.11 ~ 03.15</Date>
               <Text>면접</Text>
             </Dot3>
             <Dot4>
-              <Date>2023.03.17</Date>
+              <Date>2024.03.17</Date>
               <Text>최종 합격자 발표</Text>
             </Dot4>
           </div>

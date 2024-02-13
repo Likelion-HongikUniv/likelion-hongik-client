@@ -20,9 +20,8 @@ export function RecruitInfo() {
         <BigText>멋쟁이사자처럼 12기</BigText>
         <SmallText>멋쟁이사자처럼 지원에 관련된 내용을 소개합니다.</SmallText>
         <ForDiv />
-        {/* 수정 필요 */}
-        <BasicText>지원 기간: 2023.02.19 ~ 2023.03.08</BasicText>
-        <BasicText>모집 인원: 총 30명 내외 선발 예정</BasicText>
+        <BasicText>지원 기간: 2024.02.19 ~ 2024.03.08</BasicText>
+        <BasicText>모집 인원: 총 35명 내외 선발 예정</BasicText>
       </Diving>
       <Divs>
         <RegBtn onClick={gotoReg}>지원 폼 작성하기</RegBtn>
