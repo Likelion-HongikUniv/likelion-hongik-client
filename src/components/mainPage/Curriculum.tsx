@@ -79,14 +79,6 @@ const Curriculum = () => {
             전체적인 인프라를 구현합니다.
           </PartText>
         </PartBtn>
-        {/* <PartBtn id="4" onClick={handleClickButton}>
-          <PartName id="4">디자인</PartName>
-          <PartText id="4">
-            고객 중심 사고를 바탕으로
-            <br />
-            서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
-          </PartText>
-        </PartBtn> */}
       </BoxContainer>
       <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
     </Container>
