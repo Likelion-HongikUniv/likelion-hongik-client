@@ -45,32 +45,48 @@ const Curriculum = () => {
         <PartBtn id="1" onClick={handleClickButton}>
           <PartName id="1">기획</PartName>
           <PartText id="1">
-            고객 중심 사고를 바탕으로
+            사용자 경험(UX)을 중심으로 <br />
+            서비스를 기획하며, 서비스를 개발하는 동안
             <br />
-            서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
+            프로젝트 전체 여정을 관리합니다.
           </PartText>
         </PartBtn>
         <PartBtn id="2" onClick={handleClickButton}>
           <PartName id="2">디자인</PartName>
           <PartText id="2">
-            고객 중심 사고를 바탕으로
+            기획자가 설계한 스토리보드를
             <br />
-            서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
+            바탕으로 디자인 요소를 사용하여
+            <br />
+            사용자 인터페이스(UI)를 디자인합니다.
           </PartText>
         </PartBtn>
         <br />
         <PartBtn id="3" onClick={handleClickButton}>
           <PartName id="3">프론트엔드</PartName>
           <PartText id="3">
-            API에서 가져온 데이터의 출력, 입력을 통한 비즈니스 로직 구성과 사용자 인터페이스에 대한 작업을 수행합니다.
+            API를 통해 주고받은 데이터를 이용하여
+            <br /> 최적의 사용자 경험과 성능을
+            <br />
+            이끌어낼 수 있는 서비스를 개발합니다.
           </PartText>
         </PartBtn>
         <PartBtn id="4" onClick={handleClickButton}>
           <PartName id="4">백엔드</PartName>
           <PartText id="4">
-            시스템 설계부터 배포까지, 서비스 및 데이터의 흐름을 관리하며 전반적인 Life Cycle을 경험합니다.
+            API 개발 및 데이터를 관리하고,
+            <br /> 다양한 프레임워크 등을 이용해 서비스의 <br />
+            전체적인 인프라를 구현합니다.
           </PartText>
         </PartBtn>
+        {/* <PartBtn id="4" onClick={handleClickButton}>
+          <PartName id="4">디자인</PartName>
+          <PartText id="4">
+            고객 중심 사고를 바탕으로
+            <br />
+            서비스 기획·디자인 일련의 과정을 배워 실제 서비스를 기획합니다.
+          </PartText>
+        </PartBtn> */}
       </BoxContainer>
       <PartContainer id="animation">{content && <TimeLine>{selectComponent[content]}</TimeLine>}</PartContainer>
     </Container>
@@ -82,17 +98,26 @@ const PartBtn = styled.button`
   height: 240px;
   border-radius: 20px;
   text-align: left;
-  margin: 20px 20px;
-
-  @media (max-width: 768px) {
-    width: 247px;
+  margin: 0px 20px;
+  margin-bottom: 30px;
+  @media (max-width: 767px) {
+    /* width: 247px; */
+    width: 280px;
     height: 141px;
     flex-shrink: 0;
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 280px;
-    height: 148px;
-    margin: 20px 20px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 250px; // 기존 218 width
+
+    height: 148px; // 기존 148 height
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    width: 400px;
+    height: 190px;
+  }
+  @media (min-width: 1025px) {
+    width: 550px;
+    height: 250px;
   }
 `;
 

@@ -9,7 +9,7 @@ export function RecruitInfo() {
     if (regDate === false) {
       alert("🦁 지원 기간이 아닙니다 🦁");
     } else {
-      window.open("https://forms.gle/KE1tRsetSke2u9za7");
+      window.open("https://forms.gle/hinV9VP6Wnsezq2V8");
     }
   };
 
@@ -21,7 +21,7 @@ export function RecruitInfo() {
         <SmallText>멋쟁이사자처럼 지원에 관련된 내용을 소개합니다.</SmallText>
         <ForDiv />
         {/* 수정 필요 */}
-        <BasicText>지원 기간: 2023.02.20 ~ 2023.03.10</BasicText>
+        <BasicText>지원 기간: 2023.02.19 ~ 2023.03.08</BasicText>
         <BasicText>모집 인원: 총 30명 내외 선발 예정</BasicText>
       </Diving>
       <Divs>

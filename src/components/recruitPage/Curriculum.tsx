@@ -10,19 +10,19 @@ export function Curriculum() {
         <BarContainer>
           <div>
             <Dot1>
-              <Date>2023.02.20 ~ 03.10</Date>
+              <Date>2023.02.19 ~ 03.08</Date>
               <Text>지원서 제출기간</Text>
             </Dot1>
             <Dot2>
-              <Date>2023.03.12</Date>
+              <Date>2023.03.10</Date>
               <Text>서류 합격자 발표</Text>
             </Dot2>
             <Dot3>
-              <Date>2023.03.13 ~ 03.17</Date>
+              <Date>2023.03.11 ~ 03.15</Date>
               <Text>면접</Text>
             </Dot3>
             <Dot4>
-              <Date>2023.03.19</Date>
+              <Date>2023.03.17</Date>
               <Text>최종 합격자 발표</Text>
             </Dot4>
           </div>
@@ -63,7 +63,7 @@ const PartName = styled.div`
   color: white;
   font-size: 40px;
   margin-bottom: 30px;
-  font-weight: 700;
+  font-weight: 800;
   @media (max-width: 391px) {
     font-size: 28px;
     line-height: 33.89px;

@@ -4,7 +4,7 @@ export function Requirement() {
   return (
     <ForDiv>
       <div>
-        <TitleText>자격요건</TitleText>
+        <TitleText>자격 요건</TitleText>
         <ForLi>
           <li style={{ marginBottom: "12px" }}>매주 목요일, 오후 6시에 진행되는 정규 세션에 참여할 수 있는 분</li>
           <li style={{ marginBottom: "12px" }}>1년간 맡은 역할을 충실히 이행할 수 있는 책임감 있는 분</li>
@@ -22,6 +22,7 @@ export function Requirement() {
 const ForDiv = styled.div`
   font-weight: 700;
   padding: 0 340px;
+  margin-left: 10px;
   display: flex;
   @media (max-width: 391px) {
     padding: 0 0;
@@ -49,6 +50,7 @@ const TitleText = styled.div`
   font-size: 40px;
   line-height: 48px;
   padding-top: 260px;
+  font-weight: 800;
   @media (max-width: 391px) {
     padding-top: 80px;
     font-size: 28px;

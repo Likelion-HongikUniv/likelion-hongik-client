@@ -32,6 +32,7 @@ const ForDiv = styled.div`
   font-weight: 700;
   display: flex;
   padding: 0 340px;
+  margin-left: 10px;
 
   @media (max-width: 391px) {
     padding: 0 0;
@@ -61,7 +62,7 @@ const TitleText = styled.div`
   font-size: 40px;
   line-height: 48px;
   padding-top: 260px;
-
+  font-weight: 800;
   @media (max-width: 391px) {
     font-size: 28px;
     line-height: 33.89px;

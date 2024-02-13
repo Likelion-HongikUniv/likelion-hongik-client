@@ -36,7 +36,7 @@ export function MainPage() {
           </>
           <>
             <Title data-aos="zoom-in">Recruiting</Title>
-            <Desc data-aos="zoom-in">멋쟁이사자처럼에 지원하기</Desc>
+            <Desc data-aos="zoom-in">멋쟁이사자처럼 지원하기</Desc>
             <Recruiting />
           </>
           <Channel />
