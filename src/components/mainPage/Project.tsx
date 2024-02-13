@@ -3,11 +3,12 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import 같공 from "../images/같공.png";
-import 캘린포니아 from '../images/캘린포니아.jpeg';
-import 페스티발람 from "../images/페스티발람.jpeg";
-import 멋사먹자 from "../images/멋사먹자.png";
-import 꽃바다 from "../images/꽃바다.jpeg";
+import 윤영팀 from "../images/윤영팀.jpg";
+import 진규팀 from "../images/진규팀.png";
+import 소영팀 from "../images/소영팀.jpg";
+import 서영팀 from "../images/서영팀.png";
+import 한아팀 from "../images/한아팀.jpg";
+import 민영팀 from "../images/민영팀.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -24,29 +25,34 @@ interface Iprojects {
 
 const imageList = [
   {
-    pid: "같공",
-    title: 같공,
-    desc: "친구와 함께하는 랭킹별 참가비 환급 스터디 서비스",
+    pid: "I-GO",
+    title: 윤영팀,
+    desc: "요양원과 학생을 1대1 매칭하여 디지털 격차를 해소하는 웹 서비스",
   },
   {
-    pid: "calenfornia",
-    title: 캘린포니아,
-    desc: "홍익대학교 학생 인증을 이용한 수업 일정 공유 캘린더",
+    pid: "MediMed",
+    title: 진규팀,
+    desc: "투약정보, 건강정보, 기초건강관리까지 건강 전반을 책임지는 서비스",
   },
   {
-    pid: "Festivalarm",
-    title: 페스티발람,
-    desc: "국내 야외 음악 페스티벌 알림, 후기 공유 서비스",
+    pid: "한걸음씩",
+    title: 소영팀,
+    desc: "디지털 소외자를 위한 웹사이트 학습 기능 탑재 커뮤니티",
   },
   {
-    pid: "멋사먹자",
-    title: 멋사먹자,
-    desc: "홍대생 큐레이터의 홍대 근처 먹킷리스트 지도 서비스",
+    pid: "함께사장",
+    title: 서영팀,
+    desc: "전통시장 사장님과 손님, 모두를 위한 시장 커뮤니티",
   },
   {
-    pid: "FlowerSea",
-    title: 꽃바다,
-    desc: "홍익대학교 근처 꽃집 배달 및 픽업 서비스",
+    pid: "TestMate",
+    title: 한아팀,
+    desc: "디지털 정보의 홍수 문제를 해결하는 국가 자격 시험 관리 웹 서비스",
+  },
+  {
+    pid: "Potential",
+    title: 민영팀,
+    desc: "디지털 격차 해소를 위한 신생 쇼핑몰 입점 서비스",
   },
 ];
 
