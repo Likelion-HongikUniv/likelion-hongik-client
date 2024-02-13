@@ -21,7 +21,6 @@ const Recruiting = () => {
       <BoxContainer>
         <Now>NOW</Now>
         <Title>멋쟁이사자처럼 12기</Title>
-        {/* 아래 항목 수정 필요 */}
         <Text>
           지원 기간: 2024.02.19 ~ 2024.03.08
           <br />
