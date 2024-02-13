@@ -107,18 +107,6 @@ export const Dot5 = styled(Dot4)`
   }
 `;
 
-export const Dot6 = styled(Dot5)`
-  position: absolute;
-  left: 1100px;
-  @media (max-width: 768px) {
-    top: 350px;
-    left: 0px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    left: 600px;
-  }
-`;
-
 export const Date = styled.div`
   margin-top: 40px;
   width: 149px;
